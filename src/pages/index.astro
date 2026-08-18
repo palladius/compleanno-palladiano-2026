@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh-8460JMo3VTDrOgrDahOHObCmnFk-o_Eg/viewform";
 ---
 
 <Layout title="50° Compleanno Palladiano | 29 Dicembre 2026">
@@ -10,7 +11,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       <div class="badge">SAVE THE DATE • 50 ANNI</div>
       <h1 class="hero-title">Il Cinquantesimo <br/><span class="gold-text">Palladiano</span></h1>
       <p class="hero-subtitle">
-        Mezzo secolo di avventure, codice, bicicletta, cappelletti e... scelte gastronomiche discutibili.
+        Mezzo secolo di avventure, codice, bicicletta, cappelletti e... scelte gastronomiche d'avanguardia.
       </p>
       
       <div class="event-meta">
@@ -25,7 +26,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
           <span class="meta-icon">📍</span>
           <div>
             <strong>Zurigo & Bassa Padana</strong>
-            <small>Location esatta in arrivo</small>
+            <small>In odor di Toscana 🍷</small>
           </div>
         </div>
       </div>
@@ -52,20 +53,45 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
       <div class="hero-cta">
         <a href="#menu" class="btn btn-primary">Scopri il Menu Esclusivo 🍽️</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh-8460JMo3VTDrOgrDahOHObCmnFk-o_Eg/viewform" target="_blank" class="btn btn-secondary">Conferma Presenza (RSVP) ✍️</a>
+        <a href={publicFormUrl} target="_blank" class="btn btn-secondary">Conferma Presenza (RSVP) ✍️</a>
       </div>
     </header>
 
-    <!-- HIGHLIGHT SECTION: LA VEGANIGA -->
+    <!-- HIGHLIGHT SECTION: MENU CRUELTY-FREE -->
     <section id="menu" class="section">
       <div class="section-header">
-        <span class="tag-green">🌱 ESCLUSIVA GASTRONOMICA CRUELTY-FREE</span>
-        <h2>Il Menu Ufficiale: Il Trionfo della Veganiga</h2>
+        <span class="tag-green">🌱 ESCLUSIVA GASTRONOMICA CRUELTY-FREE & IN ODOR DI TOSCANA</span>
+        <h2>Il Menu Ufficiale: Tra Veganiga e Nebbia Ferrarese</h2>
         <p class="section-desc">
-          Per celebrare questo traguardo epocale, la cucina ha elaborato un banchetto a impatto karmico zero. Nessun animale è stato guardato con disappunto durante la preparazione.
+          Un banchetto d'alta scuola a impatto karmico zero. Nessun animale è stato guardato con disappunto. Certificato <em>"Kate-Approved"</em> con abbondanti sentori toscani.
         </p>
       </div>
 
+      <!-- SHOWCASE 1: ARIA DI BOSCO FERRARESE -->
+      <div class="dish-showcase" style="border-color: rgba(245, 158, 11, 0.3); margin-bottom: 2.5rem;">
+        <div class="dish-img-card">
+          <img src={`${baseUrl}/images/aria_bosco_polenta_trasparente.png`} alt="Aria di Bosco della Bassa Ferrarese" class="dish-img" />
+          <div class="dish-badge" style="color: var(--accent-gold); border-color: rgba(245, 158, 11, 0.4);">Antipasto Concettuale Etereo</div>
+        </div>
+
+        <div class="dish-details">
+          <h3 class="dish-title">Aria di Bosco della Bassa Ferrarese emulsionata su Polenta Trasparente</h3>
+          <p class="dish-story">
+            Nebbia mattutina raccolta con retini di seta nelle pinete secolari di Mesola e del Lido degli Estensi. Emulsionata a ultrasuoni e delicatamente adagiata su un lingotto gelatinoso di polenta invisibile a zero calorie e impatto karmico negativo.
+          </p>
+
+          <div class="ingredients-list">
+            <h4>🌲 Componenti Essenziali:</h4>
+            <ul>
+              <li>🌫️ <strong>Brezza Umida delle Valli di Comacchio:</strong> Catturata prima dell'alba.</li>
+              <li>🌽 <strong>Polenta di Mais Trasparente Quantistica:</strong> Leggera come un'idea.</li>
+              <li>🌱 <strong>Ago di Pino Singolo & Gocce di Rugiada:</strong> Per un'esperienza olfattiva totalizzante.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- SHOWCASE 2: LA VEGANIGA -->
       <div class="dish-showcase">
         <div class="dish-img-card">
           <img src={`${baseUrl}/images/bigoli_con_veganiga.png`} alt="Bigoli con la Veganiga" class="dish-img" />
@@ -73,25 +99,24 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
         </div>
 
         <div class="dish-details">
-          <h3 class="dish-title">Bigoli Fatti a Mano con la Vera Veganiga di Lugano</h3>
+          <h3 class="dish-title">Bigoli al Torchio con la Vera Veganiga di Lugano <br/><span style="font-size: 1.1rem; color: #f59e0b;">(Strictly "In Odor di Toscana" 🍷)</span></h3>
           <p class="dish-story">
-            La <strong>Veganiga</strong> è la leggendaria salsiccia vegetale verde smeraldo, insaccata rigorosamente a mano sulle rive del Ceresio. Un capolavoro di bio-ingegneria svizzera che sfida ogni legge della norcineria tradizionale romagnola.
+            La leggendaria salsiccia vegetale verde smeraldo del Ceresio, insaccata a mano senza stress emotivo per i broccoli, mantecata con una lacrima di Olio Extravergine delle Colline del Chianti. Perché, come ricorda sempre Kate: <em>"If it's not Tuscan, it's not worth eating!"</em> 🇬🇧
           </p>
 
           <div class="ingredients-list">
-            <h4>🌿 Ingredienti Certificati 100% Ecosostenibili:</h4>
+            <h4>🌿 Ingredienti Certificati:</h4>
             <ul>
-              <li>🥦 <strong>Cimette di Broccolo & Cavolfiore Alpino:</strong> Raccolti all'alba mentre dormivano.</li>
-              <li>🥒 <strong>Cetrioli Fermentati a Freddo:</strong> Per un retrogusto croccante e rinfrescante.</li>
-              <li>🫚 <strong>Radice di Zenzero Bio-Dinamico:</strong> Quel tocco piccante che fa dimenticare la carne.</li>
-              <li>💨 <strong>Aria Pura del Monte Brè:</strong> Sigillata direttamente nel budello di cellulosa vegetale.</li>
-              <li>🧀 <strong>Formaggio Vegetale di Erba Sintetica:</strong> Grattugiato fresco a pioggia.</li>
+              <li>🥦 <strong>Cimette di Broccolo & Cavolfiore Alpino:</strong> Rispettosamente stufate.</li>
+              <li>🥒 <strong>Cetrioli Fermentati a Freddo:</strong> Crunchiness garantita.</li>
+              <li>🫚 <strong>Zenzero Bio-Dinamico & Aria del Monte Brè:</strong> Sigillati in budello vegetale.</li>
+              <li>🫒 <strong>Olio Toscano D.O.C.G.:</strong> Indispensabile per ottenere il visto di approvazione da Kate.</li>
             </ul>
           </div>
 
           <div class="quote-box">
-            <em>"Sembra una luganiga, sa di orto sinergico, ma se chiudi gli occhi e bevi tre calici di Sangiovese sembra quasi un miracolo!"</em>
-            <div class="quote-author">— Ermete Bottazzi, Camionista & Critico Gastronomico 🚛</div>
+            <em>"Sembra una luganiga, sa di orto sinergico, ma col Chianti va giù che è una bellezza!"</em>
+            <div class="quote-author">— Ermete Bottazzi, Camionista & Gourmet 🚛</div>
           </div>
         </div>
       </div>
@@ -99,28 +124,28 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       <!-- ALTRE PORTATE DEL MENU -->
       <div class="menu-grid">
         <div class="menu-card">
-          <span class="menu-icon">🥣</span>
+          <span class="menu-icon">🌫️</span>
           <h3>Antipasto Etereo</h3>
-          <h4>Aria di Bosco Ticinese emulsionata</h4>
-          <p>Servita su crostone di polenta trasparente a impatto calorico negativo e micro-germogli quantistici.</p>
+          <h4>Aria di Bosco Ferrarese</h4>
+          <p>Polenta trasparente e vapore profumato delle pinete di Comacchio.</p>
         </div>
         <div class="menu-card featured">
           <span class="menu-icon">🍝</span>
-          <h3>Primo Piatto</h3>
+          <h3>Primo d'Onore</h3>
           <h4>Bigoli con la Veganiga</h4>
-          <p>Il piatto cardine della festa. Bigoli al torchio con ragù di verdure croccanti e zenzero ticinese.</p>
+          <p>Salsiccia verde di Lugano 'In Odor di Toscana' per accontentare Kate.</p>
         </div>
         <div class="menu-card">
           <span class="menu-icon">🥬</span>
           <h3>Secondo Filosofico</h3>
-          <h4>Stracotto di Tofu Rigenerato</h4>
-          <p>Tofu cresciuto ascoltando Vivaldi, stufato in riduzione di tisana al finocchietto e semi di chia.</p>
+          <h4>Stracotto di Tofu di Maremma</h4>
+          <p>Tofu cresciuto ascoltando Vivaldi, sfumato con finocchietto selvatico e rosmarino di Bolgheri.</p>
         </div>
         <div class="menu-card">
-          <span class="menu-icon">🎂</span>
-          <h3>Dessert Cinquantenario</h3>
-          <h4>Torta Palladiana al Vapore di Soia</h4>
-          <p>Soffice pan di carota bio con glassa di rugiada mattutina e 50 candeline a ricarica solare.</p>
+          <span class="menu-icon">🍨</span>
+          <h3>Gran Dessert</h3>
+          <h4>Tiramisù con Finto Uovo di Struzzo</h4>
+          <p>Crema di mandorle sferificata con tuorlo di struzzo vegano al mango e savoiardi bio toscani.</p>
         </div>
       </div>
     </section>
@@ -130,36 +155,36 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       <div class="section-header">
         <span class="tag-gold">⏰ IL PROGRAMMA</span>
         <h2>Cosa si fa il 29 Dicembre?</h2>
-        <p class="section-desc">Un fitto calendario di attività per celebrare mezzo secolo di vita.</p>
+        <p class="section-desc">Un fitto calendario di celebrazioni per il mezzo secolo di Riccardo.</p>
       </div>
 
       <div class="timeline">
         <div class="timeline-item">
           <div class="time">12:30</div>
           <div class="timeline-content">
-            <h3>Accoglienza & Aperitivo di Decompressione</h3>
-            <p>Arrivo degli ospiti, abbracci, controllo del tasso alcolemico e prime battute sul tempo di Zurigo.</p>
+            <h3>Accoglienza & Inalazione dell'Aria di Bosco</h3>
+            <p>Arrivo degli ospiti, abbracci, respirazione guidata della nebbia ferrarese e bollicine di benvenuto.</p>
           </div>
         </div>
         <div class="timeline-item">
           <div class="time">13:30</div>
           <div class="timeline-content">
-            <h3>Il Grande Banchetto della Veganiga</h3>
-            <p>Servizio ufficiale dei Bigoli. Momento solenne di assaggio e dibattito filosofico sui broccoli.</p>
+            <h3>Il Grande Banchetto della Veganiga & Tofu di Maremma</h3>
+            <p>Servizio solenne dei Bigoli con la Veganiga e brindisi ufficiale con Chianti Classico per Kate.</p>
           </div>
         </div>
         <div class="timeline-item">
           <div class="time">15:30</div>
           <div class="timeline-content">
-            <h3>Contro-Brindisi Alcolico di Compensazione</h3>
-            <p>Apertura delle bottiglie serie (Sangiovese, Amarone, bollicine) per riequilibrare il karma.</p>
+            <h3>Il Taglio del Tiramisù allo Struzzo Vegano</h3>
+            <p>Apertura del mega-dessert sferificato e sblocco delle riserve alcoliche romagnole e toscane.</p>
           </div>
         </div>
         <div class="timeline-item">
           <div class="time">17:00</div>
           <div class="timeline-content">
-            <h3>Canti, Rock Anni '80 & Canzoni di Ermete</h3>
-            <p>Dalla hit delle Spade Laser e Dinosauri di Ale al concerto epico di mezzanotte.</p>
+            <h3>Rock Anni '80, Spade Laser & Canzoni di Ermete</h3>
+            <p>Dalla colonna sonora epica di Ale ai grandi classici rock cantati a squarciagola.</p>
           </div>
         </div>
       </div>
@@ -169,11 +194,11 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     <section id="rsvp" class="section">
       <div class="rsvp-card">
         <h2>Sei dei Nostri? ✍️</h2>
-        <p>Compila il modulo ufficiale di conferma presenza per permettere allo chef di raccogliere la giusta quantità di cavolfiori a Lugano.</p>
+        <p>Compila il modulo ufficiale per farci sapere se verrai, quanti sarete e se il tuo apparato digerente è pronto alla sfida gastronomica del secolo.</p>
         
         <div style="margin-top: 2rem;">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh-8460JMo3VTDrOgrDahOHObCmnFk-o_Eg/viewform" target="_blank" class="btn btn-primary btn-block" style="display: block; text-align: center; font-size: 1.15rem; padding: 1.1rem;">
-            Apri il Modulo Ufficiale Google Form 📝✨
+          <a href={publicFormUrl} target="_blank" class="btn btn-primary btn-block" style="display: inline-block; text-align: center; font-size: 1.15rem; padding: 1.1rem 2rem;">
+            Compila il Google Form Ufficiale (RSVP) 📝✨
           </a>
         </div>
       </div>
@@ -181,7 +206,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
     <!-- FOOTER -->
     <footer class="footer">
-      <p>50° Compleanno Palladiano • 29 Dicembre 2026 • Zurigo</p>
+      <p>50° Compleanno Palladiano • 29 Dicembre 2026 • In Odor di Toscana 🍷</p>
       <small>Confezionato con ❤️ e Astro da Ermete Bottazzi 🚛 • <a href="https://github.com/palladius/compleanno-palladiano-2026" target="_blank">GitHub Repo</a></small>
     </footer>
   </main>
@@ -372,11 +397,6 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     transform: translateY(-2px);
   }
 
-  .btn-block {
-    width: 100%;
-    margin-top: 1rem;
-  }
-
   /* SECTIONS */
   .section {
     padding: 5rem 0;
@@ -426,7 +446,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     padding: 2.5rem;
     border: 1px solid rgba(16, 185, 129, 0.3);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
     align-items: center;
   }
 
@@ -469,9 +489,10 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
   }
 
   .dish-title {
-    font-size: 2rem;
+    font-size: 1.85rem;
     color: var(--accent-gold);
     margin-bottom: 1rem;
+    line-height: 1.25;
   }
 
   .dish-story {
@@ -604,7 +625,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     border: 1px solid rgba(245, 158, 11, 0.3);
     border-radius: 24px;
     padding: 3rem 2rem;
-    max-width: 550px;
+    max-width: 600px;
     margin: 0 auto;
     text-align: center;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
@@ -618,37 +639,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .rsvp-card p {
     color: var(--text-muted);
-    margin-bottom: 2rem;
-  }
-
-  .rsvp-form {
-    text-align: left;
-  }
-
-  .form-group {
     margin-bottom: 1.5rem;
-  }
-
-  .form-group label {
-    display: block;
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-
-  .form-group input, .form-group select {
-    width: 100%;
-    padding: 0.8rem 1rem;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: rgba(0, 0, 0, 0.3);
-    color: var(--text-light);
-    font-size: 1rem;
-    outline: none;
-  }
-
-  .form-group input:focus, .form-group select:focus {
-    border-color: var(--accent-gold);
   }
 
   /* FOOTER */
