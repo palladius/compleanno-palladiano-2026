@@ -269,6 +269,17 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
       <p>50° Compleanno Palladiano • 29 Dicembre 2026 • In Odor di Toscana 🍷</p>
       <small>Confezionato con ❤️ e Astro da Ermete Bottazzi 🚛 • <a href="https://github.com/palladius/compleanno-palladiano-2026" target="_blank">GitHub Repo</a></small>
     </footer>
+
+    <!-- VIDEO LIGHTBOX MODAL -->
+    <div id="videoModal" class="video-modal" aria-hidden="true">
+      <div class="video-modal-backdrop" id="modalBackdrop"></div>
+      <div class="video-modal-content">
+        <button class="video-modal-close" id="modalClose" aria-label="Chiudi video">&times;</button>
+        <video id="modalVideo" src="" controls autoplay playsinline class="modal-video-element"></video>
+        <div class="modal-caption">🌫️ Aria di Bosco della Bassa Ferrarese emulsionata su Polenta Trasparente (Google Veo Animation)</div>
+      </div>
+    </div>
+
   </main>
 
   <script>
@@ -324,6 +335,49 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
           }
         });
       }
+    });
+
+  
+    // Lightbox Modal Logic
+    const modal = document.getElementById('videoModal');
+    const modalVideo = document.getElementById('modalVideo');
+    const modalClose = document.getElementById('modalClose');
+    const modalBackdrop = document.getElementById('modalBackdrop');
+
+    function openModal(videoSrc) {
+      if (!modal || !modalVideo) return;
+      modalVideo.src = videoSrc;
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      modalVideo.play().catch(() => {});
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      if (!modal || !modalVideo) return;
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      modalVideo.pause();
+      modalVideo.src = '';
+      document.body.style.overflow = '';
+    }
+
+    if (modalClose) modalClose.addEventListener('click', closeModal);
+    if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+
+    // Connect click on hover-video-card to Lightbox
+    document.querySelectorAll('.hover-video-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        const vid = card.querySelector('video');
+        if (vid && vid.src) {
+          openModal(vid.src);
+        }
+      });
     });
 
   </script>
@@ -770,6 +824,96 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
 
   .hover-video-card:hover .hover-video {
     opacity: 1;
+  }
+
+
+  /* VIDEO LIGHTBOX MODAL */
+  .video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .video-modal.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .video-modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(12px);
+    cursor: pointer;
+  }
+
+  .video-modal-content {
+    position: relative;
+    z-index: 10;
+    width: 90vw;
+    max-width: 1050px;
+    max-height: 90vh;
+    background: #0f172a;
+    border-radius: 20px;
+    padding: 1.2rem;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .video-modal-close {
+    position: absolute;
+    top: -16px;
+    right: -16px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+    color: #0f172a;
+    border: 2px solid #0f172a;
+    font-size: 1.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease, background 0.2s ease;
+    z-index: 20;
+  }
+
+  .video-modal-close:hover {
+    background: #fbbf24;
+    transform: scale(1.1);
+  }
+
+  .modal-video-element {
+    width: 100%;
+    max-height: 75vh;
+    border-radius: 12px;
+    outline: none;
+    background: #000;
+  }
+
+  .modal-caption {
+    margin-top: 0.8rem;
+    font-size: 0.95rem;
+    color: var(--accent-gold);
+    font-weight: 600;
+    text-align: center;
   }
 
 </style>
