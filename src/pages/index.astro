@@ -2,6 +2,101 @@
 import Layout from '../layouts/Layout.astro';
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh-8460JMo3VTDrOgrDahOHObCmnFk-o_Eg/viewform";
+
+const dishes = [
+  {
+    id: "aria-bosco",
+    course: "Antipasto Concettuale",
+    badgeColor: "#f59e0b",
+    title: "Aria di Bosco Ferrarese",
+    subtitle: "Emulsionata su Polenta Trasparente",
+    tagline: "Nebbia di Comacchio e rugiada mattutina a impatto karmico negativo.",
+    image: `${baseUrl}/images/aria_bosco_polenta_trasparente.png`,
+    video: `${baseUrl}/videos/aria_bosco_dry_ice.mp4`,
+    hasVideo: true,
+    story: "Nebbia mattutina raccolta con retini di seta nelle pinete secolari di Mesola e del Lido degli Estensi. Emulsionata a ultrasuoni e delicatamente adagiata su un lingotto gelatinoso di polenta invisibile a zero calorie e impatto karmico negativo. Mica pizze e fichi!",
+    ingredients: [
+      "🌫️ Brezza Umida delle Valli di Comacchio catturata prima dell'alba.",
+      "🌽 Polenta di Mais Trasparente Quantistica a zero calorie.",
+      "🌲 Singolo Ago di Pino & Gocce di Rugiada aromatica."
+    ],
+    quote: "Bello, leggero... talmente etereo che dopo tre portate hai più fame di prima!",
+    author: "Ermete Bottazzi, Camionista & Critico 🚛"
+  },
+  {
+    id: "pizze-fichi",
+    course: "Antipasto d'Autore",
+    badgeColor: "#f87171",
+    title: "Pizze e Fichi di Bottura",
+    subtitle: "Mica pizze e fichi di Cetto La Qualunque!",
+    tagline: "Mini margherite fumanti e fichi freschi in scrigno bifasico.",
+    image: `${baseUrl}/images/pizze_e_fichi_vegetariano.png`,
+    hasVideo: false,
+    story: "Omaggio concettuale irriverente all'alta cucina emiliana per gli ospiti vegetariani non-vegani. Uno scrigno diviso rigidamente a metà: da un lato la fragranza del fiordilatte filante, dall'altro la dolcezza ancestrale del fico fresco. Zero contaminazione!",
+    ingredients: [
+      "🍕 Mini Pizzette Margherita calde con mozzarella fiordilatte e basilico.",
+      "🍇 Fichi Freschi di Raccolta neri e verdi tagliati a metà con nettare naturale.",
+      "🙅‍♂️ Separatore Molecolare: i fichi non toccano la pizza prima del morso."
+    ],
+    quote: "Dicevano 'Mica pizze e fichi!'... e infatti queste sono le Pizze e Fichi di Bottura, mica roba da quattro soldi!",
+    author: "Ermete Bottazzi, Filosofo della Strada 🚛"
+  },
+  {
+    id: "veganiga",
+    course: "Primo Piatto D.O.P.",
+    badgeColor: "#10b981",
+    title: "Bigoli con la Veganiga",
+    subtitle: "La Vera Salsiccia Verde di Lugano",
+    tagline: "100% bio-ingegneria ticinese insaccata a mano.",
+    image: `${baseUrl}/images/bigoli_con_veganiga.png`,
+    hasVideo: false,
+    story: "La leggendaria salsiccia vegetale verde smeraldo del Ceresio, insaccata rigorosamente a mano senza alcuno stress emotivo per i broccoli alpini. Un capolavoro ticinese di bio-ingegneria che sfida la norcineria tradizionale.",
+    ingredients: [
+      "🥦 Cimette di Broccolo & Cavolfiore Alpino stufate al vapore.",
+      "🥒 Cetrioli Fermentati a Freddo per una croccantezza rinfrescante.",
+      "🫚 Zenzero Bio-Dinamico & Aria del Monte Brè in budello vegetale."
+    ],
+    quote: "Sembra una luganiga, sa di orto sinergico, ma se ci bevi sopra sembra quasi un miracolo!",
+    author: "Ermete Bottazzi, Camionista & Gourmet 🚛"
+  },
+  {
+    id: "tofu-maremma",
+    course: "Secondo • In Odor di Toscana 🍷",
+    badgeColor: "#10b981",
+    title: "Stracotto di Tofu di Maremma",
+    subtitle: "Coltivato vicino a Mucche Ignare 🐮",
+    tagline: "Cubi di tofu sbocciati nei campi toscani stufati al Chianti.",
+    image: `${baseUrl}/images/tofu_maremma_mucche_ignare.png`,
+    hasVideo: false,
+    story: "Coltivato direttamente sui cespugli biologici della Maremma toscana, dove i cubi di tofu bianco fioriscono spontaneamente sotto il sole caldo mentre le mucche chianine pascolano pacifiche e completamente ignare sullo sfondo. Coccolato con musica classica e stufato in riduzione di Chianti e rosmarino di Bolgheri.",
+    ingredients: [
+      "🌱 Piante di Tofu da Arbusto Spontaneo raccolte a perfetta maturazione cubica.",
+      "🐮 Mucche 100% Ignare che pascolano indisturbate sullo sfondo.",
+      "🌿 Aromi di Bolgheri & Chianti: Strictly In Odor di Toscana."
+    ],
+    quote: "Se le mucche sapessero cosa stiamo mangiando, si farebbero una risata anche loro!",
+    author: "Ermete Bottazzi, Gourmet di Bordo 🚛"
+  },
+  {
+    id: "tiramisu",
+    course: "Dessert Molecolare",
+    badgeColor: "#fbbf24",
+    title: "Tiramisù allo Struzzo Vegano",
+    subtitle: "Con Finto Tuorlo Gigante Sinergico",
+    tagline: "Sembra irresistibile finché non leggi la scheda tecnica...",
+    image: `${baseUrl}/images/tiramisu_struzzo_vegano.png`,
+    hasVideo: false,
+    story: "Alla vista sembra un peccato di gola irresistibile: crema spumosa, biscotto soffice, polvere vellutata e un tuorlo dorato gigante che sembra zabaione colante purissimo. Ma non farti ingannare dagli occhi... la biochimica vegetale qui ha superato ogni limite morale.",
+    ingredients: [
+      "🥚 Finto Tuorlo di Struzzo: sferificazione di rapa gialla fermentata all'aglio dolce, spirulina e cannellini.",
+      "🥛 Spuma di Mascarpone: emulsione di sego di cavolfiore al vapore di cipolla e latte di soia grezzo.",
+      "🥖 Savoiardi Ancestrali: crusca di lenticchie nere e semi di lino inzuppati in decotto di carciofo e tarassaco.",
+      "🍫 Spolvero di Cacao: carbone vegetale attivo da rami di melanzana bruciati."
+    ],
+    quote: "Bello da fotografare per Instagram... poi dai la prima cucchiaiata e capisci perché le galline si sono rifiutate di collaborare!",
+    author: "Ermete Bottazzi, Critico Gastronomico 🚛"
+  }
+];
 ---
 
 <Layout title="50 Sfumature di Giallo | Il 50° Compleanno Palladiano 💛">
@@ -68,191 +163,53 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
       </div>
     </header>
 
-    <!-- HIGHLIGHT SECTION: MENU CRUELTY-FREE -->
+    <!-- COMPACT MENU SECTION (GRID 2x3) -->
     <section id="menu" class="section">
       <div class="section-header">
         <span class="tag-green">🌱 IL BANQUETTO D'AVANGUARDIA CRUELTY-FREE</span>
-        <h2>Il Menu Ufficiale: Dalla Bassa Ferrarese alla Maremma</h2>
+        <h2>Il Menu Ufficiale: Tra Veganiga e Nebbia Ferrarese</h2>
         <p class="section-desc">
-          Un percorso sensoriale a impatto karmico zero, dove nessun animale è stato disturbato durante la coltivazione del tofu o l'insaccamento della salsiccia vegetale.
+          Clicca su una portata per svelare ingredienti segreti, recensioni e retroscena culinari.
         </p>
       </div>
 
-      <!-- SHOWCASE 1: ARIA DI BOSCO FERRARESE -->
-      <div class="dish-showcase" style="border-color: rgba(245, 158, 11, 0.3); margin-bottom: 2.5rem;">
-        <div class="dish-img-card hover-video-card">
-          <img src={`${baseUrl}/images/aria_bosco_polenta_trasparente.png`} alt="Aria di Bosco della Bassa Ferrarese" class="dish-img poster-img" />
-          <video 
-            src={`${baseUrl}/videos/aria_bosco_dry_ice.mp4`} 
-            loop 
-            muted 
-            playsinline 
-            class="dish-img hover-video"
-          ></video>
-          <div class="dish-badge" style="color: var(--accent-gold); border-color: rgba(245, 158, 11, 0.4);">Clicca per video a schermo intero • <em>"Mica pizze e fichi!"</em> 🎬✨</div>
-        </div>
+      <!-- GRID OF CARDS -->
+      <div class="dishes-grid">
+        {dishes.map((dish) => (
+          <div 
+            class={`dish-card ${dish.hasVideo ? 'hover-video-card' : ''}`}
+            data-dish-id={dish.id}
+          >
+            <div class="card-img-wrapper">
+              <img src={dish.image} alt={dish.title} class="card-img" />
+              {dish.hasVideo && (
+                <video 
+                  src={dish.video} 
+                  loop 
+                  muted 
+                  playsinline 
+                  class="card-video"
+                ></video>
+              )}
+              <span class="card-badge" style={`color: ${dish.badgeColor}; border-color: ${dish.badgeColor};`}>
+                {dish.course}
+              </span>
+              {dish.hasVideo && (
+                <span class="video-indicator">🎬 Video Veo (Hover)</span>
+              )}
+            </div>
 
-        <div class="dish-details">
-          <h3 class="dish-title">Aria di Bosco della Bassa Ferrarese emulsionata su Polenta Trasparente</h3>
-          <p class="dish-story">
-            Nebbia mattutina raccolta con retini di seta nelle pinete secolari di Mesola e del Lido degli Estensi. Emulsionata a ultrasuoni e delicatamente adagiata su un lingotto gelatinoso di polenta invisibile a zero calorie e impatto karmico negativo.
-          </p>
-
-          <div class="ingredients-list">
-            <h4>🌲 Componenti Essenziali:</h4>
-            <ul>
-              <li>🌫️ <strong>Brezza Umida delle Valli di Comacchio:</strong> Catturata prima dell'alba.</li>
-              <li>🌽 <strong>Polenta di Mais Trasparente Quantistica:</strong> Leggera come un'idea.</li>
-              <li>🌱 <strong>Ago di Pino Singolo & Gocce di Rugiada:</strong> Per un'esperienza olfattiva totalizzante.</li>
-            </ul>
+            <div class="card-content">
+              <h3 class="card-title">{dish.title}</h3>
+              <h4 class="card-subtitle">{dish.subtitle}</h4>
+              <p class="card-tagline">{dish.tagline}</p>
+              
+              <button class="btn-card-expand">
+                Vedi scheda & ingredienti 🔍
+              </button>
+            </div>
           </div>
-        </div>
-      </div>
-
-            <!-- SHOWCASE 2: PIZZE E FICHI DI BOTTURA (ANTIPASTO VEGETARIANO) -->
-      <div class="dish-showcase" style="border-color: rgba(248, 113, 113, 0.4); margin-bottom: 2.5rem;">
-        <div class="dish-img-card">
-          <img src={`${baseUrl}/images/pizze_e_fichi_vegetariano.png`} alt="Pizze e Fichi di Bottura" class="dish-img" />
-          <div class="dish-badge" style="color: #f87171; border-color: rgba(248, 113, 113, 0.4);">Antipasto Vegetariano d'Autore 🍕🍇</div>
-        </div>
-
-        <div class="dish-details">
-          <h3 class="dish-title">"Pizze e Fichi" di Massimo Bottura <br/><span style="font-size: 1.05rem; color: #f87171;">(Mica pizze e fichi di Cetto La Qualunque! 🎩✨)</span></h3>
-          <p class="dish-story">
-            Omaggio concettuale irriverente all'alta cucina emiliana: un'installazione gastronomica a scomparti separati per gli ospiti vegetariani non-vegani. Da una parte la fragranza del fiordilatte, dall'altra la dolcezza ancestrale del fico fresco.
-          </p>
-
-          <div class="ingredients-list">
-            <h4>🧀 Composizione dello Scrigno Bifasico:</h4>
-            <ul>
-              <li>🍕 <strong>Scomparto A — Mini Pizzette Margherita:</strong> Fumanti, con mozzarella fiordilatte filante, pomodoro dolce San Marzano e basilico.</li>
-              <li>🍇 <strong>Scomparto B — Fichi Freschi di Raccolta:</strong> Fichi neri e verdi zuccherini con goccia di nettare naturale.</li>
-              <li>🙅‍♂️ <strong>Zero Contaminazione:</strong> I fichi NON toccano la pizza prima del consumo. Sarà l'ospite a decidere se tentare l'ibridazione deconstructiva!</li>
-            </ul>
-          </div>
-
-          <div class="quote-box">
-            <em>"Dicevano 'Mica pizze e fichi!'... e infatti queste sono le Pizze e Fichi di Bottura, mica roba da quattro soldi!"</em>
-            <div class="quote-author">— Ermete Bottazzi, Camionista & Critico d'Arte 🚛</div>
-          </div>
-        </div>
-      </div>
-      <!-- SHOWCASE 3: LA VEGANIGA -->
-      <div class="dish-showcase" style="margin-bottom: 2.5rem;">
-        <div class="dish-img-card">
-          <img src={`${baseUrl}/images/bigoli_con_veganiga.png`} alt="Bigoli con la Veganiga" class="dish-img" />
-          <div class="dish-badge">Primo Piatto D.O.P. Fittizio</div>
-        </div>
-
-        <div class="dish-details">
-          <h3 class="dish-title">Bigoli al Torchio con la Vera Veganiga di Lugano</h3>
-          <p class="dish-story">
-            La leggendaria salsiccia vegetale verde smeraldo del Ceresio, insaccata rigorosamente a mano senza alcuno stress emotivo per i broccoli alpini. Un capolavoro ticinese di bio-ingegneria che sfida la norcineria tradizionale.
-          </p>
-
-          <div class="ingredients-list">
-            <h4>🌿 Ingredienti Certificati:</h4>
-            <ul>
-              <li>🥦 <strong>Cimette di Broccolo & Cavolfiore Alpino:</strong> Rispettosamente stufate al vapore.</li>
-              <li>🥒 <strong>Cetrioli Fermentati a Freddo:</strong> Crunchiness e freschezza.</li>
-              <li>🫚 <strong>Zenzero Bio-Dinamico & Aria del Monte Brè:</strong> Sigillati in budello vegetale.</li>
-            </ul>
-          </div>
-
-          <div class="quote-box">
-            <em>"Sembra una luganiga, sa di orto sinergico, ma se ci bevi sopra sembra quasi un miracolo!"</em>
-            <div class="quote-author">— Ermete Bottazzi, Camionista & Gourmet 🚛</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SHOWCASE 3: TOFU DI MAREMMA -->
-      <div class="dish-showcase" style="border-color: rgba(16, 185, 129, 0.4); margin-bottom: 2.5rem;">
-        <div class="dish-img-card">
-          <img src={`${baseUrl}/images/tofu_maremma_mucche_ignare.png`} alt="Stracotto di Tofu di Maremma" class="dish-img" />
-          <div class="dish-badge" style="color: #10b981; border-color: rgba(16, 185, 129, 0.4);">Secondo Piatto • In Odor di Toscana 🍷</div>
-        </div>
-
-        <div class="dish-details">
-          <h3 class="dish-title">Stracotto di Tofu Rigenerato di Maremma <br/><span style="font-size: 1.05rem; color: #10b981;">(Coltivato all'Ombra dei Cipressi vicino a Mucche Ignare 🐮)</span></h3>
-          <p class="dish-story">
-            Coltivato direttamente sui cespugli biologici della Maremma toscana, dove i cubi di tofu bianco fioriscono spontaneamente sotto il sole caldo mentre le mucche chianine pascolano pacifiche e completamente ignare sullo sfondo. Coccolato con musica classica e stufato in riduzione di Chianti e rosmarino selvatico di Bolgheri.
-          </p>
-
-          <div class="ingredients-list">
-            <h4>🌾 Caratteristiche della Coltivazione Maremmana:</h4>
-            <ul>
-              <li>🌱 <strong>Piante di Tofu da Arbusto Spontaneo:</strong> Raccolte a perfetta maturazione cubica.</li>
-              <li>🐮 <strong>Mucche 100% Ignare:</strong> Nessun bovino è stato informato della creazione di questo piatto.</li>
-              <li>🌿 <strong>Aromi di Bolgheri & Chianti:</strong> Rigorosamente <em>In Odor di Toscana</em>.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- SHOWCASE 4: TIRAMISU STRUDEL VEGANO -->
-      <div class="dish-showcase" style="border-color: rgba(217, 119, 6, 0.4); margin-bottom: 3.5rem;">
-        <div class="dish-img-card">
-          <img src={`${baseUrl}/images/tiramisu_struzzo_vegano.png`} alt="Tiramisù all'Uovo Finto di Struzzo Vegano" class="dish-img" />
-          <div class="dish-badge" style="color: #fbbf24; border-color: rgba(251, 191, 36, 0.4);">Dessert Molecolare Ingannevole</div>
-        </div>
-
-        <div class="dish-details">
-          <h3 class="dish-title">Il Gran Tiramisù Imperiale all'Uovo di Struzzo Sinergico</h3>
-          <p class="dish-story">
-            Alla vista sembra un peccato di gola irresistibile: crema spumosa, biscotto soffice, polvere vellutata e un <strong>tuorlo dorato gigante</strong> che sembra zabaione colante purissimo. Ma non farti ingannare dagli occhi... la biochimica vegetale qui ha superato ogni limite morale.
-          </p>
-
-          <div class="ingredients-list">
-            <h4>🍰 La Scheda Tecnica degli Ingredienti "Gourmet":</h4>
-            <ul>
-              <li>🥚 <strong>Il Finto Tuorlo di Struzzo:</strong> Sferificazione di <em>estratto di rapa gialla fermentata all'aglio dolce, alga spirulina e lecitina di cannellini macerati</em>.</li>
-              <li>🥛 <strong>La Spuma di "Mascarpone":</strong> Emulsione di <em>sego vegetale di cavolfiore al vapore di cipolla borettana, latte di soia e barbabietola acida</em>.</li>
-              <li>🥖 <strong>I "Savoiardi" Ancestrali:</strong> Biscotti di <em>crusca di lenticchie nere, semi di lino e cicoria</em> inzuppati in <em>decotto di carciofo e tarassaco</em>.</li>
-              <li>🍫 <strong>Lo "Spolvero di Cacao":</strong> Polvere di <em>carbone vegetale attivo da rami di melanzana bruciati</em>.</li>
-            </ul>
-          </div>
-
-          <div class="quote-box">
-            <em>"Bello da fotografare per Instagram... poi dai la prima cucchiaiata e capisci perché le galline si sono rifiutate di collaborare!"</em>
-            <div class="quote-author">— Ermete Bottazzi, Critico di Bordo 🚛</div>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- ALTRE PORTATE DEL MENU -->
-      <div class="menu-grid">
-        <div class="menu-card">
-          <span class="menu-icon">🌫️</span>
-          <h3>Antipasto Etereo</h3>
-          <h4>Aria di Bosco Ferrarese</h4>
-          <p>Polenta trasparente e nebbia di Comacchio in video Veo.</p>
-        </div>
-        <div class="menu-card" style="border-color: rgba(248, 113, 113, 0.3);">
-          <span class="menu-icon">🍕</span>
-          <h3>Antipasto d'Autore</h3>
-          <h4>Pizze e Fichi di Bottura</h4>
-          <p>Mica pizze e fichi di Cetto La Qualunque!</p>
-        </div>
-        <div class="menu-card featured">
-          <span class="menu-icon">🍝</span>
-          <h3>Primo d'Onore</h3>
-          <h4>Bigoli con la Veganiga</h4>
-          <p>La vera salsiccia vegetale di Lugano 100% cruelty-free.</p>
-        </div>
-        <div class="menu-card">
-          <span class="menu-icon">🥬</span>
-          <h3>Secondo Filosofico</h3>
-          <h4>Stracotto di Tofu di Maremma</h4>
-          <p>Tofu coltivato vicino a mucche ignare (In Odor di Toscana 🍷).</p>
-        </div>
-        <div class="menu-card">
-          <span class="menu-icon">🍨</span>
-          <h3>Gran Dessert</h3>
-          <h4>Tiramisù all'Uovo di Struzzo</h4>
-          <p>Crema molecolare, finto tuorlo di rapa gialla e savoiardi al tarassaco.</p>
-        </div>
+        ))}
       </div>
     </section>
 
@@ -312,23 +269,42 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
 
     <!-- FOOTER -->
     <footer class="footer">
-      <p>50° Compleanno Palladiano • 29 Dicembre 2026 • In Odor di Toscana 🍷</p>
+      <p>50 Sfumature di Giallo • 29 Dicembre 2026 • In Odor di Toscana 🍷</p>
       <small>Confezionato con ❤️ e Astro da Ermete Bottazzi 🚛 • <a href="https://github.com/palladius/compleanno-palladiano-2026" target="_blank">GitHub Repo</a></small>
     </footer>
 
-    <!-- VIDEO LIGHTBOX MODAL -->
-    <div id="videoModal" class="video-modal" aria-hidden="true">
-      <div class="video-modal-backdrop" id="modalBackdrop"></div>
-      <div class="video-modal-content">
-        <button class="video-modal-close" id="modalClose" aria-label="Chiudi video">&times;</button>
-        <video id="modalVideo" src="" controls autoplay playsinline class="modal-video-element"></video>
-        <div class="modal-caption">🌫️ Aria di Bosco della Bassa Ferrarese emulsionata su Polenta Trasparente — <span style="font-size: 1.15rem; color: #fbbf24; font-weight: 800;">"Mica pizze e fichi!"</span> 🚛✨</div>
+    <!-- DISH DETAIL MODAL (LIGHTBOX) -->
+    <div id="dishModal" class="dish-modal" aria-hidden="true">
+      <div class="dish-modal-backdrop" id="modalBackdrop"></div>
+      <div class="dish-modal-container">
+        <button class="dish-modal-close" id="modalClose" aria-label="Chiudi">&times;</button>
+        
+        <div class="modal-media-wrapper" id="modalMediaWrapper">
+          <img id="modalImg" src="" alt="" class="modal-media" />
+          <video id="modalVid" src="" controls autoplay loop playsinline class="modal-media" style="display: none;"></video>
+        </div>
+
+        <div class="modal-body">
+          <span class="modal-badge" id="modalBadge"></span>
+          <h2 class="modal-title" id="modalTitle"></h2>
+          <h4 class="modal-subtitle" id="modalSubtitle"></h4>
+          <p class="modal-story" id="modalStory"></p>
+
+          <div class="modal-ingredients">
+            <h4>🌿 Scheda Tecnica & Ingredienti:</h4>
+            <ul id="modalIngredientsList"></ul>
+          </div>
+
+          <div class="modal-quote" id="modalQuoteWrapper">
+            <em id="modalQuoteText"></em>
+            <div class="modal-quote-author" id="modalQuoteAuthor"></div>
+          </div>
+        </div>
       </div>
     </div>
-
   </main>
 
-  <script>
+  <script define:vars={{ dishes }}>
     // Live Countdown
     const targetDate = new Date("2026-12-29T18:00:00+01:00").getTime();
 
@@ -357,75 +333,96 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
-  
-    // Hover Video Playback
-    const hoverCards = document.querySelectorAll('.hover-video-card');
-    hoverCards.forEach(card => {
+
+    // Hover video preview for cards
+    document.querySelectorAll('.hover-video-card').forEach(card => {
       const vid = card.querySelector('video');
       if (vid) {
-        card.addEventListener('mouseenter', () => {
-          vid.play().catch(() => {});
-        });
-        card.addEventListener('mouseleave', () => {
-          vid.pause();
-          vid.currentTime = 0;
-        });
-        // Touch devices support
-        card.addEventListener('click', () => {
-          if (vid.paused) {
-            vid.play().catch(() => {});
-            vid.style.opacity = '1';
-          } else {
-            vid.pause();
-            vid.style.opacity = '0';
-          }
-        });
+        card.addEventListener('mouseenter', () => { vid.play().catch(() => {}); });
+        card.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
       }
     });
 
-  
-    // Lightbox Modal Logic
-    const modal = document.getElementById('videoModal');
-    const modalVideo = document.getElementById('modalVideo');
-    const modalClose = document.getElementById('modalClose');
+    // Modal Details Logic
+    const modal = document.getElementById('dishModal');
     const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalClose = document.getElementById('modalClose');
+    const modalImg = document.getElementById('modalImg');
+    const modalVid = document.getElementById('modalVid');
+    const modalBadge = document.getElementById('modalBadge');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalSubtitle = document.getElementById('modalSubtitle');
+    const modalStory = document.getElementById('modalStory');
+    const modalIngredientsList = document.getElementById('modalIngredientsList');
+    const modalQuoteText = document.getElementById('modalQuoteText');
+    const modalQuoteAuthor = document.getElementById('modalQuoteAuthor');
 
-    function openModal(videoSrc) {
-      if (!modal || !modalVideo) return;
-      modalVideo.src = videoSrc;
+    function openDishModal(dishId) {
+      const dish = dishes.find(d => d.id === dishId);
+      if (!dish || !modal) return;
+
+      if (dish.hasVideo) {
+        modalImg.style.display = 'none';
+        modalVid.style.display = 'block';
+        modalVid.src = dish.video;
+        modalVid.play().catch(() => {});
+      } else {
+        modalVid.style.display = 'none';
+        modalVid.pause();
+        modalVid.src = '';
+        modalImg.style.display = 'block';
+        modalImg.src = dish.image;
+        modalImg.alt = dish.title;
+      }
+
+      modalBadge.innerText = dish.course;
+      modalBadge.style.color = dish.badgeColor;
+      modalBadge.style.borderColor = dish.badgeColor;
+
+      modalTitle.innerText = dish.title;
+      modalSubtitle.innerText = dish.subtitle;
+      modalStory.innerText = dish.story;
+
+      modalIngredientsList.innerHTML = '';
+      dish.ingredients.forEach(ing => {
+        const li = document.createElement('li');
+        li.innerText = ing;
+        modalIngredientsList.appendChild(li);
+      });
+
+      modalQuoteText.innerText = `"${dish.quote}"`;
+      modalQuoteAuthor.innerText = `— ${dish.author}`;
+
       modal.classList.add('active');
       modal.setAttribute('aria-hidden', 'false');
-      modalVideo.play().catch(() => {});
       document.body.style.overflow = 'hidden';
     }
 
-    function closeModal() {
-      if (!modal || !modalVideo) return;
+    function closeDishModal() {
+      if (!modal) return;
       modal.classList.remove('active');
       modal.setAttribute('aria-hidden', 'true');
-      modalVideo.pause();
-      modalVideo.src = '';
+      if (modalVid) {
+        modalVid.pause();
+        modalVid.src = '';
+      }
       document.body.style.overflow = '';
     }
 
-    if (modalClose) modalClose.addEventListener('click', closeModal);
-    if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
-        closeModal();
-      }
-    });
-
-    // Connect click on hover-video-card to Lightbox
-    document.querySelectorAll('.hover-video-card').forEach(card => {
-      card.addEventListener('click', (e) => {
-        const vid = card.querySelector('video');
-        if (vid && vid.src) {
-          openModal(vid.src);
-        }
+    document.querySelectorAll('.dish-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const dishId = card.getAttribute('data-dish-id');
+        if (dishId) openDishModal(dishId);
       });
     });
 
+    if (modalClose) modalClose.addEventListener('click', closeDishModal);
+    if (modalBackdrop) modalBackdrop.addEventListener('click', closeDishModal);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+        closeDishModal();
+      }
+    });
   </script>
 </Layout>
 
@@ -442,6 +439,67 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
+  /* HERO BIRTHDAY AVATAR */
+  .birthday-avatar-wrapper {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .badge-super {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #0f172a;
+    border-radius: 9999px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 25px rgba(245, 158, 11, 0.5);
+    text-transform: uppercase;
+  }
+
+  .avatar-container {
+    position: relative;
+    width: 290px;
+    height: 290px;
+    margin-bottom: 1.8rem;
+  }
+
+  .birthday-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--accent-gold);
+    box-shadow: 0 0 40px rgba(245, 158, 11, 0.55);
+    display: block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .birthday-avatar:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 50px rgba(245, 158, 11, 0.8);
+  }
+
+  .avatar-crown-badge {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 23, 42, 0.95);
+    border: 2px solid var(--accent-gold);
+    color: var(--accent-gold);
+    padding: 0.35rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+  }
+
   .badge {
     display: inline-block;
     padding: 0.4rem 1.2rem;
@@ -452,7 +510,6 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
     font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 2px;
-    margin-bottom: 1.5rem;
   }
 
   .hero-title {
@@ -585,13 +642,13 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
 
   /* SECTIONS */
   .section {
-    padding: 5rem 0;
+    padding: 4rem 0;
   }
 
   .section-header {
     text-align: center;
     max-width: 700px;
-    margin: 0 auto 3.5rem;
+    margin: 0 auto 3rem;
   }
 
   .tag-green {
@@ -613,152 +670,303 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
   }
 
   .section-header h2 {
-    font-size: 2.4rem;
-    margin-bottom: 1rem;
+    font-size: 2.3rem;
+    margin-bottom: 0.8rem;
   }
 
   .section-desc {
     color: var(--text-muted);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
   }
 
-  /* DISH SHOWCASE */
-  .dish-showcase {
+  /* DISHES GRID (COMPACT 2x3) */
+  .dishes-grid {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 1.8rem;
+  }
+
+  .dish-card {
     background: var(--bg-card);
-    border-radius: 24px;
-    padding: 2.5rem;
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    align-items: center;
-  }
-
-  @media (max-width: 850px) {
-    .dish-showcase {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .dish-img-card {
-    position: relative;
-    border-radius: 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
   }
 
-  .dish-img {
+  .dish-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-gold);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .card-img-wrapper {
+    position: relative;
     width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 16px;
-    transition: transform 0.3s ease;
+    height: 220px;
+    overflow: hidden;
+    background: #000;
   }
 
-  .dish-img:hover {
-    transform: scale(1.03);
+  .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
   }
 
-  .dish-badge {
+  .dish-card:hover .card-img {
+    transform: scale(1.05);
+  }
+
+  .card-video {
     position: absolute;
-    bottom: 12px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+
+  .dish-card:hover .card-video {
+    opacity: 1;
+  }
+
+  .card-badge {
+    position: absolute;
+    top: 12px;
     left: 12px;
     background: rgba(15, 23, 42, 0.85);
     backdrop-filter: blur(8px);
-    color: var(--accent-green);
     font-weight: 700;
-    font-size: 0.8rem;
-    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.7rem;
     border-radius: 8px;
-    border: 1px solid rgba(16, 185, 129, 0.4);
+    border: 1px solid;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
-  .dish-title {
-    font-size: 1.85rem;
+  .video-indicator {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.75);
     color: var(--accent-gold);
-    margin-bottom: 1rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+  }
+
+  .card-content {
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .card-title {
+    font-size: 1.35rem;
+    color: var(--accent-gold);
+    margin-bottom: 0.3rem;
     line-height: 1.25;
   }
 
-  .dish-story {
-    font-size: 1.05rem;
-    color: var(--text-light);
-    margin-bottom: 1.5rem;
-  }
-
-  .ingredients-list h4 {
-    color: var(--accent-green);
-    margin-bottom: 0.8rem;
-    font-size: 1rem;
-  }
-
-  .ingredients-list ul {
-    list-style: none;
-    margin-bottom: 1.5rem;
-  }
-
-  .ingredients-list li {
-    padding: 0.3rem 0;
-    color: var(--text-muted);
+  .card-subtitle {
     font-size: 0.95rem;
-  }
-
-  .quote-box {
-    background: rgba(0, 0, 0, 0.25);
-    border-left: 3px solid var(--accent-gold);
-    padding: 1rem;
-    border-radius: 0 12px 12px 0;
-    font-style: italic;
-  }
-
-  .quote-author {
-    font-style: normal;
-    font-size: 0.85rem;
-    color: var(--accent-gold);
-    margin-top: 0.5rem;
+    color: var(--text-light);
+    margin-bottom: 0.6rem;
     font-weight: 600;
   }
 
-  /* MENU GRID */
-  .menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 1.5rem;
+  .card-tagline {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 1.2rem;
+    line-height: 1.4;
+    flex-grow: 1;
   }
 
-  .menu-card {
-    background: var(--bg-card);
-    padding: 1.8rem;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+  .btn-card-expand {
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--accent-gold);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
     text-align: center;
+    width: 100%;
   }
 
-  .menu-card.featured {
-    border-color: rgba(245, 158, 11, 0.4);
-    background: linear-gradient(180deg, rgba(245, 158, 11, 0.05) 0%, var(--bg-card) 100%);
+  .dish-card:hover .btn-card-expand {
+    background: var(--accent-gold);
+    color: #0f172a;
   }
 
-  .menu-icon {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
+  /* DISH DETAIL MODAL */
+  .dish-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 1.5rem;
+  }
+
+  .dish-modal.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .dish-modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(12px);
+    cursor: pointer;
+  }
+
+  .dish-modal-container {
+    position: relative;
+    z-index: 10;
+    width: 90vw;
+    max-width: 850px;
+    max-height: 88vh;
+    background: #1e293b;
+    border-radius: 24px;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dish-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+    color: #0f172a;
+    border: none;
+    font-size: 1.6rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-media-wrapper {
+    width: 100%;
+    max-height: 380px;
+    overflow: hidden;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-media {
+    width: 100%;
+    max-height: 380px;
+    object-fit: cover;
+  }
+
+  .modal-body {
+    padding: 2rem;
+  }
+
+  .modal-badge {
     display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.3rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid;
+    margin-bottom: 0.8rem;
   }
 
-  .menu-card h3 {
-    font-size: 1.2rem;
+  .modal-title {
+    font-size: 2rem;
     color: var(--accent-gold);
     margin-bottom: 0.3rem;
   }
 
-  .menu-card h4 {
+  .modal-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-light);
+    margin-bottom: 1.2rem;
+  }
+
+  .modal-story {
     font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-ingredients {
+    background: rgba(0, 0, 0, 0.25);
+    padding: 1.2rem;
+    border-radius: 14px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .modal-ingredients h4 {
+    color: var(--accent-green);
+    font-size: 1rem;
     margin-bottom: 0.8rem;
   }
 
-  .menu-card p {
-    font-size: 0.9rem;
+  .modal-ingredients ul {
+    list-style: none;
+  }
+
+  .modal-ingredients li {
+    padding: 0.35rem 0;
     color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .modal-quote {
+    border-left: 3px solid var(--accent-gold);
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+  }
+
+  .modal-quote-author {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--accent-gold);
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
   }
 
   /* TIMELINE */
@@ -840,188 +1048,4 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
     color: var(--accent-gold);
     text-decoration: none;
   }
-
-  /* HOVER VIDEO EFFECT */
-  .hover-video-card {
-    position: relative;
-    cursor: pointer;
-  }
-
-  .hover-video-card .poster-img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 16px;
-    transition: opacity 0.3s ease;
-  }
-
-  .hover-video-card .hover-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 16px;
-    opacity: 0;
-    transition: opacity 0.35s ease;
-    pointer-events: none;
-  }
-
-  .hover-video-card:hover .hover-video {
-    opacity: 1;
-  }
-
-
-  /* VIDEO LIGHTBOX MODAL */
-  .video-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .video-modal.active {
-    display: flex;
-    opacity: 1;
-  }
-
-  .video-modal-backdrop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(12px);
-    cursor: pointer;
-  }
-
-  .video-modal-content {
-    position: relative;
-    z-index: 10;
-    width: 90vw;
-    max-width: 1050px;
-    max-height: 90vh;
-    background: #0f172a;
-    border-radius: 20px;
-    padding: 1.2rem;
-    border: 1px solid rgba(245, 158, 11, 0.4);
-    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .video-modal-close {
-    position: absolute;
-    top: -16px;
-    right: -16px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--accent-gold);
-    color: #0f172a;
-    border: 2px solid #0f172a;
-    font-size: 1.8rem;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    transition: transform 0.2s ease, background 0.2s ease;
-    z-index: 20;
-  }
-
-  .video-modal-close:hover {
-    background: #fbbf24;
-    transform: scale(1.1);
-  }
-
-  .modal-video-element {
-    width: 100%;
-    max-height: 75vh;
-    border-radius: 12px;
-    outline: none;
-    background: #000;
-  }
-
-  .modal-caption {
-    margin-top: 0.8rem;
-    font-size: 0.95rem;
-    color: var(--accent-gold);
-    font-weight: 600;
-    text-align: center;
-  }
-
-
-  /* HERO BIRTHDAY AVATAR */
-  .birthday-avatar-wrapper {
-    margin-bottom: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .badge-super {
-    display: inline-block;
-    padding: 0.5rem 1.5rem;
-    background: linear-gradient(135deg, #f59e0b, #d97706);
-    color: #0f172a;
-    border-radius: 9999px;
-    font-size: 1rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
-    text-transform: uppercase;
-  }
-
-  .avatar-container {
-    position: relative;
-    width: 290px;
-    height: 290px;
-    margin-bottom: 2rem;
-  }
-
-  .birthday-avatar {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid var(--accent-gold);
-    box-shadow: 0 0 35px rgba(245, 158, 11, 0.5), inset 0 0 15px rgba(0,0,0,0.5);
-    display: block;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .birthday-avatar:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 45px rgba(245, 158, 11, 0.75);
-  }
-
-  .avatar-crown-badge {
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(15, 23, 42, 0.9);
-    border: 2px solid var(--accent-gold);
-    color: var(--accent-gold);
-    padding: 0.3rem 0.9rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 800;
-    white-space: nowrap;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-  }
-
 </style>
