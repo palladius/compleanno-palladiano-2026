@@ -70,8 +70,17 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
       <!-- SHOWCASE 1: ARIA DI BOSCO FERRARESE -->
       <div class="dish-showcase" style="border-color: rgba(245, 158, 11, 0.3); margin-bottom: 2.5rem;">
         <div class="dish-img-card">
-          <img src={`${baseUrl}/images/aria_bosco_polenta_trasparente.png`} alt="Aria di Bosco della Bassa Ferrarese" class="dish-img" />
-          <div class="dish-badge" style="color: var(--accent-gold); border-color: rgba(245, 158, 11, 0.4);">Antipasto Concettuale Etereo</div>
+          <video 
+            src={`${baseUrl}/videos/aria_bosco_dry_ice.mp4`} 
+            poster={`${baseUrl}/images/aria_bosco_polenta_trasparente.png`}
+            autoplay 
+            loop 
+            muted 
+            playsinline 
+            class="dish-img"
+            style="object-fit: cover;"
+          ></video>
+          <div class="dish-badge" style="color: var(--accent-gold); border-color: rgba(245, 158, 11, 0.4);">Antipasto Animato con Veo 🎬✨</div>
         </div>
 
         <div class="dish-details">
