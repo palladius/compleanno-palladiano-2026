@@ -4,17 +4,25 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh-8460JMo3VTDrOgrDahOHObCmnFk-o_Eg/viewform";
 ---
 
-<Layout title="50° Compleanno Palladiano | 29 Dicembre 2026">
+<Layout title="50 Sfumature di Giallo | Il 50° Compleanno Palladiano 💛">
   <main class="container">
     <!-- HERO SECTION -->
     <header class="hero">
-            <div style="margin-bottom: 1.5rem;">
-        <img src={`${baseUrl}/images/riccardo_50_portrait.png`} alt="Riccardo 50 Anni - Il Festeggiato" style="width: 170px; height: 170px; object-fit: cover; border-radius: 50%; border: 3px solid var(--accent-gold); box-shadow: 0 0 25px rgba(245, 158, 11, 0.4); display: block; margin: 0 auto 1.2rem;" />
-        <div class="badge">SAVE THE DATE • 50 ANNI</div>
+      <div class="birthday-avatar-wrapper">
+        <div class="badge-super">💛 50 SFUMATURE DI GIALLO 💛</div>
+        <div class="avatar-container">
+          <img 
+            src={`${baseUrl}/images/riccardo_50_portrait.png`} 
+            alt="Riccardo 50 Anni - 50 Sfumature di Giallo" 
+            class="birthday-avatar" 
+          />
+          <div class="avatar-crown-badge">👑 50 & Fabulous</div>
+        </div>
+        <div class="badge">SAVE THE DATE • MARTEDÌ 29 DICEMBRE 2026</div>
       </div>
-      <h1 class="hero-title">Il Cinquantesimo <br/><span class="gold-text">Palladiano</span></h1>
+      <h1 class="hero-title">50 Sfumature <br/><span class="gold-text">di Giallo</span></h1>
       <p class="hero-subtitle">
-        Mezzo secolo di avventure, codice, bicicletta, cappelletti e... scelte gastronomiche d'avanguardia.
+        <strong>Il Cinquantesimo Compleanno Palladiano:</strong> mezzo secolo di avventure, codice, bicicletta, cappelletti e... scelte gastronomiche d'avanguardia.
       </p>
       
       <div class="event-meta">
@@ -979,9 +987,9 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
 
   .avatar-container {
     position: relative;
-    width: 220px;
-    height: 220px;
-    margin-bottom: 1.5rem;
+    width: 290px;
+    height: 290px;
+    margin-bottom: 2rem;
   }
 
   .birthday-avatar {
