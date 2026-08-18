@@ -69,18 +69,16 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
 
       <!-- SHOWCASE 1: ARIA DI BOSCO FERRARESE -->
       <div class="dish-showcase" style="border-color: rgba(245, 158, 11, 0.3); margin-bottom: 2.5rem;">
-        <div class="dish-img-card">
+        <div class="dish-img-card hover-video-card">
+          <img src={`${baseUrl}/images/aria_bosco_polenta_trasparente.png`} alt="Aria di Bosco della Bassa Ferrarese" class="dish-img poster-img" />
           <video 
             src={`${baseUrl}/videos/aria_bosco_dry_ice.mp4`} 
-            poster={`${baseUrl}/images/aria_bosco_polenta_trasparente.png`}
-            autoplay 
             loop 
             muted 
             playsinline 
-            class="dish-img"
-            style="object-fit: cover;"
+            class="dish-img hover-video"
           ></video>
-          <div class="dish-badge" style="color: var(--accent-gold); border-color: rgba(245, 158, 11, 0.4);">Antipasto Animato con Veo 🎬✨</div>
+          <div class="dish-badge" style="color: var(--accent-gold); border-color: rgba(245, 158, 11, 0.4);">Passa il mouse per animare 🎬✨</div>
         </div>
 
         <div class="dish-details">
@@ -302,6 +300,32 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
+  
+    // Hover Video Playback
+    const hoverCards = document.querySelectorAll('.hover-video-card');
+    hoverCards.forEach(card => {
+      const vid = card.querySelector('video');
+      if (vid) {
+        card.addEventListener('mouseenter', () => {
+          vid.play().catch(() => {});
+        });
+        card.addEventListener('mouseleave', () => {
+          vid.pause();
+          vid.currentTime = 0;
+        });
+        // Touch devices support
+        card.addEventListener('click', () => {
+          if (vid.paused) {
+            vid.play().catch(() => {});
+            vid.style.opacity = '1';
+          } else {
+            vid.pause();
+            vid.style.opacity = '0';
+          }
+        });
+      }
+    });
+
   </script>
 </Layout>
 
@@ -716,4 +740,36 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
     color: var(--accent-gold);
     text-decoration: none;
   }
+
+  /* HOVER VIDEO EFFECT */
+  .hover-video-card {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .hover-video-card .poster-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    transition: opacity 0.3s ease;
+  }
+
+  .hover-video-card .hover-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+
+  .hover-video-card:hover .hover-video {
+    opacity: 1;
+  }
+
 </style>
