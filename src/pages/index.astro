@@ -98,7 +98,35 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
         </div>
       </div>
 
-      <!-- SHOWCASE 2: LA VEGANIGA -->
+            <!-- SHOWCASE 2: PIZZE E FICHI DI BOTTURA (ANTIPASTO VEGETARIANO) -->
+      <div class="dish-showcase" style="border-color: rgba(248, 113, 113, 0.4); margin-bottom: 2.5rem;">
+        <div class="dish-img-card">
+          <img src={`${baseUrl}/images/pizze_e_fichi_vegetariano.png`} alt="Pizze e Fichi di Bottura" class="dish-img" />
+          <div class="dish-badge" style="color: #f87171; border-color: rgba(248, 113, 113, 0.4);">Antipasto Vegetariano d'Autore 🍕🍇</div>
+        </div>
+
+        <div class="dish-details">
+          <h3 class="dish-title">"Pizze e Fichi" di Massimo Bottura <br/><span style="font-size: 1.05rem; color: #f87171;">(Mica pizze e fichi di Cetto La Qualunque! 🎩✨)</span></h3>
+          <p class="dish-story">
+            Omaggio concettuale irriverente all'alta cucina emiliana: un'installazione gastronomica a scomparti separati per gli ospiti vegetariani non-vegani. Da una parte la fragranza del fiordilatte, dall'altra la dolcezza ancestrale del fico fresco.
+          </p>
+
+          <div class="ingredients-list">
+            <h4>🧀 Composizione dello Scrigno Bifasico:</h4>
+            <ul>
+              <li>🍕 <strong>Scomparto A — Mini Pizzette Margherita:</strong> Fumanti, con mozzarella fiordilatte filante, pomodoro dolce San Marzano e basilico.</li>
+              <li>🍇 <strong>Scomparto B — Fichi Freschi di Raccolta:</strong> Fichi neri e verdi zuccherini con goccia di nettare naturale.</li>
+              <li>🙅‍♂️ <strong>Zero Contaminazione:</strong> I fichi NON toccano la pizza prima del consumo. Sarà l'ospite a decidere se tentare l'ibridazione deconstructiva!</li>
+            </ul>
+          </div>
+
+          <div class="quote-box">
+            <em>"Dicevano 'Mica pizze e fichi!'... e infatti queste sono le Pizze e Fichi di Bottura, mica roba da quattro soldi!"</em>
+            <div class="quote-author">— Ermete Bottazzi, Camionista & Critico d'Arte 🚛</div>
+          </div>
+        </div>
+      </div>
+      <!-- SHOWCASE 3: LA VEGANIGA -->
       <div class="dish-showcase" style="margin-bottom: 2.5rem;">
         <div class="dish-img-card">
           <img src={`${baseUrl}/images/bigoli_con_veganiga.png`} alt="Bigoli con la Veganiga" class="dish-img" />
@@ -181,41 +209,20 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
         </div>
       </div>
 
-      <!-- SHOWCASE 5: PIZZE E FICHI (VEGETARIANO) -->
-      <div class="dish-showcase" style="border-color: rgba(239, 68, 68, 0.4); margin-bottom: 3.5rem;">
-        <div class="dish-img-card">
-          <img src={`${baseUrl}/images/pizze_e_fichi_vegetariano.png`} alt="Pizze e Fichi - Opzione Vegetariana" class="dish-img" />
-          <div class="dish-badge" style="color: #f87171; border-color: rgba(248, 113, 113, 0.4);">Alternativa Vegetariana Letterale 🍕🍇</div>
-        </div>
 
-        <div class="dish-details">
-          <h3 class="dish-title">L'Alternativa Letterale: "Pizze e Fichi" <br/><span style="font-size: 1.05rem; color: #f87171;">(Non pizza AI fichi... sarebbe stato troppo facile! 🍕)</span></h3>
-          <p class="dish-story">
-            Per gli invitati vegetariani ma non-vegani (e per chi teme gli effetti collaterali della Veganiga di Lugano), lo chef propone il proverbiale piatto della saggezza popolare servito in un apposito scrigno a scomparti separati.
-          </p>
-
-          <div class="ingredients-list">
-            <h4>🧀 Composizione del Contenitore Bifasico:</h4>
-            <ul>
-              <li>🍕 <strong>Scomparto A — Mini Pizzette Margherita:</strong> Fumanti, con mozzarella fiordilatte filante, salsa di pomodoro rustico e basilico fresco.</li>
-              <li>🍇 <strong>Scomparto B — Fichi Freschi di Raccolta:</strong> Fichi neri e verdi zuccherini, tagliati a metà con goccia di nettare naturale.</li>
-              <li>🙅‍♂️ <strong>Zero Contaminazione:</strong> I fichi NON toccano la pizza prima del consumo. Sta all'ospite decidere se azzardare l'ibridazione molecolare!</li>
-            </ul>
-          </div>
-
-          <div class="quote-box">
-            <em>"Dicevano 'Mica pizze e fichi!'... e invece eccovi servite esattamente pizze E fichi. Genio puro!"</em>
-            <div class="quote-author">— Ermete Bottazzi, Filosofo della Strada 🚛</div>
-          </div>
-        </div>
-      </div>
       <!-- ALTRE PORTATE DEL MENU -->
       <div class="menu-grid">
         <div class="menu-card">
           <span class="menu-icon">🌫️</span>
           <h3>Antipasto Etereo</h3>
           <h4>Aria di Bosco Ferrarese</h4>
-          <p>Polenta trasparente e vapore profumato delle pinete di Comacchio.</p>
+          <p>Polenta trasparente e nebbia di Comacchio in video Veo.</p>
+        </div>
+        <div class="menu-card" style="border-color: rgba(248, 113, 113, 0.3);">
+          <span class="menu-icon">🍕</span>
+          <h3>Antipasto d'Autore</h3>
+          <h4>Pizze e Fichi di Bottura</h4>
+          <p>Mica pizze e fichi di Cetto La Qualunque!</p>
         </div>
         <div class="menu-card featured">
           <span class="menu-icon">🍝</span>
@@ -227,19 +234,13 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
           <span class="menu-icon">🥬</span>
           <h3>Secondo Filosofico</h3>
           <h4>Stracotto di Tofu di Maremma</h4>
-          <p>Cubi di tofu coltivati nei campi toscani vicino a mucche ignare.</p>
+          <p>Tofu coltivato vicino a mucche ignare (In Odor di Toscana 🍷).</p>
         </div>
         <div class="menu-card">
           <span class="menu-icon">🍨</span>
           <h3>Gran Dessert</h3>
           <h4>Tiramisù all'Uovo di Struzzo</h4>
           <p>Crema molecolare, finto tuorlo di rapa gialla e savoiardi al tarassaco.</p>
-        </div>
-        <div class="menu-card" style="border-color: rgba(248, 113, 113, 0.3);">
-          <span class="menu-icon">🍕</span>
-          <h3>Alternativa Vegetariana</h3>
-          <h4>Pizze e Fichi</h4>
-          <p>Mini margherite fumanti e fichi freschi nello stesso scrigno.</p>
         </div>
       </div>
     </section>
