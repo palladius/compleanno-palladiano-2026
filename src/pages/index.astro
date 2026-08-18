@@ -52,7 +52,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
       <div class="hero-cta">
         <a href="#menu" class="btn btn-primary">Scopri il Menu Esclusivo 🍽️</a>
-        <a href="#rsvp" class="btn btn-secondary">Conferma Presenza (RSVP) ✍️</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh-8460JMo3VTDrOgrDahOHObCmnFk-o_Eg/viewform" target="_blank" class="btn btn-secondary">Conferma Presenza (RSVP) ✍️</a>
       </div>
     </header>
 
@@ -169,23 +169,13 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     <section id="rsvp" class="section">
       <div class="rsvp-card">
         <h2>Sei dei Nostri? ✍️</h2>
-        <p>Conferma la tua presenza per permettere allo chef di raccogliere la giusta quantità di cavolfiori a Lugano.</p>
+        <p>Compila il modulo ufficiale di conferma presenza per permettere allo chef di raccogliere la giusta quantità di cavolfiori a Lugano.</p>
         
-        <form class="rsvp-form" onsubmit="event.preventDefault(); alert('Grazie per la conferma! Ci vediamo il 29 Dicembre 2026!');">
-          <div class="form-group">
-            <label for="name">Il tuo Nome / Nickname:</label>
-            <input type="text" id="name" required placeholder="Es. Luca, Alfonso, Zio Ermete..." />
-          </div>
-          <div class="form-group">
-            <label for="veganiga">Sei pronto ad assaggiare la Veganiga?</label>
-            <select id="veganiga">
-              <option value="si">Sì, non vedo l'ora (viva i broccoli! 🥦)</option>
-              <option value="forse">Solo se accompagnata da 1L di Sangiovese 🍷</option>
-              <option value="carne">Porto io una salsiccia vera di nascosto 🌭</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">Invia Conferma di Partecipazione 🚀</button>
-        </form>
+        <div style="margin-top: 2rem;">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh-8460JMo3VTDrOgrDahOHObCmnFk-o_Eg/viewform" target="_blank" class="btn btn-primary btn-block" style="display: block; text-align: center; font-size: 1.15rem; padding: 1.1rem;">
+            Apri il Modulo Ufficiale Google Form 📝✨
+          </a>
+        </div>
       </div>
     </section>
 
