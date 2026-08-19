@@ -1300,7 +1300,8 @@ const dishes = [
     margin-bottom: 1.5rem;
   }
 
-  /* DISH DETAIL MODAL */
+  
+  /* DISH DETAIL MODAL (LIGHTBOX) */
   .dish-modal {
     position: fixed;
     top: 0;
@@ -1312,7 +1313,7 @@ const dishes = [
     justify-content: center;
     z-index: 99999;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 1.5rem;
   }
 
@@ -1327,8 +1328,9 @@ const dishes = [
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(15, 23, 42, 0.88);
-    backdrop-filter: blur(12px);
+    background: rgba(11, 17, 32, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     cursor: pointer;
   }
 
@@ -1337,95 +1339,122 @@ const dishes = [
     z-index: 10;
     width: 92vw;
     max-width: 860px;
-    max-height: 90vh;
+    max-height: 88vh;
     background: #1e293b;
     border-radius: 24px;
-    border: 1px solid rgba(245, 158, 11, 0.4);
+    border: 2px solid rgba(245, 158, 11, 0.45);
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
     overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(245, 158, 11, 0.4) transparent;
   }
 
   .dish-modal-close {
     position: absolute;
-    top: 14px;
-    right: 14px;
-    width: 40px;
-    height: 40px;
+    top: 16px;
+    right: 16px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     background: var(--accent-gold);
     color: #0f172a;
-    border: none;
-    font-size: 1.6rem;
+    border: 2px solid #0f172a;
+    font-size: 1.7rem;
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 20;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    z-index: 50;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .dish-modal-close:hover {
+    transform: scale(1.1);
+    background: #fbbf24;
   }
 
   .modal-media-wrapper {
     width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #000;
+    height: 380px;
+    min-height: 380px;
+    max-height: 380px;
+    flex-shrink: 0;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    border-top-left-radius: 24px;
-    border-top-right-radius: 24px;
-    flex-shrink: 0;
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
   }
 
   .modal-media {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    background: #000;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .modal-media-wrapper {
+      height: 240px;
+      min-height: 240px;
+      max-height: 240px;
+    }
   }
 
   .modal-body {
-    padding: 2rem;
+    padding: 2.2rem;
+    background: #1e293b;
+    flex-grow: 1;
   }
 
   .modal-badge {
     display: inline-block;
     font-size: 0.8rem;
-    font-weight: 700;
+    font-weight: 800;
     padding: 0.3rem 0.8rem;
     border-radius: 8px;
     border: 1px solid;
     margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
   .modal-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: var(--accent-gold);
     margin-bottom: 0.3rem;
+    line-height: 1.2;
   }
 
   .modal-subtitle {
     font-size: 1.15rem;
     color: var(--text-light);
     margin-bottom: 1.2rem;
+    font-weight: 600;
   }
 
   .modal-story {
     font-size: 1.05rem;
-    line-height: 1.6;
+    line-height: 1.65;
     color: var(--text-light);
     margin-bottom: 1.5rem;
   }
 
   .modal-ingredients {
-    background: rgba(0, 0, 0, 0.25);
-    padding: 1.2rem;
-    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.28);
+    padding: 1.4rem 1.6rem;
+    border-radius: 16px;
     margin-bottom: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   .modal-ingredients h4 {
@@ -1439,24 +1468,33 @@ const dishes = [
   }
 
   .modal-ingredients li {
-    padding: 0.35rem 0;
+    padding: 0.4rem 0;
     color: var(--text-muted);
-    font-size: 0.95rem;
+    font-size: 0.98rem;
+    line-height: 1.5;
   }
 
   .modal-quote {
     border-left: 3px solid var(--accent-gold);
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 0 12px 12px 0;
+    padding: 1rem 1.4rem;
+    background: rgba(0, 0, 0, 0.22);
+    border-radius: 0 14px 14px 0;
     font-style: italic;
+  }
+
+  .modal-quote em {
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.5;
+    display: block;
   }
 
   .modal-quote-author {
     font-style: normal;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--accent-gold);
-    margin-top: 0.4rem;
-    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    font-size: 0.88rem;
   }
+
 </style>
