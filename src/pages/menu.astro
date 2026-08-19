@@ -220,6 +220,29 @@ const dishes = [
       ))}
     </div>
 
+
+    <!-- HILARIOUS CULINARY WARNING CALLOUT -->
+    <div class="culinary-heresy-card">
+      <div class="heresy-icon">⚠️🍕</div>
+      <div class="heresy-content">
+        <h3 lang-it>Vedrai Cose Mai Viste Prima...</h3>
+        <h3 lang-en>You'll See Things Unseen Before...</h3>
+        <p lang-it>
+          Un avvertimento solenne per tutti i puristi della gastronomia italiana: preparati a sfide culinarie d'avanguardia che potrebbero spingerti a <em>"rinunciare alla cittadinanza italiana"</em>! 🇮🇹🙅‍♂️
+        </p>
+        <p lang-en>
+          A solemn warning for all Italian food purists: get ready for avant-garde culinary heresies so extreme they might tempt you to <em>"renounce your Italian citizenship"</em>! 🇮🇹🙅‍♂️
+        </p>
+        <div class="heresy-action">
+          <a href="https://www.youtube.com/watch?v=ypUPVMRJeJM" target="_blank" rel="noopener noreferrer" class="btn btn-warning-yt">
+            <span class="yt-icon">▶️</span>
+            <span lang-it>Guarda l'anteprima scioccante su YouTube 🎬</span>
+            <span lang-en>Watch the shocking preview on YouTube 🎬</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
     <!-- WINE & BEVERAGES CALLOUT -->
     <div class="beverage-card">
       <div class="beverage-icon">🍷</div>
@@ -517,6 +540,72 @@ const dishes = [
   .dish-card:hover .btn-card-expand {
     background: var(--accent-gold);
     color: #0f172a;
+  }
+
+
+  /* CULINARY HERESY BANNER */
+  .culinary-heresy-card {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(30, 41, 59, 0.95) 100%);
+    border: 2px solid rgba(239, 68, 68, 0.4);
+    border-radius: 24px;
+    padding: 2.2rem;
+    display: flex;
+    gap: 1.8rem;
+    align-items: center;
+    margin: 3.5rem 0;
+    box-shadow: 0 15px 35px rgba(239, 68, 68, 0.18);
+  }
+
+  .heresy-icon {
+    font-size: 3.2rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .heresy-content h3 {
+    font-size: 1.6rem;
+    color: #f87171;
+    margin-bottom: 0.5rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .heresy-content p {
+    color: var(--text-muted);
+    font-size: 1.02rem;
+    line-height: 1.55;
+    margin-bottom: 1.2rem;
+  }
+
+  .btn-warning-yt {
+    background: #ff0000;
+    color: #ffffff;
+    font-weight: 800;
+    padding: 0.85rem 1.6rem;
+    border-radius: 12px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-warning-yt:hover {
+    background: #cc0000;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.55);
+  }
+
+  .yt-icon {
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 700px) {
+    .culinary-heresy-card {
+      flex-direction: column;
+      gap: 1.2rem;
+      text-align: center;
+    }
   }
 
   /* BEVERAGE CARD */
