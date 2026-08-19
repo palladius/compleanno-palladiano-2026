@@ -2,6 +2,157 @@
 import Layout from '../layouts/Layout.astro';
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh-8460JMo3VTDrOgrDahOHObCmnFk-o_Eg/viewform";
+
+const dishes = [
+  {
+    id: "aria-bosco",
+    course_it: "Antipasto Concettuale",
+    course_en: "Conceptual Starter",
+    badgeColor: "#f59e0b",
+    title_it: "Aria di Bosco Ferrarese",
+    title_en: "Ferrara Forest Mist",
+    subtitle_it: "Emulsionata su Polenta Trasparente",
+    subtitle_en: "Emulsified over Transparent Quantum Polenta",
+    tagline_it: "Nebbia di Comacchio e rugiada mattutina a impatto karmico negativo.",
+    tagline_en: "Comacchio valley fog and dawn dew with negative karmic footprint.",
+    image: `${baseUrl}/images/aria_bosco_polenta_trasparente.png`,
+    video: `${baseUrl}/videos/aria_bosco_dry_ice.mp4`,
+    hasVideo: true,
+    story_it: "Nebbia mattutina raccolta con retini di seta nelle pinete secolari di Mesola e del Lido degli Estensi. Emulsionata a ultrasuoni e delicatamente adagiata su un lingotto gelatinoso di polenta invisibile a zero calorie e impatto karmico negativo. Mica pizze e fichi!",
+    story_en: "Morning mist captured with handmade silk nets in the ancient pine forests of Mesola and Lido degli Estensi. Ultrasonically emulsified and gently settled on a gelatinous ingot of invisible, zero-calorie, negative-karma polenta. True culinary transcendence!",
+    ingredients_it: [
+      "🌫️ Brezza Umida delle Valli di Comacchio catturata prima dell'alba.",
+      "🌽 Polenta di Mais Trasparente Quantistica a zero calorie.",
+      "🌲 Singolo Ago di Pino & Gocce di Rugiada aromatica."
+    ],
+    ingredients_en: [
+      "🌫️ Humid Dawn Breeze from the Comacchio Valleys, ethically trapped before sunrise.",
+      "🌽 Quantum Transparent Corn Polenta (0 calories, 100% ether).",
+      "🌲 Single Wild Pine Needle & Drops of Aromatic Morning Dew."
+    ],
+    quote_it: "Bello, leggero... talmente etereo che dopo tre portate hai più fame di prima!",
+    quote_en: "Beautiful, light... so ethereal that after three plates you're hungrier than before!",
+    author: "Ermete Bottazzi, Camionista & Critico 🚛"
+  },
+  {
+    id: "pizze-fichi",
+    course_it: "Antipasto d'Autore",
+    course_en: "Signature Starter",
+    badgeColor: "#f87171",
+    title_it: "Pizze e Fichi di Bottura",
+    title_en: "Bottura's Pizza & Figs",
+    subtitle_it: "Mica pizze e fichi di Cetto La Qualunque!",
+    subtitle_en: "No ordinary cheap street food!",
+    tagline_it: "Mini margherite fumanti e fichi freschi in scrigno bifasico.",
+    tagline_en: "Steaming mini margheritas and fresh figs in a dual-chamber box.",
+    image: `${baseUrl}/images/pizze_e_fichi_vegetariano.png`,
+    hasVideo: false,
+    story_it: "Omaggio concettuale irriverente all'alta cucina emiliana per gli ospiti vegetariani non-vegani. Uno scrigno diviso rigidamente a metà: da un lato la fragranza del fiordilatte filante, dall'altro la dolcezza ancestrale del fico fresco. Zero contaminazione!",
+    story_en: "An irreverent conceptual tribute to high Emilian cuisine for vegetarian non-vegan guests. A rigid two-compartment case: stringy melted fiordilatte fragrance on one side, ancestral fresh fig sweetness on the other. Strict zero-cross-contamination!",
+    ingredients_it: [
+      "🍕 Mini Pizzette Margherita calde con mozzarella fiordilatte e basilico.",
+      "🍇 Fichi Freschi di Raccolta neri e verdi tagliati a metà con nettare naturale.",
+      "🙅‍♂️ Separatore Molecolare: i fichi non toccano la pizza prima del morso."
+    ],
+    ingredients_en: [
+      "🍕 Piping hot mini Margherita pizzas with artisanal fiordilatte & fresh basil.",
+      "🍇 Freshly picked Black & Green Figs split open to release natural nectar.",
+      "🙅‍♂️ Molecular Barrier: figs strictly never touch pizza before the first bite."
+    ],
+    quote_it: "Dicevano 'Mica pizze e fichi!'... e infatti queste sono le Pizze e Fichi di Bottura, mica roba da quattro soldi!",
+    quote_en: "They used to say 'Not just pizza and figs!'... and indeed this is Bottura-grade pizza & figs, not cheap street food!",
+    author: "Ermete Bottazzi, Filosofo della Strada 🚛"
+  },
+  {
+    id: "veganiga",
+    course_it: "Primo Piatto D.O.P.",
+    course_en: "First Course D.O.P.",
+    badgeColor: "#10b981",
+    title_it: "Bigoli con la Veganiga",
+    title_en: "Bigoli with Lugano Veganiga",
+    subtitle_it: "La Vera Salsiccia Verde di Lugano",
+    subtitle_en: "The Genuine Emerald Sausage of Lake Ceresio",
+    tagline_it: "100% bio-ingegneria ticinese insaccata a mano.",
+    tagline_en: "100% Ticino bio-engineering, tenderly hand-stuffed.",
+    image: `${baseUrl}/images/bigoli_con_veganiga.png`,
+    hasVideo: false,
+    story_it: "La leggendaria salsiccia vegetale verde smeraldo del Ceresio, insaccata rigorosamente a mano senza alcuno stress emotivo per i broccoli alpini. Un capolavoro ticinese di bio-ingegneria che sfida la norcineria tradizionale.",
+    story_en: "The legendary emerald-green vegan sausage of Lake Lugano, hand-stuffed with zero emotional stress caused to alpine broccoli. A Ticino bio-engineering masterpiece redefining traditional charcuterie.",
+    ingredients_it: [
+      "🥦 Cimette di Broccolo & Cavolfiore Alpino stufate al vapore.",
+      "🥒 Cetrioli Fermentati a Freddo per una croccantezza rinfrescante.",
+      "🫚 Zenzero Bio-Dinamico & Aria del Monte Brè in budello vegetale."
+    ],
+    ingredients_en: [
+      "🥦 Steamed Alpine Broccoli & Cauliflower Florets.",
+      "🥒 Cold-Fermented Cucumbers for signature crisp bite.",
+      "🫚 Biodynamic Ginger & Monte Brè Alpine Air encased in vegetal cellulose casing."
+    ],
+    quote_it: "Sembra una luganiga, sa di orto sinergico, ma se ci bevi sopra sembra quasi un miracolo!",
+    quote_en: "Looks like pork sausage, tastes like a synergetic permaculture garden, but wash it down with wine and it's a miracle!",
+    author: "Ermete Bottazzi, Camionista & Gourmet 🚛"
+  },
+  {
+    id: "tofu-maremma",
+    course_it: "Secondo • In Odor di Toscana 🍷",
+    course_en: "Main • Strictly In Odor di Toscana 🍷",
+    badgeColor: "#10b981",
+    title_it: "Stracotto di Tofu di Maremma",
+    title_en: "Braised Maremma Tofu Stew",
+    subtitle_it: "Coltivato vicino a Mucche Ignare 🐮",
+    subtitle_en: "Grown in direct sight of completely Oblivious Cows 🐮",
+    tagline_it: "Cubi di tofu sbocciati nei campi toscani stufati al Chianti.",
+    tagline_en: "Tofu cubes blossoming on Tuscan shrubs, braised in Chianti reduction.",
+    image: `${baseUrl}/images/tofu_maremma_mucche_ignare.png`,
+    hasVideo: false,
+    story_it: "Coltivato direttamente sui cespugli biologici della Maremma toscana, dove i cubi di tofu bianco fioriscono spontaneamente sotto il sole caldo mentre le mucche chianine pascolano pacifiche e completamente ignare sullo sfondo. Coccolato con musica classica e stufato in riduzione di Chianti e rosmarino di Bolgheri.",
+    story_en: "Harvested directly from wild organic tofu shrubs in the Tuscan Maremma, where snow-white tofu cubes bloom spontaneously under the sun while Chianina cows graze peacefully and completely oblivious in the background. Braised gently in Chianti Classico reduction and Bolgheri wild rosemary.",
+    ingredients_it: [
+      "🌱 Piante di Tofu da Arbusto Spontaneo raccolte a perfetta maturazione cubica.",
+      "🐮 Mucche 100% Ignare che pascolano indisturbate sullo sfondo.",
+      "🌿 Aromi di Bolgheri & Chianti: Strictly In Odor di Toscana."
+    ],
+    ingredients_en: [
+      "🌱 Wild-harvested Shrub Tofu picked at peak geometric cubic ripeness.",
+      "🐮 100% Oblivious Cows roaming undisturbed on scenic pasture hills.",
+      "🌿 Chianti Wine Reduction & Wild Bolgheri Rosemary: Strictly In Odor di Toscana."
+    ],
+    quote_it: "Se le mucche sapessero cosa stiamo mangiando, si farebbero una risata anche loro!",
+    quote_en: "If the cows actually knew what we were eating instead of them, they'd burst into laughter too!",
+    author: "Ermete Bottazzi, Gourmet di Bordo 🚛"
+  },
+  {
+    id: "tiramisu",
+    course_it: "Dessert Molecolare",
+    course_en: "Molecular Dessert",
+    badgeColor: "#fbbf24",
+    title_it: "Tiramisù allo Struzzo Vegano",
+    title_en: "Vegan Ostrich Tiramisù",
+    subtitle_it: "Con Finto Tuorlo Gigante Sinergico",
+    subtitle_en: "With Giant Synergetic Plant-Based Yolk",
+    tagline_it: "Sembra irresistibile finché non leggi la scheda tecnica...",
+    tagline_en: "Looks irresistible until you read the biochemical datasheet...",
+    image: `${baseUrl}/images/tiramisu_struzzo_vegano.png`,
+    hasVideo: false,
+    story_it: "Alla vista sembra un peccato di gola irresistibile: crema spumosa, biscotto soffice, polvere vellutata e un tuorlo dorato gigante che sembra zabaione colante purissimo. Ma non farti ingannare dagli occhi... la biochimica vegetale qui ha superato ogni limite morale.",
+    story_en: "To the eyes it appears as an irresistible culinary sin: frothy cream, pillowy sponge, velvety cocoa dust, and a mammoth golden yolk that resembles dripping zabaione. But do not let your sight fool you... botanical bio-engineering has crossed all known moral frontiers.",
+    ingredients_it: [
+      "🥚 Finto Tuorlo di Struzzo: sferificazione di rapa gialla fermentata all'aglio dolce, spirulina e cannellini.",
+      "🥛 Spuma di Mascarpone: emulsione di sego di cavolfiore al vapore di cipolla e latte di soia grezzo.",
+      "🥖 Savoiardi Ancestrali: crusca di lenticchie nere e semi di lino inzuppati in decotto di carciofo e tarassaco.",
+      "🍫 Spolvero di Cacao: carbone vegetale attivo da rami di melanzana bruciati."
+    ],
+    ingredients_en: [
+      "🥚 Mock Ostrich Yolk: spherified fermented yellow turnip with sweet garlic, spirulina & white cannellini beans.",
+      "🥛 Mascarpone Cloud: emulsion of cauliflower curd over onion steam and raw organic soy milk.",
+      "🥖 Ancestral Ladyfingers: black lentil bran & flaxseeds soaked in artichoke & dandelion herbal broth.",
+      "🍫 Cocoa Dust Illusion: activated vegetable charcoal from charred heirloom eggplant branches."
+    ],
+    quote_it: "Bello da fotografare per Instagram... poi dai la prima cucchiaiata e capisci perché le galline si sono rifiutate di collaborare!",
+    quote_en: "Gorgeous to shoot for Instagram... then you take the first spoonful and realize why hens refused to participate!",
+    author: "Ermete Bottazzi, Critico Gastronomico 🚛"
+  }
+];
 ---
 
 <Layout title="50 Sfumature di Giallo | Il 50° Compleanno Palladiano 💛" currentPage="home">
@@ -21,6 +172,7 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
           />
           <div class="avatar-crown-badge">👑 50 & Fabulous</div>
         </div>
+        
         <div class="save-date-row">
           <div class="badge">
             <span lang-it>SAVE THE DATE • MARTEDÌ 29 DICEMBRE 2026</span>
@@ -65,8 +217,8 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
         <div class="meta-item">
           <span class="meta-icon">📍</span>
           <div>
-            <strong lang-it>Location Segreta / Bassa Padana</strong>
-            <strong lang-en>Secret Location / Po Valley</strong>
+            <strong lang-it>Albergo Ristorante Ai Dossi (Filo, FE)</strong>
+            <strong lang-en>Albergo Ristorante Ai Dossi (Filo, FE)</strong>
             <small>Strictly "In Odor di Toscana" 🍷</small>
           </div>
         </div>
@@ -93,13 +245,13 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
       </div>
 
       <div class="hero-cta">
-        <a href={`${baseUrl}/#programma`} class="btn btn-primary">
+        <a href="#menu" class="btn btn-primary">
+          <span lang-it>Scopri il Menu Esclusivo 🍽️</span>
+          <span lang-en>Discover the Menu 🍽️</span>
+        </a>
+        <a href="#programma" class="btn btn-secondary">
           <span lang-it>Il Programma della Serata ⏰</span>
           <span lang-en>Evening Schedule ⏰</span>
-        </a>
-        <a href={`${baseUrl}/menu`} class="btn btn-secondary">
-          <span lang-it>Scopri il Menu 🍽️</span>
-          <span lang-en>Discover the Menu 🍽️</span>
         </a>
         <a href={publicFormUrl} target="_blank" class="btn btn-primary">
           <span lang-it>Conferma Presenza (RSVP) ✍️</span>
@@ -108,8 +260,71 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
       </div>
     </header>
 
-    <!-- PROGRAMMA DELLA SERATA (DEFAULT SECTION) -->
-    <section id="programma" class="section">
+    <!-- COMPACT MENU SECTION (GRID) -->
+    <section id="menu" class="section">
+      <div class="section-header">
+        <span class="tag-green">🌱 IL BANQUETTO D'AVANGUARDIA CRUELTY-FREE</span>
+        <h2 lang-it>Il Menu Ufficiale: Tra Veganiga e Nebbia Ferrarese</h2>
+        <h2 lang-en>The Official Menu: Between Veganiga and Ferrara Fog</h2>
+        <p class="section-desc">
+          <span lang-it>Clicca su una portata per svelare ingredienti segreti, retroscena culinari e recensioni senza peli sulla lingua di Ermete Bottazzi.</span>
+          <span lang-en>Click on any dish to unveil secret ingredients, biochemical lore, and unfiltered reviews by trucker Ermete Bottazzi.</span>
+        </p>
+      </div>
+
+      <!-- GRID OF CARDS -->
+      <div class="dishes-grid">
+        {dishes.map((dish) => (
+          <div 
+            class={`dish-card ${dish.hasVideo ? 'hover-video-card' : ''}`}
+            data-dish-id={dish.id}
+          >
+            <div class="card-img-wrapper">
+              <img src={dish.image} alt={dish.title_it} class="card-img" />
+              {dish.hasVideo && (
+                <video 
+                  src={dish.video} 
+                  loop 
+                  muted 
+                  playsinline 
+                  class="card-video"
+                ></video>
+              )}
+              <span class="card-badge" style={`color: ${dish.badgeColor}; border-color: ${dish.badgeColor};`}>
+                <span lang-it>{dish.course_it}</span>
+                <span lang-en>{dish.course_en}</span>
+              </span>
+              {dish.hasVideo && (
+                <span class="video-indicator">🎬 Video Veo</span>
+              )}
+            </div>
+
+            <div class="card-content">
+              <h3 class="card-title">
+                <span lang-it>{dish.title_it}</span>
+                <span lang-en>{dish.title_en}</span>
+              </h3>
+              <h4 class="card-subtitle">
+                <span lang-it>{dish.subtitle_it}</span>
+                <span lang-en>{dish.subtitle_en}</span>
+              </h4>
+              <p class="card-tagline">
+                <span lang-it>{dish.tagline_it}</span>
+                <span lang-en>{dish.tagline_en}</span>
+              </p>
+              
+              <button class="btn-card-expand">
+                <span lang-it>Vedi scheda & ingredienti 🔍</span>
+                <span lang-en>View specs & recipe 🔍</span>
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- PROGRAMMA DELLA SERATA -->
+    <section id="programma" class="section alt-bg">
       <div class="section-header">
         <span class="tag-gold">⏰ IL PROGRAMMA UFFICIALE • TIMELINE</span>
         <h2 lang-it>Cosa si fa il 29 Dicembre?</h2>
@@ -132,10 +347,10 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
             <h3 lang-it>Molla lo Zaino, Doccia & Relax: Sento la puzza di ascelle fin da Zurigo! 🎒🚿</h3>
             <h3 lang-en>Drop the Backpack, Shower & Relax: I can smell armpits from Zurich! 🎒🚿</h3>
             <p lang-it>
-              <strong>Per chi arriva da lontano:</strong> fai il check-in nella tua stanza, molla lo zaino sul letto, fatti una bella doccia calda rigenerante, togliti la polvere del viaggio e scendi con tutta calma per l'inizio dell'aperitivo!
+              <strong>Per chi arriva da lontano:</strong> fai il check-in nella tua stanza all'Albergo Ai Dossi, molla lo zaino sul letto, fatti una bella doccia calda rigenerante, togliti la polvere del viaggio e scendi con tutta calma per l'inizio dell'aperitivo!
             </p>
             <p lang-en>
-              <strong>For guests traveling from afar:</strong> check in to your room, drop your luggage, take a refreshing hot shower, shake off the travel dust, and stroll down relaxed just in time for the cocktail hour!
+              <strong>For guests traveling from afar:</strong> check in to your room at Albergo Ai Dossi, drop your luggage, take a refreshing hot shower, shake off the travel dust, and stroll down relaxed just in time for the cocktail hour!
             </p>
             <div class="timeline-quicklink">
               <a href={`${baseUrl}/dormire`}>
@@ -178,10 +393,10 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
               Ceremonial serving of <em>Bigoli with Veganiga Sausage from Lugano</em>, <em>Maremma Braised Tofu</em> (strictly overlooking oblivious cows), and endless Chianti.
             </p>
             <div class="timeline-quicklink">
-              <span class="text-coming-soon">
-                <span lang-it>🍽️ <em>Il menu ufficiale del banchetto è in fase di definizione (in arrivo a breve!)</em></span>
-                <span lang-en>🍽️ <em>The official banquet menu is currently being curated (coming soon!)</em></span>
-              </span>
+              <a href="#menu">
+                <span lang-it>👉 Guarda i piatti del menu sopra 🍽️</span>
+                <span lang-en>👉 View dishes in the menu above 🍽️</span>
+              </a>
             </div>
           </div>
         </div>
@@ -222,8 +437,8 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
       </div>
     </section>
 
-    <!-- HIGHLIGHTS SECTION -->
-    <section class="section alt-bg">
+    <!-- HIGHLIGHTS SECTION (DORMIRE & CONTATTI) -->
+    <section class="section">
       <div class="section-header">
         <span class="tag-green">✨ GUIDA RAPIDA ALL'EVENTO</span>
         <h2 lang-it>Tutto Quel che Devi Sapere</h2>
@@ -232,39 +447,14 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
 
       <div class="highlights-grid">
         <div class="highlight-card">
-          <div class="card-icon">🍽️</div>
-          <h3 lang-it>Menu & Banchetto</h3>
-          <h3 lang-en>Banquet & Menu</h3>
-          <p lang-it>Il menu ufficiale del cinquantesimo è attualmente in fase di composizione con gli chef. Sarà pubblicato a breve su questa pagina!</p>
-          <p lang-en>The official 50th birthday menu is currently being finalized with the chefs. It will be released right here soon!</p>
-          <span class="card-link-muted">
-            <span lang-it>⏳ Menu in arrivo...</span>
-            <span lang-en>⏳ Menu coming soon...</span>
-          </span>
-        </div>
-
-        <div class="highlight-card">
           <div class="card-icon">🛏️</div>
           <h3 lang-it>Dormire & Logistica</h3>
           <h3 lang-en>Stay & Accommodation</h3>
-          <p lang-it>Info su Albergo Ai Dossi, assegnazione dei 25 posti letto gratuiti per chi viene da lontano e check-in alle 15:00.</p>
-          <p lang-en>Info on Albergo Ai Dossi, 25 free beds for long-distance travelers, and early check-in at 15:00.</p>
+          <p lang-it>Info su Albergo Ai Dossi, assegnazione dei 25 posti letto gratuiti per chi viene da lontano, posizione Google Maps e check-in alle 15:00.</p>
+          <p lang-en>Info on Albergo Ai Dossi, 25 free beds for long-distance travelers, Google Maps location, and early check-in at 15:00.</p>
           <a href={`${baseUrl}/dormire`} class="card-link">
             <span lang-it>Info Alloggi 🛏️</span>
             <span lang-en>Lodging Info 🛏️</span>
-          </a>
-        </div>
-
-
-        <div class="highlight-card">
-          <div class="card-icon">❓</div>
-          <h3 lang-it>Domande Frequenti (FAQ)</h3>
-          <h3 lang-en>Frequent Questions (FAQ)</h3>
-          <p lang-it>Vengo da solo o in famiglia? Vale la pena farsi il viaggio da lontano? Risposte chiare, accoglienti e con tatto.</p>
-          <p lang-en>Coming solo or with family? Is the journey worth it? Thoughtful, warm, and open-hearted answers.</p>
-          <a href={`${baseUrl}/faq`} class="card-link">
-            <span lang-it>Leggi le FAQ ❓</span>
-            <span lang-en>Read FAQs ❓</span>
           </a>
         </div>
 
@@ -272,8 +462,8 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
           <div class="card-icon">✉️</div>
           <h3 lang-it>Contatta Riccardo</h3>
           <h3 lang-en>Contact Riccardo</h3>
-          <p lang-it>Hai esigenze alimentari, domande logistiche o vuoi mandare un saluto? Scrivigli direttamente via email o form rapido.</p>
-          <p lang-en>Got dietary needs, travel questions, or special wishes? Contact Riccardo directly via email or fast form.</p>
+          <p lang-it>Hai esigenze alimentari, domande logistiche o vuoi chattare su Telegram? Scrivici direttamente dal modulo contatti rapido.</p>
+          <p lang-en>Got dietary needs, travel questions, or want to chat on Telegram? Reach out directly via our fast contact form.</p>
           <a href={`${baseUrl}/contatti`} class="card-link">
             <span lang-it>Scrivi a Riccardo ✉️</span>
             <span lang-en>Contact Page ✉️</span>
@@ -303,9 +493,40 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
         </div>
       </div>
     </section>
+
+    <!-- DISH DETAIL MODAL (LIGHTBOX) -->
+    <div id="dishModal" class="dish-modal" aria-hidden="true">
+      <div class="dish-modal-backdrop" id="modalBackdrop"></div>
+      <div class="dish-modal-container">
+        <button class="dish-modal-close" id="modalClose" aria-label="Close">&times;</button>
+        
+        <div class="modal-media-wrapper" id="modalMediaWrapper">
+          <img id="modalImg" src="" alt="" class="modal-media" />
+          <video id="modalVid" src="" controls autoplay loop playsinline class="modal-media" style="display: none;"></video>
+        </div>
+
+        <div class="modal-body">
+          <span class="modal-badge" id="modalBadge"></span>
+          <h2 class="modal-title" id="modalTitle"></h2>
+          <h4 class="modal-subtitle" id="modalSubtitle"></h4>
+          <p class="modal-story" id="modalStory"></p>
+
+          <div class="modal-ingredients">
+            <h4 lang-it>🌿 Scheda Tecnica & Ingredienti:</h4>
+            <h4 lang-en>🌿 Technical Specs & Ingredients:</h4>
+            <ul id="modalIngredientsList"></ul>
+          </div>
+
+          <div class="modal-quote" id="modalQuoteWrapper">
+            <em id="modalQuoteText"></em>
+            <div class="modal-quote-author" id="modalQuoteAuthor"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
-  <script is:inline>
+  <script define:vars={{ dishes }}>
     // Live Countdown
     const targetDate = new Date("2026-12-29T18:00:00+01:00").getTime();
 
@@ -341,6 +562,100 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
+
+    // Hover video preview for cards
+    document.querySelectorAll('.hover-video-card').forEach(card => {
+      const vid = card.querySelector('video');
+      if (vid) {
+        card.addEventListener('mouseenter', () => { vid.play().catch(() => {}); });
+        card.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
+      }
+    });
+
+    // Modal Details Logic
+    const modal = document.getElementById('dishModal');
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalClose = document.getElementById('modalClose');
+    const modalImg = document.getElementById('modalImg');
+    const modalVid = document.getElementById('modalVid');
+    const modalBadge = document.getElementById('modalBadge');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalSubtitle = document.getElementById('modalSubtitle');
+    const modalStory = document.getElementById('modalStory');
+    const modalIngredientsList = document.getElementById('modalIngredientsList');
+    const modalQuoteText = document.getElementById('modalQuoteText');
+    const modalQuoteAuthor = document.getElementById('modalQuoteAuthor');
+
+    function openDishModal(dishId) {
+      const dish = dishes.find(d => d.id === dishId);
+      if (!dish || !modal) return;
+
+      const currentLang = document.documentElement.getAttribute('data-lang') || 'it';
+      const isIt = currentLang === 'it';
+
+      if (dish.hasVideo) {
+        modalImg.style.display = 'none';
+        modalVid.style.display = 'block';
+        modalVid.src = dish.video;
+        modalVid.play().catch(() => {});
+      } else {
+        modalVid.style.display = 'none';
+        modalVid.pause();
+        modalVid.src = '';
+        modalImg.style.display = 'block';
+        modalImg.src = dish.image;
+        modalImg.alt = isIt ? dish.title_it : dish.title_en;
+      }
+
+      modalBadge.innerText = isIt ? dish.course_it : dish.course_en;
+      modalBadge.style.color = dish.badgeColor;
+      modalBadge.style.borderColor = dish.badgeColor;
+
+      modalTitle.innerText = isIt ? dish.title_it : dish.title_en;
+      modalSubtitle.innerText = isIt ? dish.subtitle_it : dish.subtitle_en;
+      modalStory.innerText = isIt ? dish.story_it : dish.story_en;
+
+      modalIngredientsList.innerHTML = '';
+      const ings = isIt ? dish.ingredients_it : dish.ingredients_en;
+      ings.forEach(ing => {
+        const li = document.createElement('li');
+        li.innerText = ing;
+        modalIngredientsList.appendChild(li);
+      });
+
+      modalQuoteText.innerText = `"${isIt ? dish.quote_it : dish.quote_en}"`;
+      modalQuoteAuthor.innerText = `— ${dish.author}`;
+
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDishModal() {
+      if (!modal) return;
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      if (modalVid) {
+        modalVid.pause();
+        modalVid.src = '';
+      }
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.dish-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const dishId = card.getAttribute('data-dish-id');
+        if (dishId) openDishModal(dishId);
+      });
+    });
+
+    if (modalClose) modalClose.addEventListener('click', closeDishModal);
+    if (modalBackdrop) modalBackdrop.addEventListener('click', closeDishModal);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+        closeDishModal();
+      }
+    });
   </script>
 </Layout>
 
@@ -410,7 +725,6 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
     white-space: nowrap;
     box-shadow: 0 4px 15px rgba(0,0,0,0.6);
   }
-
 
   .save-date-row {
     display: inline-flex;
@@ -548,6 +862,140 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
     flex-wrap: wrap;
   }
 
+  /* DISHES GRID */
+  .dishes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 1.8rem;
+  }
+
+  .dish-card {
+    background: var(--bg-card);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dish-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-gold);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .card-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .dish-card:hover .card-img {
+    transform: scale(1.05);
+  }
+
+  .card-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+
+  .dish-card:hover .card-video {
+    opacity: 1;
+  }
+
+  .card-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 8px;
+    border: 1px solid;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .video-indicator {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.75);
+    color: var(--accent-gold);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+  }
+
+  .card-content {
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .card-title {
+    font-size: 1.35rem;
+    color: var(--accent-gold);
+    margin-bottom: 0.3rem;
+    line-height: 1.25;
+  }
+
+  .card-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+  }
+
+  .card-tagline {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 1.2rem;
+    line-height: 1.4;
+    flex-grow: 1;
+  }
+
+  .btn-card-expand {
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--accent-gold);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    text-align: center;
+    width: 100%;
+  }
+
+  .dish-card:hover .btn-card-expand {
+    background: var(--accent-gold);
+    color: #0f172a;
+  }
+
   /* TIMELINE */
   .timeline {
     max-width: 750px;
@@ -639,26 +1087,6 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
     border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-
-  .btn-badge-coming {
-    opacity: 0.85;
-    cursor: default;
-    border-style: dashed;
-  }
-
-  .text-coming-soon {
-    color: var(--accent-gold);
-    font-size: 0.92rem;
-    font-weight: 500;
-  }
-
-  .card-link-muted {
-    color: var(--accent-gold);
-    font-weight: 700;
-    font-size: 0.9rem;
-    opacity: 0.85;
-  }
-
   .timeline-quicklink a {
     color: var(--accent-gold);
     text-decoration: none;
@@ -747,5 +1175,161 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
     font-size: 1.05rem;
     line-height: 1.6;
     margin-bottom: 1.5rem;
+  }
+
+  /* DISH DETAIL MODAL */
+  .dish-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 1.5rem;
+  }
+
+  .dish-modal.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .dish-modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(12px);
+    cursor: pointer;
+  }
+
+  .dish-modal-container {
+    position: relative;
+    z-index: 10;
+    width: 90vw;
+    max-width: 850px;
+    max-height: 88vh;
+    background: #1e293b;
+    border-radius: 24px;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dish-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+    color: #0f172a;
+    border: none;
+    font-size: 1.6rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-media-wrapper {
+    width: 100%;
+    max-height: 380px;
+    overflow: hidden;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-media {
+    width: 100%;
+    max-height: 380px;
+    object-fit: cover;
+  }
+
+  .modal-body {
+    padding: 2rem;
+  }
+
+  .modal-badge {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.3rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid;
+    margin-bottom: 0.8rem;
+  }
+
+  .modal-title {
+    font-size: 2rem;
+    color: var(--accent-gold);
+    margin-bottom: 0.3rem;
+  }
+
+  .modal-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-light);
+    margin-bottom: 1.2rem;
+  }
+
+  .modal-story {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-ingredients {
+    background: rgba(0, 0, 0, 0.25);
+    padding: 1.2rem;
+    border-radius: 14px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .modal-ingredients h4 {
+    color: var(--accent-green);
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .modal-ingredients ul {
+    list-style: none;
+  }
+
+  .modal-ingredients li {
+    padding: 0.35rem 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .modal-quote {
+    border-left: 3px solid var(--accent-gold);
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+  }
+
+  .modal-quote-author {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--accent-gold);
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
   }
 </style>
