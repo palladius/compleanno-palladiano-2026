@@ -2,109 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh-8460JMo3VTDrOgrDahOHObCmnFk-o_Eg/viewform";
-
-const dishes = [
-  {
-    id: "aria-bosco",
-    course: "Antipasto Concettuale",
-    badgeColor: "#f59e0b",
-    title: "Aria di Bosco Ferrarese",
-    subtitle: "Emulsionata su Polenta Trasparente",
-    tagline: "Nebbia di Comacchio e rugiada mattutina a impatto karmico negativo.",
-    image: `${baseUrl}/images/aria_bosco_polenta_trasparente.png`,
-    video: `${baseUrl}/videos/aria_bosco_dry_ice.mp4`,
-    hasVideo: true,
-    story: "Nebbia mattutina raccolta con retini di seta nelle pinete secolari di Mesola e del Lido degli Estensi. Emulsionata a ultrasuoni e delicatamente adagiata su un lingotto gelatinoso di polenta invisibile a zero calorie e impatto karmico negativo. Mica pizze e fichi!",
-    ingredients: [
-      "🌫️ Brezza Umida delle Valli di Comacchio catturata prima dell'alba.",
-      "🌽 Polenta di Mais Trasparente Quantistica a zero calorie.",
-      "🌲 Singolo Ago di Pino & Gocce di Rugiada aromatica."
-    ],
-    quote: "Bello, leggero... talmente etereo che dopo tre portate hai più fame di prima!",
-    author: "Ermete Bottazzi, Camionista & Critico 🚛"
-  },
-  {
-    id: "pizze-fichi",
-    course: "Antipasto d'Autore",
-    badgeColor: "#f87171",
-    title: "Pizze e Fichi di Bottura",
-    subtitle: "Mica pizze e fichi di Cetto La Qualunque!",
-    tagline: "Mini margherite fumanti e fichi freschi in scrigno bifasico.",
-    image: `${baseUrl}/images/pizze_e_fichi_vegetariano.png`,
-    hasVideo: false,
-    story: "Omaggio concettuale irriverente all'alta cucina emiliana per gli ospiti vegetariani non-vegani. Uno scrigno diviso rigidamente a metà: da un lato la fragranza del fiordilatte filante, dall'altro la dolcezza ancestrale del fico fresco. Zero contaminazione!",
-    ingredients: [
-      "🍕 Mini Pizzette Margherita calde con mozzarella fiordilatte e basilico.",
-      "🍇 Fichi Freschi di Raccolta neri e verdi tagliati a metà con nettare naturale.",
-      "🙅‍♂️ Separatore Molecolare: i fichi non toccano la pizza prima del morso."
-    ],
-    quote: "Dicevano 'Mica pizze e fichi!'... e infatti queste sono le Pizze e Fichi di Bottura, mica roba da quattro soldi!",
-    author: "Ermete Bottazzi, Filosofo della Strada 🚛"
-  },
-  {
-    id: "veganiga",
-    course: "Primo Piatto D.O.P.",
-    badgeColor: "#10b981",
-    title: "Bigoli con la Veganiga",
-    subtitle: "La Vera Salsiccia Verde di Lugano",
-    tagline: "100% bio-ingegneria ticinese insaccata a mano.",
-    image: `${baseUrl}/images/bigoli_con_veganiga.png`,
-    hasVideo: false,
-    story: "La leggendaria salsiccia vegetale verde smeraldo del Ceresio, insaccata rigorosamente a mano senza alcuno stress emotivo per i broccoli alpini. Un capolavoro ticinese di bio-ingegneria che sfida la norcineria tradizionale.",
-    ingredients: [
-      "🥦 Cimette di Broccolo & Cavolfiore Alpino stufate al vapore.",
-      "🥒 Cetrioli Fermentati a Freddo per una croccantezza rinfrescante.",
-      "🫚 Zenzero Bio-Dinamico & Aria del Monte Brè in budello vegetale."
-    ],
-    quote: "Sembra una luganiga, sa di orto sinergico, ma se ci bevi sopra sembra quasi un miracolo!",
-    author: "Ermete Bottazzi, Camionista & Gourmet 🚛"
-  },
-  {
-    id: "tofu-maremma",
-    course: "Secondo • In Odor di Toscana 🍷",
-    badgeColor: "#10b981",
-    title: "Stracotto di Tofu di Maremma",
-    subtitle: "Coltivato vicino a Mucche Ignare 🐮",
-    tagline: "Cubi di tofu sbocciati nei campi toscani stufati al Chianti.",
-    image: `${baseUrl}/images/tofu_maremma_mucche_ignare.png`,
-    hasVideo: false,
-    story: "Coltivato direttamente sui cespugli biologici della Maremma toscana, dove i cubi di tofu bianco fioriscono spontaneamente sotto il sole caldo mentre le mucche chianine pascolano pacifiche e completamente ignare sullo sfondo. Coccolato con musica classica e stufato in riduzione di Chianti e rosmarino di Bolgheri.",
-    ingredients: [
-      "🌱 Piante di Tofu da Arbusto Spontaneo raccolte a perfetta maturazione cubica.",
-      "🐮 Mucche 100% Ignare che pascolano indisturbate sullo sfondo.",
-      "🌿 Aromi di Bolgheri & Chianti: Strictly In Odor di Toscana."
-    ],
-    quote: "Se le mucche sapessero cosa stiamo mangiando, si farebbero una risata anche loro!",
-    author: "Ermete Bottazzi, Gourmet di Bordo 🚛"
-  },
-  {
-    id: "tiramisu",
-    course: "Dessert Molecolare",
-    badgeColor: "#fbbf24",
-    title: "Tiramisù allo Struzzo Vegano",
-    subtitle: "Con Finto Tuorlo Gigante Sinergico",
-    tagline: "Sembra irresistibile finché non leggi la scheda tecnica...",
-    image: `${baseUrl}/images/tiramisu_struzzo_vegano.png`,
-    hasVideo: false,
-    story: "Alla vista sembra un peccato di gola irresistibile: crema spumosa, biscotto soffice, polvere vellutata e un tuorlo dorato gigante che sembra zabaione colante purissimo. Ma non farti ingannare dagli occhi... la biochimica vegetale qui ha superato ogni limite morale.",
-    ingredients: [
-      "🥚 Finto Tuorlo di Struzzo: sferificazione di rapa gialla fermentata all'aglio dolce, spirulina e cannellini.",
-      "🥛 Spuma di Mascarpone: emulsione di sego di cavolfiore al vapore di cipolla e latte di soia grezzo.",
-      "🥖 Savoiardi Ancestrali: crusca di lenticchie nere e semi di lino inzuppati in decotto di carciofo e tarassaco.",
-      "🍫 Spolvero di Cacao: carbone vegetale attivo da rami di melanzana bruciati."
-    ],
-    quote: "Bello da fotografare per Instagram... poi dai la prima cucchiaiata e capisci perché le galline si sono rifiutate di collaborare!",
-    author: "Ermete Bottazzi, Critico Gastronomico 🚛"
-  }
-];
 ---
 
-<Layout title="50 Sfumature di Giallo | Il 50° Compleanno Palladiano 💛">
+<Layout title="50 Sfumature di Giallo | Il 50° Compleanno Palladiano 💛" currentPage="home">
   <main class="container">
     <!-- HERO SECTION -->
     <header class="hero">
       <div class="birthday-avatar-wrapper">
-        <div class="badge-super">💛 50 SFUMATURE DI GIALLO 💛</div>
+        <div class="badge-super">
+          <span lang-it>💛 50 SFUMATURE DI GIALLO 💛</span>
+          <span lang-en>💛 50 SHADES OF YELLOW 💛</span>
+        </div>
         <div class="avatar-container">
           <img 
             src={`${baseUrl}/images/riccardo_50_portrait.png`} 
@@ -113,25 +21,52 @@ const dishes = [
           />
           <div class="avatar-crown-badge">👑 50 & Fabulous</div>
         </div>
-        <div class="badge">SAVE THE DATE • MARTEDÌ 29 DICEMBRE 2026</div>
+        <div class="save-date-row">
+          <div class="badge">
+            <span lang-it>SAVE THE DATE • MARTEDÌ 29 DICEMBRE 2026</span>
+            <span lang-en>SAVE THE DATE • TUESDAY DECEMBER 29, 2026</span>
+          </div>
+          <a 
+            href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=50%C2%B0+Compleanno+Palladiano+%7C+50+Sfumature+di+Giallo+%F0%9F%92%9B&dates=20261229T140000Z/20261229T230000Z&details=50%C2%B0+Compleanno+Palladiano%3A+Mezzo+secolo+di+avventure%2C+codice%2C+bicicletta+e+banchetto+d%27avanguardia%21%0AInfo+complete+e+menu%3A+https%3A%2F%2Fpalladius.github.io%2Fcompleanno-palladiano-2026%2F&location=Bassa+Padana+%28Strictly+In+Odor+di+Toscana%29" 
+            target="_blank" 
+            class="gcal-btn"
+            title="Aggiungi a Google Calendar / Add to Google Calendar"
+          >
+            <svg class="gcal-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+              <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5v-5z"/>
+            </svg>
+            <span>+ GCal</span>
+          </a>
+        </div>
       </div>
-      <h1 class="hero-title">50 Sfumature <br/><span class="gold-text">di Giallo</span></h1>
+      <h1 class="hero-title">
+        <span lang-it>50 Sfumature <br/><span class="gold-text">di Giallo</span></span>
+        <span lang-en>50 Shades <br/><span class="gold-text">of Yellow</span></span>
+      </h1>
       <p class="hero-subtitle">
-        <strong>Il Cinquantesimo Compleanno Palladiano:</strong> mezzo secolo di avventure, codice, bicicletta, cappelletti e... scelte gastronomiche d'avanguardia.
+        <span lang-it>
+          <strong>Il Cinquantesimo Compleanno Palladiano:</strong> mezzo secolo di avventure, codice, bicicletta, cappelletti e... scelte gastronomiche d'avanguardia.
+        </span>
+        <span lang-en>
+          <strong>The Palladian 50th Birthday:</strong> half a century of adventures, code, cycling, cappelletti, and... avant-garde culinary experiments.
+        </span>
       </p>
       
       <div class="event-meta">
         <div class="meta-item">
           <span class="meta-icon">📅</span>
           <div>
-            <strong>Martedì 29 Dicembre 2026</strong>
-            <small>Dalle ore 18:00 a mezzanotte</small>
+            <strong lang-it>Martedì 29 Dicembre 2026</strong>
+            <strong lang-en>Tuesday December 29, 2026</strong>
+            <small lang-it>Dalle 15:00 (check-in) / 18:00 (aperitivo) a mezzanotte</small>
+            <small lang-en>From 15:00 (early check-in) / 18:00 (cocktail) till midnight</small>
           </div>
         </div>
         <div class="meta-item">
           <span class="meta-icon">📍</span>
           <div>
-            <strong>Location Segreta / Bassa Padana</strong>
+            <strong lang-it>Location Segreta / Bassa Padana</strong>
+            <strong lang-en>Secret Location / Po Valley</strong>
             <small>Strictly "In Odor di Toscana" 🍷</small>
           </div>
         </div>
@@ -141,114 +76,195 @@ const dishes = [
       <div class="countdown-wrapper">
         <div class="countdown-box">
           <span id="days" class="countdown-val">--</span>
-          <span class="countdown-lbl">Giorni</span>
+          <span class="countdown-lbl"><span lang-it>Giorni</span><span lang-en>Days</span></span>
         </div>
         <div class="countdown-box">
           <span id="hours" class="countdown-val">--</span>
-          <span class="countdown-lbl">Ore</span>
+          <span class="countdown-lbl"><span lang-it>Ore</span><span lang-en>Hours</span></span>
         </div>
         <div class="countdown-box">
           <span id="minutes" class="countdown-val">--</span>
-          <span class="countdown-lbl">Minuti</span>
+          <span class="countdown-lbl"><span lang-it>Minuti</span><span lang-en>Minutes</span></span>
         </div>
         <div class="countdown-box">
           <span id="seconds" class="countdown-val">--</span>
-          <span class="countdown-lbl">Secondi</span>
+          <span class="countdown-lbl"><span lang-it>Secondi</span><span lang-en>Seconds</span></span>
         </div>
       </div>
 
       <div class="hero-cta">
-        <a href="#menu" class="btn btn-primary">Scopri il Menu Esclusivo 🍽️</a>
-        <a href={publicFormUrl} target="_blank" class="btn btn-secondary">Conferma Presenza (RSVP) ✍️</a>
+        <a href={`${baseUrl}/#programma`} class="btn btn-primary">
+          <span lang-it>Il Programma della Serata ⏰</span>
+          <span lang-en>Evening Schedule ⏰</span>
+        </a>
+        <a href={`${baseUrl}/menu`} class="btn btn-secondary">
+          <span lang-it>Scopri il Menu Esclusivo 🍽️</span>
+          <span lang-en>Discover the Menu 🍽️</span>
+        </a>
+        <a href={publicFormUrl} target="_blank" class="btn btn-primary">
+          <span lang-it>Conferma Presenza (RSVP) ✍️</span>
+          <span lang-en>RSVP (Google Form) ✍️</span>
+        </a>
       </div>
     </header>
 
-    <!-- COMPACT MENU SECTION (GRID 2x3) -->
-    <section id="menu" class="section">
+    <!-- PROGRAMMA DELLA SERATA (DEFAULT SECTION) -->
+    <section id="programma" class="section">
       <div class="section-header">
-        <span class="tag-green">🌱 IL BANQUETTO D'AVANGUARDIA CRUELTY-FREE</span>
-        <h2>Il Menu Ufficiale: Tra Veganiga e Nebbia Ferrarese</h2>
+        <span class="tag-gold">⏰ IL PROGRAMMA UFFICIALE • TIMELINE</span>
+        <h2 lang-it>Cosa si fa il 29 Dicembre?</h2>
+        <h2 lang-en>What's the Plan on December 29?</h2>
         <p class="section-desc">
-          Clicca su una portata per svelare ingredienti segreti, recensioni e retroscena culinari.
+          <span lang-it>Un fitto calendario di celebrazioni per il mezzo secolo di Riccardo. Dalla doccia rigenerante al gran finale!</span>
+          <span lang-en>A celebration-packed schedule for Riccardo's half-century milestone. From the freshen-up session to the epic finale!</span>
         </p>
       </div>
 
-      <!-- GRID OF CARDS -->
-      <div class="dishes-grid">
-        {dishes.map((dish) => (
-          <div 
-            class={`dish-card ${dish.hasVideo ? 'hover-video-card' : ''}`}
-            data-dish-id={dish.id}
-          >
-            <div class="card-img-wrapper">
-              <img src={dish.image} alt={dish.title} class="card-img" />
-              {dish.hasVideo && (
-                <video 
-                  src={dish.video} 
-                  loop 
-                  muted 
-                  playsinline 
-                  class="card-video"
-                ></video>
-              )}
-              <span class="card-badge" style={`color: ${dish.badgeColor}; border-color: ${dish.badgeColor};`}>
-                {dish.course}
-              </span>
-              {dish.hasVideo && (
-                <span class="video-indicator">🎬 Video Veo (Hover)</span>
-              )}
-            </div>
-
-            <div class="card-content">
-              <h3 class="card-title">{dish.title}</h3>
-              <h4 class="card-subtitle">{dish.subtitle}</h4>
-              <p class="card-tagline">{dish.tagline}</p>
-              
-              <button class="btn-card-expand">
-                Vedi scheda & ingredienti 🔍
-              </button>
+      <div class="timeline">
+        <!-- 15:00 OPZIONALE -->
+        <div class="timeline-item optional-item">
+          <div class="time-badge optional-badge">
+            <span class="time">15:00</span>
+            <span class="opt-tag" lang-it>[OPZIONALE]</span>
+            <span class="opt-tag" lang-en>[OPTIONAL]</span>
+          </div>
+          <div class="timeline-content">
+            <h3 lang-it>Molla lo Zaino, Doccia & Relax 🎒🚿</h3>
+            <h3 lang-en>Drop the Backpack, Shower & Relax 🎒🚿</h3>
+            <p lang-it>
+              <strong>Per chi arriva da lontano:</strong> fai il check-in nella tua stanza, molla lo zaino sul letto, fatti una bella doccia calda rigenerante, togliti la polvere del viaggio e scendi con tutta calma per l'inizio dell'aperitivo!
+            </p>
+            <p lang-en>
+              <strong>For guests traveling from afar:</strong> check in to your room, drop your luggage, take a refreshing hot shower, shake off the travel dust, and stroll down relaxed just in time for the cocktail hour!
+            </p>
+            <div class="timeline-quicklink">
+              <a href={`${baseUrl}/dormire`}>
+                <span lang-it>👉 Vedi opzioni per dormire & logistica</span>
+                <span lang-en>👉 See accommodation options & logistics</span>
+              </a>
             </div>
           </div>
-        ))}
+        </div>
+
+        <!-- 18:00 APERITIVO -->
+        <div class="timeline-item">
+          <div class="time-badge">
+            <span class="time">18:00</span>
+          </div>
+          <div class="timeline-content">
+            <h3 lang-it>Inizio Aperitivo & Accoglienza 🍸</h3>
+            <h3 lang-en>Welcome Cocktail & Aperitivo 🍸</h3>
+            <p lang-it>
+              Accoglienza ospiti, inalazione ufficiale dell'<em>Aria di Bosco Ferrarese</em>, calici di bollicine, stuzzichini e prime battute sul karma vegetale.
+            </p>
+            <p lang-en>
+              Guest arrival, official inhalation of the <em>Ferrara Forest Air</em>, sparkling toast, appetizers, and introductory laughs on botanical karma.
+            </p>
+          </div>
+        </div>
+
+        <!-- 19:45 CENA -->
+        <div class="timeline-item">
+          <div class="time-badge">
+            <span class="time">19:45</span>
+          </div>
+          <div class="timeline-content">
+            <h3 lang-it>La Grande Cena Palladiana 🍝</h3>
+            <h3 lang-en>The Grand Palladian Dinner 🍝</h3>
+            <p lang-it>
+              Servizio solenne dei <em>Bigoli con la Veganiga di Lugano</em>, <em>Stracotto di Tofu di Maremma</em> (strictly con mucche ignare) e Chianti a fiumi.
+            </p>
+            <p lang-en>
+              Ceremonial serving of <em>Bigoli with Veganiga Sausage from Lugano</em>, <em>Maremma Braised Tofu</em> (strictly overlooking oblivious cows), and endless Chianti.
+            </p>
+            <div class="timeline-quicklink">
+              <a href={`${baseUrl}/menu`}>
+                <span lang-it>👉 Esplora il menu completo & retroscena</span>
+                <span lang-en>👉 Explore the full avant-garde menu</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 21:45 DOPOCENA & ROCK -->
+        <div class="timeline-item">
+          <div class="time-badge">
+            <span class="time">21:45</span>
+          </div>
+          <div class="timeline-content">
+            <h3 lang-it>Tiramisù allo Struzzo Vegano & Rock '80 🎸</h3>
+            <h3 lang-en>Vegan Ostrich Tiramisù & 80s Rock 🎸</h3>
+            <p lang-it>
+              Taglio del Tiramisù con finto tuorlo gigante di struzzo sinergico, brindisi toscani, discorsi semi-seri e colonna sonora epica anni '80 con spade laser e draghi.
+            </p>
+            <p lang-en>
+              Cutting of the Tiramisù with giant synergetic ostrich egg yolk, toasts, speeches, and an epic 80s rock soundtrack with lightsabers and dragons.
+            </p>
+          </div>
+        </div>
+
+        <!-- 24:00 CHIUSURA -->
+        <div class="timeline-item">
+          <div class="time-badge">
+            <span class="time">24:00</span>
+          </div>
+          <div class="timeline-content">
+            <h3 lang-it>Tutti Fuori Dalle Balle! 🚛💨</h3>
+            <h3 lang-en>Everybody Out & Goodnight! 🚛💨</h3>
+            <p lang-it>
+              Chiusura cancelli, abbracci calorosi, foto ricordo e rientro nelle proprie dimore prima che scatti il coprifuoco del camionista.
+            </p>
+            <p lang-en>
+              Gates closing, warm farewells, group photos, and safe journeys back before the trucker curfew takes effect!
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- PROGRAMMA / COSA SI FA -->
+    <!-- HIGHLIGHTS SECTION -->
     <section class="section alt-bg">
       <div class="section-header">
-        <span class="tag-gold">⏰ IL PROGRAMMA</span>
-        <h2>Cosa si fa il 29 Dicembre?</h2>
-        <p class="section-desc">Un fitto calendario di celebrazioni per il mezzo secolo di Riccardo.</p>
+        <span class="tag-green">✨ GUIDA RAPIDA ALL'EVENTO</span>
+        <h2 lang-it>Tutto Quel che Devi Sapere</h2>
+        <h2 lang-en>Everything You Need to Know</h2>
       </div>
 
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="time">18:00</div>
-          <div class="timeline-content">
-            <h3>Inizio Aperitivo 🍸</h3>
-            <p>Accoglienza ospiti, inalazione dell'Aria di Bosco Ferrarese, bollicine e prime battute sul karma vegetale.</p>
-          </div>
+      <div class="highlights-grid">
+        <div class="highlight-card">
+          <div class="card-icon">🍽️</div>
+          <h3 lang-it>Menu d'Avanguardia</h3>
+          <h3 lang-en>Avant-Garde Menu</h3>
+          <p lang-it>Scopri i 5 piatti concettuali cruelty-free con video, ricette e le feroci recensioni del camionista Ermete Bottazzi.</p>
+          <p lang-en>Explore the 5 conceptual cruelty-free dishes featuring videos, ingredients, and witty trucker food reviews.</p>
+          <a href={`${baseUrl}/menu`} class="card-link">
+            <span lang-it>Vedi il Menu 🔍</span>
+            <span lang-en>View Menu 🔍</span>
+          </a>
         </div>
-        <div class="timeline-item">
-          <div class="time">19:45</div>
-          <div class="timeline-content">
-            <h3>La Grande Cena 🍝</h3>
-            <p>Servizio solenne dei Bigoli con la Veganiga di Lugano, Stracotto di Tofu di Maremma e Chianti a fiumi.</p>
-          </div>
+
+        <div class="highlight-card">
+          <div class="card-icon">🛏️</div>
+          <h3 lang-it>Dormire & Logistica</h3>
+          <h3 lang-en>Stay & Accommodation</h3>
+          <p lang-it>Consigli su B&B, hotel convenzionati, trasporti, check-in anticipato dalle 15:00 e FAQ per chi viaggia.</p>
+          <p lang-en>Curated B&Bs, hotels, transport details, 15:00 early check-in tips, and traveler FAQs.</p>
+          <a href={`${baseUrl}/dormire`} class="card-link">
+            <span lang-it>Info Alloggi 🛏️</span>
+            <span lang-en>Lodging Info 🛏️</span>
+          </a>
         </div>
-        <div class="timeline-item">
-          <div class="time">21:45</div>
-          <div class="timeline-content">
-            <h3>DopoCena, Tiramisù allo Struzzo & Rock '80 🎸</h3>
-            <p>Taglio del Tiramisù con uova finte di struzzo, brindisi toscani e colonna sonora epica con spade laser e draghi.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="time">24:00</div>
-          <div class="timeline-content">
-            <h3>Tutti Fuori Dalle Balle! 🚛💨</h3>
-            <p>Chiusura cancelli, abbracci calorosi e rientro alle proprie dimore prima che scatti il coprifuoco.</p>
-          </div>
+
+        <div class="highlight-card">
+          <div class="card-icon">✉️</div>
+          <h3 lang-it>Contatta Riccardo</h3>
+          <h3 lang-en>Contact Riccardo</h3>
+          <p lang-it>Hai esigenze alimentari, domande logistiche o vuoi mandare un saluto? Scrivigli direttamente via email o form rapido.</p>
+          <p lang-en>Got dietary needs, travel questions, or special wishes? Contact Riccardo directly via email or fast form.</p>
+          <a href={`${baseUrl}/contatti`} class="card-link">
+            <span lang-it>Scrivi a Riccardo ✉️</span>
+            <span lang-en>Contact Page ✉️</span>
+          </a>
         </div>
       </div>
     </section>
@@ -256,55 +272,27 @@ const dishes = [
     <!-- RSVP SECTION -->
     <section id="rsvp" class="section">
       <div class="rsvp-card">
-        <h2>Sei dei Nostri? ✍️</h2>
-        <p>Compila il modulo ufficiale per farci sapere se verrai, quanti sarete e se il tuo apparato digerente è pronto alla sfida gastronomica del secolo.</p>
+        <span class="tag-gold">✍️ MODULO DI CONFERMA</span>
+        <h2 lang-it>Sei dei Nostri?</h2>
+        <h2 lang-en>Will You Join Us?</h2>
+        <p lang-it>
+          Compila il modulo ufficiale Google Form per farci sapere se verrai, quanti sarete e se il tuo apparato digerente è pronto alla sfida gastronomica del secolo.
+        </p>
+        <p lang-en>
+          Fill out the official Google RSVP Form to let us know if you are coming, party size, and whether your palate is prepared for the century's avant-garde feast!
+        </p>
         
         <div style="margin-top: 2rem;">
-          <a href={publicFormUrl} target="_blank" class="btn btn-primary btn-block" style="display: inline-block; text-align: center; font-size: 1.15rem; padding: 1.1rem 2rem;">
-            Compila il Google Form Ufficiale (RSVP) 📝✨
+          <a href={publicFormUrl} target="_blank" class="btn btn-primary" style="font-size: 1.15rem; padding: 1.1rem 2.2rem;">
+            <span lang-it>Compila il Google Form Ufficiale (RSVP) 📝✨</span>
+            <span lang-en>Fill out the Official RSVP Form 📝✨</span>
           </a>
         </div>
       </div>
     </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-      <p>50 Sfumature di Giallo • 29 Dicembre 2026 • In Odor di Toscana 🍷</p>
-      <small>Confezionato con ❤️ e Astro da Ermete Bottazzi 🚛 • <a href="https://github.com/palladius/compleanno-palladiano-2026" target="_blank">GitHub Repo</a></small>
-    </footer>
-
-    <!-- DISH DETAIL MODAL (LIGHTBOX) -->
-    <div id="dishModal" class="dish-modal" aria-hidden="true">
-      <div class="dish-modal-backdrop" id="modalBackdrop"></div>
-      <div class="dish-modal-container">
-        <button class="dish-modal-close" id="modalClose" aria-label="Chiudi">&times;</button>
-        
-        <div class="modal-media-wrapper" id="modalMediaWrapper">
-          <img id="modalImg" src="" alt="" class="modal-media" />
-          <video id="modalVid" src="" controls autoplay loop playsinline class="modal-media" style="display: none;"></video>
-        </div>
-
-        <div class="modal-body">
-          <span class="modal-badge" id="modalBadge"></span>
-          <h2 class="modal-title" id="modalTitle"></h2>
-          <h4 class="modal-subtitle" id="modalSubtitle"></h4>
-          <p class="modal-story" id="modalStory"></p>
-
-          <div class="modal-ingredients">
-            <h4>🌿 Scheda Tecnica & Ingredienti:</h4>
-            <ul id="modalIngredientsList"></ul>
-          </div>
-
-          <div class="modal-quote" id="modalQuoteWrapper">
-            <em id="modalQuoteText"></em>
-            <div class="modal-quote-author" id="modalQuoteAuthor"></div>
-          </div>
-        </div>
-      </div>
-    </div>
   </main>
 
-  <script define:vars={{ dishes }}>
+  <script is:inline>
     // Live Countdown
     const targetDate = new Date("2026-12-29T18:00:00+01:00").getTime();
 
@@ -312,11 +300,18 @@ const dishes = [
       const now = new Date().getTime();
       const distance = targetDate - now;
 
+      const daysEl = document.getElementById("days");
+      const hoursEl = document.getElementById("hours");
+      const minEl = document.getElementById("minutes");
+      const secEl = document.getElementById("seconds");
+
+      if (!daysEl || !hoursEl || !minEl || !secEl) return;
+
       if (distance < 0) {
-        document.getElementById("days").innerText = "0";
-        document.getElementById("hours").innerText = "0";
-        document.getElementById("minutes").innerText = "0";
-        document.getElementById("seconds").innerText = "0";
+        daysEl.innerText = "0";
+        hoursEl.innerText = "0";
+        minEl.innerText = "0";
+        secEl.innerText = "0";
         return;
       }
 
@@ -325,121 +320,24 @@ const dishes = [
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      document.getElementById("days").innerText = days;
-      document.getElementById("hours").innerText = hours;
-      document.getElementById("minutes").innerText = minutes;
-      document.getElementById("seconds").innerText = seconds;
+      daysEl.innerText = days;
+      hoursEl.innerText = hours;
+      minEl.innerText = minutes;
+      secEl.innerText = seconds;
     }
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
-
-    // Hover video preview for cards
-    document.querySelectorAll('.hover-video-card').forEach(card => {
-      const vid = card.querySelector('video');
-      if (vid) {
-        card.addEventListener('mouseenter', () => { vid.play().catch(() => {}); });
-        card.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
-      }
-    });
-
-    // Modal Details Logic
-    const modal = document.getElementById('dishModal');
-    const modalBackdrop = document.getElementById('modalBackdrop');
-    const modalClose = document.getElementById('modalClose');
-    const modalImg = document.getElementById('modalImg');
-    const modalVid = document.getElementById('modalVid');
-    const modalBadge = document.getElementById('modalBadge');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalSubtitle = document.getElementById('modalSubtitle');
-    const modalStory = document.getElementById('modalStory');
-    const modalIngredientsList = document.getElementById('modalIngredientsList');
-    const modalQuoteText = document.getElementById('modalQuoteText');
-    const modalQuoteAuthor = document.getElementById('modalQuoteAuthor');
-
-    function openDishModal(dishId) {
-      const dish = dishes.find(d => d.id === dishId);
-      if (!dish || !modal) return;
-
-      if (dish.hasVideo) {
-        modalImg.style.display = 'none';
-        modalVid.style.display = 'block';
-        modalVid.src = dish.video;
-        modalVid.play().catch(() => {});
-      } else {
-        modalVid.style.display = 'none';
-        modalVid.pause();
-        modalVid.src = '';
-        modalImg.style.display = 'block';
-        modalImg.src = dish.image;
-        modalImg.alt = dish.title;
-      }
-
-      modalBadge.innerText = dish.course;
-      modalBadge.style.color = dish.badgeColor;
-      modalBadge.style.borderColor = dish.badgeColor;
-
-      modalTitle.innerText = dish.title;
-      modalSubtitle.innerText = dish.subtitle;
-      modalStory.innerText = dish.story;
-
-      modalIngredientsList.innerHTML = '';
-      dish.ingredients.forEach(ing => {
-        const li = document.createElement('li');
-        li.innerText = ing;
-        modalIngredientsList.appendChild(li);
-      });
-
-      modalQuoteText.innerText = `"${dish.quote}"`;
-      modalQuoteAuthor.innerText = `— ${dish.author}`;
-
-      modal.classList.add('active');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeDishModal() {
-      if (!modal) return;
-      modal.classList.remove('active');
-      modal.setAttribute('aria-hidden', 'true');
-      if (modalVid) {
-        modalVid.pause();
-        modalVid.src = '';
-      }
-      document.body.style.overflow = '';
-    }
-
-    document.querySelectorAll('.dish-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const dishId = card.getAttribute('data-dish-id');
-        if (dishId) openDishModal(dishId);
-      });
-    });
-
-    if (modalClose) modalClose.addEventListener('click', closeDishModal);
-    if (modalBackdrop) modalBackdrop.addEventListener('click', closeDishModal);
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
-        closeDishModal();
-      }
-    });
   </script>
 </Layout>
 
 <style>
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-  }
-
   .hero {
     text-align: center;
-    padding: 4rem 1rem 3rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 3rem 1rem 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  /* HERO BIRTHDAY AVATAR */
   .birthday-avatar-wrapper {
     margin-bottom: 2rem;
     display: flex;
@@ -449,22 +347,22 @@ const dishes = [
 
   .badge-super {
     display: inline-block;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1.6rem;
     background: linear-gradient(135deg, #f59e0b, #d97706);
     color: #0f172a;
     border-radius: 9999px;
     font-size: 1.05rem;
     font-weight: 800;
     letter-spacing: 2px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.6rem;
     box-shadow: 0 0 25px rgba(245, 158, 11, 0.5);
     text-transform: uppercase;
   }
 
   .avatar-container {
     position: relative;
-    width: 290px;
-    height: 290px;
+    width: 280px;
+    height: 280px;
     margin-bottom: 1.8rem;
   }
 
@@ -500,6 +398,42 @@ const dishes = [
     box-shadow: 0 4px 15px rgba(0,0,0,0.6);
   }
 
+
+  .save-date-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .gcal-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.38rem 0.75rem;
+    background: rgba(245, 158, 11, 0.2);
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .gcal-btn:hover {
+    background: var(--accent-gold);
+    color: #0f172a;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+  }
+
+  .gcal-icon {
+    flex-shrink: 0;
+  }
+
   .badge {
     display: inline-block;
     padding: 0.4rem 1.2rem;
@@ -518,17 +452,10 @@ const dishes = [
     margin-bottom: 1.2rem;
   }
 
-  .gold-text {
-    color: var(--accent-gold);
-    background: linear-gradient(135deg, #fbbf24, #d97706);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
   .hero-subtitle {
     font-size: 1.25rem;
     color: var(--text-muted);
-    max-width: 650px;
+    max-width: 680px;
     margin: 0 auto 2.5rem;
   }
 
@@ -546,8 +473,8 @@ const dishes = [
     gap: 0.8rem;
     background: var(--bg-card);
     padding: 0.8rem 1.4rem;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     text-align: left;
   }
 
@@ -575,12 +502,12 @@ const dishes = [
 
   .countdown-box {
     background: var(--bg-card);
-    border: 1px solid rgba(245, 158, 11, 0.3);
+    border: 1px solid rgba(245, 158, 11, 0.35);
     padding: 1rem 1.5rem;
     border-radius: 16px;
-    min-width: 90px;
+    min-width: 95px;
     text-align: center;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
   }
 
   .countdown-val {
@@ -608,444 +535,184 @@ const dishes = [
     flex-wrap: wrap;
   }
 
-  .btn {
-    padding: 0.9rem 1.8rem;
-    border-radius: 12px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    font-size: 1rem;
-    border: none;
-  }
-
-  .btn-primary {
-    background: var(--accent-gold);
-    color: #0f172a;
-  }
-
-  .btn-primary:hover {
-    background: #d97706;
-    transform: translateY(-2px);
-  }
-
-  .btn-secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-light);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
-  }
-
-  /* SECTIONS */
-  .section {
-    padding: 4rem 0;
-  }
-
-  .section-header {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto 3rem;
-  }
-
-  .tag-green {
-    color: var(--accent-green);
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    font-size: 0.85rem;
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  .tag-gold {
-    color: var(--accent-gold);
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    font-size: 0.85rem;
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  .section-header h2 {
-    font-size: 2.3rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .section-desc {
-    color: var(--text-muted);
-    font-size: 1.05rem;
-  }
-
-  /* DISHES GRID (COMPACT 2x3) */
-  .dishes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-    gap: 1.8rem;
-  }
-
-  .dish-card {
-    background: var(--bg-card);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .dish-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent-gold);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-  }
-
-  .card-img-wrapper {
-    position: relative;
-    width: 100%;
-    height: 220px;
-    overflow: hidden;
-    background: #000;
-  }
-
-  .card-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-  }
-
-  .dish-card:hover .card-img {
-    transform: scale(1.05);
-  }
-
-  .card-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.35s ease;
-    pointer-events: none;
-  }
-
-  .dish-card:hover .card-video {
-    opacity: 1;
-  }
-
-  .card-badge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(8px);
-    font-weight: 700;
-    font-size: 0.75rem;
-    padding: 0.3rem 0.7rem;
-    border-radius: 8px;
-    border: 1px solid;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .video-indicator {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.75);
-    color: var(--accent-gold);
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 0.25rem 0.6rem;
-    border-radius: 6px;
-  }
-
-  .card-content {
-    padding: 1.4rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-  }
-
-  .card-title {
-    font-size: 1.35rem;
-    color: var(--accent-gold);
-    margin-bottom: 0.3rem;
-    line-height: 1.25;
-  }
-
-  .card-subtitle {
-    font-size: 0.95rem;
-    color: var(--text-light);
-    margin-bottom: 0.6rem;
-    font-weight: 600;
-  }
-
-  .card-tagline {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-bottom: 1.2rem;
-    line-height: 1.4;
-    flex-grow: 1;
-  }
-
-  .btn-card-expand {
-    background: rgba(245, 158, 11, 0.12);
-    color: var(--accent-gold);
-    border: 1px solid rgba(245, 158, 11, 0.3);
-    padding: 0.6rem 1rem;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease;
-    text-align: center;
-    width: 100%;
-  }
-
-  .dish-card:hover .btn-card-expand {
-    background: var(--accent-gold);
-    color: #0f172a;
-  }
-
-  /* DISH DETAIL MODAL */
-  .dish-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 99999;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    padding: 1.5rem;
-  }
-
-  .dish-modal.active {
-    display: flex;
-    opacity: 1;
-  }
-
-  .dish-modal-backdrop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(15, 23, 42, 0.88);
-    backdrop-filter: blur(12px);
-    cursor: pointer;
-  }
-
-  .dish-modal-container {
-    position: relative;
-    z-index: 10;
-    width: 90vw;
-    max-width: 850px;
-    max-height: 88vh;
-    background: #1e293b;
-    border-radius: 24px;
-    border: 1px solid rgba(245, 158, 11, 0.4);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .dish-modal-close {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--accent-gold);
-    color: #0f172a;
-    border: none;
-    font-size: 1.6rem;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 20;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  }
-
-  .modal-media-wrapper {
-    width: 100%;
-    max-height: 380px;
-    overflow: hidden;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .modal-media {
-    width: 100%;
-    max-height: 380px;
-    object-fit: cover;
-  }
-
-  .modal-body {
-    padding: 2rem;
-  }
-
-  .modal-badge {
-    display: inline-block;
-    font-size: 0.8rem;
-    font-weight: 700;
-    padding: 0.3rem 0.8rem;
-    border-radius: 8px;
-    border: 1px solid;
-    margin-bottom: 0.8rem;
-  }
-
-  .modal-title {
-    font-size: 2rem;
-    color: var(--accent-gold);
-    margin-bottom: 0.3rem;
-  }
-
-  .modal-subtitle {
-    font-size: 1.15rem;
-    color: var(--text-light);
-    margin-bottom: 1.2rem;
-  }
-
-  .modal-story {
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--text-light);
-    margin-bottom: 1.5rem;
-  }
-
-  .modal-ingredients {
-    background: rgba(0, 0, 0, 0.25);
-    padding: 1.2rem;
-    border-radius: 14px;
-    margin-bottom: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-  }
-
-  .modal-ingredients h4 {
-    color: var(--accent-green);
-    font-size: 1rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .modal-ingredients ul {
-    list-style: none;
-  }
-
-  .modal-ingredients li {
-    padding: 0.35rem 0;
-    color: var(--text-muted);
-    font-size: 0.95rem;
-  }
-
-  .modal-quote {
-    border-left: 3px solid var(--accent-gold);
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 0 12px 12px 0;
-    font-style: italic;
-  }
-
-  .modal-quote-author {
-    font-style: normal;
-    font-weight: 600;
-    color: var(--accent-gold);
-    margin-top: 0.4rem;
-    font-size: 0.85rem;
-  }
-
   /* TIMELINE */
   .timeline {
-    max-width: 650px;
+    max-width: 750px;
     margin: 0 auto;
     position: relative;
     border-left: 2px solid rgba(245, 158, 11, 0.3);
-    padding-left: 2rem;
+    padding-left: 2.2rem;
   }
 
   .timeline-item {
     position: relative;
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
   }
 
   .timeline-item::before {
     content: '';
     position: absolute;
-    left: -2.45rem;
-    top: 0.2rem;
-    width: 14px;
-    height: 14px;
+    left: -2.68rem;
+    top: 0.25rem;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     background: var(--accent-gold);
-    box-shadow: 0 0 10px var(--accent-gold);
+    box-shadow: 0 0 12px var(--accent-gold);
   }
 
-  .timeline-item .time {
+  .timeline-item.optional-item::before {
+    background: var(--accent-blue);
+    box-shadow: 0 0 12px var(--accent-blue);
+  }
+
+  .time-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .time {
     font-weight: 800;
     color: var(--accent-gold);
-    font-size: 1.1rem;
-    margin-bottom: 0.3rem;
+    font-size: 1.3rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .optional-badge .time {
+    color: var(--accent-blue);
+  }
+
+  .opt-tag {
+    background: rgba(56, 189, 248, 0.18);
+    border: 1px solid var(--accent-blue);
+    color: var(--accent-blue);
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.15rem 0.55rem;
+    border-radius: 9999px;
+    letter-spacing: 1px;
+  }
+
+  .timeline-content {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 1.6rem 1.8rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  }
+
+  .optional-item .timeline-content {
+    border-color: rgba(56, 189, 248, 0.35);
+    background: rgba(15, 23, 42, 0.7);
   }
 
   .timeline-content h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.4rem;
+    font-size: 1.35rem;
+    margin-bottom: 0.6rem;
+    color: var(--text-light);
   }
 
   .timeline-content p {
     color: var(--text-muted);
+    font-size: 1.02rem;
+    line-height: 1.6;
+  }
+
+  .timeline-quicklink {
+    margin-top: 1rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .timeline-quicklink a {
+    color: var(--accent-gold);
+    text-decoration: none;
+    font-weight: 700;
     font-size: 0.95rem;
+  }
+
+  .timeline-quicklink a:hover {
+    text-decoration: underline;
+  }
+
+  /* HIGHLIGHTS GRID */
+  .alt-bg {
+    background: rgba(30, 41, 59, 0.4);
+    border-radius: 28px;
+    padding: 4rem 2rem;
+    margin: 2rem 0;
+  }
+
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 1.8rem;
+  }
+
+  .highlight-card {
+    background: var(--bg-card);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .highlight-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-gold);
+  }
+
+  .card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .highlight-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.6rem;
+    color: var(--accent-gold);
+  }
+
+  .highlight-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .card-link {
+    color: var(--accent-gold);
+    font-weight: 700;
+    text-decoration: none;
   }
 
   /* RSVP CARD */
   .rsvp-card {
     background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    border: 1px solid rgba(245, 158, 11, 0.3);
+    border: 1px solid rgba(245, 158, 11, 0.35);
     border-radius: 24px;
-    padding: 3rem 2rem;
-    max-width: 600px;
+    padding: 3.5rem 2rem;
+    max-width: 650px;
     margin: 0 auto;
     text-align: center;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
   }
 
   .rsvp-card h2 {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     margin-bottom: 0.8rem;
     color: var(--accent-gold);
   }
 
   .rsvp-card p {
     color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
     margin-bottom: 1.5rem;
-  }
-
-  /* FOOTER */
-  .footer {
-    text-align: center;
-    padding: 3rem 0 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--text-muted);
-    font-size: 0.9rem;
-  }
-
-  .footer a {
-    color: var(--accent-gold);
-    text-decoration: none;
   }
 </style>

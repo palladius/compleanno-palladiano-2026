@@ -1,51 +1,614 @@
 ---
 interface Props {
   title: string;
+  currentPage?: string;
 }
 
-const { title } = Astro.props;
+const { title, currentPage = 'home' } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh-8460JMo3VTDrOgrDahOHObCmnFk-o_Eg/viewform";
 ---
 
 <!doctype html>
-<html lang="it">
+<html lang="it" data-lang="it">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="50° Compleanno Palladiano - 29 Dicembre 2026" />
+    <meta name="description" content="50° Compleanno Palladiano - 29 Dicembre 2026 | 50 Shades of Yellow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href={`${baseUrl}/favicon.svg`} />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,700&display=swap" rel="stylesheet">
     <title>{title}</title>
   </head>
   <body>
-    <slot />
+    <!-- IMMUTABLE FROSTED GLASS HEADER -->
+    <header class="site-header" id="siteHeader">
+      <div class="nav-container">
+        <a href={`${baseUrl}/`} class="nav-brand">
+          <span class="brand-badge">👑 50°</span>
+          <span class="brand-title">
+            <span class="font-serif gold-text">Palladiano</span>
+            <span class="brand-year">'26</span>
+          </span>
+        </a>
+
+        <!-- DESKTOP NAV -->
+        <nav class="nav-links">
+          <a href={`${baseUrl}/`} class={`nav-link ${currentPage === 'home' || currentPage === 'programma' ? 'active' : ''}`}>
+            <span class="nav-icon">⏰</span>
+            <span lang-it>Programma</span>
+            <span lang-en>Schedule</span>
+          </a>
+          <a href={`${baseUrl}/menu`} class={`nav-link ${currentPage === 'menu' ? 'active' : ''}`}>
+            <span class="nav-icon">🍽️</span>
+            <span>Menu</span>
+          </a>
+          <a href={`${baseUrl}/dormire`} class={`nav-link ${currentPage === 'dormire' ? 'active' : ''}`}>
+            <span class="nav-icon">🛏️</span>
+            <span lang-it>Dormire</span>
+            <span lang-en>Accommodation</span>
+          </a>
+          <a href={`${baseUrl}/contatti`} class={`nav-link ${currentPage === 'contatti' ? 'active' : ''}`}>
+            <span class="nav-icon">✉️</span>
+            <span lang-it>Contatti</span>
+            <span lang-en>Contact</span>
+          </a>
+          <a href={publicFormUrl} target="_blank" class="nav-btn-rsvp">
+            <span lang-it>RSVP ✍️</span>
+            <span lang-en>RSVP ✍️</span>
+          </a>
+        </nav>
+
+        <!-- LANGUAGE SWITCHER + MOBILE MENU BTN -->
+        <div class="nav-actions">
+          <div class="lang-switch-wrapper" role="group" aria-label="Language Switcher">
+            <button type="button" class="lang-btn active" id="btnLangIt" data-lang="it" title="Italiano">
+              <span class="flag-icon">🇮🇹</span>
+              <span class="lang-text">IT</span>
+            </button>
+            <span class="lang-divider">/</span>
+            <button type="button" class="lang-btn" id="btnLangEn" data-lang="en" title="English">
+              <span class="flag-icon">🇬🇧</span>
+              <span class="lang-text">EN</span>
+            </button>
+          </div>
+
+          <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- MOBILE DRAWER -->
+      <div class="mobile-drawer" id="mobileDrawer">
+        <a href={`${baseUrl}/`} class={`mobile-link ${currentPage === 'home' || currentPage === 'programma' ? 'active' : ''}`}>
+          <span>⏰</span>
+          <span lang-it>Programma della Serata</span>
+          <span lang-en>Evening Schedule</span>
+        </a>
+        <a href={`${baseUrl}/menu`} class={`mobile-link ${currentPage === 'menu' ? 'active' : ''}`}>
+          <span>🍽️</span>
+          <span lang-it>Menu d'Avanguardia</span>
+          <span lang-en>Avant-Garde Menu</span>
+        </a>
+        <a href={`${baseUrl}/dormire`} class={`mobile-link ${currentPage === 'dormire' ? 'active' : ''}`}>
+          <span>🛏️</span>
+          <span lang-it>Dormire & Logistica</span>
+          <span lang-en>Accommodation & Logistics</span>
+        </a>
+        <a href={`${baseUrl}/contatti`} class={`mobile-link ${currentPage === 'contatti' ? 'active' : ''}`}>
+          <span>✉️</span>
+          <span lang-it>Scrivi a Riccardo / Contatti</span>
+          <span lang-en>Contact Riccardo</span>
+        </a>
+        <a href={publicFormUrl} target="_blank" class="mobile-btn-rsvp">
+          <span lang-it>Conferma Presenza (RSVP) ✍️</span>
+          <span lang-en>Confirm Attendance (RSVP) ✍️</span>
+        </a>
+      </div>
+    </header>
+
+    <div class="page-wrapper">
+      <slot />
+    </div>
+
+    <!-- GLOBAL FOOTER -->
+    <footer class="footer">
+      <div class="footer-content">
+        <p class="footer-title">
+          <strong>50 Sfumature di Giallo</strong> • 29 Dicembre 2026 • <em>Strictly "In Odor di Toscana" 🍷</em>
+        </p>
+        <div class="footer-nav">
+          <a href={`${baseUrl}/`}><span lang-it>Programma</span><span lang-en>Schedule</span></a> •
+          <a href={`${baseUrl}/menu`}>Menu</a> •
+          <a href={`${baseUrl}/dormire`}><span lang-it>Dormire</span><span lang-en>Accommodation</span></a> •
+          <a href={`${baseUrl}/contatti`}><span lang-it>Contatti</span><span lang-en>Contact</span></a> •
+          <a href={publicFormUrl} target="_blank">RSVP Form</a>
+        </div>
+        <small class="footer-credit">
+          Confezionato con ❤️, Astro & 🚛 da Ermete Bottazzi • 
+          <a href="https://github.com/palladius/compleanno-palladiano-2026" target="_blank">GitHub Repo</a>
+        </small>
+      </div>
+    </footer>
+
+    <!-- LANGUAGE & MOBILE MENU CONTROLLER SCRIPT -->
+    <script is:inline>
+      (function() {
+        const savedLang = localStorage.getItem('palladius_lang') || 'it';
+        setLanguage(savedLang);
+
+        const btnIt = document.getElementById('btnLangIt');
+        const btnEn = document.getElementById('btnLangEn');
+
+        if (btnIt && btnEn) {
+          btnIt.addEventListener('click', () => setLanguage('it'));
+          btnEn.addEventListener('click', () => setLanguage('en'));
+        }
+
+        function setLanguage(lang) {
+          document.documentElement.setAttribute('data-lang', lang);
+          document.documentElement.lang = lang;
+          localStorage.setItem('palladius_lang', lang);
+
+          const itBtn = document.getElementById('btnLangIt');
+          const enBtn = document.getElementById('btnLangEn');
+
+          if (itBtn && enBtn) {
+            if (lang === 'it') {
+              itBtn.classList.add('active');
+              enBtn.classList.remove('active');
+            } else {
+              enBtn.classList.add('active');
+              itBtn.classList.remove('active');
+            }
+          }
+        }
+
+        // Mobile drawer toggle
+        const toggleBtn = document.getElementById('mobileMenuBtn');
+        const drawer = document.getElementById('mobileDrawer');
+
+        if (toggleBtn && drawer) {
+          toggleBtn.addEventListener('click', () => {
+            const isOpen = drawer.classList.toggle('open');
+            toggleBtn.setAttribute('aria-expanded', String(isOpen));
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
 
 <style is:global>
   :root {
-    --bg-dark: #0f172a;
+    --bg-dark: #0b1120;
+    --bg-surface: #0f172a;
     --bg-card: #1e293b;
+    --bg-card-hover: #273549;
     --accent-gold: #f59e0b;
+    --accent-gold-glow: rgba(245, 158, 11, 0.4);
     --accent-green: #10b981;
+    --accent-blue: #38bdf8;
     --text-light: #f8fafc;
     --text-muted: #94a3b8;
+    --header-height: 72px;
   }
+
+  /* LANGUAGE VISIBILITY TOGGLE */
+  html[data-lang="it"] [lang-en] {
+    display: none !important;
+  }
+  html[data-lang="en"] [lang-it] {
+    display: none !important;
+  }
+
   * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
+
   body {
     font-family: 'Outfit', sans-serif;
     background-color: var(--bg-dark);
     color: var(--text-light);
     line-height: 1.6;
     overflow-x: hidden;
+    padding-top: var(--header-height);
   }
+
   h1, h2, h3, .font-serif {
     font-family: 'Playfair Display', serif;
+  }
+
+  .gold-text {
+    color: var(--accent-gold);
+    background: linear-gradient(135deg, #fbbf24, #d97706);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+
+  /* STICKY GLASS HEADER */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    z-index: 1000;
+    background: rgba(15, 23, 42, 0.82);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    border-bottom: 1px solid rgba(245, 158, 11, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-container {
+    max-width: 1160px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--text-light);
+    transition: transform 0.2s ease;
+  }
+
+  .nav-brand:hover {
+    transform: scale(1.03);
+  }
+
+  .brand-badge {
+    background: rgba(245, 158, 11, 0.18);
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    font-size: 0.85rem;
+    font-weight: 800;
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
+  }
+
+  .brand-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  .brand-year {
+    color: var(--accent-gold);
+    font-weight: 800;
+    font-size: 1rem;
+    margin-left: 2px;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.8rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--text-light);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .nav-link.active {
+    color: var(--accent-gold);
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(245, 158, 11, 0.35);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.15);
+  }
+
+  .nav-btn-rsvp {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #0f172a;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-decoration: none;
+    padding: 0.45rem 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-left: 0.4rem;
+  }
+
+  .nav-btn-rsvp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.55);
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  /* LANGUAGE SWITCHER BADGE */
+  .lang-switch-wrapper {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9999px;
+    padding: 0.2rem 0.4rem;
+    gap: 0.2rem;
+  }
+
+  .lang-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: all 0.2s ease;
+  }
+
+  .lang-btn:hover {
+    color: var(--text-light);
+  }
+
+  .lang-btn.active {
+    background: var(--accent-gold);
+    color: #0f172a;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+  }
+
+  .lang-divider {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 0.8rem;
+  }
+
+  .flag-icon {
+    font-size: 0.95rem;
+    line-height: 1;
+  }
+
+  /* MOBILE TOGGLE & DRAWER */
+  .mobile-toggle {
+    display: none;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 0.5rem;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+  }
+
+  .mobile-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--text-light);
+    transition: all 0.2s ease;
+  }
+
+  .mobile-drawer {
+    display: none;
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    background: rgba(15, 23, 42, 0.96);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(245, 158, 11, 0.3);
+    padding: 1.2rem 1.5rem;
+    flex-direction: column;
+    gap: 0.8rem;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+  }
+
+  .mobile-drawer.open {
+    display: flex;
+  }
+
+  .mobile-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.7rem 1rem;
+    border-radius: 10px;
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .mobile-link.active {
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: var(--accent-gold);
+  }
+
+  .mobile-btn-rsvp {
+    margin-top: 0.5rem;
+    text-align: center;
+    background: var(--accent-gold);
+    color: #0f172a;
+    font-weight: 800;
+    padding: 0.8rem;
+    border-radius: 10px;
+    text-decoration: none;
+  }
+
+  @media (max-width: 860px) {
+    .nav-links {
+      display: none;
+    }
+    .mobile-toggle {
+      display: flex;
+    }
+  }
+
+  /* BUTTONS & GENERAL UTILS */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.8rem;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-size: 1rem;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--accent-gold);
+    color: #0f172a;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);
+  }
+
+  .btn-primary:hover {
+    background: #d97706;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-light);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 4.5rem 0 3rem;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 3rem;
+  }
+
+  .tag-green {
+    color: var(--accent-green);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .tag-gold {
+    color: var(--accent-gold);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .tag-blue {
+    color: var(--accent-blue);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-header h2 {
+    font-size: 2.3rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 3.5rem 1.5rem 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(11, 17, 32, 0.8);
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 4rem;
+  }
+
+  .footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .footer-title {
+    color: var(--text-light);
+    font-size: 1.05rem;
+  }
+
+  .footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-nav a {
+    color: var(--accent-gold);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .footer-nav a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-credit a {
+    color: var(--text-muted);
   }
 </style>
