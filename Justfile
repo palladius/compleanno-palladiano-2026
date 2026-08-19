@@ -3,3 +3,7 @@ sync:
 
 crunch:
 	uv run scripts/crunch_csv.py
+
+test:
+	npx astro check
+
