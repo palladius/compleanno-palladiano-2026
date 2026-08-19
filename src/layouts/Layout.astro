@@ -45,6 +45,10 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
             <span lang-it>Dormire</span>
             <span lang-en>Accommodation</span>
           </a>
+          <a href={`${baseUrl}/faq`} class={`nav-link ${currentPage === 'faq' ? 'active' : ''}`}>
+            <span class="nav-icon">❓</span>
+            <span>FAQ</span>
+          </a>
           <a href={`${baseUrl}/contatti`} class={`nav-link ${currentPage === 'contatti' ? 'active' : ''}`}>
             <span class="nav-icon">✉️</span>
             <span lang-it>Contatti</span>
@@ -90,6 +94,11 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
           <span lang-it>Dormire & Logistica</span>
           <span lang-en>Accommodation & Logistics</span>
         </a>
+        <a href={`${baseUrl}/faq`} class={`mobile-link ${currentPage === 'faq' ? 'active' : ''}`}>
+          <span>❓</span>
+          <span lang-it>Domande Frequenti (FAQ)</span>
+          <span lang-en>Frequently Asked Questions</span>
+        </a>
         <a href={`${baseUrl}/contatti`} class={`mobile-link ${currentPage === 'contatti' ? 'active' : ''}`}>
           <span>✉️</span>
           <span lang-it>Scrivi a Riccardo & Ermete</span>
@@ -115,6 +124,7 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
         <div class="footer-nav">
           <a href={`${baseUrl}/`}><span lang-it>Programma</span><span lang-en>Schedule</span></a> •
           <a href={`${baseUrl}/dormire`}><span lang-it>Dormire</span><span lang-en>Accommodation</span></a> •
+          <a href={`${baseUrl}/faq`}>FAQ</a> •
           <a href={`${baseUrl}/contatti`}><span lang-it>Contatti</span><span lang-en>Contact</span></a> •
           <a href={publicFormUrl} target="_blank">RSVP Form</a>
         </div>
