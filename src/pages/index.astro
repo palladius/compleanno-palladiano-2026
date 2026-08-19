@@ -97,10 +97,10 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
           <span lang-it>Il Programma della Serata ⏰</span>
           <span lang-en>Evening Schedule ⏰</span>
         </a>
-        <a href={`${baseUrl}/menu`} class="btn btn-secondary">
-          <span lang-it>Scopri il Menu Esclusivo 🍽️</span>
-          <span lang-en>Discover the Menu 🍽️</span>
-        </a>
+        <span class="btn btn-secondary btn-badge-coming">
+          <span lang-it>🍽️ Menu in Arrivo ⏳</span>
+          <span lang-en>🍽️ Menu Coming Soon ⏳</span>
+        </span>
         <a href={publicFormUrl} target="_blank" class="btn btn-primary">
           <span lang-it>Conferma Presenza (RSVP) ✍️</span>
           <span lang-en>RSVP (Google Form) ✍️</span>
@@ -178,10 +178,10 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
               Ceremonial serving of <em>Bigoli with Veganiga Sausage from Lugano</em>, <em>Maremma Braised Tofu</em> (strictly overlooking oblivious cows), and endless Chianti.
             </p>
             <div class="timeline-quicklink">
-              <a href={`${baseUrl}/menu`}>
-                <span lang-it>👉 Esplora il menu completo & retroscena</span>
-                <span lang-en>👉 Explore the full avant-garde menu</span>
-              </a>
+              <span class="text-coming-soon">
+                <span lang-it>🍽️ <em>Il menu ufficiale del banchetto è in fase di definizione (in arrivo a breve!)</em></span>
+                <span lang-en>🍽️ <em>The official banquet menu is currently being curated (coming soon!)</em></span>
+              </span>
             </div>
           </div>
         </div>
@@ -233,14 +233,14 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
       <div class="highlights-grid">
         <div class="highlight-card">
           <div class="card-icon">🍽️</div>
-          <h3 lang-it>Menu d'Avanguardia</h3>
-          <h3 lang-en>Avant-Garde Menu</h3>
-          <p lang-it>Scopri i 5 piatti concettuali cruelty-free con video, ricette e le feroci recensioni del camionista Ermete Bottazzi.</p>
-          <p lang-en>Explore the 5 conceptual cruelty-free dishes featuring videos, ingredients, and witty trucker food reviews.</p>
-          <a href={`${baseUrl}/menu`} class="card-link">
-            <span lang-it>Vedi il Menu 🔍</span>
-            <span lang-en>View Menu 🔍</span>
-          </a>
+          <h3 lang-it>Menu & Banchetto</h3>
+          <h3 lang-en>Banquet & Menu</h3>
+          <p lang-it>Il menu ufficiale del cinquantesimo è attualmente in fase di composizione con gli chef. Sarà pubblicato a breve su questa pagina!</p>
+          <p lang-en>The official 50th birthday menu is currently being finalized with the chefs. It will be released right here soon!</p>
+          <span class="card-link-muted">
+            <span lang-it>⏳ Menu in arrivo...</span>
+            <span lang-en>⏳ Menu coming soon...</span>
+          </span>
         </div>
 
         <div class="highlight-card">
@@ -624,6 +624,26 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
     margin-top: 1rem;
     padding-top: 0.8rem;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+
+  .btn-badge-coming {
+    opacity: 0.85;
+    cursor: default;
+    border-style: dashed;
+  }
+
+  .text-coming-soon {
+    color: var(--accent-gold);
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+
+  .card-link-muted {
+    color: var(--accent-gold);
+    font-weight: 700;
+    font-size: 0.9rem;
+    opacity: 0.85;
   }
 
   .timeline-quicklink a {
