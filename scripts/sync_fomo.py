@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 SHEET_ID = os.getenv("GOOGLE_SHEET_ID")
-CREDENTIALS_FILE = "private/credentials.json"
+CREDENTIALS_FILE = "private/fomo-reader.json"
 OUTPUT_FILE = "src/data/fomo.json"
 
 if not SHEET_ID:
