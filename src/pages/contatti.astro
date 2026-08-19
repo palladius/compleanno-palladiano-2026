@@ -1,26 +1,39 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const contactEmail = "palladiusbonton+50anni@gmail.com";
+const riccardoEmail = "palladiusbonton+50anni@gmail.com";
+const ermeteEmail = "ermetebottazzi@gmail.com";
 ---
 
 <Layout title="Contatti | 50° Compleanno Palladiano ✉️" currentPage="contatti">
   <main class="container">
     <div class="contact-wrapper">
       <header class="section-header">
-        <span class="tag-gold">✉️ CONTATTI</span>
+        <span class="tag-gold">✉️ CONTATTI & MESSAGGI</span>
         <h1 class="page-title">
-          <span lang-it>Scrivi a Riccardo</span>
-          <span lang-en>Contact Riccardo</span>
+          <span lang-it>Scrivi a Riccardo & Ermete</span>
+          <span lang-en>Contact Riccardo & Ermete</span>
         </h1>
         <p class="section-desc">
-          <span lang-it>Hai una domanda sull'evento, un'esigenza particolare o vuoi mandare un messaggio?</span>
-          <span lang-en>Got a question about the event, special requests, or want to send a message?</span>
+          <span lang-it>Hai una domanda sull'evento, un'esigenza particolare o vuoi mandare un messaggio al festeggiato o al camionista-webmaster?</span>
+          <span lang-en>Got a question about the event, dietary needs, or want to send a message to Riccardo or Ermete the trucker-webmaster?</span>
         </p>
       </header>
 
       <!-- CLEAN CENTERED FORM CARD -->
       <div class="contact-card">
         <form id="contactForm" class="contact-form">
+          <div class="form-group">
+            <label for="recipient">
+              <span lang-it>A chi vuoi scrivere?</span>
+              <span lang-en>Who do you want to contact?</span>
+            </label>
+            <select id="recipient" name="recipient" class="form-input form-select">
+              <option value="both">👑 Riccardo & 🚛 Ermete (Entrambi)</option>
+              <option value="riccardo">👑 Solo a Riccardo (Festeggiato)</option>
+              <option value="ermete">🚛 Solo a Ermete Bottazzi (Webmaster & Camionista)</option>
+            </select>
+          </div>
+
           <div class="form-group">
             <label for="senderName">
               <span lang-it>Il tuo Nome:</span>
@@ -42,7 +55,7 @@ const contactEmail = "palladiusbonton+50anni@gmail.com";
               <span lang-it>Messaggio:</span>
               <span lang-en>Message:</span>
             </label>
-            <textarea id="msgBody" name="body" rows="5" placeholder="Scrivi qui..." required class="form-input form-textarea"></textarea>
+            <textarea id="msgBody" name="body" rows="5" placeholder="Scrivi qui il tuo messaggio..." required class="form-input form-textarea"></textarea>
           </div>
 
           <button type="submit" class="btn btn-primary btn-block">
@@ -51,34 +64,56 @@ const contactEmail = "palladiusbonton+50anni@gmail.com";
           </button>
         </form>
 
-        <div class="direct-link-wrap">
-          <a href={`mailto:${contactEmail}?subject=50%C2%B0%20Compleanno%20Palladiano`} class="direct-email-link">
-            <span lang-it>Oppure apri direttamente una nuova email 📧</span>
-            <span lang-en>Or open a new email directly 📧</span>
-          </a>
+        <div class="direct-links-wrap">
+          <div class="direct-label">
+            <span lang-it>Oppure invia un'email diretta a:</span>
+            <span lang-en>Or send a direct email to:</span>
+          </div>
+          <div class="direct-btns">
+            <a href={`mailto:${riccardoEmail}?subject=50%C2%B0%20Compleanno%20Palladiano`} class="direct-link">
+              <span>👑 Riccardo</span>
+            </a>
+            <span class="direct-sep">•</span>
+            <a href={`mailto:${ermeteEmail}?subject=50%C2%B0%20Compleanno%20Palladiano%20-%20Info%20Logistica`} class="direct-link">
+              <span>🚛 Ermete Bottazzi</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </main>
 
-  <script define:vars={{ contactEmail }}>
+  <script define:vars={{ riccardoEmail, ermeteEmail }}>
     const form = document.getElementById('contactForm');
     if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
+        const recipient = document.getElementById('recipient').value;
         const name = document.getElementById('senderName').value.trim();
         const subject = document.getElementById('msgSubject').value.trim();
         const bodyText = document.getElementById('msgBody').value.trim();
 
+        let targetEmail = riccardoEmail;
+        let ccParam = "";
+
+        if (recipient === 'both') {
+          targetEmail = riccardoEmail;
+          ccParam = `&cc=${ermeteEmail}`;
+        } else if (recipient === 'ermete') {
+          targetEmail = ermeteEmail;
+        } else {
+          targetEmail = riccardoEmail;
+        }
+
         const fullSubject = encodeURIComponent(`[50° Compleanno] ${subject} (da ${name})`);
-        const fullBody = encodeURIComponent(`Ciao Riccardo,
+        const fullBody = encodeURIComponent(`Ciao,
 
 ${bodyText}
 
 ---
 Da: ${name}`);
 
-        window.location.href = `mailto:${contactEmail}?subject=${fullSubject}&body=${fullBody}`;
+        window.location.href = `mailto:${targetEmail}?subject=${fullSubject}${ccParam}&body=${fullBody}`;
       });
     }
   </script>
@@ -86,7 +121,7 @@ Da: ${name}`);
 
 <style>
   .contact-wrapper {
-    max-width: 620px;
+    max-width: 640px;
     margin: 0 auto;
     padding: 1rem 0 3rem;
   }
@@ -101,7 +136,7 @@ Da: ${name}`);
     background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98));
     border: 1px solid rgba(245, 158, 11, 0.3);
     border-radius: 22px;
-    padding: 2.2rem;
+    padding: 2.4rem;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
   }
 
@@ -135,6 +170,10 @@ Da: ${name}`);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
+  .form-select {
+    cursor: pointer;
+  }
+
   .form-input:focus {
     outline: none;
     border-color: var(--accent-gold);
@@ -153,22 +192,45 @@ Da: ${name}`);
     font-size: 1.05rem;
   }
 
-  .direct-link-wrap {
+  .direct-links-wrap {
     text-align: center;
-    margin-top: 1.5rem;
+    margin-top: 1.6rem;
     padding-top: 1.2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  .direct-email-link {
+  .direct-label {
+    font-size: 0.85rem;
     color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.92rem;
-    transition: color 0.2s ease;
+    margin-bottom: 0.5rem;
   }
 
-  .direct-email-link:hover {
+  .direct-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .direct-link {
     color: var(--accent-gold);
-    text-decoration: underline;
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 0.3rem 0.6rem;
+    border-radius: 8px;
+    background: rgba(245, 158, 11, 0.1);
+    transition: all 0.2s ease;
+  }
+
+  .direct-link:hover {
+    background: var(--accent-gold);
+    color: #0f172a;
+    text-decoration: none;
+  }
+
+  .direct-sep {
+    color: rgba(255, 255, 255, 0.2);
   }
 </style>
