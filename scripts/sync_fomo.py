@@ -56,9 +56,11 @@ for row in records:
         posti_letto += 1
 
 data = {
-    "replied": rsvps,
-    "bedsTaken": posti_letto,
-    "bedsTotal": 25
+    "confirmed": rsvps,
+    "maybe": 1,
+    "need_accomodation": posti_letto,
+    "total_accomodation": 35,
+    "total_a_tavola": 100
 }
 
 with open(OUTPUT_FILE, "w") as f:

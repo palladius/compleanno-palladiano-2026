@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+import fomoStats from '../data/fomo.json';
+---
+
+<Layout title="Statistiche | Il 50° Compleanno Palladiano" currentPage="stats">
+  <main class="container">
+    <section class="section">
+      <div class="section-header">
+        <span class="tag-gold">📊 RSVP & FOMO STATS</span>
+        <h2 lang-it>Statistiche in Tempo Reale</h2>
+        <h2 lang-en>Real-Time Statistics</h2>
+        <p class="section-desc">
+          <span lang-it>Situazione aggiornata dei posti disponibili per la cena e per il pernottamento.</span>
+          <span lang-en>Current status of available seats for dinner and overnight accommodation.</span>
+        </p>
+      </div>
+
+      <div class="stats-grid">
+        <!-- RISTORANTE -->
+        <div class="stat-card">
+          <div class="stat-icon">🍽️</div>
+          <h3 lang-it>Al Ristorante</h3>
+          <h3 lang-en>At the Restaurant</h3>
+          <div class="stat-numbers">
+            <div class="stat-row">
+              <span class="stat-val">{fomoStats.confirmed}</span>
+              <span class="stat-lbl" lang-it>Confermati</span>
+              <span class="stat-lbl" lang-en>Confirmed</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-val">{fomoStats.maybe}</span>
+              <span class="stat-lbl" lang-it>In Forse</span>
+              <span class="stat-lbl" lang-en>Maybe</span>
+            </div>
+            <div class="stat-row highlight">
+              <span class="stat-val">{fomoStats.total_a_tavola - fomoStats.confirmed}</span>
+              <span class="stat-lbl" lang-it>Posti Liberi (su {fomoStats.total_a_tavola})</span>
+              <span class="stat-lbl" lang-en>Seats Left (out of {fomoStats.total_a_tavola})</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- DORMIRE -->
+        <div class="stat-card">
+          <div class="stat-icon">🛏️</div>
+          <h3 lang-it>Pernottamento</h3>
+          <h3 lang-en>Accommodation</h3>
+          <div class="stat-numbers">
+            <div class="stat-row">
+              <span class="stat-val">{fomoStats.need_accomodation}</span>
+              <span class="stat-lbl" lang-it>Posti Prenotati</span>
+              <span class="stat-lbl" lang-en>Beds Booked</span>
+            </div>
+            <div class="stat-row highlight">
+              <span class="stat-val">{fomoStats.total_accomodation - fomoStats.need_accomodation}</span>
+              <span class="stat-lbl" lang-it>Posti Liberi (su {fomoStats.total_accomodation})</span>
+              <span class="stat-lbl" lang-en>Beds Left (out of {fomoStats.total_accomodation})</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba(245, 158, 11, 0.3);
+  }
+
+  .stat-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 4px 10px rgba(245, 158, 11, 0.3));
+  }
+
+  .stat-card h3 {
+    font-size: 1.8rem;
+    color: var(--accent-gold);
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .stat-numbers {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    font-size: 1.1rem;
+  }
+
+  .stat-row.highlight {
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    color: var(--accent-gold);
+    font-weight: 700;
+  }
+
+  .stat-val {
+    font-weight: 800;
+    font-size: 1.4rem;
+  }
+
+  .stat-lbl {
+    opacity: 0.9;
+  }
+</style>

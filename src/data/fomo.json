@@ -1,5 +1,7 @@
 {
-  "replied": 10,
-  "bedsTaken": 14,
-  "bedsTotal": 25
+  "confirmed": 17,
+  "maybe": 1,
+  "need_accomodation": 8,
+  "total_accomodation": 35,
+  "total_a_tavola": 100
 }
