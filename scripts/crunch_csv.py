@@ -23,6 +23,12 @@ respondents = 0
 maybe_respondents = 0
 need_accomodation = 0
 rompicoglioni = 0
+dietary_breakdown = {
+    "celiaci": 0,
+    "vegani": 0,
+    "vegetariani": 0,
+    "altro": 0
+}
 
 with open(CSV_FILE, "r", encoding="utf-8") as f:
     reader = csv.DictReader(f)
@@ -53,6 +59,14 @@ with open(CSV_FILE, "r", encoding="utf-8") as f:
         dietary_str = row.get("Intolleranze alimentari, allergie o diete particolari", "").strip().lower()
         if dietary_str and not any(x in dietary_str for x in ["mangiamo di tutto", "nessuna", "nessuno", "niente", "nessun"]):
             rompicoglioni += 1
+            if "celiac" in dietary_str:
+                dietary_breakdown["celiaci"] += 1
+            elif "vegan" in dietary_str:
+                dietary_breakdown["vegani"] += 1
+            elif "vegetariana" in dietary_str or "vegetariano" in dietary_str:
+                dietary_breakdown["vegetariani"] += 1
+            else:
+                dietary_breakdown["altro"] += 1
 
 data = {
     "respondents": respondents,
@@ -61,6 +75,7 @@ data = {
     "maybe": maybe,
     "need_accomodation": need_accomodation,
     "rompicoglioni": rompicoglioni,
+    "dietary_breakdown": dietary_breakdown,
     "total_accomodation": 35,
     "total_seats": 100
 }

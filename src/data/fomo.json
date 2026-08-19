@@ -5,6 +5,12 @@
   "maybe": 1,
   "need_accomodation": 9,
   "rompicoglioni": 4,
+  "dietary_breakdown": {
+    "celiaci": 1,
+    "vegani": 0,
+    "vegetariani": 1,
+    "altro": 2
+  },
   "total_accomodation": 35,
   "total_seats": 100
 }

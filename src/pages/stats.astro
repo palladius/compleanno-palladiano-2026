@@ -59,8 +59,8 @@ import fomoStats from '../data/fomo.json';
             </div>
             <div class="stat-row highlight">
               <span class="stat-val">{fomoStats.rompicoglioni}</span>
-              <span class="stat-lbl" lang-it>Diete Particolari (Celiaci, Vegani...) 🥦</span>
-              <span class="stat-lbl" lang-en>Special Diets (Vegans, Celiacs...) 🥦</span>
+              <span class="stat-lbl" lang-it>Diete Particolari (Celiaci: {fomoStats.dietary_breakdown.celiaci}, Vegani: {fomoStats.dietary_breakdown.vegani}, Vegetariani: {fomoStats.dietary_breakdown.vegetariani}, Altro: {fomoStats.dietary_breakdown.altro}) 🥦</span>
+              <span class="stat-lbl" lang-en>Special Diets (Celiacs: {fomoStats.dietary_breakdown.celiaci}, Vegans: {fomoStats.dietary_breakdown.vegani}, Vegetarians: {fomoStats.dietary_breakdown.vegetariani}, Other: {fomoStats.dietary_breakdown.altro}) 🥦</span>
             </div>
             <div class="stat-row">
               <span class="stat-val">{fomoStats.total_seats}</span>
