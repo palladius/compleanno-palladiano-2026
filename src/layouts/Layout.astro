@@ -33,12 +33,16 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
           </span>
         </a>
 
-        <!-- DESKTOP NAV -->
+                <!-- DESKTOP NAV -->
         <nav class="nav-links">
           <a href={`${baseUrl}/`} class={`nav-link ${currentPage === 'home' || currentPage === 'programma' ? 'active' : ''}`}>
             <span class="nav-icon">⏰</span>
             <span lang-it>Programma</span>
             <span lang-en>Schedule</span>
+          </a>
+          <a href={`${baseUrl}/menu`} class={`nav-link ${currentPage === 'menu' ? 'active' : ''}`}>
+            <span class="nav-icon">🍽️</span>
+            <span>Menu</span>
           </a>
           <a href={`${baseUrl}/dormire`} class={`nav-link ${currentPage === 'dormire' ? 'active' : ''}`}>
             <span class="nav-icon">🛏️</span>
@@ -89,6 +93,11 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
           <span lang-it>Programma della Serata</span>
           <span lang-en>Evening Schedule</span>
         </a>
+        <a href={`${baseUrl}/menu`} class={`mobile-link ${currentPage === 'menu' ? 'active' : ''}`}>
+          <span>🍽️</span>
+          <span lang-it>Menu d'Avanguardia</span>
+          <span lang-en>Avant-Garde Menu</span>
+        </a>
         <a href={`${baseUrl}/dormire`} class={`mobile-link ${currentPage === 'dormire' ? 'active' : ''}`}>
           <span>🛏️</span>
           <span lang-it>Dormire & Logistica</span>
@@ -121,8 +130,9 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
         <p class="footer-title">
           <strong>50 Sfumature di Giallo</strong> • 29 Dicembre 2026 • <em>Strictly "In Odor di Toscana" 🍷</em>
         </p>
-        <div class="footer-nav">
+                <div class="footer-nav">
           <a href={`${baseUrl}/`}><span lang-it>Programma</span><span lang-en>Schedule</span></a> •
+          <a href={`${baseUrl}/menu`}>Menu</a> •
           <a href={`${baseUrl}/dormire`}><span lang-it>Dormire</span><span lang-en>Accommodation</span></a> •
           <a href={`${baseUrl}/faq`}>FAQ</a> •
           <a href={`${baseUrl}/contatti`}><span lang-it>Contatti</span><span lang-en>Contact</span></a> •
