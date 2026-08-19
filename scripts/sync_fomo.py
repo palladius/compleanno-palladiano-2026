@@ -60,7 +60,7 @@ data = {
     "maybe": 1,
     "need_accomodation": posti_letto,
     "total_accomodation": 35,
-    "total_a_tavola": 100
+    "total_seats": 100
 }
 
 with open(OUTPUT_FILE, "w") as f:

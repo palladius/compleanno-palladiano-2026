@@ -58,14 +58,14 @@ import fomoStats from '../data/fomo.json';
               <span class="stat-lbl" lang-en>Maybe</span>
             </div>
             <div class="stat-row">
-              <span class="stat-val">{fomoStats.total_a_tavola}</span>
+              <span class="stat-val">{fomoStats.total_seats}</span>
               <span class="stat-lbl" lang-it>Capienza Massima</span>
               <span class="stat-lbl" lang-en>Total Capacity</span>
             </div>
             <div class="stat-row highlight">
-              <span class="stat-val">{fomoStats.total_a_tavola - fomoStats.confirmed}</span>
-              <span class="stat-lbl" lang-it>Posti Rimanenti</span>
-              <span class="stat-lbl" lang-en>Seats Left</span>
+              <span class="stat-val">{fomoStats.total_seats - fomoStats.confirmed}</span>
+              <span class="stat-lbl" lang-it>Posti Liberi (su {fomoStats.total_seats})</span>
+              <span class="stat-lbl" lang-en>Seats Left (out of {fomoStats.total_seats})</span>
             </div>
           </div>
         </div>

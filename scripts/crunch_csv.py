@@ -19,6 +19,8 @@ if not os.path.exists(CSV_FILE):
 
 confirmed = 0
 maybe = 0
+respondents = 0
+maybe_respondents = 0
 need_accomodation = 0
 
 with open(CSV_FILE, "r", encoding="utf-8") as f:
@@ -33,8 +35,10 @@ with open(CSV_FILE, "r", encoding="utf-8") as f:
         people_count = int(match.group()) if match else 0
         
         if "si" in attendance or "sì" in attendance:
+            respondents += 1
             confirmed += people_count
         elif "forse" in attendance:
+            maybe_respondents += 1
             maybe += people_count
             
         # Get beds
@@ -45,11 +49,13 @@ with open(CSV_FILE, "r", encoding="utf-8") as f:
         need_accomodation += beds_count
 
 data = {
+    "respondents": respondents,
+    "maybe_respondents": maybe_respondents,
     "confirmed": confirmed,
     "maybe": maybe,
     "need_accomodation": need_accomodation,
     "total_accomodation": 35,
-    "total_a_tavola": 100
+    "total_seats": 100
 }
 
 with open(OUTPUT_FILE, "w") as f:

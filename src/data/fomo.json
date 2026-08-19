@@ -1,7 +1,9 @@
 {
+  "respondents": 8,
+  "maybe_respondents": 1,
   "confirmed": 17,
   "maybe": 1,
   "need_accomodation": 9,
   "total_accomodation": 35,
-  "total_a_tavola": 100
+  "total_seats": 100
 }
