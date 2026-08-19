@@ -17,6 +17,30 @@ import fomoStats from '../data/fomo.json';
       </div>
 
       <div class="stats-grid">
+        <!-- RISPOSTE -->
+        <div class="stat-card">
+          <div class="stat-icon">📝</div>
+          <h3 lang-it>Moduli Inviati</h3>
+          <h3 lang-en>Form Responses</h3>
+          <div class="stat-numbers">
+            <div class="stat-row">
+              <span class="stat-val">{fomoStats.respondents}</span>
+              <span class="stat-lbl" lang-it>Si, ci saro!</span>
+              <span class="stat-lbl" lang-en>Yes, I'll be there</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-val">{fomoStats.maybe_respondents}</span>
+              <span class="stat-lbl" lang-it>In Forse</span>
+              <span class="stat-lbl" lang-en>Maybe</span>
+            </div>
+            <div class="stat-row highlight">
+              <span class="stat-val">{fomoStats.respondents + fomoStats.maybe_respondents}</span>
+              <span class="stat-lbl" lang-it>Totale Risposte</span>
+              <span class="stat-lbl" lang-en>Total Responses</span>
+            </div>
+          </div>
+        </div>
+
         <!-- RISTORANTE -->
         <div class="stat-card">
           <div class="stat-icon">🍽️</div>
@@ -25,18 +49,23 @@ import fomoStats from '../data/fomo.json';
           <div class="stat-numbers">
             <div class="stat-row">
               <span class="stat-val">{fomoStats.confirmed}</span>
-              <span class="stat-lbl" lang-it>Confermati</span>
-              <span class="stat-lbl" lang-en>Confirmed</span>
+              <span class="stat-lbl" lang-it>Ospiti Confermati</span>
+              <span class="stat-lbl" lang-en>Confirmed Guests</span>
             </div>
             <div class="stat-row">
               <span class="stat-val">{fomoStats.maybe}</span>
               <span class="stat-lbl" lang-it>In Forse</span>
               <span class="stat-lbl" lang-en>Maybe</span>
             </div>
+            <div class="stat-row">
+              <span class="stat-val">{fomoStats.total_a_tavola}</span>
+              <span class="stat-lbl" lang-it>Capienza Massima</span>
+              <span class="stat-lbl" lang-en>Total Capacity</span>
+            </div>
             <div class="stat-row highlight">
               <span class="stat-val">{fomoStats.total_a_tavola - fomoStats.confirmed}</span>
-              <span class="stat-lbl" lang-it>Posti Liberi (su {fomoStats.total_a_tavola})</span>
-              <span class="stat-lbl" lang-en>Seats Left (out of {fomoStats.total_a_tavola})</span>
+              <span class="stat-lbl" lang-it>Posti Rimanenti</span>
+              <span class="stat-lbl" lang-en>Seats Left</span>
             </div>
           </div>
         </div>
@@ -52,10 +81,15 @@ import fomoStats from '../data/fomo.json';
               <span class="stat-lbl" lang-it>Posti Prenotati</span>
               <span class="stat-lbl" lang-en>Beds Booked</span>
             </div>
+            <div class="stat-row">
+              <span class="stat-val">{fomoStats.total_accomodation}</span>
+              <span class="stat-lbl" lang-it>Letti Totali</span>
+              <span class="stat-lbl" lang-en>Total Beds</span>
+            </div>
             <div class="stat-row highlight">
               <span class="stat-val">{fomoStats.total_accomodation - fomoStats.need_accomodation}</span>
-              <span class="stat-lbl" lang-it>Posti Liberi (su {fomoStats.total_accomodation})</span>
-              <span class="stat-lbl" lang-en>Beds Left (out of {fomoStats.total_accomodation})</span>
+              <span class="stat-lbl" lang-it>Letti Rimanenti</span>
+              <span class="stat-lbl" lang-en>Beds Left</span>
             </div>
           </div>
         </div>
