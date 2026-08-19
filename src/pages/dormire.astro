@@ -4,13 +4,14 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh-8460JMo3VTDrOgrDahOHObCmnFk-o_Eg/viewform";
 
 const aiDossiUrl = "https://www.aidossi.it/albergo.html";
+const gmapsUrl = "https://maps.app.goo.gl/tqJkL6D76gT9Gg4p8";
 
 const faqs = [
   {
     q_it: "Come vengono assegnati i 25 posti letto gratuiti?",
     q_en: "How are the 25 free guest beds allocated?",
-    a_it: "I posti letto disponibili presso l'Albergo Ai Dossi vengono offerti gratuitamente e prioritariamente a chi affronta un lungo viaggio (es. Svizzera, Torino, Perugia, Abruzzo, estero). Segnalacelo nel modulo RSVP!",
-    a_en: "The available rooms at Albergo Ai Dossi are offered free of charge with priority given to guests traveling long distances (e.g. Switzerland, Turin, Perugia, Abruzzo, abroad). Let us know in the RSVP form!"
+    a_it: "I posti letto disponibili presso l'Albergo Ristorante Ai Dossi vengono offerti gratuitamente e prioritariamente a chi affronta un lungo viaggio (es. Svizzera, Torino, Perugia, Abruzzo, estero). Segnalacelo nel modulo RSVP!",
+    a_en: "The available rooms at Albergo Ristorante Ai Dossi are offered free of charge with priority given to guests traveling long distances (e.g. Switzerland, Turin, Perugia, Abruzzo, abroad). Let us know in the RSVP form!"
   },
   {
     q_it: "A che ora posso arrivare per il check-in e la doccia?",
@@ -27,7 +28,7 @@ const faqs = [
   {
     q_it: "C'è parcheggio disponibile presso l'Albergo Ai Dossi?",
     q_en: "Is there parking available at Albergo Ai Dossi?",
-    a_it: "Sì, ampio parcheggio riservato gratuito per tutte le auto, furgoni, bici e mezzi pesanti.",
+    a_it: "Sì, ampio parcheggio riservato gratuito per tutte le auto, furgoni, bici da corsa e mezzi pesanti.",
     a_en: "Yes, ample free private parking for all cars, vans, bikes, and vehicles."
   }
 ];
@@ -89,10 +90,10 @@ const faqs = [
       </div>
     </div>
 
-    <!-- OFFICIAL HOTEL CARD: ALBERGO AI DOSSI -->
+    <!-- OFFICIAL HOTEL CARD: ALBERGO RISTORANTE AI DOSSI -->
     <section class="section">
       <div class="section-header">
-        <span class="tag-gold">🏨 LA STRUTTURA UFFICIALE</span>
+        <span class="tag-gold">🏨 LA STRUTTURA UFFICIALE (UNICA SEDE)</span>
         <h2 lang-it>Albergo Ristorante Ai Dossi</h2>
         <h2 lang-en>Albergo Ristorante Ai Dossi</h2>
       </div>
@@ -133,23 +134,62 @@ const faqs = [
             <div>
               <strong lang-it>Ampio Parcheggio</strong>
               <strong lang-en>Free Parking</strong>
-              <small lang-it>Gratuito e custodito in loco</small>
+              <small lang-it>Gratuito e riservato in loco</small>
               <small lang-en>Spacious and secure on-site</small>
             </div>
           </div>
         </div>
 
-        <div class="ai-dossi-cta">
-          <a href={aiDossiUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-dossi">
-            <span lang-it>Visita il Sito Ufficiale: aidossi.it/albergo.html 🌐</span>
-            <span lang-en>Visit Official Website: aidossi.it/albergo.html 🌐</span>
+        <!-- ACTION BUTTONS: SITE + GOOGLE MAPS -->
+        <div class="ai-dossi-cta-group">
+          <a href={gmapsUrl} target="_blank" rel="noopener noreferrer" class="btn btn-maps">
+            <span class="maps-icon">📍</span>
+            <span lang-it>Apri su Google Maps 🗺️</span>
+            <span lang-en>Open in Google Maps 🗺️</span>
+          </a>
+          <a href={aiDossiUrl} target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-dossi-site">
+            <span lang-it>Sito Ufficiale: aidossi.it/albergo.html 🌐</span>
+            <span lang-en>Official Website: aidossi.it/albergo.html 🌐</span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- FAQS ACCORDION -->
+    <!-- TRANSPORT & DIRECTIONS -->
     <section class="section alt-bg">
+      <div class="section-header">
+        <span class="tag-green">🚗 LOGISTICA & TRASPORTI</span>
+        <h2 lang-it>Come Raggiungere la Struttura</h2>
+        <h2 lang-en>Getting to the Venue</h2>
+      </div>
+
+      <div class="transport-grid">
+        <div class="transport-box">
+          <div class="transport-icon">🚗</div>
+          <h4 lang-it>In Auto / Moto</h4>
+          <h4 lang-en>By Car / Motorcycle</h4>
+          <p lang-it>Autostrada A14 / A13. Ampio parcheggio gratuito e riservato direttamente all'ingresso dell'Albergo Ai Dossi.</p>
+          <p lang-en>Highway A14 / A13. Generous free on-site parking directly at the entrance of Albergo Ai Dossi.</p>
+        </div>
+        <div class="transport-box">
+          <div class="transport-icon">🚄</div>
+          <h4 lang-it>In Treno</h4>
+          <h4 lang-en>By Train (Frecciarossa/Italo)</h4>
+          <p lang-it>Stazione AV di Bologna Centrale o Ferrara, con taxi o navette concordate per raggiungere la location.</p>
+          <p lang-en>High-speed rail stations Bologna Centrale or Ferrara, followed by taxi or shared rides.</p>
+        </div>
+        <div class="transport-box">
+          <div class="transport-icon">✈️</div>
+          <h4 lang-it>In Aereo</h4>
+          <h4 lang-en>By Plane</h4>
+          <p lang-it>Aeroporto Guglielmo Marconi di Bologna (BLQ), a circa 45 minuti di tragitto.</p>
+          <p lang-en>Bologna Airport (BLQ), roughly 45 minutes travel time.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQS ACCORDION -->
+    <section class="section">
       <div class="section-header">
         <span class="tag-gold">❓ DOMANDE FREQUENTI</span>
         <h2 lang-it>Domande Frequenti su Alloggio & Posti Letto</h2>
@@ -376,13 +416,42 @@ const faqs = [
     font-size: 0.85rem;
   }
 
-  .btn-dossi {
-    font-size: 1.15rem;
-    padding: 1.1rem 2.2rem;
-    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+  .ai-dossi-cta-group {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
   }
 
-  /* FAQS */
+  .btn-maps {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 800;
+    padding: 1.1rem 2.2rem;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .btn-maps:hover {
+    background: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(16, 185, 129, 0.6);
+  }
+
+  .maps-icon {
+    font-size: 1.4rem;
+  }
+
+  .btn-dossi-site {
+    font-size: 1.05rem;
+    padding: 1.1rem 1.8rem;
+  }
+
+  /* TRANSPORT */
   .alt-bg {
     background: rgba(30, 41, 59, 0.4);
     border-radius: 28px;
@@ -390,6 +459,38 @@ const faqs = [
     margin: 3.5rem 0;
   }
 
+  .transport-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .transport-box {
+    background: var(--bg-surface);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 1.6rem;
+    text-align: center;
+  }
+
+  .transport-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .transport-box h4 {
+    font-size: 1.2rem;
+    color: var(--accent-gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .transport-box p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  /* FAQS */
   .faq-list {
     max-width: 820px;
     margin: 0 auto;
