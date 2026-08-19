@@ -22,6 +22,7 @@ maybe = 0
 respondents = 0
 maybe_respondents = 0
 need_accomodation = 0
+rompicoglioni = 0
 
 with open(CSV_FILE, "r", encoding="utf-8") as f:
     reader = csv.DictReader(f)
@@ -47,6 +48,11 @@ with open(CSV_FILE, "r", encoding="utf-8") as f:
         beds_count = int(beds_match.group()) if beds_match else 0
         
         need_accomodation += beds_count
+        
+        # Dietary restrictions (rompicoglioni)
+        dietary_str = row.get("Intolleranze alimentari, allergie o diete particolari", "").strip().lower()
+        if dietary_str and not any(x in dietary_str for x in ["mangiamo di tutto", "nessuna", "nessuno", "niente", "nessun"]):
+            rompicoglioni += 1
 
 data = {
     "respondents": respondents,
@@ -54,6 +60,7 @@ data = {
     "confirmed": confirmed,
     "maybe": maybe,
     "need_accomodation": need_accomodation,
+    "rompicoglioni": rompicoglioni,
     "total_accomodation": 35,
     "total_seats": 100
 }
