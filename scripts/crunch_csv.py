@@ -13,26 +13,21 @@ import re
 CSV_FILE = "private/50 Compleanno Palladiano (Responses) - Form responses 1.csv"
 OUTPUT_FILE = "src/data/fomo.json"
 
-if not os.path.exists(CSV_FILE):
-    print(f"Error: {CSV_FILE} not found.")
-    exit(1)
+def crunch_data(rows):
+    confirmed = 0
+    maybe = 0
+    respondents = 0
+    maybe_respondents = 0
+    need_accomodation = 0
+    rompicoglioni = 0
+    dietary_breakdown = {
+        "celiaci": 0,
+        "vegani": 0,
+        "vegetariani": 0,
+        "altro": 0
+    }
 
-confirmed = 0
-maybe = 0
-respondents = 0
-maybe_respondents = 0
-need_accomodation = 0
-rompicoglioni = 0
-dietary_breakdown = {
-    "celiaci": 0,
-    "vegani": 0,
-    "vegetariani": 0,
-    "altro": 0
-}
-
-with open(CSV_FILE, "r", encoding="utf-8") as f:
-    reader = csv.DictReader(f)
-    for row in reader:
+    for row in rows:
         attendance = row.get("Ci sarai martedi 29 Dicembre 2026?", "").lower()
         
         # Get number of people
@@ -68,19 +63,33 @@ with open(CSV_FILE, "r", encoding="utf-8") as f:
             else:
                 dietary_breakdown["altro"] += 1
 
-data = {
-    "respondents": respondents,
-    "maybe_respondents": maybe_respondents,
-    "confirmed": confirmed,
-    "maybe": maybe,
-    "need_accomodation": need_accomodation,
-    "rompicoglioni": rompicoglioni,
-    "dietary_breakdown": dietary_breakdown,
-    "total_accomodation": 35,
-    "total_seats": 100
-}
+    return {
+        "respondents": respondents,
+        "maybe_respondents": maybe_respondents,
+        "confirmed": confirmed,
+        "maybe": maybe,
+        "need_accomodation": need_accomodation,
+        "rompicoglioni": rompicoglioni,
+        "dietary_breakdown": dietary_breakdown,
+        "total_accomodation": 35,
+        "total_seats": 100
+    }
 
-with open(OUTPUT_FILE, "w") as f:
-    json.dump(data, f, indent=2)
+def main():
+    if not os.path.exists(CSV_FILE):
+        print(f"Error: {CSV_FILE} not found.")
+        exit(1)
 
-print(f"Successfully crunched CSV and updated {OUTPUT_FILE} with: {data}")
+    with open(CSV_FILE, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        rows = list(reader)
+        
+    data = crunch_data(rows)
+
+    with open(OUTPUT_FILE, "w") as f:
+        json.dump(data, f, indent=2)
+
+    print(f"Successfully crunched CSV and updated {OUTPUT_FILE} with: {data}")
+
+if __name__ == "__main__":
+    main()
