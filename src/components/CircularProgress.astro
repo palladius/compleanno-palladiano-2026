@@ -1,0 +1,157 @@
+---
+export interface Props {
+  value: number;
+  max: number;
+  labelIt: string;
+  labelEn: string;
+  color?: string;
+  size?: number;
+}
+
+const { value, max, labelIt, labelEn, color = "var(--accent-gold)", size = 180 } = Astro.props;
+
+// Calculate percentage, maxing at 100%
+const percentage = Math.min(Math.round((value / max) * 100) || 0, 100);
+
+const strokeWidth = 14;
+const radius = (size - strokeWidth) / 2;
+const circumference = radius * 2 * Math.PI;
+const offset = circumference - (percentage / 100) * circumference;
+---
+
+<div 
+  class="circular-progress" 
+  style={`--size: ${size}px; --color: ${color}; --circumference: ${circumference}; --offset: ${offset};`}
+>
+  <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+    <circle class="bg" cx={size/2} cy={size/2} r={radius} stroke-width={strokeWidth} />
+    <circle 
+      class="progress" 
+      cx={size/2} cy={size/2} 
+      r={radius} 
+      stroke-width={strokeWidth} 
+      stroke-dasharray={circumference} 
+      stroke-dashoffset={circumference} 
+    />
+  </svg>
+  <div class="inner">
+    <div class="percentage-container">
+      <span class="percentage" data-target={percentage}>0</span>%
+    </div>
+    <div class="fraction">{value} / {max}</div>
+    <div class="label" lang-it>{labelIt}</div>
+    <div class="label" lang-en>{labelEn}</div>
+  </div>
+</div>
+
+<style>
+  .circular-progress {
+    position: relative;
+    width: var(--size);
+    height: var(--size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem auto;
+  }
+  
+  svg {
+    transform: rotate(-90deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+  }
+  
+  circle {
+    fill: none;
+  }
+  
+  circle.bg {
+    stroke: rgba(255, 255, 255, 0.08);
+  }
+  
+  circle.progress {
+    stroke: var(--color);
+    stroke-linecap: round;
+    /* Animation triggers on load */
+    animation: fillProgress 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+  
+  .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .percentage-container {
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    color: var(--color);
+  }
+  
+  .fraction {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-top: 0.2rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.9;
+  }
+
+  @keyframes fillProgress {
+    0% {
+      stroke-dashoffset: var(--circumference);
+    }
+    100% {
+      stroke-dashoffset: var(--offset);
+    }
+  }
+</style>
+
+<script>
+  // Simple script to animate numbers from 0 to target
+  document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll('.circular-progress .percentage');
+    
+    counters.forEach(counter => {
+      const target = parseInt(counter.getAttribute('data-target') || '0', 10);
+      const duration = 1500; // ms
+      const fps = 60;
+      const totalFrames = Math.round((duration / 1000) * fps);
+      let frame = 0;
+      
+      const easeOutQuart = (x) => 1 - Math.pow(1 - x, 4);
+
+      const updateCounter = () => {
+        frame++;
+        const progress = frame / totalFrames;
+        const current = Math.round(target * easeOutQuart(progress));
+        
+        if (counter.textContent !== current.toString()) {
+          counter.textContent = current.toString();
+        }
+        
+        if (frame < totalFrames) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.textContent = target.toString(); // exact end
+        }
+      };
+      
+      requestAnimationFrame(updateCounter);
+    });
+  });
+</script>

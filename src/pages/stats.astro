@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import CircularProgress from '../components/CircularProgress.astro';
 import fomoStats from '../data/fomo.json';
 ---
 
@@ -46,6 +47,13 @@ import fomoStats from '../data/fomo.json';
           <div class="stat-icon">🍽️</div>
           <h3 lang-it>Al Ristorante</h3>
           <h3 lang-en>At the Restaurant</h3>
+          <CircularProgress 
+            value={fomoStats.confirmed} 
+            max={fomoStats.total_seats} 
+            labelIt="Pienezza" 
+            labelEn="Occupancy"
+            color="#f59e0b"
+          />
           <div class="stat-numbers">
             <div class="stat-row">
               <span class="stat-val">{fomoStats.confirmed}</span>
@@ -80,6 +88,13 @@ import fomoStats from '../data/fomo.json';
           <div class="stat-icon">🛏️</div>
           <h3 lang-it>Pernottamento</h3>
           <h3 lang-en>Accommodation</h3>
+          <CircularProgress 
+            value={fomoStats.need_accomodation} 
+            max={fomoStats.total_accomodation} 
+            labelIt="Pienezza" 
+            labelEn="Occupancy"
+            color="#3b82f6" 
+          />
           <div class="stat-numbers">
             <div class="stat-row">
               <span class="stat-val">{fomoStats.need_accomodation}</span>
