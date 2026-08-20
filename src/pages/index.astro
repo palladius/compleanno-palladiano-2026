@@ -604,9 +604,8 @@ const dishes = [
             src={`${baseUrl}/videos/riccardo_50_toast_veo.mp4`} 
             poster={`${baseUrl}/images/riccardo_50_portrait_v2.png`} 
             controls 
-            autoplay 
-            loop 
             playsinline 
+            preload="metadata"
             class="avatar-modal-full-img"
           ></video>
         </div>
@@ -807,7 +806,7 @@ const dishes = [
       const vid = document.getElementById('avatarModalVideo');
       if (vid) {
         vid.currentTime = 0;
-        vid.play().catch(() => {});
+        vid.pause();
       }
     }
 
@@ -819,6 +818,7 @@ const dishes = [
       const vid = document.getElementById('avatarModalVideo');
       if (vid) {
         vid.pause();
+        vid.currentTime = 0;
       }
     }
 
