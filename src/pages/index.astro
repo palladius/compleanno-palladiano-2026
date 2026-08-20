@@ -206,7 +206,7 @@ const dishes = [
             alt="Riccardo 50 Anni - 50 Sfumature di Giallo" 
             class="birthday-avatar" 
           />
-          <div class="avatar-crown-badge">👑 50 & Fabulous 🔍</div>
+          <div class="avatar-crown-badge">👑 50 & Fabulous 🎬</div>
           <div class="avatar-hover-hint">
             <span lang-it>✨ Clicca per ingrandire</span>
             <span lang-en>✨ Click to enlarge</span>
@@ -599,7 +599,16 @@ const dishes = [
         <button class="dish-modal-close" id="avatarModalClose" aria-label="Close">&times;</button>
         
         <div class="avatar-modal-media-wrapper">
-          <img src={`${baseUrl}/images/riccardo_50_portrait_v2.png`} alt="Riccardo 50 Anni - 50 Sfumature di Giallo" class="avatar-modal-full-img" />
+          <video 
+            id="avatarModalVideo" 
+            src={`${baseUrl}/videos/riccardo_50_toast_veo.mp4`} 
+            poster={`${baseUrl}/images/riccardo_50_portrait_v2.png`} 
+            controls 
+            autoplay 
+            loop 
+            playsinline 
+            class="avatar-modal-full-img"
+          ></video>
         </div>
 
         <div class="modal-body" style="text-align: center; align-items: center; padding: 1.5rem 2rem 2rem;">
@@ -795,6 +804,11 @@ const dishes = [
       avatarModal.classList.add('active');
       avatarModal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      const vid = document.getElementById('avatarModalVideo');
+      if (vid) {
+        vid.currentTime = 0;
+        vid.play().catch(() => {});
+      }
     }
 
     function closeAvatarModal() {
@@ -802,6 +816,10 @@ const dishes = [
       avatarModal.classList.remove('active');
       avatarModal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      const vid = document.getElementById('avatarModalVideo');
+      if (vid) {
+        vid.pause();
+      }
     }
 
     if (avatarTrigger) {
