@@ -6,3 +6,5 @@ dist/
 private/
 private/fomo-reader.json
 private/50 Compleanno Palladiano (Responses) - Form responses 1.csv
+__pycache__/
+.worktrees/
