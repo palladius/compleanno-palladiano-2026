@@ -607,7 +607,7 @@ const dishes = [
             poster={`${baseUrl}/images/riccardo_50_portrait_v2.png`} 
             controls 
             playsinline 
-            preload="metadata"
+            preload="auto"
             class="avatar-modal-full-img"
           ></video>
         </div>
@@ -808,7 +808,12 @@ const dishes = [
       const vid = document.getElementById('avatarModalVideo');
       if (vid) {
         vid.currentTime = 0;
-        vid.pause();
+        const playPromise = vid.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((err) => {
+            console.log("Play error or autoplay policy:", err);
+          });
+        }
       }
     }
 
