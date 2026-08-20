@@ -237,12 +237,12 @@ const dishes = [
       </h1>
       <p class="hero-subtitle">
         <span lang-it>
-          <strong>Il Solenne Genetliaco del Mezzo Secolo:</strong> mezzo secolo di avventure, musica, tecnologia, <a href="https://www.goliardia.it" target="_blank" rel="noopener noreferrer" class="gold-link">goliardia</a>, triathlon, tanti cappelletti e... scelte gastronomiche d'avanguardia <em>(con molto fumo e niente arrosto!)</em>.
-          <span class="rsvp-warning-banner">⚠️ Gli spazi saranno limitati. Rispondete al RSVP appena possibile!</span>
+          <strong>Il Solenne Genetliaco del Mezzo Secolo:</strong> mezzo secolo di avventure, musica, tecnologia, <a href="http://www.goliardia.it/" target="_blank" rel="noopener noreferrer" class="gold-link">goliardia</a>, triathlon, tanti cappelletti e... scelte gastronomiche d'avanguardia <em>(con molto fumo e niente arrosto!)</em>.
+          <span class="rsvp-warning-banner">⚠️ Gli spazi saranno limitati. Rispondete al <a href={publicFormUrl} target="_blank" rel="noopener noreferrer" class="rsvp-inline-link">modulo RSVP</a> appena possibile!</span>
         </span>
         <span lang-en>
-          <strong>The Solemn Half-Century Birthday:</strong> half a century of adventures, music, technology, <a href="https://www.goliardia.it" target="_blank" rel="noopener noreferrer" class="gold-link">goliardia</a>, triathlon, heaps of cappelletti, and... avant-garde culinary experiments <em>(with lots of smoke and zero roast!)</em>.
-          <span class="rsvp-warning-banner">⚠️ Spaces will be limited. Please RSVP as soon as possible!</span>
+          <strong>The Solemn Half-Century Birthday:</strong> half a century of adventures, music, technology, <a href="http://www.goliardia.it/" target="_blank" rel="noopener noreferrer" class="gold-link">goliardia</a>, triathlon, heaps of cappelletti, and... avant-garde culinary experiments <em>(with lots of smoke and zero roast!)</em>.
+          <span class="rsvp-warning-banner">⚠️ Spaces will be limited. Please <a href={publicFormUrl} target="_blank" rel="noopener noreferrer" class="rsvp-inline-link">RSVP</a> as soon as possible!</span>
         </span>
       </p>
       
@@ -1041,6 +1041,18 @@ const dishes = [
     color: #fef08a;
     text-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
   }
+  
+  .rsvp-inline-link {
+    color: #fef08a;
+    text-decoration: underline;
+    font-weight: 800;
+    transition: all 0.2s ease;
+  }
+  .rsvp-inline-link:hover {
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(254, 240, 138, 0.8);
+  }
+
   .rsvp-warning-banner {
     display: block;
     margin-top: 0.8rem;
