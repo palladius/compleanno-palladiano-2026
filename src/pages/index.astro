@@ -237,10 +237,12 @@ const dishes = [
       </h1>
       <p class="hero-subtitle">
         <span lang-it>
-          <strong>Il Cinquantesimo Compleanno Palladiano:</strong> mezzo secolo di avventure, codice, bicicletta, cappelletti e... scelte gastronomiche d'avanguardia.
+          <strong>Il Solenne Genetliaco del Mezzo Secolo:</strong> mezzo secolo di avventure, musica, tecnologia, <a href="https://www.goliardia.it" target="_blank" rel="noopener noreferrer" class="gold-link">goliardia</a>, triathlon, tanti cappelletti e... scelte gastronomiche d'avanguardia <em>(con molto fumo e niente arrosto!)</em>.
+          <span class="rsvp-warning-banner">⚠️ Gli spazi saranno limitati. Rispondete al RSVP appena possibile!</span>
         </span>
         <span lang-en>
-          <strong>The Palladian 50th Birthday:</strong> half a century of adventures, code, cycling, cappelletti, and... avant-garde culinary experiments.
+          <strong>The Solemn Half-Century Birthday:</strong> half a century of adventures, music, technology, <a href="https://www.goliardia.it" target="_blank" rel="noopener noreferrer" class="gold-link">goliardia</a>, triathlon, heaps of cappelletti, and... avant-garde culinary experiments <em>(with lots of smoke and zero roast!)</em>.
+          <span class="rsvp-warning-banner">⚠️ Spaces will be limited. Please RSVP as soon as possible!</span>
         </span>
       </p>
       
@@ -1025,6 +1027,33 @@ const dishes = [
     font-size: 3.5rem;
     line-height: 1.15;
     margin-bottom: 1.2rem;
+  }
+
+  
+  .gold-link {
+    color: var(--accent-gold);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .gold-link:hover {
+    color: #fef08a;
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+  }
+  .rsvp-warning-banner {
+    display: block;
+    margin-top: 0.8rem;
+    font-size: 0.95rem;
+    color: #fcd34d;
+    font-weight: 700;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px dashed rgba(245, 158, 11, 0.4);
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero-subtitle {
