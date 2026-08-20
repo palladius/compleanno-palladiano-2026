@@ -28,10 +28,10 @@ def crunch_data(rows):
     }
 
     for row in rows:
-        attendance = row.get("Ci sarai martedi 29 Dicembre 2026?", "").lower()
+        attendance = str(row.get("Ci sarai martedi 29 Dicembre 2026?", "")).lower()
         
         # Get number of people
-        people_str = row.get("Quante persone sarete in totale (tu + accompagnatori)?", "0")
+        people_str = str(row.get("Quante persone sarete in totale (tu + accompagnatori)?", "0"))
         # Extract first number from the string
         match = re.search(r'\d+', people_str)
         people_count = int(match.group()) if match else 0
@@ -44,14 +44,14 @@ def crunch_data(rows):
             maybe += people_count
             
         # Get beds
-        beds_str = row.get("Servono posti letto? Se si', quanti?", "0")
+        beds_str = str(row.get("Quanti Letti ti servono?", "0"))
         beds_match = re.search(r'\d+', beds_str)
         beds_count = int(beds_match.group()) if beds_match else 0
         
         need_accomodation += beds_count
         
         # Dietary restrictions (rompicoglioni)
-        dietary_str = row.get("Intolleranze alimentari, allergie o diete particolari", "").strip().lower()
+        dietary_str = str(row.get("Intolleranze alimentari, allergie o diete particolari", "")).strip().lower()
         if dietary_str and not any(x in dietary_str for x in ["mangiamo di tutto", "nessuna", "nessuno", "niente", "nessun"]):
             rompicoglioni += 1
             if "celiac" in dietary_str:
