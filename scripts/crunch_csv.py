@@ -44,7 +44,7 @@ def crunch_data(rows):
             maybe += people_count
             
         # Get beds
-        beds_str = str(row.get("Quanti Letti ti servono?", "0"))
+        beds_str = str(row.get("Servono posti letto? Se si', quanti?", "0"))
         beds_match = re.search(r'\d+', beds_str)
         beds_count = int(beds_match.group()) if beds_match else 0
         
