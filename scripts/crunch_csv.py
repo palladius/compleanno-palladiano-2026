@@ -27,9 +27,17 @@ def crunch_data(rows):
         "altro": 0
     }
 
+    from collections import Counter
+    city_counts = Counter()
+
     for row in rows:
         attendance = str(row.get("Ci sarai martedi 29 Dicembre 2026?", "")).lower()
         
+        # City
+        city = str(row.get("Da dove vieni/viaggi?", "")).strip().title()
+        if city:
+            city_counts[city] += 1
+            
         # Get number of people
         people_str = str(row.get("Quante persone sarete in totale (tu + accompagnatori)?", "0"))
         # Extract first number from the string
@@ -63,7 +71,10 @@ def crunch_data(rows):
             else:
                 dietary_breakdown["altro"] += 1
 
+    cities = {city: count for city, count in city_counts.items() if count > 1}
+
     return {
+        "total_records": len(rows),
         "respondents": respondents,
         "maybe_respondents": maybe_respondents,
         "confirmed": confirmed,
@@ -71,6 +82,7 @@ def crunch_data(rows):
         "need_accomodation": need_accomodation,
         "rompicoglioni": rompicoglioni,
         "dietary_breakdown": dietary_breakdown,
+        "cities": cities,
         "total_accomodation": 35,
         "total_seats": 100
     }

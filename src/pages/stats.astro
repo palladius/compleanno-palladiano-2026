@@ -2,6 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import CircularProgress from '../components/CircularProgress.astro';
 import fomoStats from '../data/fomo.json';
+
+const citiesEntries = Object.entries(fomoStats.cities || {});
+citiesEntries.sort((a, b) => (b[1] as number) - (a[1] as number));
+const maxCityCount = citiesEntries.length > 0 ? Math.max(...citiesEntries.map(e => e[1] as number)) : 1;
 ---
 
 <Layout title="Statistiche | Il 50° Compleanno Palladiano" currentPage="stats">
@@ -113,6 +117,28 @@ import fomoStats from '../data/fomo.json';
             </div>
           </div>
         </div>
+
+        <!-- PROVENIENZE -->
+        <div class="stat-card" style="grid-column: 1 / -1;">
+          <div class="stat-icon">🗺️</div>
+          <h3 lang-it>Da dove venite? (Gruppi &gt; 1)</h3>
+          <h3 lang-en>Where are you from? (Groups &gt; 1)</h3>
+          
+          <div class="city-histogram">
+            {citiesEntries.map(([city, count]) => (
+              <div class="city-bar-row">
+                <span class="city-name">{city}</span>
+                <div class="city-bar-wrapper">
+                  <div class="city-bar" style={`width: ${((count as number) / maxCityCount) * 100}%`}></div>
+                </div>
+                <span class="city-count">{count}</span>
+              </div>
+            ))}
+            {citiesEntries.length === 0 && (
+              <p style="text-align: center; opacity: 0.7;">Ancora nessun gruppo numeroso (N &gt; 1) da una singola città. Aumenta la FOMO!</p>
+            )}
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -184,5 +210,47 @@ import fomoStats from '../data/fomo.json';
 
   .stat-lbl {
     opacity: 0.9;
+  }
+
+  .city-histogram {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    text-align: left;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .city-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .city-name {
+    width: 140px;
+    font-weight: bold;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .city-bar-wrapper {
+    flex-grow: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    height: 24px;
+    overflow: hidden;
+  }
+  .city-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-gold), #d97706);
+    border-radius: 6px;
+    transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .city-count {
+    width: 30px;
+    font-weight: bold;
+    color: var(--accent-gold);
   }
 </style>

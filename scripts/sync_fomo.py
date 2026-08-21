@@ -37,11 +37,33 @@ worksheet = sh.get_worksheet(0) # Get first sheet
 records = worksheet.get_all_records()
 print(f"Fetched {len(records)} records from Google Sheets.")
 
+# Read old data to compare
+old_records = 0
+if os.path.exists(OUTPUT_FILE):
+    try:
+        with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
+            old_data = json.load(f)
+            old_records = old_data.get("total_records", 0)
+    except Exception:
+        pass
+
 # Crunch the data using the unified logic
 data = crunch_data(records)
+new_records = data.get("total_records", 0)
 
 with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
     json.dump(data, f, indent=2, ensure_ascii=False)
 
-print(f"Successfully synced from Trix and updated {OUTPUT_FILE} with: {data}")
+if new_records > old_records:
+    print(f"\033[92m🎉 Nuovi records! {old_records} -> {new_records}\033[0m")
+elif new_records < old_records:
+    print(f"\033[91m⚠️ Record diminuiti? {old_records} -> {new_records}\033[0m")
+else:
+    print(f"\033[90mNessun nuovo record (sempre {new_records}). Aumenta la fomo!\033[0m")
 
+if data.get("cities"):
+    print("\n🏙️  Città con più di 1 invitato:")
+    for city, count in data["cities"].items():
+        print(f"  - {city}: {count}")
+
+print(f"\nSuccessfully synced from Trix and updated {OUTPUT_FILE}!")
