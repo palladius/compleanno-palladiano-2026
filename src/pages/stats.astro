@@ -121,8 +121,8 @@ const maxCityCount = citiesEntries.length > 0 ? Math.max(...citiesEntries.map(e 
         <!-- PROVENIENZE -->
         <div class="stat-card" style="grid-column: 1 / -1;">
           <div class="stat-icon">🗺️</div>
-          <h3 lang-it>Da dove venite? (Gruppi &gt; 1)</h3>
-          <h3 lang-en>Where are you from? (Groups &gt; 1)</h3>
+          <h3 lang-it>📍 Da dove venite?</h3>
+          <h3 lang-en>📍 Where are you from?</h3>
           
           <div class="city-histogram">
             {citiesEntries.map(([city, count]) => (
@@ -135,9 +135,13 @@ const maxCityCount = citiesEntries.length > 0 ? Math.max(...citiesEntries.map(e 
               </div>
             ))}
             {citiesEntries.length === 0 && (
-              <p style="text-align: center; opacity: 0.7;">Ancora nessun gruppo numeroso (N &gt; 1) da una singola città. Aumenta la FOMO!</p>
+              <p style="text-align: center; opacity: 0.7;">Ancora nessun gruppo numeroso da una singola città. Aumenta la FOMO!</p>
             )}
           </div>
+          <p style="font-size: 0.85rem; font-style: italic; opacity: 0.8; margin-top: 1.5rem; text-align: center;">
+            <span lang-it>* Vengono mostrate solo le città con più di 1 partecipante.</span>
+            <span lang-en>* Only cities with more than 1 participant are shown.</span>
+          </p>
         </div>
       </div>
     </section>

@@ -30,12 +30,31 @@ def crunch_data(rows):
     from collections import Counter
     city_counts = Counter()
 
+    city_normalization = {
+        "arzenta": "Argenta",
+        "argenta": "Argenta",
+        "bulaggna": "Bologna",
+        "bologna": "Bologna",
+        "peroscia": "Perugia",
+        "p:eroscia": "Perugia",
+        "p:eroscia la grifagna": "Perugia",
+        "perugia": "Perugia"
+    }
+
+    def normalize_city(c):
+        c_lower = c.strip().lower()
+        for key, correct_name in city_normalization.items():
+            if key in c_lower:
+                return correct_name
+        return c.strip().title()
+
     for row in rows:
         attendance = str(row.get("Ci sarai martedi 29 Dicembre 2026?", "")).lower()
         
         # City
-        city = str(row.get("Da dove vieni/viaggi?", "")).strip().title()
-        if city:
+        raw_city = str(row.get("Da dove vieni/viaggi?", ""))
+        if raw_city:
+            city = normalize_city(raw_city)
             city_counts[city] += 1
             
         # Get number of people
