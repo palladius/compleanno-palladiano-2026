@@ -1,5 +1,9 @@
 # Changelog 📝✨
 
+## [1.0.5] - 2026-08-26
+### Changed 🔄
+- 🗺️ **Mappa Carpooling (`/map`)**: Semplificato il layout rimuovendo la sezione con l'elenco verboso delle schede dettagli, mantenendo la mappa interattiva a tutto schermo, indicatori KPI e CTA RSVP.
+
 ## [1.0.4] - 2026-08-26
 ### Added 🚀
 - 🗺️ **Mappa Carpooling & Carovane (`/map`)**: Aggiunto nuovo endpoint interattivo con mappa Leaflet del Nord & Centro Italia focalizzata sulla venue *Ai Dossi* (Conselice).

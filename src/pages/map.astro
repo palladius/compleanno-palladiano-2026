@@ -30,8 +30,8 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
         <span lang-en>Crews & Carpooling Map</span>
       </h1>
       <p class="section-desc">
-        <span lang-it>Tutte le auto in rotta verso il 50° Compleanno Palladiano ad <strong>Ai Dossi</strong> (Conselice). Clicca sulle auto per dettagli su passeggeri, karaoke e orari di viaggio!</span>
-        <span lang-en>All cars en route to the 50th Birthday Party at <strong>Ai Dossi</strong> (Conselice). Click on any car marker for crew details, travel playlists, and schedules!</span>
+        <span lang-it>Tutte le auto in rotta verso il 50° Compleanno Palladiano ad <strong>Ai Dossi</strong> (Conselice). Passa sopra le auto per scoprire equipaggi e dettagli di viaggio!</span>
+        <span lang-en>All cars en route to the 50th Birthday Party at <strong>Ai Dossi</strong> (Conselice). Hover over cars to discover crews and trip info!</span>
       </p>
     </header>
 
@@ -90,82 +90,6 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
       <div id="palladiusMap" class="map-canvas"></div>
     </div>
 
-    <!-- CARS / RIDES CARDS LIST -->
-    <section class="rides-section">
-      <div class="rides-header">
-        <h2 class="rides-title">
-          <span lang-it>🚗 Dettaglio Equipaggi e Rotte</span>
-          <span lang-en>🚗 Crews and Routes Breakdown</span>
-        </h2>
-        <p class="rides-subtitle">
-          <span lang-it>Scopri chi guida, quanti posti ci sono e come si stanno organizzando le partenze.</span>
-          <span lang-en>Find out who is driving, available seats, and how travel crews are organizing.</span>
-        </p>
-      </div>
-
-      <div class="rides-grid">
-        {carsData.rides.map((ride) => (
-          <div class={`ride-card border-${ride.color}`} id={`card-${ride.id}`}>
-            <div class="ride-card-header">
-              <div class="ride-city-wrap">
-                <div class={`car-badge-icon ${ride.color}`}>
-                  🚗
-                  {ride.cars_count > 1 && <span class="car-badge-count">{ride.cars_count}</span>}
-                </div>
-                <div>
-                  <h3 class="ride-city-name">{ride.city} <span class="ride-region">({ride.region})</span></h3>
-                  <span class="ride-group-name">{ride.driver_or_group}</span>
-                </div>
-              </div>
-              <span class={`status-badge ${ride.color}`}>
-                <span lang-it>{ride.status_label_it}</span>
-                <span lang-en>{ride.status_label_en}</span>
-              </span>
-            </div>
-
-            <div class="ride-card-body">
-              <p class="ride-desc">
-                <span lang-it>{ride.details_it}</span>
-                <span lang-en>{ride.details_en}</span>
-              </p>
-
-              <div class="cars-sublist">
-                {ride.cars.map((car) => (
-                  <div class="car-subitem">
-                    <div class="car-subitem-top">
-                      <span class="car-name">🚘 {car.name}</span>
-                      <span class="car-tag">{car.tag}</span>
-                    </div>
-                    <div class="car-meta">
-                      <span>👤 <strong>Driver:</strong> {car.driver}</span>
-                      <span>💺 <strong>Stima:</strong> {car.seats_estimate}</span>
-                    </div>
-                    <p class="car-note">
-                      <em>💡 <span lang-it>{car.note_it}</span><span lang-en>{car.note_en}</span></em>
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div class="ride-card-footer">
-              <button 
-                type="button" 
-                class="btn-focus-map" 
-                data-lat={ride.coordinates[0]} 
-                data-lng={ride.coordinates[1]} 
-                data-id={ride.id}
-              >
-                <span>📍</span>
-                <span lang-it>Mostra sulla Mappa</span>
-                <span lang-en>Show on Map</span>
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-
     <!-- CARPOOL CTA -->
     <div class="carpool-cta-card">
       <div class="cta-content">
@@ -206,16 +130,13 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
         scrollWheelZoom: false
       });
 
-      // CartoDB Dark Matter tile layer for dark modern sleek UI
-      const darkTiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      // CartoDB Voyager tile layer for crisp modern aesthetic
+      const tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
         subdomains: 'abcd',
         maxZoom: 18
       });
-      darkTiles.addTo(map);
-
-      // Store markers for focusing
-      const markersById = {};
+      tiles.addTo(map);
 
       // 1. Add Venue Marker (Ai Dossi)
       const venueIconHtml = `
@@ -269,7 +190,6 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
 
         const carBadgeHtml = `
           <div class="custom-car-pin ${colorClass} ${isMultiCar ? 'multi-car' : ''}" id="marker-${ride.id}">
-            <div class="car-pin-pulse"></div>
             <div class="car-pin-bubble">
               <span class="car-pin-emoji">🚗</span>
               ${isMultiCar ? `<span class="car-pin-count-badge">${ride.cars_count}</span>` : ''}
@@ -287,7 +207,6 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
         });
 
         const marker = L.marker(ride.coordinates, { icon: carIcon }).addTo(map);
-        markersById[ride.id] = marker;
 
         // Tooltip on Hover
         marker.bindTooltip(`
@@ -302,14 +221,6 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
         });
 
         // Popup on Click
-        let carsListHtml = ride.cars.map(c => `
-          <div class="popup-car-item">
-            <strong>🚘 ${c.name}</strong> (${c.tag})<br/>
-            <span>👤 Driver: ${c.driver} • 💺 ${c.seats_estimate}</span><br/>
-            <small>💡 ${c.note_it}</small>
-          </div>
-        `).join('');
-
         const popupHtml = `
           <div class="map-popup-inner">
             <div class="popup-header">
@@ -318,11 +229,8 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
             </div>
             <p class="popup-group-name"><strong>${ride.driver_or_group}</strong></p>
             <p class="popup-desc">${ride.details_it}</p>
-            <div class="popup-cars-wrapper">
-              ${carsListHtml}
-            </div>
             <div class="popup-footer">
-              <span>📍 Partenza: ${ride.city} (${ride.region})</span>
+              <span>📍 Partenza: ${ride.city} (${ride.region}) • ${ride.cars_count} ${ride.cars_count > 1 ? 'Auto' : 'Auto'}</span>
             </div>
           </div>
         `;
@@ -348,26 +256,6 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
           dashArray: '6, 8',
           smoothFactor: 1
         }).addTo(map);
-      });
-
-      // Focus Buttons Click Handlers
-      document.querySelectorAll('.btn-focus-map').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const lat = parseFloat(btn.getAttribute('data-lat') || '0');
-          const lng = parseFloat(btn.getAttribute('data-lng') || '0');
-          const id = btn.getAttribute('data-id') || '';
-
-          map.flyTo([lat, lng], 10, { duration: 1.2 });
-          
-          if (markersById[id]) {
-            setTimeout(() => {
-              markersById[id].openPopup();
-            }, 1200);
-          }
-
-          // Scroll smoothly to map
-          document.querySelector('.map-card-wrapper')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        });
       });
     });
   </script>
@@ -482,7 +370,7 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
-    margin-bottom: 3.5rem;
+    margin-bottom: 2.5rem;
   }
 
   .map-topbar {
@@ -558,234 +446,9 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
   .badge-dot.gold { background: #fbbf24; box-shadow: 0 0 8px #fbbf24; }
 
   .map-canvas {
-    height: 520px;
+    height: 560px;
     width: 100%;
     z-index: 10;
-  }
-
-  /* RIDES LIST SECTION */
-  .rides-section {
-    margin-bottom: 3.5rem;
-  }
-
-  .rides-header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .rides-title {
-    font-size: 1.85rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 0.4rem;
-  }
-
-  .rides-subtitle {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-  }
-
-  .rides-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .ride-card {
-    background: rgba(30, 41, 59, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 18px;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .ride-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-  }
-
-  .ride-card.border-green {
-    border-left: 4px solid #10b981;
-  }
-
-  .ride-card.border-yellow {
-    border-left: 4px solid #f59e0b;
-  }
-
-  .ride-card-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .ride-city-wrap {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-  }
-
-  .car-badge-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    position: relative;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  }
-
-  .car-badge-icon.green {
-    background: rgba(16, 185, 129, 0.18);
-    border: 1px solid rgba(16, 185, 129, 0.4);
-  }
-
-  .car-badge-icon.yellow {
-    background: rgba(245, 158, 11, 0.18);
-    border: 1px solid rgba(245, 158, 11, 0.4);
-  }
-
-  .car-badge-count {
-    position: absolute;
-    top: -6px;
-    right: -6px;
-    background: #f59e0b;
-    color: #0f172a;
-    font-weight: 800;
-    font-size: 0.75rem;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-  }
-
-  .ride-city-name {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.2;
-  }
-
-  .ride-region {
-    font-size: 0.85rem;
-    font-weight: 400;
-    color: var(--text-muted);
-  }
-
-  .ride-group-name {
-    font-size: 0.85rem;
-    color: var(--accent-gold);
-    font-weight: 500;
-  }
-
-  .status-badge {
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 0.3rem 0.75rem;
-    border-radius: 9999px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    white-space: nowrap;
-  }
-
-  .status-badge.green {
-    background: rgba(16, 185, 129, 0.2);
-    color: #34d399;
-    border: 1px solid rgba(16, 185, 129, 0.35);
-  }
-
-  .status-badge.yellow {
-    background: rgba(245, 158, 11, 0.2);
-    color: #fbbf24;
-    border: 1px solid rgba(245, 158, 11, 0.35);
-  }
-
-  .ride-desc {
-    color: #cbd5e1;
-    font-size: 0.92rem;
-    margin-bottom: 1rem;
-    line-height: 1.5;
-  }
-
-  .cars-sublist {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .car-subitem {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 12px;
-    padding: 0.85rem;
-  }
-
-  .car-subitem-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.35rem;
-  }
-
-  .car-name {
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: #f1f5f9;
-  }
-
-  .car-tag {
-    font-size: 0.75rem;
-    background: rgba(255, 255, 255, 0.08);
-    padding: 0.15rem 0.5rem;
-    border-radius: 6px;
-    color: var(--text-muted);
-  }
-
-  .car-meta {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-bottom: 0.35rem;
-  }
-
-  .car-note {
-    font-size: 0.8rem;
-    color: #94a3b8;
-  }
-
-  .btn-focus-map {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #f8fafc;
-    padding: 0.65rem 1rem;
-    border-radius: 10px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    transition: all 0.2s ease;
-  }
-
-  .btn-focus-map:hover {
-    background: rgba(245, 158, 11, 0.15);
-    border-color: var(--accent-gold);
-    color: var(--accent-gold);
   }
 
   /* CTA CARD */
@@ -793,7 +456,7 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
     background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
     border: 1px solid rgba(245, 158, 11, 0.3);
     border-radius: 20px;
-    padding: 2.5rem;
+    padding: 2rem 2.5rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -820,7 +483,7 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
   }
 
   .cta-content h3 {
-    font-size: 1.45rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: #fff;
     margin-bottom: 0.5rem;
@@ -1037,12 +700,12 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
 
   :global(.map-popup-inner) {
     padding: 1.25rem;
-    min-width: 240px;
-    max-width: 290px;
+    min-width: 220px;
+    max-width: 280px;
   }
 
   :global(.popup-header) {
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
   }
 
   :global(.popup-tag) {
@@ -1093,23 +756,7 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
   :global(.popup-desc) {
     font-size: 0.8rem;
     color: #94a3b8;
-    margin-bottom: 0.65rem;
-  }
-
-  :global(.popup-cars-wrapper) {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-  }
-
-  :global(.popup-car-item) {
-    background: rgba(30, 41, 59, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
-    padding: 0.5rem;
-    font-size: 0.75rem;
-    color: #e2e8f0;
+    margin-bottom: 0.5rem;
   }
 
   :global(.popup-actions) {
