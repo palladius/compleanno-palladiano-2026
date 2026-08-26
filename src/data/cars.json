@@ -49,15 +49,15 @@
       "status_label_it": "In Organizzazione",
       "status_label_en": "In Progress",
       "color": "yellow",
-      "driver_or_group": "Equipaggio Sabaudo (2 Auto)",
-      "hover_text": "Torino: 2 Macchine (Equipaggio Sabaudo) 🚗🚗💨",
-      "hover_text_en": "Turin: 2 Cars (Piedmont Crew) 🚗🚗💨",
-      "details_it": "2 vetture in rotta da Torino via A21 / A14 verso la Romagna.",
-      "details_en": "2 cars traveling from Turin via A21 / A14 highway to Romagna.",
+      "driver_or_group": "Lord O (tentative)",
+      "hover_text": "Torino: 2 Macchine (Lord O - tentative) 🚗🚗💨",
+      "hover_text_en": "Turin: 2 Cars (Lord O - tentative) 🚗🚗💨",
+      "details_it": "2 vetture in rotta da Torino via A21 / A14 verso la Romagna guidate da Lord O e compagni.",
+      "details_en": "2 cars traveling from Turin via A21 / A14 highway to Romagna with Lord O & friends.",
       "cars": [
         {
           "name": "Auto 1 - Torino Express",
-          "driver": "In definizione",
+          "driver": "Lord O",
           "tag": "Pomeridiana Relax 🛏️",
           "seats_estimate": "3-4 posti",
           "note_it": "Partenza ore 14:00 circa per arrivo con doccia e relax pomeridiano.",
@@ -83,19 +83,19 @@
       "status_label_it": "In Organizzazione",
       "status_label_en": "In Progress",
       "color": "yellow",
-      "driver_or_group": "Equipaggio Grifone Umbria",
-      "hover_text": "Perugia: 1 Macchina (Equipaggio Umbria) 🚗🌲",
-      "hover_text_en": "Perugia: 1 Car (Umbria Crew) 🚗🌲",
-      "details_it": "In risalita dagli Appennini umbri verso la pianura romagnola via E45.",
-      "details_en": "Driving up from the Umbrian hills to Romagna via E45 highway.",
+      "driver_or_group": "Sonanimalo (tentative)",
+      "hover_text": "Perugia: 1 Macchina (Sonanimalo - tentative) 🚗🌲",
+      "hover_text_en": "Perugia: 1 Car (Sonanimalo - tentative) 🚗🌲",
+      "details_it": "In risalita dagli Appennini umbri verso la pianura romagnola via E45 con Sonanimalo.",
+      "details_en": "Driving up from the Umbrian hills to Romagna via E45 highway with Sonanimalo.",
       "cars": [
         {
           "name": "Auto 1 - Grifone Express",
-          "driver": "In definizione",
+          "driver": "Sonanimalo",
           "tag": "E45 Highway 🛣️",
           "seats_estimate": "3-4 posti",
-          "note_it": "Valigie cariche di buon umore e baci perugini.",
-          "note_en": "Trunk packed with festive spirit and sweet treats."
+          "note_it": "Valigie cariche di buon umore e specialità umbre.",
+          "note_en": "Trunk packed with festive spirit and Umbrian treats."
         }
       ]
     }
