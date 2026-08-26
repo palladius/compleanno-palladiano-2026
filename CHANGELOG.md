@@ -1,5 +1,10 @@
 # Changelog 📝✨
 
+## [1.0.6] - 2026-08-26
+### Added 🚀
+- 🇨🇭 **Equipaggio Svizzera (Zurigo)**: Aggiunta macchina da 4 persone in partenza da Zurigo via San Gottardo / Chiasso / A1.
+- 🗺️ **Mappa e Tile Layer**: Integrato layer OpenStreetMap ufficiale (senza watermark/API key) con inquadratura dinamica `fitBounds` estesa per abbracciare l'intero arco alpino fino a Zurigo e Ginevra.
+
 ## [1.0.5] - 2026-08-26
 ### Changed 🔄
 - 🗺️ **Mappa Carpooling (`/map`)**: Semplificato il layout rimuovendo la sezione con l'elenco verboso delle schede dettagli, mantenendo la mappa interattiva a tutto schermo, indicatori KPI e CTA RSVP.

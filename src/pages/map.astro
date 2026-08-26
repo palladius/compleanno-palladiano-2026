@@ -81,7 +81,7 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
         </div>
         <div class="map-legend">
           <span class="legend-item"><span class="badge-dot green"></span> <span lang-it>Confermata (Bologna)</span><span lang-en>Confirmed (Bologna)</span></span>
-          <span class="legend-item"><span class="badge-dot yellow"></span> <span lang-it>In definizione (Torino, Perugia)</span><span lang-en>In progress (Turin, Perugia)</span></span>
+          <span class="legend-item"><span class="badge-dot yellow"></span> <span lang-it>In definizione (Zurigo, Torino, Perugia)</span><span lang-en>In progress (Zurich, Turin, Perugia)</span></span>
           <span class="legend-item"><span class="badge-dot gold"></span> <span lang-it>Venue Festa</span><span lang-en>Party Venue</span></span>
         </div>
       </div>
@@ -121,20 +121,19 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
       }
 
       const venueCoords = carsData.venue.coordinates;
+      const allPoints = [venueCoords, ...carsData.rides.map(r => r.coordinates)];
+      const bounds = L.latLngBounds(allPoints);
       
-      // Center roughly midway across Northern/Central Italy (Emilia-Romagna / Appennines)
       const map = L.map('palladiusMap', {
-        center: [44.2, 10.3],
-        zoom: 7,
         zoomControl: true,
         scrollWheelZoom: false
       });
+      map.fitBounds(bounds, { padding: [45, 45], maxZoom: 7 });
 
-      // CartoDB Voyager tile layer for crisp modern aesthetic
-      const tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 18
+      // OpenStreetMap standard tile layer
+      const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19
       });
       tiles.addTo(map);
 

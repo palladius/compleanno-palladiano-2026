@@ -7,12 +7,38 @@
     "maps_url": "https://www.google.com/maps/place/Ai+Dossi+Ristorante+Albergo/@44.5876103,11.9251564,17z/data=!4m6!3m5!1s0x477e114004cd3f2f:0xc1734f9bdd22ff6e!8m2!3d44.5876103!4d11.9251564!16s%2Fg%2F119wmhxcn"
   },
   "summary": {
-    "total_cars": 4,
+    "total_cars": 5,
     "confirmed_cars": 1,
-    "in_progress_cars": 3,
-    "cities_count": 3
+    "in_progress_cars": 4,
+    "cities_count": 4
   },
   "rides": [
+    {
+      "id": "zurigo-swiss",
+      "city": "Zurigo",
+      "region": "Svizzera 🇨🇭",
+      "coordinates": [47.3769, 8.5417],
+      "cars_count": 1,
+      "status": "in_progress",
+      "status_label_it": "In Organizzazione",
+      "status_label_en": "In Progress",
+      "color": "yellow",
+      "driver_or_group": "Equipaggio Elvetico (4 posti)",
+      "hover_text": "Zurigo: 1 Macchina (4 posti) 🚗🇨🇭🍫",
+      "hover_text_en": "Zurich: 1 Car (4 seats) 🚗🇨🇭🍫",
+      "details_it": "Discesa transalpina dalla Svizzera via San Gottardo / Chiasso / A1 verso la Romagna.",
+      "details_en": "Transalpine descent from Switzerland via Gotthard / Chiasso / A1 towards Romagna.",
+      "cars": [
+        {
+          "name": "Auto 1 - Swiss Express",
+          "driver": "In definizione",
+          "tag": "Transalpina 🏔️",
+          "seats_estimate": "4 posti",
+          "note_it": "Carica di cioccolato svizzero e pronti per la grande traversata alpina.",
+          "note_en": "Loaded with Swiss chocolate and ready for the grand alpine crossing."
+        }
+      ]
+    },
     {
       "id": "bologna-karaoke",
       "city": "Bologna",
