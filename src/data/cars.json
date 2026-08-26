@@ -1,0 +1,103 @@
+{
+  "venue": {
+    "name": "Albergo Ristorante Ai Dossi",
+    "location": "Conselice / San Patrizio (RA)",
+    "coordinates": [44.5876103, 11.9251564],
+    "address": "Via Dossi 1, 48017 Conselice (RA)",
+    "maps_url": "https://www.google.com/maps/place/Ai+Dossi+Ristorante+Albergo/@44.5876103,11.9251564,17z/data=!4m6!3m5!1s0x477e114004cd3f2f:0xc1734f9bdd22ff6e!8m2!3d44.5876103!4d11.9251564!16s%2Fg%2F119wmhxcn"
+  },
+  "summary": {
+    "total_cars": 4,
+    "confirmed_cars": 1,
+    "in_progress_cars": 3,
+    "cities_count": 3
+  },
+  "rides": [
+    {
+      "id": "bologna-karaoke",
+      "city": "Bologna",
+      "region": "Emilia-Romagna",
+      "coordinates": [44.4949, 11.3426],
+      "cars_count": 1,
+      "status": "confirmed",
+      "status_label_it": "Confermato",
+      "status_label_en": "Confirmed",
+      "color": "green",
+      "driver_or_group": "Naser e Karaoke",
+      "hover_text": "Bologna: Naser e Karaoke 🎤🚗",
+      "hover_text_en": "Bologna: Naser & Karaoke 🎤🚗",
+      "details_it": "Partenza da Bologna. Equipaggio pronto per il karaoke itinerante sulla Via Emilia!",
+      "details_en": "Departure from Bologna. Crew ready for roadside karaoke along the Via Emilia!",
+      "cars": [
+        {
+          "name": "Auto 1 - Carovana Karaoke",
+          "driver": "Naser",
+          "tag": "Karaoke Mobile 🎤",
+          "seats_estimate": "3-4 posti",
+          "note_it": "Musica a palla, microfoni pronti e riscaldamento vocale pre-compleanno.",
+          "note_en": "Loud tunes, open mics, and vocal warm-up before the birthday bash."
+        }
+      ]
+    },
+    {
+      "id": "torino-sabaudo",
+      "city": "Torino",
+      "region": "Piemonte",
+      "coordinates": [45.0703, 7.6869],
+      "cars_count": 2,
+      "status": "in_progress",
+      "status_label_it": "In Organizzazione",
+      "status_label_en": "In Progress",
+      "color": "yellow",
+      "driver_or_group": "Equipaggio Sabaudo (2 Auto)",
+      "hover_text": "Torino: 2 Macchine (Equipaggio Sabaudo) 🚗🚗💨",
+      "hover_text_en": "Turin: 2 Cars (Piedmont Crew) 🚗🚗💨",
+      "details_it": "2 vetture in rotta da Torino via A21 / A14 verso la Romagna.",
+      "details_en": "2 cars traveling from Turin via A21 / A14 highway to Romagna.",
+      "cars": [
+        {
+          "name": "Auto 1 - Torino Express",
+          "driver": "In definizione",
+          "tag": "Pomeridiana Relax 🛏️",
+          "seats_estimate": "3-4 posti",
+          "note_it": "Partenza ore 14:00 circa per arrivo con doccia e relax pomeridiano.",
+          "note_en": "Departure around 14:00 for early check-in, hot shower, and chill."
+        },
+        {
+          "name": "Auto 2 - Torino Navetta",
+          "driver": "In definizione",
+          "tag": "Flessibile 🔀",
+          "seats_estimate": "3-4 posti",
+          "note_it": "Orario flessibile, possibile ritrovo all'autogrill.",
+          "note_en": "Flexible schedule, optional highway rendezvous."
+        }
+      ]
+    },
+    {
+      "id": "perugia-umbria",
+      "city": "Perugia",
+      "region": "Umbria",
+      "coordinates": [43.1107, 12.3908],
+      "cars_count": 1,
+      "status": "in_progress",
+      "status_label_it": "In Organizzazione",
+      "status_label_en": "In Progress",
+      "color": "yellow",
+      "driver_or_group": "Equipaggio Grifone Umbria",
+      "hover_text": "Perugia: 1 Macchina (Equipaggio Umbria) 🚗🌲",
+      "hover_text_en": "Perugia: 1 Car (Umbria Crew) 🚗🌲",
+      "details_it": "In risalita dagli Appennini umbri verso la pianura romagnola via E45.",
+      "details_en": "Driving up from the Umbrian hills to Romagna via E45 highway.",
+      "cars": [
+        {
+          "name": "Auto 1 - Grifone Express",
+          "driver": "In definizione",
+          "tag": "E45 Highway 🛣️",
+          "seats_estimate": "3-4 posti",
+          "note_it": "Valigie cariche di buon umore e baci perugini.",
+          "note_en": "Trunk packed with festive spirit and sweet treats."
+        }
+      ]
+    }
+  ]
+}

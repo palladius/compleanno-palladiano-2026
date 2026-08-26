@@ -1,5 +1,20 @@
 # Changelog 📝✨
 
+## [1.0.4] - 2026-08-26
+### Added 🚀
+- 🗺️ **Mappa Carpooling & Carovane (`/map`)**: Aggiunto nuovo endpoint interattivo con mappa Leaflet del Nord & Centro Italia focalizzata sulla venue *Ai Dossi* (Conselice).
+- 🚗 **Marker Auto & Equipaggi**:
+  - 🟢 **Bologna**: Auto confermata con tooltip "Naser e Karaoke 🎤🚗".
+  - 🟡 **Torino**: Badge multiplo (`2 🚗`) per le 2 auto dell'equipaggio sabaudo.
+  - 🟡 **Perugia**: 1 auto in organizzazione per la risalita via E45.
+  - 👑 **Venue**: Pin dorato animato pulsante su Ai Dossi.
+- 📦 **Dati Statici (`src/data/cars.json`)**: Struttura JSON estendibile per sincronizzazione futura con database/fogli.
+- 🌐 Supporto multilingua completo (IT/EN) e schede interattive con zoom automatico sulla mappa.
+
+## [1.0.3] - 2026-08-26
+### Changed 🔄
+- 📊 **FOMO Stats Sync**: Sincronizzati nuovi partecipanti da Google Sheets (12 risposte, 20 confermati, 10 posti letto).
+
 ## [1.0.2] - 2026-08-19
 ### Added 🚀
 - 📊 **Dashboard & Stats**: Built a standalone `/stats` page rendering real-time capacity and RSVP form responses.
