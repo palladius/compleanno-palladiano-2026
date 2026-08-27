@@ -130,12 +130,13 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
       });
       map.fitBounds(bounds, { padding: [45, 45], maxZoom: 7 });
 
-      // OpenStreetMap standard tile layer
-      const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 19
+      // Google Maps Roadmap tile layer
+      const googleMapsTiles = L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+        attribution: '&copy; <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Google Maps</a>'
       });
-      tiles.addTo(map);
+      googleMapsTiles.addTo(map);
 
       // 1. Add Venue Marker (Ai Dossi)
       const venueIconHtml = `

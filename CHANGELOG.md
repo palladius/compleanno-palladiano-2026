@@ -1,5 +1,9 @@
 # Changelog 📝✨
 
+## [1.0.7] - 2026-08-27
+### Changed 🔄
+- 🗺️ **Cartografia Google Maps**: Aggiornato il layer della mappa con le tessere e lo stile ufficiale di **Google Maps** (Roadmap) per una perfetta resa estetica Noogler-approved! 🗺️✨
+
 ## [1.0.6] - 2026-08-26
 ### Added 🚀
 - 🇨🇭 **Equipaggio Svizzera (Zurigo)**: Aggiunta macchina da 4 persone in partenza da Zurigo via San Gottardo / Chiasso / A1.
