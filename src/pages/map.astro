@@ -62,7 +62,7 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
         </div>
       </div>
       <div class="stat-pill venue">
-        <span class="stat-pill-icon">👑</span>
+        <span class="stat-pill-icon">🍷</span>
         <div class="stat-pill-info">
           <span class="stat-pill-val">Ai Dossi</span>
           <span class="stat-pill-lbl" lang-it>Destinazione (RA)</span>
@@ -82,7 +82,7 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
         <div class="map-legend">
           <span class="legend-item"><span class="badge-dot green"></span> <span lang-it>Sicuro / Confermato (Svizzera, Bologna)</span><span lang-en>Confirmed (Switzerland, Bologna)</span></span>
           <span class="legend-item"><span class="badge-dot yellow"></span> <span lang-it>In forse (Torino, Perugia, Rimini, Raiano)</span><span lang-en>Maybe (Turin, Perugia, Rimini, Raiano)</span></span>
-          <span class="legend-item"><span class="badge-dot gold"></span> <span lang-it>Venue Festa</span><span lang-en>Party Venue</span></span>
+          <span class="legend-item"><span class="badge-dot gold"></span> <span lang-it>🏰🍷 Venue 50° Festa</span><span lang-en>🏰🍷 50th Party Venue</span></span>
         </div>
       </div>
 
@@ -139,23 +139,24 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
       });
       googleMapsTiles.addTo(map);
 
-      // 1. Add Venue Marker (Ai Dossi)
+      // 1. Add Venue Marker (Ai Dossi) - High visibility landmark
       const venueIconHtml = `
         <div class="custom-venue-pin">
           <div class="venue-pulse"></div>
           <div class="venue-badge">
-            <span class="venue-emoji">👑</span>
+            <span class="venue-emoji">🍷</span>
+            <span class="venue-fifty-badge">50</span>
           </div>
-          <span class="venue-label">Ai Dossi</span>
+          <span class="venue-label">🏰 Ai Dossi (Conselice)</span>
         </div>
       `;
 
       const venueIcon = L.divIcon({
         className: 'custom-venue-container',
         html: venueIconHtml,
-        iconSize: [50, 50],
-        iconAnchor: [25, 25],
-        popupAnchor: [0, -28]
+        iconSize: [80, 80],
+        iconAnchor: [40, 40],
+        popupAnchor: [0, -36]
       });
 
       const venueMarker = L.marker(venueCoords, { icon: venueIcon, zIndexOffset: 1000 }).addTo(map);
@@ -163,7 +164,7 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
       const venuePopupHtml = `
         <div class="map-popup-inner venue-popup">
           <div class="popup-header">
-            <span class="popup-tag">🏰 VENUE UFFICIALE</span>
+            <span class="popup-tag">🏰 VENUE UFFICIALE 50°</span>
             <h4 class="popup-title">${carsData.venue.name}</h4>
           </div>
           <p class="popup-address">📍 ${carsData.venue.address}</p>
@@ -177,9 +178,9 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
       `;
 
       venueMarker.bindPopup(venuePopupHtml);
-      venueMarker.bindTooltip("👑 <strong>Ai Dossi</strong> - Venue 50° Palladiano", {
+      venueMarker.bindTooltip("🏰🍷 <strong>Ai Dossi (50° Palladiano)</strong>", {
         direction: 'top',
-        offset: [0, -25],
+        offset: [0, -34],
         className: 'custom-map-tooltip'
       });
 
@@ -553,59 +554,83 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
   }
 
   :global(.venue-pulse) {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 44px;
-    height: 44px;
-    margin-top: -22px;
-    margin-left: -22px;
-    background: rgba(245, 158, 11, 0.4);
+    width: 72px;
+    height: 72px;
+    margin-top: -36px;
+    margin-left: -36px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.6) 0%, rgba(245, 158, 11, 0) 75%);
     border-radius: 50%;
-    animation: venuePulse 2s infinite;
+    animation: venuePulse 2.2s infinite ease-out;
     z-index: 1;
+    pointer-events: none;
   }
 
   @keyframes venuePulse {
-    0% { transform: scale(0.8); opacity: 0.9; }
-    100% { transform: scale(1.8); opacity: 0; }
+    0% { transform: scale(0.6); opacity: 1; }
+    50% { opacity: 0.8; }
+    100% { transform: scale(2.2); opacity: 0; }
   }
 
   :global(.venue-badge) {
     position: relative;
     z-index: 2;
-    width: 36px;
-    height: 36px;
-    background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, #ef4444 0%, #d97706 50%, #f59e0b 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid #ffffff;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
+    border: 3px solid #ffffff;
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.8), 0 8px 18px rgba(0, 0, 0, 0.6);
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  :global(.custom-venue-pin:hover .venue-badge) {
+    transform: scale(1.18);
   }
 
   :global(.venue-emoji) {
-    font-size: 1.2rem;
+    font-size: 1.7rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+  }
+
+  :global(.venue-fifty-badge) {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #0f172a;
+    color: #fbbf24;
+    border: 2px solid #fbbf24;
+    border-radius: 9999px;
+    font-size: 0.65rem;
+    font-weight: 900;
+    padding: 1px 4px;
+    line-height: 1;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.6);
   }
 
   :global(.venue-label) {
     position: relative;
     z-index: 2;
-    margin-top: 2px;
-    background: rgba(15, 23, 42, 0.9);
-    border: 1px solid rgba(245, 158, 11, 0.5);
+    margin-top: 4px;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1.5px solid #fbbf24;
     color: #fbbf24;
-    font-weight: 700;
-    font-size: 0.7rem;
-    padding: 1px 6px;
-    border-radius: 6px;
+    font-weight: 800;
+    font-size: 0.78rem;
+    padding: 2px 8px;
+    border-radius: 9999px;
     white-space: nowrap;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    letter-spacing: 0.02em;
   }
 
   /* CAR PINS */

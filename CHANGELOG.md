@@ -1,5 +1,9 @@
 # Changelog 📝✨
 
+## [1.0.9] - 2026-09-05
+### Changed 🔄
+- 🍷 **Venue Pin "Ai Dossi" ad alta visibilità**: Ridelineato e ingrandito il marker della venue sulla mappa (da 36px a 52px, glow radiale aumentato da 44px a 72px) con icona bicchiere di vino 🍷, badge dorato "50" e pill identificativo chiaro "🏰 Ai Dossi (Conselice)".
+
 ## [1.0.8] - 2026-09-05
 ### Added 🚀
 - 🗺️ **Pipeline Approssimazione Città & Coordinate**: Introdotto `src/data/city_mappings.csv` e documentazione `docs/LOCATION_APPROXIMATION.md` per normalizzare gli input liberi a livello di provincia (Italia) e nazione (estero) con relative coordinate.
