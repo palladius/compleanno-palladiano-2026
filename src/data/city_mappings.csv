@@ -1,10 +1,10 @@
 raw_pattern,normalized_location,lat,lng,notes
-zurigo,Svizzera,47.3769,8.5417,Paese estero - hub Zurigo
-zurich,Svizzera,47.3769,8.5417,Paese estero - hub Zurigo
-oberbuchsiten,Svizzera,47.3769,8.5417,Paese estero (Canton Soletta) convoglia su hub Zurigo
-ch,Svizzera,47.3769,8.5417,Sigla Svizzera convoglia su hub Zurigo
-svizzera,Svizzera,47.3769,8.5417,Paese estero convoglia su hub Zurigo
-switzerland,Svizzera,47.3769,8.5417,Paese estero convoglia su hub Zurigo
+zurigo,Svizzera,46.0037,8.9511,Paese estero - hub Svizzera (Lugano/Ticino per zoom ottimale mappa)
+zurich,Svizzera,46.0037,8.9511,Paese estero - hub Svizzera (Lugano/Ticino per zoom ottimale mappa)
+oberbuchsiten,Svizzera,46.0037,8.9511,Paese estero (Canton Soletta) convoglia su hub Svizzera
+ch,Svizzera,46.0037,8.9511,Sigla Svizzera convoglia su hub Svizzera
+svizzera,Svizzera,46.0037,8.9511,Paese estero convoglia su hub Svizzera
+switzerland,Svizzera,46.0037,8.9511,Paese estero convoglia su hub Svizzera
 castel guelfo,Bologna,44.4949,11.3426,Comune prov. BO convoglia su Bologna
 bulaggna,Bologna,44.4949,11.3426,Dialetto bolognese convoglia su Bologna
 bologna,Bologna,44.4949,11.3426,Capoluogo / Città Metropolitana

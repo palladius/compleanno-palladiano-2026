@@ -16,12 +16,12 @@ MAPPINGS_FILE = "src/data/city_mappings.csv"
 OUTPUT_FILE = "src/data/fomo.json"
 
 DEFAULT_CITY_NORMALIZATION = [
-    {"pattern": "zurigo", "location": "Svizzera", "lat": 47.3769, "lng": 8.5417},
-    {"pattern": "zurich", "location": "Svizzera", "lat": 47.3769, "lng": 8.5417},
-    {"pattern": "oberbuchsiten", "location": "Svizzera", "lat": 47.3769, "lng": 8.5417},
-    {"pattern": "ch", "location": "Svizzera", "lat": 47.3769, "lng": 8.5417},
-    {"pattern": "svizzera", "location": "Svizzera", "lat": 47.3769, "lng": 8.5417},
-    {"pattern": "switzerland", "location": "Svizzera", "lat": 47.3769, "lng": 8.5417},
+    {"pattern": "zurigo", "location": "Svizzera", "lat": 46.0037, "lng": 8.9511},
+    {"pattern": "zurich", "location": "Svizzera", "lat": 46.0037, "lng": 8.9511},
+    {"pattern": "oberbuchsiten", "location": "Svizzera", "lat": 46.0037, "lng": 8.9511},
+    {"pattern": "ch", "location": "Svizzera", "lat": 46.0037, "lng": 8.9511},
+    {"pattern": "svizzera", "location": "Svizzera", "lat": 46.0037, "lng": 8.9511},
+    {"pattern": "switzerland", "location": "Svizzera", "lat": 46.0037, "lng": 8.9511},
     {"pattern": "castel guelfo", "location": "Bologna", "lat": 44.4949, "lng": 11.3426},
     {"pattern": "bulaggna", "location": "Bologna", "lat": 44.4949, "lng": 11.3426},
     {"pattern": "bologna", "location": "Bologna", "lat": 44.4949, "lng": 11.3426},

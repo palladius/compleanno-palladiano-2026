@@ -16,7 +16,7 @@ Senza un'opportuna approssimazione:
 ### 📐 Regola di Granularità
 
 1. **Fuori dall'Italia 🌍**: Approssimazione a livello di **Nazione** con punto geografico del capoluogo / hub principale.  
-   *Es.* Tutta la Svizzera (Zurigo, Oberbuchsiten, Berna, Ginevra) convoglia in **"Svizzera"** con coordinate di riferimento su **Zurigo (`[47.3769, 8.5417]`)**.
+   *Es.* Tutta la Svizzera (Zurigo, Oberbuchsiten, Berna, Ginevra) convoglia in **"Svizzera"** con coordinate di riferimento su **Lugano (`[46.0037, 8.9511]`)** (ottimale per inquadratura e zoom sulla mappa del Nord Italia).
 2. **In Italia 🇮🇹**: Approssimazione a livello di **Provincia / Città Metropolitana** con coordinate del capoluogo provinciale.  
    *Es.* 
    - *"Castel guelfo di bologna"*, *"Bulaggna"* $\rightarrow$ **Bologna** (`[44.4949, 11.3426]`)

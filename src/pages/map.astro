@@ -121,15 +121,15 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
       }
 
       const venueCoords = carsData.venue.coordinates;
-      // Focus initial zoom on Northern & Central Italy (excluding Zurich from initial fitBounds)
-      const italianPoints = [venueCoords, ...carsData.rides.filter(r => r.city !== 'Zurigo').map(r => r.coordinates)];
-      const bounds = L.latLngBounds(italianPoints);
+      // With Switzerland centered on Lugano, all points fit cleanly in Northern/Central Italy bounds at closer zoom!
+      const allPoints = [venueCoords, ...carsData.rides.map(r => r.coordinates)];
+      const bounds = L.latLngBounds(allPoints);
       
       const map = L.map('palladiusMap', {
         zoomControl: true,
         scrollWheelZoom: false
       });
-      map.fitBounds(bounds, { padding: [40, 40], maxZoom: 8 });
+      map.fitBounds(bounds, { padding: [30, 30], maxZoom: 8 });
 
       // Google Maps Roadmap tile layer
       const googleMapsTiles = L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {

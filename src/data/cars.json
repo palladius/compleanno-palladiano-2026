@@ -15,9 +15,9 @@
   "rides": [
     {
       "id": "zurigo-swiss",
-      "city": "Zurigo (Svizzera)",
+      "city": "Svizzera (Lugano/Zurigo)",
       "region": "Svizzera 🇨🇭",
-      "coordinates": [47.3769, 8.5417],
+      "coordinates": [46.0037, 8.9511],
       "cars_count": 2,
       "people_count": 9,
       "status": "confirmed",

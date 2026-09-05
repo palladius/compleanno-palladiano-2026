@@ -1,5 +1,12 @@
 # Changelog 📝✨
 
+## [1.0.10] - 2026-09-05
+### Changed 🔄
+- 🇨🇭 **Coordinate Svizzera su Lugano**: Spostato il punto di riferimento svizzero su Lugano (`[46.0037, 8.9511]`) permettendo alla mappa di aumentare di 1 livello lo zoom mantenendo visibili tutti i punti da Torino, Abruzzo e Svizzera.
+- 🔗 **Promozione Mappa in Home Page**:
+  - Aggiunto bottone dorato prominente *"Mappa Auto & Carovane 🚗🗺️"* tra le CTA dell'Hero header.
+  - Aggiunta pillola interattiva con link alla mappa nel banner FOMO sopra il modulo RSVP.
+
 ## [1.0.9] - 2026-09-05
 ### Changed 🔄
 - 🍷 **Venue Pin "Ai Dossi" ad alta visibilità**: Ridelineato e ingrandito il marker della venue sulla mappa (da 36px a 52px, glow radiale aumentato da 44px a 72px) con icona bicchiere di vino 🍷, badge dorato "50" e pill identificativo chiaro "🏰 Ai Dossi (Conselice)".

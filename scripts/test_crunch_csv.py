@@ -10,7 +10,7 @@ def test_load_mappings_fallback():
 def test_resolve_location():
     loc, coords = resolve_location("Zurigo")
     assert loc == "Svizzera"
-    assert coords == [47.3769, 8.5417]
+    assert coords == [46.0037, 8.9511]
 
     loc, coords = resolve_location("San marino RSM")
     assert loc == "Rimini"
