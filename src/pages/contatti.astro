@@ -2,7 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 const riccardoEmail = "palladiusbonton+50anni@gmail.com";
 const ermeteEmail = "ermetebottazzi@gmail.com";
-const telegramUrl = "https://t.me/palladius";
+const telegramUrl = "https://t.me/+kx-bUGjBoFs0ODlk";
+const whatsappAnnunciUrl = "https://chat.whatsapp.com/BCQDijWNCa45A6srlXpZjo";
 ---
 
 <Layout title="Contatti | 50° Compleanno Palladiano ✉️" currentPage="contatti">
@@ -85,10 +86,15 @@ const telegramUrl = "https://t.me/palladius";
             <span lang-en>Prefer a quick chat or direct email?</span>
           </div>
           <div class="direct-btns">
-            <a href={telegramUrl} target="_blank" rel="noopener noreferrer" class="btn btn-telegram">
+            <a href={whatsappAnnunciUrl} target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" title="Unisciti alla community WhatsApp">
+              <span class="wa-icon">📢</span>
+              <span lang-it>Canale WhatsApp</span>
+              <span lang-en>WhatsApp Channel</span>
+            </a>
+            <a href={telegramUrl} target="_blank" rel="noopener noreferrer" class="btn btn-telegram" title="Unisciti alla community Telegram">
               <span class="tg-icon">✈️</span>
-              <span lang-it>Scrivi su Telegram</span>
-              <span lang-en>Message on Telegram</span>
+              <span lang-it>Community Telegram</span>
+              <span lang-en>Telegram Community</span>
             </a>
             <a href={`mailto:${riccardoEmail}?subject=50%C2%B0%20Compleanno%20Palladiano`} class="btn btn-secondary btn-email-direct">
               <span>📧 Email Diretta</span>
@@ -244,6 +250,30 @@ Ruolo: ${role}
     align-items: center;
     gap: 0.9rem;
     flex-wrap: wrap;
+  }
+
+  .btn-whatsapp {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: #ffffff;
+    font-weight: 700;
+    padding: 0.8rem 1.4rem;
+    border-radius: 12px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-whatsapp:hover {
+    background: #20ba59;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+  }
+
+  .wa-icon {
+    font-size: 1.1rem;
   }
 
   .btn-telegram {

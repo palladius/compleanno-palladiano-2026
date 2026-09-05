@@ -49,16 +49,16 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
         <span class="stat-pill-icon">🟢</span>
         <div class="stat-pill-info">
           <span class="stat-pill-val">{carsData.summary.confirmed_cars}</span>
-          <span class="stat-pill-lbl" lang-it>Confermate</span>
+          <span class="stat-pill-lbl" lang-it>Confermate (Sicuri)</span>
           <span class="stat-pill-lbl" lang-en>Confirmed</span>
         </div>
       </div>
-      <div class="stat-pill in-progress">
+      <div class="stat-pill maybe">
         <span class="stat-pill-icon">🟡</span>
         <div class="stat-pill-info">
-          <span class="stat-pill-val">{carsData.summary.in_progress_cars}</span>
-          <span class="stat-pill-lbl" lang-it>In Organizzazione</span>
-          <span class="stat-pill-lbl" lang-en>In Progress</span>
+          <span class="stat-pill-val">{carsData.summary.maybe_cars}</span>
+          <span class="stat-pill-lbl" lang-it>In Forse</span>
+          <span class="stat-pill-lbl" lang-en>Maybe / Pending</span>
         </div>
       </div>
       <div class="stat-pill venue">
@@ -76,12 +76,12 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
       <div class="map-topbar">
         <div class="map-topbar-left">
           <span class="pulse-dot"></span>
-          <span class="map-status-live" lang-it>Mappa Interattiva • Nord & Centro Italia</span>
-          <span class="map-status-live" lang-en>Interactive Map • North & Central Italy</span>
+          <span class="map-status-live" lang-it>Mappa Interattiva • Nord & Centro Italia + Svizzera</span>
+          <span class="map-status-live" lang-en>Interactive Map • North & Central Italy + Switzerland</span>
         </div>
         <div class="map-legend">
-          <span class="legend-item"><span class="badge-dot green"></span> <span lang-it>Confermata (Bologna)</span><span lang-en>Confirmed (Bologna)</span></span>
-          <span class="legend-item"><span class="badge-dot yellow"></span> <span lang-it>In definizione (Zurigo, Torino, Perugia)</span><span lang-en>In progress (Zurich, Turin, Perugia)</span></span>
+          <span class="legend-item"><span class="badge-dot green"></span> <span lang-it>Sicuro / Confermato (Svizzera, Bologna)</span><span lang-en>Confirmed (Switzerland, Bologna)</span></span>
+          <span class="legend-item"><span class="badge-dot yellow"></span> <span lang-it>In forse (Torino, Perugia, Rimini, Raiano)</span><span lang-en>Maybe (Turin, Perugia, Rimini, Raiano)</span></span>
           <span class="legend-item"><span class="badge-dot gold"></span> <span lang-it>Venue Festa</span><span lang-en>Party Venue</span></span>
         </div>
       </div>
@@ -121,14 +121,15 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
       }
 
       const venueCoords = carsData.venue.coordinates;
-      const allPoints = [venueCoords, ...carsData.rides.map(r => r.coordinates)];
-      const bounds = L.latLngBounds(allPoints);
+      // Focus initial zoom on Northern & Central Italy (excluding Zurich from initial fitBounds)
+      const italianPoints = [venueCoords, ...carsData.rides.filter(r => r.city !== 'Zurigo').map(r => r.coordinates)];
+      const bounds = L.latLngBounds(italianPoints);
       
       const map = L.map('palladiusMap', {
         zoomControl: true,
         scrollWheelZoom: false
       });
-      map.fitBounds(bounds, { padding: [45, 45], maxZoom: 7 });
+      map.fitBounds(bounds, { padding: [40, 40], maxZoom: 8 });
 
       // Google Maps Roadmap tile layer
       const googleMapsTiles = L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
@@ -187,11 +188,12 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
         const isGreen = ride.color === 'green';
         const isMultiCar = ride.cars_count > 1;
         const colorClass = isGreen ? 'marker-green' : 'marker-yellow';
+        const pinEmoji = isGreen ? '🚗' : '⏳';
 
         const carBadgeHtml = `
           <div class="custom-car-pin ${colorClass} ${isMultiCar ? 'multi-car' : ''}" id="marker-${ride.id}">
             <div class="car-pin-bubble">
-              <span class="car-pin-emoji">🚗</span>
+              <span class="car-pin-emoji">${pinEmoji}</span>
               ${isMultiCar ? `<span class="car-pin-count-badge">${ride.cars_count}</span>` : ''}
             </div>
             <span class="car-pin-city">${ride.city}</span>
@@ -225,7 +227,7 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
           <div class="map-popup-inner">
             <div class="popup-header">
               <span class="popup-tag ${ride.color}">${ride.status_label_it.toUpperCase()}</span>
-              <h4 class="popup-title">🚗 Equipaggio ${ride.city}</h4>
+              <h4 class="popup-title">${pinEmoji} Equipaggio ${ride.city}</h4>
             </div>
             <p class="popup-group-name"><strong>${ride.driver_or_group}</strong></p>
             <p class="popup-desc">${ride.details_it}</p>
@@ -253,7 +255,7 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
           color: routeColor,
           weight: 3,
           opacity: 0.7,
-          dashArray: '6, 8',
+          dashArray: isGreen ? '6, 8' : '4, 8',
           smoothFactor: 1
         }).addTo(map);
       });
@@ -333,6 +335,10 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
 
   .stat-pill.in-progress {
     border-color: rgba(245, 158, 11, 0.3);
+  }
+
+  .stat-pill.maybe {
+    border-color: rgba(249, 115, 22, 0.4);
   }
 
   .stat-pill.venue {
@@ -443,6 +449,7 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
 
   .badge-dot.green { background: #10b981; box-shadow: 0 0 8px #10b981; }
   .badge-dot.yellow { background: #f59e0b; box-shadow: 0 0 8px #f59e0b; }
+  .badge-dot.orange { background: #f97316; box-shadow: 0 0 8px #f97316; }
   .badge-dot.gold { background: #fbbf24; box-shadow: 0 0 8px #fbbf24; }
 
   .map-canvas {
@@ -643,6 +650,12 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
     box-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
   }
 
+  :global(.custom-car-pin.marker-orange .car-pin-bubble) {
+    background: #f97316;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 12px rgba(249, 115, 22, 0.6);
+  }
+
   :global(.car-pin-emoji) {
     font-size: 1.1rem;
   }
@@ -731,6 +744,12 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
     background: rgba(245, 158, 11, 0.2);
     color: #fbbf24;
     border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+
+  :global(.popup-tag.orange) {
+    background: rgba(249, 115, 22, 0.2);
+    color: #fb923c;
+    border: 1px solid rgba(249, 115, 22, 0.3);
   }
 
   :global(.popup-title) {

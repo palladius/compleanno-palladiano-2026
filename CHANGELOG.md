@@ -1,5 +1,18 @@
 # Changelog 📝✨
 
+## [1.0.8] - 2026-09-05
+### Added 🚀
+- 🗺️ **Pipeline Approssimazione Città & Coordinate**: Introdotto `src/data/city_mappings.csv` e documentazione `docs/LOCATION_APPROXIMATION.md` per normalizzare gli input liberi a livello di provincia (Italia) e nazione (estero) con relative coordinate.
+- 🧪 **Test Suite per Crunching**: Aggiornati i test in `scripts/test_crunch_csv.py` per validare l'approssimazione delle coordinate geografiche e l'aggregazione dei partecipanti.
+- 💬 **Canali Community**: Aggiunti link diretti al Canale Annunci WhatsApp e al Gruppo Community Telegram nella navbar, nel footer e nella pagina contatti.
+
+### Changed 🔄
+- 🚗 **Mappa delle Macchine (`/map`)**:
+  - Semplificata la convenzione colori in binario: 🟢 **Verde (Sicuro / Confermato)** e 🟡 **Giallo (In Forse / In Definizione)**.
+  - Aggiornato il cluster **Svizzera (Zurigo)** a 9 persone confermate (equipaggio Palladius + Pizzorni + Patrignani).
+  - Creato il cluster **Rimini** aggregando Andrea Degli Angeli (San Marino) e Francesco Bullini ("Parigi -> Rimini -> Conselice").
+- 📊 **FOMO Stats Sync**: Sincronizzati nuovi dati partecipanti via Google Sheets (15 risposte, 22 ospiti confermati, 13 posti letto).
+
 ## [1.0.7] - 2026-08-27
 ### Changed 🔄
 - 🗺️ **Cartografia Google Maps**: Aggiornato il layer della mappa con le tessere e lo stile ufficiale di **Google Maps** (Roadmap) per una perfetta resa estetica Noogler-approved! 🗺️✨

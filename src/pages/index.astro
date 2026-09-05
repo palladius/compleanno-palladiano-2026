@@ -419,8 +419,13 @@ const dishes = [
             </p>
             <div class="timeline-quicklink">
               <a href={`${baseUrl}/dormire`}>
-                <span lang-it>👉 Vedi opzioni per dormire & logistica</span>
-                <span lang-en>👉 See accommodation options & logistics</span>
+                <span lang-it>👉 Vedi opzioni per dormire & logistica 🛏️</span>
+                <span lang-en>👉 See accommodation options & logistics 🛏️</span>
+              </a>
+              <span class="quicklink-sep">•</span>
+              <a href={`${baseUrl}/map`}>
+                <span lang-it>🚗 Mappa carpooling & auto</span>
+                <span lang-en>🚗 Carpooling & car map</span>
               </a>
             </div>
           </div>
@@ -502,7 +507,7 @@ const dishes = [
       </div>
     </section>
 
-    <!-- HIGHLIGHTS SECTION (DORMIRE & CONTATTI) -->
+    <!-- HIGHLIGHTS SECTION (DORMIRE, CARPOOLING & CONTATTI) -->
     <section class="section">
       <div class="section-header">
         <span class="tag-green">✨ GUIDA RAPIDA ALL'EVENTO</span>
@@ -520,6 +525,18 @@ const dishes = [
           <a href={`${baseUrl}/dormire`} class="card-link">
             <span lang-it>Info Alloggi 🛏️</span>
             <span lang-en>Lodging Info 🛏️</span>
+          </a>
+        </div>
+
+        <div class="highlight-card">
+          <div class="card-icon">🚗</div>
+          <h3 lang-it>Mappa & Carpooling</h3>
+          <h3 lang-en>Map & Carpooling</h3>
+          <p lang-it>Tutte le auto, carovane ed equipaggi da Zurigo, Perugia, Torino, Roma e Bologna con posti auto liberi, percorsi e dettagli.</p>
+          <p lang-en>All cars, convoys and crews traveling from Zurich, Perugia, Turin, Rome and Bologna with available seats, routes and details.</p>
+          <a href={`${baseUrl}/map`} class="card-link">
+            <span lang-it>Mappa Auto 🚗</span>
+            <span lang-en>Car Map 🚗</span>
           </a>
         </div>
 
@@ -1445,6 +1462,10 @@ const dishes = [
     margin-top: 1rem;
     padding-top: 0.8rem;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 0.8rem;
   }
 
   .timeline-quicklink a {
@@ -1456,6 +1477,11 @@ const dishes = [
 
   .timeline-quicklink a:hover {
     text-decoration: underline;
+  }
+
+  .quicklink-sep {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.85rem;
   }
 
   /* HIGHLIGHTS GRID */

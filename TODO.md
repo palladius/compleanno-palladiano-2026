@@ -7,12 +7,11 @@
 ## 🎯 Task Prioritari (Sessione Pomeriggio 27/08/2026)
 
 ### 1. 💬 "Get Involved / Community" (WhatsApp & Telegram Links)
-- [ ] **Posizionamento UI**: Aggiungere in alto a destra nella navbar/header della home page una sezione o pulsante *"Get Involved"* / *"Unisciti al Delirio"* / *"Community"*.
-- [ ] **Canali di Comunicazione**:
-  - Link a **Gruppo WhatsApp** (per il popolo meno tecnologico).
-  - Link a **Gruppo Telegram** (per chi odia condividere il numero o ama gli sticker).
-- [ ] **Decisione Architetturale / Moderazione** (Vedi note sotto):
-  - Definire se usare un gruppo aperto a tutti, un canale annunci broadcast o un gruppo con link d'invito con approvazione.
+- [x] **Posizionamento UI**: Icone circolari con effetto hover zoom e tooltip in alto a destra nella navbar/header, nel mobile drawer, nel footer e nella pagina Contatti.
+- [x] **Canale Annunci WhatsApp**:
+  - Link: `https://chat.whatsapp.com/BCQDijWNCa45A6srlXpZjo`
+- [x] **Gruppo Community Telegram**:
+  - Link: `https://t.me/+kx-bUGjBoFs0ODlk`
 
 ### 2. 🤖 "Are you an AI?" / LLM-Friendly Prompt & `llms.txt`
 - [ ] **Sezione/Banner in Home Page**:

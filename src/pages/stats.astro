@@ -6,6 +6,7 @@ import fomoStats from '../data/fomo.json';
 const citiesEntries = Object.entries(fomoStats.cities || {});
 citiesEntries.sort((a, b) => (b[1] as number) - (a[1] as number));
 const maxCityCount = citiesEntries.length > 0 ? Math.max(...citiesEntries.map(e => e[1] as number)) : 1;
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <Layout title="Statistiche | Il 50° Compleanno Palladiano" currentPage="stats">
@@ -138,9 +139,15 @@ const maxCityCount = citiesEntries.length > 0 ? Math.max(...citiesEntries.map(e 
               <p style="text-align: center; opacity: 0.7;">Ancora nessun gruppo numeroso da una singola città. Aumenta la FOMO!</p>
             )}
           </div>
-          <p style="font-size: 0.85rem; font-style: italic; opacity: 0.8; margin-top: 1.5rem; text-align: center;">
-            <span lang-it>* Vengono mostrate solo le città con più di 1 partecipante.</span>
-            <span lang-en>* Only cities with more than 1 participant are shown.</span>
+          <div style="margin-top: 1.5rem; text-align: center;">
+            <a href={`${baseUrl}/map`} style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.4rem; background: rgba(245, 158, 11, 0.15); border: 1px solid var(--accent-gold); border-radius: 9999px; color: var(--accent-gold); font-weight: 700; text-decoration: none; transition: transform 0.2s ease;">
+              <span lang-it>🚗 Esplora la Mappa dei Carpooling & Auto</span>
+              <span lang-en>🚗 Explore Carpooling & Cars Map</span>
+            </a>
+          </div>
+          <p style="font-size: 0.85rem; font-style: italic; opacity: 0.8; margin-top: 1rem; text-align: center;">
+            <span lang-it>* Aggregazione per provincia (Italia) e per nazione (estero). Vengono mostrate solo le aree con più di 1 risposta.</span>
+            <span lang-en>* Aggregated by province (Italy) and by country (abroad). Only areas with more than 1 response are shown.</span>
           </p>
         </div>
       </div>

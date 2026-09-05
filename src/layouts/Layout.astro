@@ -7,6 +7,8 @@ interface Props {
 const { title, currentPage = 'home' } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh-8460JMo3VTDrOgrDahOHObCmnFk-o_Eg/viewform";
+const whatsappAnnunciUrl = "https://chat.whatsapp.com/BCQDijWNCa45A6srlXpZjo";
+const telegramUrl = "https://t.me/+kx-bUGjBoFs0ODlk";
 ---
 
 <!doctype html>
@@ -33,7 +35,7 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
           </span>
         </a>
 
-                <!-- DESKTOP NAV -->
+        <!-- DESKTOP NAV -->
         <nav class="nav-links">
           <a href={`${baseUrl}/`} class={`nav-link ${currentPage === 'home' || currentPage === 'programma' ? 'active' : ''}`}>
             <span class="nav-icon">⏰</span>
@@ -49,6 +51,11 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
             <span lang-it>Dormire</span>
             <span lang-en>Accommodation</span>
           </a>
+          <a href={`${baseUrl}/map`} class={`nav-link ${currentPage === 'map' ? 'active' : ''}`}>
+            <span class="nav-icon">🚗</span>
+            <span lang-it>Mappa</span>
+            <span lang-en>Map</span>
+          </a>
           <a href={`${baseUrl}/contatti`} class={`nav-link ${currentPage === 'contatti' ? 'active' : ''}`}>
             <span class="nav-icon">✉️</span>
             <span lang-it>Contatti</span>
@@ -60,8 +67,36 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
           </a>
         </nav>
 
-        <!-- SHARE BTN + LANGUAGE SWITCHER + MOBILE MENU BTN -->
+        <!-- SOCIAL ICONS + SHARE BTN + LANGUAGE SWITCHER + MOBILE MENU BTN -->
         <div class="nav-actions">
+          <div class="community-icons">
+            <a 
+              href={whatsappAnnunciUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="btn-circle-social btn-circle-wa" 
+              title="Unisciti alla community WhatsApp"
+              aria-label="Unisciti alla community WhatsApp"
+            >
+              <svg class="social-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24zm4.52 11.66c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.07-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.12.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.12-.22-.19-.47-.31z"/>
+              </svg>
+            </a>
+
+            <a 
+              href={telegramUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="btn-circle-social btn-circle-tg" 
+              title="Unisciti alla community Telegram"
+              aria-label="Unisciti alla community Telegram"
+            >
+              <svg class="social-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.99 1.27-5.61 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.06-.49-.83-.27-1.49-.42-1.43-.88.03-.24.38-.49 1.04-.75 4.09-1.78 6.82-2.95 8.18-3.52 3.89-1.62 4.7-.9 4.7.74z"/>
+              </svg>
+            </a>
+          </div>
+
           <button type="button" class="btn-share-header" id="btnShareModal" title="Condividi / Share">
             <span class="share-icon">🔗</span>
             <span class="share-text" lang-it>Condividi</span>
@@ -69,14 +104,12 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
           </button>
 
           <div class="lang-switch-wrapper" role="group" aria-label="Language Switcher">
-            <button type="button" class="lang-btn active" id="btnLangIt" data-lang="it" title="Italiano">
+            <button type="button" class="lang-btn active" id="btnLangIt" data-lang="it" title="Clicca qui per Italiano" aria-label="Clicca qui per Italiano">
               <span class="flag-icon">🇮🇹</span>
-              <span class="lang-text">IT</span>
             </button>
             <span class="lang-divider">/</span>
-            <button type="button" class="lang-btn" id="btnLangEn" data-lang="en" title="English">
+            <button type="button" class="lang-btn" id="btnLangEn" data-lang="en" title="Click here for English" aria-label="Click here for English">
               <span class="flag-icon">🇬🇧</span>
-              <span class="lang-text">EN</span>
             </button>
           </div>
 
@@ -105,10 +138,25 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
           <span lang-it>Dormire & Logistica</span>
           <span lang-en>Accommodation & Logistics</span>
         </a>
+        <a href={`${baseUrl}/map`} class={`mobile-link ${currentPage === 'map' ? 'active' : ''}`}>
+          <span>🚗</span>
+          <span lang-it>Mappa delle Auto & Carpooling</span>
+          <span lang-en>Cars Map & Carpooling</span>
+        </a>
         <a href={`${baseUrl}/contatti`} class={`mobile-link ${currentPage === 'contatti' ? 'active' : ''}`}>
           <span>✉️</span>
           <span lang-it>Scrivi a Riccardo & Ermete</span>
           <span lang-en>Contact Riccardo & Ermete</span>
+        </a>
+        <a href={whatsappAnnunciUrl} target="_blank" rel="noopener noreferrer" class="mobile-link mobile-link-wa">
+          <span>💬</span>
+          <span lang-it>Canale Annunci WhatsApp</span>
+          <span lang-en>WhatsApp Announcements Channel</span>
+        </a>
+        <a href={telegramUrl} target="_blank" rel="noopener noreferrer" class="mobile-link mobile-link-tg">
+          <span>✈️</span>
+          <span lang-it>Gruppo Community Telegram</span>
+          <span lang-en>Telegram Community Group</span>
         </a>
         <a href={publicFormUrl} target="_blank" class="mobile-btn-rsvp">
           <span lang-it>Conferma Presenza (RSVP) ✍️</span>
@@ -127,13 +175,16 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
         <p class="footer-title">
           <strong>50 Sfumature di Giallo</strong> • 29 Dicembre 2026
         </p>
-                <div class="footer-nav">
+        <div class="footer-nav">
           <a href={`${baseUrl}/`}><span lang-it>Programma</span><span lang-en>Schedule</span></a> •
           <a href={`${baseUrl}/menu`}>Menu</a> •
           <a href={`${baseUrl}/dormire`}><span lang-it>Dormire</span><span lang-en>Accommodation</span></a> •
+          <a href={`${baseUrl}/map`}><span lang-it>Mappa Auto</span><span lang-en>Car Map</span></a> •
           <a href={`${baseUrl}/contatti`}><span lang-it>Contatti</span><span lang-en>Contact</span></a> •
           <a href={`${baseUrl}/stats`}><span lang-it>Statistiche</span><span lang-en>Stats</span></a> •
           <a href={`${baseUrl}/faq`}>FAQ</a> •
+          <a href={whatsappAnnunciUrl} target="_blank" rel="noopener noreferrer">WhatsApp 💬</a> •
+          <a href={telegramUrl} target="_blank" rel="noopener noreferrer">Telegram ✈️</a> •
           <a href={publicFormUrl} target="_blank">RSVP Form</a>
         </div>
         <small class="footer-credit">
@@ -476,27 +527,27 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
     background: rgba(0, 0, 0, 0.35);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 9999px;
-    padding: 0.2rem 0.4rem;
-    gap: 0.2rem;
+    padding: 0.2rem 0.35rem;
+    gap: 0.15rem;
   }
 
   .lang-btn {
     background: none;
     border: none;
     color: var(--text-muted);
-    font-size: 0.85rem;
-    font-weight: 700;
-    padding: 0.25rem 0.5rem;
+    font-size: 1rem;
+    padding: 0.2rem 0.4rem;
     border-radius: 9999px;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
+    justify-content: center;
     transition: all 0.2s ease;
+    line-height: 1;
   }
 
   .lang-btn:hover {
-    color: var(--text-light);
+    transform: scale(1.15);
   }
 
   .lang-btn.active {
@@ -679,6 +730,82 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
     font-size: 1.05rem;
   }
 
+
+  /* COMMUNITY CIRCULAR BUTTONS (WHATSAPP & TELEGRAM) */
+  .community-icons {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .btn-circle-social {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, background 0.2s ease, border-color 0.2s ease;
+    flex-shrink: 0;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .btn-circle-social:hover {
+    transform: scale(1.22);
+    z-index: 10;
+  }
+
+  .btn-circle-wa {
+    background: rgba(37, 211, 102, 0.16);
+    border: 1.5px solid rgba(37, 211, 102, 0.45);
+    color: #25D366;
+  }
+
+  .btn-circle-wa:hover {
+    background: #25D366;
+    color: #ffffff;
+    border-color: #25D366;
+    box-shadow: 0 0 16px rgba(37, 211, 102, 0.65);
+  }
+
+  .btn-circle-tg {
+    background: rgba(0, 136, 204, 0.16);
+    border: 1.5px solid rgba(0, 136, 204, 0.45);
+    color: #0088cc;
+  }
+
+  .btn-circle-tg:hover {
+    background: #0088cc;
+    color: #ffffff;
+    border-color: #0088cc;
+    box-shadow: 0 0 16px rgba(0, 136, 204, 0.65);
+  }
+
+  .social-svg {
+    display: block;
+    width: 19px;
+    height: 19px;
+  }
+
+  .mobile-link-wa {
+    border: 1px solid rgba(37, 211, 102, 0.35);
+    color: #25D366 !important;
+  }
+
+  .mobile-link-wa:hover {
+    background: rgba(37, 211, 102, 0.15);
+  }
+
+  .mobile-link-tg {
+    border: 1px solid rgba(0, 136, 204, 0.35);
+    color: #0088cc !important;
+  }
+
+  .mobile-link-tg:hover {
+    background: rgba(0, 136, 204, 0.15);
+  }
 
   /* SHARE BUTTON IN HEADER */
   .btn-share-header {

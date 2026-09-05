@@ -7,35 +7,52 @@
     "maps_url": "https://www.google.com/maps/place/Ai+Dossi+Ristorante+Albergo/@44.5876103,11.9251564,17z/data=!4m6!3m5!1s0x477e114004cd3f2f:0xc1734f9bdd22ff6e!8m2!3d44.5876103!4d11.9251564!16s%2Fg%2F119wmhxcn"
   },
   "summary": {
-    "total_cars": 5,
-    "confirmed_cars": 1,
-    "in_progress_cars": 4,
-    "cities_count": 4
+    "total_cars": 8,
+    "confirmed_cars": 5,
+    "maybe_cars": 3,
+    "cities_count": 6
   },
   "rides": [
     {
       "id": "zurigo-swiss",
-      "city": "Zurigo",
+      "city": "Zurigo (Svizzera)",
       "region": "Svizzera 🇨🇭",
       "coordinates": [47.3769, 8.5417],
-      "cars_count": 1,
-      "status": "in_progress",
-      "status_label_it": "In Organizzazione",
-      "status_label_en": "In Progress",
-      "color": "yellow",
-      "driver_or_group": "Equipaggio Elvetico (4 posti)",
-      "hover_text": "Zurigo: 1 Macchina (4 posti) 🚗🇨🇭🍫",
-      "hover_text_en": "Zurich: 1 Car (4 seats) 🚗🇨🇭🍫",
-      "details_it": "Discesa transalpina dalla Svizzera via San Gottardo / Chiasso / A1 verso la Romagna.",
-      "details_en": "Transalpine descent from Switzerland via Gotthard / Chiasso / A1 towards Romagna.",
+      "cars_count": 2,
+      "people_count": 9,
+      "status": "confirmed",
+      "status_label_it": "Sicuro (9 persone: 3 equipaggi confermati)",
+      "status_label_en": "Confirmed (9 people: 3 confirmed crews)",
+      "color": "green",
+      "driver_or_group": "Carovana Elvetica (Palladius + Pizzorni + Patrignani)",
+      "hover_text": "Zurigo / Svizzera: 2-3 Auto (9 persone confermate!) 🟢🇨🇭🍫",
+      "hover_text_en": "Zurich / Switzerland: 2-3 Cars (9 people confirmed!) 🟢🇨🇭🍫",
+      "details_it": "Grande discesa transalpina confermata: Riccardo C. (4), Paolo Pizzorni da Oberbuchsiten (3) e Andrea Patrignani (2) via San Gottardo / Chiasso / A1.",
+      "details_en": "Major confirmed transalpine convoy: Riccardo C. (4), Paolo Pizzorni from Oberbuchsiten (3) and Andrea Patrignani (2) via Gotthard / Chiasso / A1.",
       "cars": [
         {
-          "name": "Auto 1 - Swiss Express",
-          "driver": "In definizione",
-          "tag": "Transalpina 🏔️",
+          "name": "Auto 1 - Swiss Express (Palladius)",
+          "driver": "Riccardo Carlesso",
+          "tag": "Sicuro (4 posti) 🏔️",
           "seats_estimate": "4 posti",
-          "note_it": "Carica di cioccolato svizzero e pronti per la grande traversata alpina.",
-          "note_en": "Loaded with Swiss chocolate and ready for the grand alpine crossing."
+          "note_it": "Carica di cioccolato svizzero e famiglia Palladiana al completo.",
+          "note_en": "Loaded with Swiss chocolate and the full Palladiano crew."
+        },
+        {
+          "name": "Auto 2 - Solothurn Express",
+          "driver": "Paolo Pizzorni",
+          "tag": "Sicuro (3 posti) 🎸",
+          "seats_estimate": "3 posti",
+          "note_it": "Famiglia Pizzorni in arrivo da Oberbuchsiten (CH).",
+          "note_en": "Pizzorni family traveling from Oberbuchsiten (CH)."
+        },
+        {
+          "name": "Auto 3 - Shuttle Patrignani",
+          "driver": "Andrea Patrignani",
+          "tag": "Sicuro (2 posti) 🚗",
+          "seats_estimate": "2 posti",
+          "note_it": "Discesa confermata da Zurigo / Fano per 2 persone.",
+          "note_en": "Confirmed trip from Zurich / Fano for 2 people."
         }
       ]
     },
@@ -45,15 +62,16 @@
       "region": "Emilia-Romagna",
       "coordinates": [44.4949, 11.3426],
       "cars_count": 1,
+      "people_count": 4,
       "status": "confirmed",
-      "status_label_it": "Confermato",
-      "status_label_en": "Confirmed",
+      "status_label_it": "Sicuro (+ 1 in forse)",
+      "status_label_en": "Confirmed (+ 1 maybe)",
       "color": "green",
-      "driver_or_group": "Naser e Karaoke",
-      "hover_text": "Bologna: Naser e Karaoke 🎤🚗",
-      "hover_text_en": "Bologna: Naser & Karaoke 🎤🚗",
-      "details_it": "Partenza da Bologna. Equipaggio pronto per il karaoke itinerante sulla Via Emilia!",
-      "details_en": "Departure from Bologna. Crew ready for roadside karaoke along the Via Emilia!",
+      "driver_or_group": "Naser e Karaoke (più bolognesi)",
+      "hover_text": "Bologna: Naser e Karaoke 🎤🚗 (Tacchini, Marchigiani + Guernelli)",
+      "hover_text_en": "Bologna: Naser & Karaoke 🎤🚗 (Tacchini, Marchigiani + Guernelli)",
+      "details_it": "Partenza da Bologna. Carovana karaoke itinerante sulla Via Emilia: Alessandro Tacchini, Guido Marchigiani (Castel Guelfo) e Federico Guernelli (in forse)!",
+      "details_en": "Departure from Bologna. Roadside karaoke convoy along Via Emilia: Alessandro Tacchini, Guido Marchigiani (Castel Guelfo) and Federico Guernelli (maybe)!",
       "cars": [
         {
           "name": "Auto 1 - Carovana Karaoke",
@@ -71,15 +89,16 @@
       "region": "Piemonte",
       "coordinates": [45.0703, 7.6869],
       "cars_count": 2,
-      "status": "in_progress",
-      "status_label_it": "In Organizzazione",
-      "status_label_en": "In Progress",
+      "people_count": 6,
+      "status": "maybe",
+      "status_label_it": "In Forse ⏳",
+      "status_label_en": "Maybe ⏳",
       "color": "yellow",
       "driver_or_group": "Lord O (tentative)",
-      "hover_text": "Torino: 2 Macchine (Lord O - tentative) 🚗🚗💨",
-      "hover_text_en": "Turin: 2 Cars (Lord O - tentative) 🚗🚗💨",
-      "details_it": "2 vetture in rotta da Torino via A21 / A14 verso la Romagna guidate da Lord O e compagni.",
-      "details_en": "2 cars traveling from Turin via A21 / A14 highway to Romagna with Lord O & friends.",
+      "hover_text": "Torino: 2 Macchine (Lord O - in forse) 🟡🚗💨",
+      "hover_text_en": "Turin: 2 Cars (Lord O - maybe) 🟡🚗💨",
+      "details_it": "2 vetture in rotta da Torino via A21 / A14 verso la Romagna con Lord O e compagni (in definizione).",
+      "details_en": "2 cars traveling from Turin via A21 / A14 highway to Romagna with Lord O & friends (pending confirmation).",
       "cars": [
         {
           "name": "Auto 1 - Torino Express",
@@ -105,15 +124,16 @@
       "region": "Umbria",
       "coordinates": [43.1107, 12.3908],
       "cars_count": 1,
-      "status": "in_progress",
-      "status_label_it": "In Organizzazione",
-      "status_label_en": "In Progress",
+      "people_count": 3,
+      "status": "maybe",
+      "status_label_it": "In Forse ⏳",
+      "status_label_en": "Maybe ⏳",
       "color": "yellow",
       "driver_or_group": "Sonanimalo (tentative)",
-      "hover_text": "Perugia: 1 Macchina (Sonanimalo - tentative) 🚗🌲",
-      "hover_text_en": "Perugia: 1 Car (Sonanimalo - tentative) 🚗🌲",
-      "details_it": "In risalita dagli Appennini umbri verso la pianura romagnola via E45 con Sonanimalo.",
-      "details_en": "Driving up from the Umbrian hills to Romagna via E45 highway with Sonanimalo.",
+      "hover_text": "Perugia: 1 Macchina (Sonanimalo - in forse) 🟡🌲",
+      "hover_text_en": "Perugia: 1 Car (Sonanimalo - maybe) 🟡🌲",
+      "details_it": "In risalita dagli Appennini umbri verso la pianura romagnola via E45 con Sonanimalo (in definizione).",
+      "details_en": "Driving up from the Umbrian hills to Romagna via E45 highway with Sonanimalo (pending confirmation).",
       "cars": [
         {
           "name": "Auto 1 - Grifone Express",
@@ -122,6 +142,60 @@
           "seats_estimate": "3-4 posti",
           "note_it": "Valigie cariche di buon umore e specialità umbre.",
           "note_en": "Trunk packed with festive spirit and Umbrian treats."
+        }
+      ]
+    },
+    {
+      "id": "rimini-riviera",
+      "city": "Rimini",
+      "region": "Emilia-Romagna 🏖️",
+      "coordinates": [44.0594, 12.5683],
+      "cars_count": 1,
+      "people_count": 2,
+      "status": "maybe",
+      "status_label_it": "In Forse ⏳",
+      "status_label_en": "Maybe ⏳",
+      "color": "yellow",
+      "driver_or_group": "Equipaggio Riviera (Andrea Degli Angeli + Bullini da Parigi)",
+      "hover_text": "Rimini: 1 Macchina (Degli Angeli + Bullini) 🟡🏖️",
+      "hover_text_en": "Rimini: 1 Car (Degli Angeli + Bullini) 🟡🏖️",
+      "details_it": "Punto di convergenza per la Riviera: Andrea Degli Angeli (San Marino) e Francesco Bullini (Parigi -> Rimini -> Conselice).",
+      "details_en": "Convergence hub for the Riviera: Andrea Degli Angeli (San Marino) and Francesco Bullini (Paris -> Rimini -> Conselice).",
+      "cars": [
+        {
+          "name": "Auto 1 - Riviera Express",
+          "driver": "In definizione",
+          "tag": "In Forse ⏳",
+          "seats_estimate": "2-3 posti",
+          "note_it": "Passeggeri in fase di conferma: Andrea Degli Angeli e Francesco Bullini.",
+          "note_en": "Passengers pending confirmation: Andrea Degli Angeli and Francesco Bullini."
+        }
+      ]
+    },
+    {
+      "id": "raiano-abruzzo",
+      "city": "Raiano (AQ)",
+      "region": "Abruzzo (AQ) ⛰️",
+      "coordinates": [42.1006, 13.8156],
+      "cars_count": 1,
+      "people_count": 1,
+      "status": "maybe",
+      "status_label_it": "In Forse ⏳",
+      "status_label_en": "Maybe ⏳",
+      "color": "yellow",
+      "driver_or_group": "Fabio Mattei (in forse)",
+      "hover_text": "Raiano (AQ): 1 Partecipante in forse (500 miles!) 🟡⛰️",
+      "hover_text_en": "Raiano (AQ): 1 Participant maybe (500 miles!) 🟡⛰️",
+      "details_it": "Risalita dall'Abruzzo via A14 Adriatica per Fabio Mattei (con colonna sonora 500 Miles).",
+      "details_en": "Journey up from Abruzzo via A14 Adriatic highway for Fabio Mattei (soundtrack: 500 Miles).",
+      "cars": [
+        {
+          "name": "Auto 1 - Abruzzo Express",
+          "driver": "Fabio Mattei",
+          "tag": "In Forse ⏳",
+          "seats_estimate": "1 posto",
+          "note_it": "Richiesta musicale: 500 miles! Posto letto richiesto.",
+          "note_en": "Musical dedication: 500 miles! Bed requested."
         }
       ]
     }
