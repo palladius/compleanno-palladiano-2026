@@ -5,6 +5,7 @@
 - 🎶 **Musica & Playlist**: Added YouTube playlist link for "Ric al Piano" with hover tooltip to homepage hero subtitle and evening program timeline.
 - 🚴 **Triathlon & Strava**: Linked triathlon in hero subtitle to Riccardo's official Strava athlete profile (`athletes/4774708`).
 - 🍕 **Scelte Gastronomiche**: Linked avant-garde culinary experiments directly to "I renounce my Italian citizenship" video and cleaned up redundant callout card.
+- ⏰ **Programma Compatto**: Ridisegnata la timeline della serata in un formato bullet point compatto ed essenziale (HH:MM con descrizione snella in mezza pagina).
 
 ## [1.0.10] - 2026-09-05
 ### Changed 🔄

@@ -380,122 +380,60 @@ const dishes = [
           <span lang-en>A celebration-packed schedule for Riccardo's half-century milestone. From the freshen-up session to the epic finale!</span>
         </p>
       </div>
-
-      <div class="timeline">
-        <!-- 15:00 OPZIONALE -->
-        <div class="timeline-item optional-item">
-          <div class="time-badge optional-badge">
-            <span class="time">15:00</span>
-            <span class="opt-tag" lang-it>[OPZIONALE]</span>
-            <span class="opt-tag" lang-en>[OPTIONAL]</span>
-          </div>
-          <div class="timeline-content">
-            <h3 lang-it>Molla lo Zaino, Doccia & Relax: Sento la puzza di ascelle fin da Zurigo! 🎒🚿</h3>
-            <h3 lang-en>Drop the Backpack, Shower & Relax: I can smell armpits from Zurich! 🎒🚿</h3>
-            <p lang-it>
-              <strong>Per chi arriva da lontano:</strong> fai il check-in nella tua stanza all'Albergo Ai Dossi, molla lo zaino sul letto, fatti una bella doccia calda rigenerante, togliti la polvere del viaggio e scendi con tutta calma per l'inizio dell'aperitivo!
-            </p>
-            <p lang-en>
-              <strong>For guests traveling from afar:</strong> check in to your room at Albergo Ai Dossi, drop your luggage, take a refreshing hot shower, shake off the travel dust, and stroll down relaxed just in time for the cocktail hour!
-            </p>
-            <div class="timeline-quicklink">
-              <a href={`${baseUrl}/dormire`}>
-                <span lang-it>👉 Vedi opzioni per dormire & logistica 🛏️</span>
-                <span lang-en>👉 See accommodation options & logistics 🛏️</span>
-              </a>
-              <span class="quicklink-sep">•</span>
-              <a href={`${baseUrl}/map`}>
-                <span lang-it>🚗 Mappa carpooling & auto</span>
-                <span lang-en>🚗 Carpooling & car map</span>
-              </a>
+      <div class="program-compact-wrapper">
+        <ul class="program-compact-list">
+          <li class="program-row optional-row">
+            <div class="row-time">
+              <span class="time-digit">15:00</span>
+              <span class="badge-opt" lang-it>[OPZIONALE]</span>
+              <span class="badge-opt" lang-en>[OPTIONAL]</span>
             </div>
-          </div>
-        </div>
-
-        <!-- 18:00 APERITIVO -->
-        <div class="timeline-item">
-          <div class="time-badge">
-            <span class="time">18:00</span>
-          </div>
-          <div class="timeline-content">
-            <h3 lang-it>Inizio Aperitivo & Accoglienza 🍸</h3>
-            <h3 lang-en>Welcome Cocktail & Aperitivo 🍸</h3>
-            <p lang-it>
-              Accoglienza ospiti, inalazione ufficiale dell'<em>Aria di Bosco Ferrarese</em>, calici di bollicine, stuzzichini e prime battute sul karma vegetale.
-            </p>
-            <p lang-en>
-              Guest arrival, official inhalation of the <em>Ferrara Forest Air</em>, sparkling toast, appetizers, and introductory laughs on botanical karma.
-            </p>
-          </div>
-        </div>
-
-        <!-- 19:45 CENA -->
-        <div class="timeline-item">
-          <div class="time-badge">
-            <span class="time">19:45</span>
-          </div>
-          <div class="timeline-content">
-            <h3 lang-it>La Grande Cena Palladiana 🍝</h3>
-            <h3 lang-en>The Grand Palladian Dinner 🍝</h3>
-            <p lang-it>
-              Servizio solenne dei <em>Bigoli con la Veganiga di Lugano</em>, <em>Stracotto di Tofu di Maremma</em> (strictly con mucche ignare) e Chianti a fiumi.
-            </p>
-            <p lang-en>
-              Ceremonial serving of <em>Bigoli with Veganiga Sausage from Lugano</em>, <em>Maremma Braised Tofu</em> (strictly overlooking oblivious cows), and endless Chianti.
-            </p>
-            <div class="timeline-quicklink">
-              <a href="#menu">
-                <span lang-it>👉 Guarda i piatti del menu sopra 🍽️</span>
-                <span lang-en>👉 View dishes in the menu above 🍽️</span>
-              </a>
+            <div class="row-desc">
+              <span lang-it><strong>Check-in, doccia & relax:</strong> Molla lo zaino all'Albergo Ai Dossi prima della festa 🎒🚿 (<a href={`${baseUrl}/dormire`} class="gold-link">alloggi</a> • <a href={`${baseUrl}/map`} class="gold-link">auto</a>)</span>
+              <span lang-en><strong>Check-in, shower & relax:</strong> Drop backpacks at Albergo Ai Dossi before the party 🎒🚿 (<a href={`${baseUrl}/dormire`} class="gold-link">stay</a> • <a href={`${baseUrl}/map`} class="gold-link">cars</a>)</span>
             </div>
-          </div>
-        </div>
+          </li>
 
-        <!-- 21:45 DOPOCENA & ROCK -->
-        <div class="timeline-item">
-          <div class="time-badge">
-            <span class="time">21:45</span>
-          </div>
-          <div class="timeline-content">
-            <h3 lang-it>Taglio della torta & Rock '80 🎸</h3>
-            <h3 lang-en>Cutting of the Cake & 80s Rock 🎸</h3>
-            <p lang-it>
-              Taglio della Luisona, bollicine millesimate, discorsi semi-seri e colonna sonora epica anni '80 con Gigi DJ, se c'ha voglia, o forse qualcun altro.
-            </p>
-            <p lang-en>
-              Cutting of the Luisona, vintage bubbly, semi-serious speeches, and an epic '80s rock soundtrack with Gigi DJ (if he feels like it), or maybe someone else.
-            </p>
-            <div class="timeline-quicklink">
-              <a 
-                href="https://www.youtube.com/playlist?list=PL8D88F687A9626E5C" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                title="Riccardo al piano"
-              >
-                <span lang-it>👉 Playlist YouTube 🎹🎶</span>
-                <span lang-en>👉 YouTube Playlist 🎹🎶</span>
-              </a>
+          <li class="program-row">
+            <div class="row-time">
+              <span class="time-digit">18:00</span>
             </div>
-          </div>
-        </div>
+            <div class="row-desc">
+              <span lang-it><strong>Aperitivo & Accoglienza:</strong> Bollicine, inalazione di <em>Aria di Bosco</em> e primi brindisi 🍸</span>
+              <span lang-en><strong>Welcome Cocktail:</strong> Bubbly, <em>Forest Air</em> inhalation and initial toasts 🍸</span>
+            </div>
+          </li>
 
-        <!-- 24:00 CHIUSURA -->
-        <div class="timeline-item">
-          <div class="time-badge">
-            <span class="time">24:00</span>
-          </div>
-          <div class="timeline-content">
-            <h3 lang-it>Tutti Fuori Dalle Balle! 🚛💨</h3>
-            <h3 lang-en>Everybody Out & Goodnight! 🚛💨</h3>
-            <p lang-it>
-              Chiusura cancelli, abbracci calorosi, foto ricordo e rientro nelle proprie dimore prima che scatti il coprifuoco del camionista.
-            </p>
-            <p lang-en>
-              Gates closing, warm farewells, group photos, and safe journeys back before the trucker curfew takes effect!
-            </p>
-          </div>
-        </div>
+          <li class="program-row">
+            <div class="row-time">
+              <span class="time-digit">19:45</span>
+            </div>
+            <div class="row-desc">
+              <span lang-it><strong>La Grande Cena Palladiana:</strong> Bigoli con Veganiga, Tofu di Maremma e Chianti a fiumi 🍝 (<a href="#menu" class="gold-link">vedi menu</a>)</span>
+              <span lang-en><strong>The Grand Palladian Dinner:</strong> Bigoli with Veganiga, Maremma Tofu and Chianti 🍝 (<a href="#menu" class="gold-link">view menu</a>)</span>
+            </div>
+          </li>
+
+          <li class="program-row">
+            <div class="row-time">
+              <span class="time-digit">21:45</span>
+            </div>
+            <div class="row-desc">
+              <span lang-it><strong>Taglio della Luisona & Rock '80:</strong> Discorsi semi-seri e Gigi DJ 🎸 (<a href="https://www.youtube.com/playlist?list=PL8D88F687A9626E5C" target="_blank" rel="noopener noreferrer" class="gold-link" title="Riccardo al piano">playlist YouTube 🎹</a>)</span>
+              <span lang-en><strong>Cutting of the Luisona & 80s Rock:</strong> Speeches and Gigi DJ 🎸 (<a href="https://www.youtube.com/playlist?list=PL8D88F687A9626E5C" target="_blank" rel="noopener noreferrer" class="gold-link" title="Riccardo al piano">YouTube playlist 🎹</a>)</span>
+            </div>
+          </li>
+
+          <li class="program-row">
+            <div class="row-time">
+              <span class="time-digit">24:00</span>
+            </div>
+            <div class="row-desc">
+              <span lang-it><strong>Tutti Fuori Dalle Balle!</strong> Scatta il coprifuoco del camionista 🚛💨</span>
+              <span lang-en><strong>Everybody Out & Goodnight!</strong> Trucker curfew takes effect 🚛💨</span>
+            </div>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -1370,115 +1308,97 @@ const dishes = [
     }
   }
 
-  /* TIMELINE */
-  .timeline {
-    max-width: 750px;
-    margin: 0 auto;
-    position: relative;
-    border-left: 2px solid rgba(245, 158, 11, 0.3);
-    padding-left: 2.2rem;
-  }
-
-  .timeline-item {
-    position: relative;
-    margin-bottom: 3rem;
-  }
-
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -2.68rem;
-    top: 0.25rem;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: var(--accent-gold);
-    box-shadow: 0 0 12px var(--accent-gold);
-  }
-
-  .timeline-item.optional-item::before {
-    background: var(--accent-blue);
-    box-shadow: 0 0 12px var(--accent-blue);
-  }
-
-  .time-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 0.4rem;
-  }
-
-  .time {
-    font-weight: 800;
-    color: var(--accent-gold);
-    font-size: 1.3rem;
-    font-family: 'Playfair Display', serif;
-  }
-
-  .optional-badge .time {
-    color: var(--accent-blue);
-  }
-
-  .opt-tag {
-    background: rgba(56, 189, 248, 0.18);
-    border: 1px solid var(--accent-blue);
-    color: var(--accent-blue);
-    font-size: 0.75rem;
-    font-weight: 800;
-    padding: 0.15rem 0.55rem;
-    border-radius: 9999px;
-    letter-spacing: 1px;
-  }
-
-  .timeline-content {
-    background: var(--bg-card);
+  /* COMPACT PROGRAM TIMELINE */
+  .program-compact-wrapper {
+    max-width: 760px;
+    margin: 1.5rem auto 0;
+    background: rgba(15, 23, 42, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 18px;
-    padding: 1.6rem 1.8rem;
+    border-radius: 20px;
+    padding: 1rem 1.4rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
   }
 
-  .optional-item .timeline-content {
-    border-color: rgba(56, 189, 248, 0.35);
-    background: rgba(15, 23, 42, 0.7);
-  }
-
-  .timeline-content h3 {
-    font-size: 1.35rem;
-    margin-bottom: 0.6rem;
-    color: var(--text-light);
-  }
-
-  .timeline-content p {
-    color: var(--text-muted);
-    font-size: 1.02rem;
-    line-height: 1.6;
-  }
-
-  .timeline-quicklink {
-    margin-top: 1rem;
-    padding-top: 0.8rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  .program-compact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .program-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1.2rem;
+    padding: 0.65rem 0.9rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid var(--accent-gold);
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+
+  .program-row:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(3px);
+  }
+
+  .program-row.optional-row {
+    border-left-color: var(--accent-blue);
+  }
+
+  .row-time {
+    display: flex;
     align-items: center;
-    gap: 0.6rem 0.8rem;
+    gap: 0.45rem;
+    flex-shrink: 0;
+    min-width: 120px;
   }
 
-  .timeline-quicklink a {
+  .time-digit {
+    font-weight: 800;
     color: var(--accent-gold);
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 1.15rem;
+    font-family: 'Playfair Display', serif;
   }
 
-  .timeline-quicklink a:hover {
-    text-decoration: underline;
+  .optional-row .time-digit {
+    color: var(--accent-blue);
   }
 
-  .quicklink-sep {
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 0.85rem;
+  .badge-opt {
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid var(--accent-blue);
+    color: var(--accent-blue);
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 0.1rem 0.4rem;
+    border-radius: 9999px;
+    letter-spacing: 0.5px;
+  }
+
+  .row-desc {
+    color: var(--text-light);
+    font-size: 0.98rem;
+    line-height: 1.45;
+  }
+
+  .row-desc strong {
+    color: #fff;
+    margin-right: 0.2rem;
+  }
+
+  @media (max-width: 640px) {
+    .program-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.3rem;
+      padding: 0.7rem 0.8rem;
+    }
+    .row-time {
+      min-width: auto;
+    }
   }
 
   /* HIGHLIGHTS GRID */
