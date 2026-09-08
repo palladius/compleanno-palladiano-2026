@@ -1,5 +1,10 @@
 # Changelog 📝✨
 
+## [1.0.11] - 2026-09-08
+### Added 🚀
+- 🎶 **Musica & Playlist**: Added YouTube playlist link for "Ric al Piano" with hover tooltip to homepage hero subtitle and evening program timeline.
+- 🚴 **Triathlon & Strava**: Linked triathlon in hero subtitle to Riccardo's official Strava athlete profile (`athletes/4774708`).
+
 ## [1.0.10] - 2026-09-05
 ### Changed 🔄
 - 🇨🇭 **Coordinate Svizzera su Lugano**: Spostato il punto di riferimento svizzero su Lugano (`[46.0037, 8.9511]`) permettendo alla mappa di aumentare di 1 livello lo zoom mantenendo visibili tutti i punti da Torino, Abruzzo e Svizzera.
