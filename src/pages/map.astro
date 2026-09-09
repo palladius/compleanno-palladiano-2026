@@ -5,6 +5,7 @@ import carsData from '../data/cars.json';
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh-8460JMo3VTDrOgrDahOHObCmnFk-o_Eg/viewform";
 const whatsappAnnunciUrl = "https://chat.whatsapp.com/BCQDijWNCa45A6srlXpZjo";
+const telegramUrl = "https://t.me/+kx-bUGjBoFs0ODlk";
 ---
 
 <Layout title="Mappa delle Macchine | Il 50° Compleanno Palladiano" currentPage="map">
@@ -97,8 +98,8 @@ const whatsappAnnunciUrl = "https://chat.whatsapp.com/BCQDijWNCa45A6srlXpZjo";
         <span class="cta-badge">🤝 CONDIVIDI IL VIAGGIO</span>
         <h3 lang-it>Hai posti liberi in macchina o cerchi un passaggio?</h3>
         <h3 lang-en>Have spare seats or looking for a ride?</h3>
-        <p lang-it>Segnalalo nel modulo RSVP oppure scrivici su WhatsApp per sincronizzare il tuo equipaggio sulla mappa!</p>
-        <p lang-en>Let us know in the RSVP form or write to us on WhatsApp to get your crew plotted on this map!</p>
+        <p lang-it>Segnalalo nel modulo RSVP oppure scrivici su WhatsApp o Telegram per sincronizzare il tuo equipaggio sulla mappa!</p>
+        <p lang-en>Let us know in the RSVP form or reach out on WhatsApp / Telegram to get your crew plotted on this map!</p>
       </div>
       <div class="cta-actions">
         <a href={publicFormUrl} target="_blank" rel="noopener noreferrer" class="btn btn-gold">
@@ -115,6 +116,13 @@ const whatsappAnnunciUrl = "https://chat.whatsapp.com/BCQDijWNCa45A6srlXpZjo";
           </svg>
           <span lang-it>Chiedi su WhatsApp</span>
           <span lang-en>Ask on WhatsApp</span>
+        </a>
+        <a href={telegramUrl} target="_blank" rel="noopener noreferrer" class="btn btn-tg" title="Chiedi un passaggio o proponi un'auto su Telegram">
+          <svg class="tg-btn-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.99 1.27-5.61 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.06-.49-.83-.27-1.49-.42-1.43-.88.03-.24.38-.49 1.04-.75 4.09-1.78 6.82-2.95 8.18-3.52 3.89-1.62 4.7-.9 4.7.74z"/>
+          </svg>
+          <span lang-it>Chiedi su Telegram</span>
+          <span lang-en>Ask on Telegram</span>
         </a>
       </div>
     </div>
@@ -567,7 +575,24 @@ const whatsappAnnunciUrl = "https://chat.whatsapp.com/BCQDijWNCa45A6srlXpZjo";
     box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
   }
 
-  .wa-btn-icon {
+  .btn-tg {
+    background: #0088cc;
+    color: #ffffff;
+    font-weight: 700;
+    border: 1.5px solid rgba(0, 136, 204, 0.6);
+    box-shadow: 0 4px 15px rgba(0, 136, 204, 0.35);
+  }
+
+  .btn-tg:hover {
+    background: #0077b5;
+    color: #ffffff;
+    border-color: #0088cc;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 136, 204, 0.6);
+  }
+
+  .wa-btn-icon,
+  .tg-btn-icon {
     flex-shrink: 0;
   }
 
