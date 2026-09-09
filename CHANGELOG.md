@@ -1,5 +1,9 @@
 # Changelog 📝✨
 
+## [1.0.12] - 2026-09-09
+### Changed 🔄
+- 🚗 **Mappa & Passaggi (`/map`)**: Sostituito il bottone contatti con *"Chiedi su WhatsApp"* (verde con icona WhatsApp) nel box di condivisione del viaggio.
+
 ## [1.0.11] - 2026-09-08
 ### Added 🚀
 - 🎶 **Musica & Playlist**: Added YouTube playlist link for "Ric al Piano" with hover tooltip to homepage hero subtitle and evening program timeline.

@@ -4,6 +4,7 @@ import carsData from '../data/cars.json';
 
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh-8460JMo3VTDrOgrDahOHObCmnFk-o_Eg/viewform";
+const whatsappAnnunciUrl = "https://chat.whatsapp.com/BCQDijWNCa45A6srlXpZjo";
 ---
 
 <Layout title="Mappa delle Macchine | Il 50° Compleanno Palladiano" currentPage="map">
@@ -108,9 +109,12 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
           <span lang-it>Foglio Macchine 📊</span>
           <span lang-en>Cars Spreadsheet 📊</span>
         </a>
-        <a href={`${baseUrl}/contatti`} class="btn btn-outline">
-          <span lang-it>Contatti ✉️</span>
-          <span lang-en>Contact Us ✉️</span>
+        <a href={whatsappAnnunciUrl} target="_blank" rel="noopener noreferrer" class="btn btn-wa" title="Chiedi un passaggio o proponi un'auto su WhatsApp">
+          <svg class="wa-btn-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24zm4.52 11.66c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.07-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.12.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.12-.22-.19-.47-.31z"/>
+          </svg>
+          <span lang-it>Chiedi su WhatsApp</span>
+          <span lang-en>Ask on WhatsApp</span>
         </a>
       </div>
     </div>
@@ -545,6 +549,26 @@ const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh
   .btn-outline:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color: #fff;
+  }
+
+  .btn-wa {
+    background: #25D366;
+    color: #ffffff;
+    font-weight: 700;
+    border: 1.5px solid rgba(37, 211, 102, 0.6);
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+  }
+
+  .btn-wa:hover {
+    background: #20ba59;
+    color: #ffffff;
+    border-color: #25D366;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+  }
+
+  .wa-btn-icon {
+    flex-shrink: 0;
   }
 
   /* CUSTOM MAP MARKERS (Leaflet Global Styles) */
