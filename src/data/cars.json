@@ -10,7 +10,7 @@
     "total_cars": 8,
     "confirmed_cars": 5,
     "maybe_cars": 3,
-    "cities_count": 6
+    "cities_count": 5
   },
   "rides": [
     {
@@ -151,51 +151,24 @@
       "region": "Emilia-Romagna 🏖️",
       "coordinates": [44.0594, 12.5683],
       "cars_count": 1,
-      "people_count": 2,
+      "people_count": 3,
       "status": "maybe",
       "status_label_it": "In Forse ⏳",
       "status_label_en": "Maybe ⏳",
       "color": "yellow",
-      "driver_or_group": "Equipaggio Riviera (Andrea Degli Angeli + Bullini da Parigi)",
-      "hover_text": "Rimini: 1 Macchina (Degli Angeli + Bullini) 🟡🏖️",
-      "hover_text_en": "Rimini: 1 Car (Degli Angeli + Bullini) 🟡🏖️",
-      "details_it": "Punto di convergenza per la Riviera: Andrea Degli Angeli (San Marino) e Francesco Bullini (Parigi -> Rimini -> Conselice).",
-      "details_en": "Convergence hub for the Riviera: Andrea Degli Angeli (San Marino) and Francesco Bullini (Paris -> Rimini -> Conselice).",
+      "driver_or_group": "Equipaggio Riviera (Andrea Degli Angeli + Bullini + Fabio Mattei)",
+      "hover_text": "Rimini: 1 Macchina (Degli Angeli + Bullini + Mattei) 🟡🏖️",
+      "hover_text_en": "Rimini: 1 Car (Degli Angeli + Bullini + Mattei) 🟡🏖️",
+      "details_it": "Punto di convergenza per la Riviera: Andrea Degli Angeli (San Marino), Francesco Bullini (Parigi) e Fabio Mattei (in treno da Raiano -> Rimini).",
+      "details_en": "Convergence hub for the Riviera: Andrea Degli Angeli (San Marino), Francesco Bullini (Paris), and Fabio Mattei (train from Raiano -> Rimini).",
       "cars": [
         {
           "name": "Auto 1 - Riviera Express",
-          "driver": "In definizione",
+          "driver": "Andrea Degli Angeli",
           "tag": "In Forse ⏳",
-          "seats_estimate": "2-3 posti",
-          "note_it": "Passeggeri in fase di conferma: Andrea Degli Angeli e Francesco Bullini.",
-          "note_en": "Passengers pending confirmation: Andrea Degli Angeli and Francesco Bullini."
-        }
-      ]
-    },
-    {
-      "id": "raiano-abruzzo",
-      "city": "Raiano (AQ)",
-      "region": "Abruzzo (AQ) ⛰️",
-      "coordinates": [42.1006, 13.8156],
-      "cars_count": 1,
-      "people_count": 1,
-      "status": "maybe",
-      "status_label_it": "In Forse ⏳",
-      "status_label_en": "Maybe ⏳",
-      "color": "yellow",
-      "driver_or_group": "Fabio Mattei (in forse)",
-      "hover_text": "Raiano (AQ): 1 Partecipante in forse (500 miles!) 🟡⛰️",
-      "hover_text_en": "Raiano (AQ): 1 Participant maybe (500 miles!) 🟡⛰️",
-      "details_it": "Risalita dall'Abruzzo via A14 Adriatica per Fabio Mattei (con colonna sonora 500 Miles).",
-      "details_en": "Journey up from Abruzzo via A14 Adriatic highway for Fabio Mattei (soundtrack: 500 Miles).",
-      "cars": [
-        {
-          "name": "Auto 1 - Abruzzo Express",
-          "driver": "Fabio Mattei",
-          "tag": "In Forse ⏳",
-          "seats_estimate": "1 posto",
-          "note_it": "Richiesta musicale: 500 miles! Posto letto richiesto.",
-          "note_en": "Musical dedication: 500 miles! Bed requested."
+          "seats_estimate": "3-4 posti",
+          "note_it": "Passeggeri: Andrea Degli Angeli, Francesco Bullini e Fabio Mattei (arriva in treno da Raiano e sale in auto a Rimini).",
+          "note_en": "Passengers: Andrea Degli Angeli, Francesco Bullini, and Fabio Mattei (train from Raiano to Rimini, then joins car to Conselice)."
         }
       ]
     }
