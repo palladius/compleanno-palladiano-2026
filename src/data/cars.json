@@ -89,16 +89,16 @@
       "region": "Piemonte",
       "coordinates": [45.0703, 7.6869],
       "cars_count": 2,
-      "people_count": 6,
+      "people_count": 5,
       "status": "maybe",
       "status_label_it": "In Forse ⏳",
       "status_label_en": "Maybe ⏳",
       "color": "yellow",
-      "driver_or_group": "Lord O (tentative)",
-      "hover_text": "Torino: 2 Macchine (Lord O - in forse) 🟡🚗💨",
-      "hover_text_en": "Turin: 2 Cars (Lord O - maybe) 🟡🚗💨",
-      "details_it": "2 vetture in rotta da Torino via A21 / A14 verso la Romagna con Lord O e compagni (in definizione).",
-      "details_en": "2 cars traveling from Turin via A21 / A14 highway to Romagna with Lord O & friends (pending confirmation).",
+      "driver_or_group": "Lord O & Dario",
+      "hover_text": "Torino: 2 Macchine (Lord O & Dario) 🟡🚗💨",
+      "hover_text_en": "Turin: 2 Cars (Lord O & Dario) 🟡🚗💨",
+      "details_it": "2 vetture in rotta da Torino via A21 / A14 verso la Romagna: Lord O e Dario con macchina da 2 persone.",
+      "details_en": "2 cars traveling from Turin via A21 / A14 highway to Romagna: Lord O and Dario with a 2-person car.",
       "cars": [
         {
           "name": "Auto 1 - Torino Express",
@@ -109,12 +109,12 @@
           "note_en": "Departure around 14:00 for early check-in, hot shower, and chill."
         },
         {
-          "name": "Auto 2 - Torino Navetta",
-          "driver": "In definizione",
-          "tag": "Flessibile 🔀",
-          "seats_estimate": "3-4 posti",
-          "note_it": "Orario flessibile, possibile ritrovo all'autogrill.",
-          "note_en": "Flexible schedule, optional highway rendezvous."
+          "name": "Auto 2 - Torino (Dario)",
+          "driver": "Dario",
+          "tag": "2 posti 🚗",
+          "seats_estimate": "2 posti",
+          "note_it": "Macchina da 2 persone in arrivo da Torino con Dario.",
+          "note_en": "2-person car traveling from Turin with Dario."
         }
       ]
     },
