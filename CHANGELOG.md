@@ -1,5 +1,9 @@
 # Changelog 📝✨
 
+## [1.0.14] - 2026-09-21
+### Changed 🔄
+- ✉️ **Pagina Contatti**: Rimossa la form email rotta. Ora la pagina mostra solo: 📢 WhatsApp (⭐ consigliato), ✈️ Telegram (backup), e ✍️ Form RSVP con avviso ⚠️ "il posto a tavola NON è garantito senza registrazione".
+
 ## [1.0.13] - 2026-09-15
 ### Changed 🔄
 - 🛏️ **Letti Confermati vs In Forse**: Split dei posti letto in `confirmed_beds` (🟢) e `maybe_beds` (🟡) in base allo stato di partecipazione. La pagina `/stats` ora mostra il breakdown dettagliato. Il campo `need_accomodation` rimane come somma totale per backward compatibility.

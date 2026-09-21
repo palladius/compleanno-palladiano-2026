@@ -1,9 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const riccardoEmail = "palladiusbonton+50anni@gmail.com";
-const ermeteEmail = "ermetebottazzi@gmail.com";
 const telegramUrl = "https://t.me/+kx-bUGjBoFs0ODlk";
 const whatsappAnnunciUrl = "https://chat.whatsapp.com/BCQDijWNCa45A6srlXpZjo";
+const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh-8460JMo3VTDrOgrDahOHObCmnFk-o_Eg/viewform";
 ---
 
 <Layout title="Contatti | 50° Compleanno Palladiano ✉️" currentPage="contatti">
@@ -21,141 +20,59 @@ const whatsappAnnunciUrl = "https://chat.whatsapp.com/BCQDijWNCa45A6srlXpZjo";
         </p>
       </header>
 
-      <!-- CLEAN CENTERED FORM CARD -->
       <div class="contact-card">
-        <form id="contactForm" class="contact-form">
-          <!-- DROPDOWN CHI SEI -->
-          <div class="form-group">
-            <label for="senderRole">
-              <span lang-it>Chi sei?</span>
-              <span lang-en>Who are you?</span>
-            </label>
-            <select id="senderRole" name="role" class="form-input form-select" required>
-              <option value="Un amico di Riccardo">Amico di Riccardo</option>
-              <option value="Un familiare">Un familiare</option>
-              <option value="Un collega">Un collega</option>
-              <option value="Un hacker">Un hacker 👾</option>
-              <option value="Un rompicoglioni">Un rompicoglioni 💣</option>
-              <option value="Un camionista">Un camionista 🚛</option>
-              <option value="altro">Altro (specificare)</option>
-            </select>
-          </div>
+        <!-- WHATSAPP - CONSIGLIATO -->
+        <div class="channel-block channel-primary">
+          <div class="channel-badge">⭐ <span lang-it>CONSIGLIATO</span><span lang-en>RECOMMENDED</span></div>
+          <a href={whatsappAnnunciUrl} target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-block">
+            <span class="ch-icon">📢</span>
+            <span lang-it>Canale WhatsApp</span>
+            <span lang-en>WhatsApp Channel</span>
+          </a>
+          <p class="channel-desc">
+            <span lang-it>Annunci ufficiali, orari, aggiornamenti dell'ultimo minuto. Il modo più veloce per restare aggiornati!</span>
+            <span lang-en>Official announcements, schedules, last-minute updates. The fastest way to stay in the loop!</span>
+          </p>
+        </div>
 
-          <!-- CAMPO SPECIFICARE PER "ALTRO" -->
-          <div class="form-group" id="otherRoleGroup" style="display: none;">
-            <label for="otherRoleInput">
-              <span lang-it>Specifica chi sei:</span>
-              <span lang-en>Please specify:</span>
-            </label>
-            <input type="text" id="otherRoleInput" placeholder="Es. Compagno di calcetto / Vicino di casa" class="form-input" />
-          </div>
+        <!-- TELEGRAM - BACKUP -->
+        <div class="channel-block">
+          <a href={telegramUrl} target="_blank" rel="noopener noreferrer" class="btn btn-telegram btn-block">
+            <span class="ch-icon">✈️</span>
+            <span lang-it>Community Telegram</span>
+            <span lang-en>Telegram Community</span>
+          </a>
+          <p class="channel-desc">
+            <span lang-it>Alternativa per chi preferisce Telegram. Stesse info, stessa allegria!</span>
+            <span lang-en>Alternative for Telegram fans. Same info, same fun!</span>
+          </p>
+        </div>
 
-          <div class="form-group">
-            <label for="senderName">
-              <span lang-it>Il tuo Nome:</span>
-              <span lang-en>Your Name:</span>
-            </label>
-            <input type="text" id="senderName" name="name" placeholder="Nome e Cognome" required class="form-input" />
-          </div>
+        <!-- SEPARATORE -->
+        <hr class="channel-divider" />
 
-          <div class="form-group">
-            <label for="msgSubject">
-              <span lang-it>Oggetto:</span>
-              <span lang-en>Subject:</span>
-            </label>
-            <input type="text" id="msgSubject" name="subject" placeholder="Es. Domanda sulla serata / Canzone Rock '80" required class="form-input" />
+        <!-- RSVP FORM - CON AVVISO FOMO -->
+        <div class="channel-block channel-rsvp">
+          <div class="rsvp-warning">
+            <span class="warning-icon">⚠️</span>
+            <p>
+              <span lang-it><strong>ATTENZIONE:</strong> Se non compili la form RSVP, il tuo posto a tavola <strong>NON è garantito!</strong> Possiamo organizzare cena e posti letto solo per chi si registra.</span>
+              <span lang-en><strong>WARNING:</strong> If you don't fill out the RSVP form, your seat at the table is <strong>NOT guaranteed!</strong> We can only arrange dinner and beds for registered guests.</span>
+            </p>
           </div>
-
-          <div class="form-group">
-            <label for="msgBody">
-              <span lang-it>Messaggio:</span>
-              <span lang-en>Message:</span>
-            </label>
-            <textarea id="msgBody" name="body" rows="5" placeholder="Scrivi qui il tuo messaggio..." required class="form-input form-textarea"></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-block">
-            <span lang-it>Invia Messaggio via Email ✉️</span>
-            <span lang-en>Send Message via Email ✉️</span>
-          </button>
-        </form>
-
-        <div class="direct-links-wrap">
-          <div class="direct-label">
-            <span lang-it>Preferisci una chat rapida o un'email diretta?</span>
-            <span lang-en>Prefer a quick chat or direct email?</span>
-          </div>
-          <div class="direct-btns">
-            <a href={whatsappAnnunciUrl} target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" title="Unisciti alla community WhatsApp">
-              <span class="wa-icon">📢</span>
-              <span lang-it>Canale WhatsApp</span>
-              <span lang-en>WhatsApp Channel</span>
-            </a>
-            <a href={telegramUrl} target="_blank" rel="noopener noreferrer" class="btn btn-telegram" title="Unisciti alla community Telegram">
-              <span class="tg-icon">✈️</span>
-              <span lang-it>Community Telegram</span>
-              <span lang-en>Telegram Community</span>
-            </a>
-            <a href={`mailto:${riccardoEmail}?subject=50%C2%B0%20Compleanno%20Palladiano`} class="btn btn-secondary btn-email-direct">
-              <span>📧 Email Diretta</span>
-            </a>
-          </div>
+          <a href={publicFormUrl} target="_blank" rel="noopener noreferrer" class="btn btn-rsvp btn-block">
+            <span class="ch-icon">✍️</span>
+            <span lang-it>Compila la Form RSVP</span>
+            <span lang-en>Fill Out the RSVP Form</span>
+          </a>
+          <p class="channel-desc">
+            <span lang-it>Conferma la tua presenza, indica quanti siete, eventuali intolleranze e se servono posti letto.</span>
+            <span lang-en>Confirm your attendance, how many you are, any dietary needs and if you need a bed.</span>
+          </p>
         </div>
       </div>
     </div>
   </main>
-
-  <script define:vars={{ riccardoEmail, ermeteEmail }}>
-    const roleSelect = document.getElementById('senderRole');
-    const otherGroup = document.getElementById('otherRoleGroup');
-    const otherInput = document.getElementById('otherRoleInput');
-
-    if (roleSelect && otherGroup) {
-      roleSelect.addEventListener('change', () => {
-        if (roleSelect.value === 'altro') {
-          otherGroup.style.display = 'flex';
-          otherInput.setAttribute('required', 'required');
-          otherInput.focus();
-        } else {
-          otherGroup.style.display = 'none';
-          otherInput.removeAttribute('required');
-        }
-      });
-    }
-
-    const form = document.getElementById('contactForm');
-    if (form) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        let role = roleSelect.value;
-        if (role === 'altro' && otherInput && otherInput.value.trim()) {
-          role = otherInput.value.trim();
-        }
-
-        const name = document.getElementById('senderName').value.trim();
-        const subject = document.getElementById('msgSubject').value.trim();
-        const bodyText = document.getElementById('msgBody').value.trim();
-
-        // If role is "Un camionista", add Ermete in CC!
-        let ccParam = "";
-        if (roleSelect.value === 'Un camionista') {
-          ccParam = `&cc=${ermeteEmail}`;
-        }
-
-        const fullSubject = encodeURIComponent(`[50° Compleanno] ${subject} (da ${name} - ${role})`);
-        const fullBody = encodeURIComponent(`Ciao Riccardo,
-
-${bodyText}
-
----
-Da: ${name}
-Ruolo: ${role}
-(Inviato da compleanno-palladiano-2026)`);
-
-        window.location.href = `mailto:${riccardoEmail}?subject=${fullSubject}${ccParam}&body=${fullBody}`;
-      });
-    }
-  </script>
 </Layout>
 
 <style>
@@ -177,131 +94,129 @@ Ruolo: ${role}
     border-radius: 22px;
     padding: 2.4rem;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-  }
-
-  .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 1.6rem;
   }
 
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    text-align: left;
+  .channel-block {
+    text-align: center;
   }
 
-  .form-group label {
-    font-size: 0.92rem;
-    font-weight: 600;
-    color: var(--text-light);
+  .channel-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #0f172a;
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    margin-bottom: 0.8rem;
   }
 
-  .form-input {
-    background: rgba(11, 17, 32, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: var(--text-light);
-    padding: 0.85rem 1rem;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-family: inherit;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  .channel-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-top: 0.6rem;
+    line-height: 1.5;
   }
 
-  .form-select {
-    cursor: pointer;
-  }
-
-  .form-input:focus {
-    outline: none;
-    border-color: var(--accent-gold);
-    box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
-  }
-
-  .form-textarea {
-    resize: vertical;
-    min-height: 120px;
+  .channel-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 0.4rem 0;
   }
 
   .btn-block {
     width: 100%;
-    margin-top: 0.5rem;
     padding: 1rem;
     font-size: 1.05rem;
-  }
-
-  .direct-links-wrap {
-    text-align: center;
-    margin-top: 1.8rem;
-    padding-top: 1.4rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .direct-label {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin-bottom: 0.8rem;
-  }
-
-  .direct-btns {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.9rem;
-    flex-wrap: wrap;
+    gap: 0.5rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-block:hover {
+    transform: translateY(-2px);
+  }
+
+  .ch-icon {
+    font-size: 1.2rem;
   }
 
   .btn-whatsapp {
     background: linear-gradient(135deg, #25D366, #128C7E);
     color: #ffffff;
-    font-weight: 700;
-    padding: 0.8rem 1.4rem;
-    border-radius: 12px;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
     box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
   .btn-whatsapp:hover {
     background: #20ba59;
-    transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
-  }
-
-  .wa-icon {
-    font-size: 1.1rem;
   }
 
   .btn-telegram {
     background: linear-gradient(135deg, #0088cc, #006699);
     color: #ffffff;
-    font-weight: 700;
-    padding: 0.8rem 1.4rem;
-    border-radius: 12px;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
     box-shadow: 0 4px 15px rgba(0, 136, 204, 0.35);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
   .btn-telegram:hover {
     background: #0077b5;
-    transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 136, 204, 0.5);
   }
 
-  .tg-icon {
+  .btn-rsvp {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #0f172a;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);
     font-size: 1.1rem;
   }
 
-  .btn-email-direct {
-    padding: 0.8rem 1.4rem;
-    font-size: 0.95rem;
+  .btn-rsvp:hover {
+    background: #e8910a;
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+  }
+
+  .rsvp-warning {
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.5);
+    border-radius: 14px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .rsvp-warning .warning-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .rsvp-warning p {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--text-light);
+  }
+
+  @media (max-width: 600px) {
+    .contact-card {
+      padding: 1.4rem;
+    }
+
+    .rsvp-warning {
+      padding: 1rem;
+    }
   }
 </style>
+
