@@ -101,7 +101,8 @@ def crunch_data(rows, mappings_path=MAPPINGS_FILE):
     maybe = 0
     respondents = 0
     maybe_respondents = 0
-    need_accomodation = 0
+    confirmed_beds = 0
+    maybe_beds = 0
     rompicoglioni = 0
     dietary_breakdown = {
         "celiaci": 0,
@@ -130,16 +131,23 @@ def crunch_data(rows, mappings_path=MAPPINGS_FILE):
         if "si" in attendance or "sì" in attendance:
             respondents += 1
             confirmed += people_count
+            is_confirmed = True
         elif "forse" in attendance:
             maybe_respondents += 1
             maybe += people_count
+            is_confirmed = False
+        else:
+            is_confirmed = False
             
         # Get beds
         beds_str = str(row.get("Servono posti letto? Se si', quanti?", "0"))
         beds_match = re.search(r'\d+', beds_str)
         beds_count = int(beds_match.group()) if beds_match else 0
         
-        need_accomodation += beds_count
+        if is_confirmed:
+            confirmed_beds += beds_count
+        else:
+            maybe_beds += beds_count
         
         # Dietary restrictions (rompicoglioni)
         dietary_str = str(row.get("Intolleranze alimentari, allergie o diete particolari", "")).strip().lower()
@@ -163,7 +171,9 @@ def crunch_data(rows, mappings_path=MAPPINGS_FILE):
         "maybe_respondents": maybe_respondents,
         "confirmed": confirmed,
         "maybe": maybe,
-        "need_accomodation": need_accomodation,
+        "confirmed_beds": confirmed_beds,
+        "maybe_beds": maybe_beds,
+        "need_accomodation": confirmed_beds + maybe_beds,
         "rompicoglioni": rompicoglioni,
         "dietary_breakdown": dietary_breakdown,
         "cities": cities,

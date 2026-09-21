@@ -1,5 +1,9 @@
 # Changelog 📝✨
 
+## [1.0.13] - 2026-09-15
+### Changed 🔄
+- 🛏️ **Letti Confermati vs In Forse**: Split dei posti letto in `confirmed_beds` (🟢) e `maybe_beds` (🟡) in base allo stato di partecipazione. La pagina `/stats` ora mostra il breakdown dettagliato. Il campo `need_accomodation` rimane come somma totale per backward compatibility.
+
 ## [1.0.12] - 2026-09-09
 ### Changed 🔄
 - 🚗 **Mappa & Passaggi (`/map`)**: Sostituito il vecchio bottone contatti con i bottoni diretti della community *"Chiedi su WhatsApp"* e *"Chiedi su Telegram"* nel box di condivisione del viaggio.

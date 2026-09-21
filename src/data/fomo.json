@@ -1,21 +1,24 @@
 {
-  "total_records": 15,
-  "respondents": 11,
-  "maybe_respondents": 4,
-  "confirmed": 22,
-  "maybe": 4,
-  "need_accomodation": 13,
-  "rompicoglioni": 6,
+  "total_records": 21,
+  "respondents": 15,
+  "maybe_respondents": 5,
+  "confirmed": 27,
+  "maybe": 5,
+  "confirmed_beds": 15,
+  "maybe_beds": 2,
+  "need_accomodation": 17,
+  "rompicoglioni": 11,
   "dietary_breakdown": {
     "celiaci": 1,
     "vegani": 0,
     "vegetariani": 1,
-    "altro": 4
+    "altro": 9
   },
   "cities": {
     "Svizzera": 3,
-    "Bologna": 3,
-    "Rimini": 2
+    "Bologna": 4,
+    "Rimini": 2,
+    "Milano": 2
   },
   "total_accomodation": 35,
   "total_seats": 100

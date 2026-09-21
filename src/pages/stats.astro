@@ -102,9 +102,14 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
           />
           <div class="stat-numbers">
             <div class="stat-row">
-              <span class="stat-val">{fomoStats.need_accomodation}</span>
-              <span class="stat-lbl" lang-it>Posti Prenotati</span>
-              <span class="stat-lbl" lang-en>Beds Booked</span>
+              <span class="stat-val">{fomoStats.confirmed_beds ?? fomoStats.need_accomodation}</span>
+              <span class="stat-lbl" lang-it>🟢 Letti Confermati</span>
+              <span class="stat-lbl" lang-en>🟢 Confirmed Beds</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-val">{fomoStats.maybe_beds ?? 0}</span>
+              <span class="stat-lbl" lang-it>🟡 Letti In Forse</span>
+              <span class="stat-lbl" lang-en>🟡 Maybe Beds</span>
             </div>
             <div class="stat-row">
               <span class="stat-val">{fomoStats.total_accomodation}</span>

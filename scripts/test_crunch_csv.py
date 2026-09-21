@@ -104,6 +104,8 @@ def test_crunch_data_dietary_restrictions():
     data = crunch_data(rows)
     assert data["confirmed"] == 2
     assert data["maybe"] == 2
+    assert data["confirmed_beds"] == 2
+    assert data["maybe_beds"] == 2
     assert data["need_accomodation"] == 4
     assert data["rompicoglioni"] == 3
     assert data["dietary_breakdown"]["vegani"] == 1
