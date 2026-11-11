@@ -56,6 +56,11 @@ const telegramUrl = "https://t.me/+kx-bUGjBoFs0ODlk";
             <span lang-it>Mappa</span>
             <span lang-en>Map</span>
           </a>
+          <a href={`${baseUrl}/invitati`} class={`nav-link ${currentPage === 'invitati' ? 'active' : ''}`}>
+            <span class="nav-icon">🥂</span>
+            <span lang-it>Invitati</span>
+            <span lang-en>Guests</span>
+          </a>
           <a href={`${baseUrl}/contatti`} class={`nav-link ${currentPage === 'contatti' ? 'active' : ''}`}>
             <span class="nav-icon">✉️</span>
             <span lang-it>Contatti</span>
@@ -143,6 +148,11 @@ const telegramUrl = "https://t.me/+kx-bUGjBoFs0ODlk";
           <span lang-it>Mappa delle Auto & Carpooling</span>
           <span lang-en>Cars Map & Carpooling</span>
         </a>
+        <a href={`${baseUrl}/invitati`} class={`mobile-link ${currentPage === 'invitati' ? 'active' : ''}`}>
+          <span>🥂</span>
+          <span lang-it>Chi c'è? (Confermati & In Forse)</span>
+          <span lang-en>Guest List (Confirmed & Maybe)</span>
+        </a>
         <a href={`${baseUrl}/contatti`} class={`mobile-link ${currentPage === 'contatti' ? 'active' : ''}`}>
           <span>✉️</span>
           <span lang-it>Scrivi a Riccardo & Ermete</span>
@@ -180,6 +190,7 @@ const telegramUrl = "https://t.me/+kx-bUGjBoFs0ODlk";
           <a href={`${baseUrl}/menu`}>Menu</a> •
           <a href={`${baseUrl}/dormire`}><span lang-it>Dormire</span><span lang-en>Accommodation</span></a> •
           <a href={`${baseUrl}/map`}><span lang-it>Mappa Auto</span><span lang-en>Car Map</span></a> •
+          <a href={`${baseUrl}/invitati`}><span lang-it>Invitati 🥂</span><span lang-en>Guests 🥂</span></a> •
           <a href={`${baseUrl}/contatti`}><span lang-it>Contatti</span><span lang-en>Contact</span></a> •
           <a href={`${baseUrl}/stats`}><span lang-it>Statistiche</span><span lang-en>Stats</span></a> •
           <a href={`${baseUrl}/faq`}>FAQ</a> •

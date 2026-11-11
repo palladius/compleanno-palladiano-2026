@@ -1,18 +1,18 @@
 {
-  "total_records": 21,
-  "respondents": 15,
-  "maybe_respondents": 5,
-  "confirmed": 27,
-  "maybe": 5,
-  "confirmed_beds": 15,
+  "total_records": 23,
+  "respondents": 16,
+  "maybe_respondents": 6,
+  "confirmed": 29,
+  "maybe": 6,
+  "confirmed_beds": 16,
   "maybe_beds": 2,
-  "need_accomodation": 17,
-  "rompicoglioni": 11,
+  "need_accomodation": 18,
+  "rompicoglioni": 13,
   "dietary_breakdown": {
     "celiaci": 1,
     "vegani": 0,
     "vegetariani": 1,
-    "altro": 9
+    "altro": 11
   },
   "cities": {
     "Svizzera": 3,

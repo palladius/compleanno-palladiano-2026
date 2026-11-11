@@ -9,3 +9,6 @@ private/50 Compleanno Palladiano (Responses) - Form responses 1.csv
 __pycache__/
 .worktrees/
 .git-privatize
+
+# Dump completo invitati (cognomi, note) — resta locale
+private/invitati_full.csv

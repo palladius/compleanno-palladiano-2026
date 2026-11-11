@@ -1,5 +1,5 @@
 import pytest
-from crunch_csv import crunch_data, normalize_city, resolve_location, load_mappings
+from crunch_csv import crunch_data, normalize_city, resolve_location, load_mappings, abbreviate_name, build_guests_data, reconcile_cars
 
 def test_load_mappings_fallback():
     mappings = load_mappings("non_existent_file.csv")
@@ -111,3 +111,70 @@ def test_crunch_data_dietary_restrictions():
     assert data["dietary_breakdown"]["vegani"] == 1
     assert data["dietary_breakdown"]["celiaci"] == 1
     assert data["dietary_breakdown"]["altro"] == 1
+
+
+def test_abbreviate_name_privacy():
+    assert abbreviate_name("Riccardo Carlesso") == "Riccardo C."
+    assert abbreviate_name("Stefano Gialli") == "Stefano G."
+    assert abbreviate_name("Emiliano Della Casa") == "Emiliano D. C."
+    assert abbreviate_name("Andrea Degli Angeli") == "Andrea D. A."
+    assert abbreviate_name("Sofia Rossi 10") == "Sofia R."
+    assert abbreviate_name("") == ""
+
+
+def test_build_guests_data_privacy_and_nicknames():
+    rows = [
+        {
+            "Nome e Cognome": "Riccardo Brambilla",
+            "Ci sarai martedi 29 Dicembre 2026?": "Si, ci saro assolutamente! 🎉",
+            "Quante persone sarete in totale (tu + accompagnatori)?": "2 (Io + 1)",
+            "Nomi degli eventuali accompagnatori (+1 e/o figli)": "Maria Rossi",
+            "Da dove vieni/viaggi?": "Bologna",
+        },
+        {
+            "Nome e Cognome": "Barbara Nava",
+            "Ci sarai martedi 29 Dicembre 2026?": "Si, ci saro assolutamente! 🎉",
+            "Quante persone sarete in totale (tu + accompagnatori)?": "2 (Io + 1)",
+            "Nomi degli eventuali accompagnatori (+1 e/o figli)": "Stefano Gialli",
+            "Da dove vieni/viaggi?": "",
+        },
+        {
+            "Nome e Cognome": "Maurizio Grandi",
+            "Ci sarai martedi 29 Dicembre 2026?": "In forse / Ti confermo piu avanti ⏳",
+            "Quante persone sarete in totale (tu + accompagnatori)?": "1 (Solo io)",
+            "Nomi degli eventuali accompagnatori (+1 e/o figli)": "",
+            "Da dove vieni/viaggi?": "Bologna",
+        },
+    ]
+    res = build_guests_data(rows)
+    # Verifica che il +1 della morosa sia anonimizzato come '+1' e non esponga il nome
+    riccardo_b = next(g for g in res["confirmed"] if g["name"] == "Riccardo B.")
+    assert riccardo_b["plus_ones"] == 1
+    assert riccardo_b["plus_label_it"] == "+1"
+    assert "Maria" not in str(res)
+    assert "Brambilla" not in str(res)
+
+    # Verifica che Stefano G. nel +1 di Barbara N. diventi Stefano G. «Giua'»
+    giua = next(g for g in res["confirmed"] if g["name"] == "Stefano G.")
+    assert giua["nickname"] == "Giua'"
+    assert giua["partner_friend"] == "con Barbara N."
+
+    # Verifica che Maurizio G. in forse abbia il nickname Fraffo e non venga duplicato nei verbali
+    fraffo = next(g for g in res["maybe_form"] if g["name"] == "Maurizio G.")
+    assert fraffo["nickname"] == "Fraffo"
+    assert not any(v["nickname"] == "Fraffo" for v in res["maybe_verbal"])
+
+
+def test_reconcile_cars_milano_covered():
+    guests_data = {
+        "confirmed": [
+            {"name": "Ludovico B.", "nickname": "", "status": "confirmed", "city": "Milano", "region": "Milano", "party_size": 1},
+            {"name": "Emiliano D. C.", "nickname": "", "status": "confirmed", "city": "Modena", "region": "Modena, Mo", "party_size": 1},
+        ],
+        "maybe_form": [],
+    }
+    warnings = reconcile_cars(guests_data)
+    assert not any("Milano" in w for w in warnings)
+    assert any("Modena" in w for w in warnings)
+
+

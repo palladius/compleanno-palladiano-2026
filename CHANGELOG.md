@@ -1,5 +1,38 @@
 # Changelog 📝✨
 
+## [1.2.2] - 2026-10-15
+### Added 🚀
+- 📸🍻 **L'Annuncio Fotografico degli Amici «Cretini» (`/invitati#annuncio-cretini`)**:
+  - Aggiunta la foto ufficiale (`public/images/amici_cretini_bologna.jpg`) con lightbox ingrandibile e mappa della tavolata divisa nei due lati:
+    - **Lato Sinistro (da sx):** `1. «Cipolla»`, `2. «Paccorabanne»`, `3. «Levriero»`.
+    - **Lato Destro (da dietro a dx):** `4. «Fraffo» (Maurizio G.)`, `5. «Naser»`, `6. «Aladano» (Andrea L.)`.
+  - Aggiornati `src/data/nicknames.csv`, `src/data/verbal_guests.csv`, `src/data/invitati.csv`, `src/data/guests.json` e `Justfile` (`invitati-seed-goliardia`) con i nomi reali (`Maurizio Guerra` / `Andrea Lado`, abbreviati in `Maurizio G.` / `Andrea L.` sul sito pubblico) e il spelling `Paccorabanne`.
+  - Aggiunta pillola rapida `📸🍻 L'Annuncio dei «Cretini»!` nel banner FOMO in Home Page.
+
+## [1.2.1] - 2026-10-15
+### Added 🚀
+- 🚗 **Milano Express sulla Mappa (`/map`, `src/data/cars.json`, `src/data/macchine.csv`)**: Aggiunta macchina confermata (🟢) da **Milano** con **Ludovico B.** (+1 papà in forse, + **Luca F.** anche lui confermato da Milano).
+- 🔍 **Riconciliazione Automatica Mappa Auto (`reconcile_cars` in `scripts/crunch_csv.py`)**: Ora `just sync` / `just crunch` incrocia automaticamente i dati del Form RSVP con `src/data/cars.json` e avvisa se ci sono invitati fuori provincia (o confermati come Dario da Torino) non ancora allineati sulla mappa `/map`.
+
+## [1.2.0] - 2026-10-14
+### Added 🚀
+- 🥂 **Pagina FOMO «Chi c'è? Confermati & In Forse» (`/invitati`)**:
+  - Nuova pagina interattiva divisa in 3 sezioni: **🟢 Confermati Ufficiali (da Form)**, **🟡 In Forse (da Form)** e **💬 Promessi su WhatsApp / Carovane (manca il Form!)** con monito goliardico di Ermete Bottazzi.
+  - 🔒 **Privacy-First (`Nome C.` + `+1`)**: cognomi abbreviati automaticamente (`Riccardo C.`, `Barbara N.`, `Guido M.`) e nomi di morose/partner/figli nascosti dietro pillole `+1` / `+Famiglia`.
+  - 🎭 **Soprannomi Goliardici (`src/data/nicknames.csv`)**: supporto per nickname ufficiali (`Palladius`, `Giua'`, `Fraffo`, `Burattino`, `Aladano`, `Naser`, `Levriero`, `Pacco Raban`, `Cipolla`, `Lord O`, `Sonanimalo`) con promozione automatica degli amici storici inseriti nel campo `+1` (es. `Stefano G. -> «Giua'»`).
+  - 🔍 **Filtri & Ricerca Istantanea**: barra progresso FOMO, filtri per stato/nickname/+1 e ricerca live per nome, soprannome o città.
+  - 🔗 Link aggiunto in Navbar, Mobile Drawer, Footer, Hero CTA, FOMO Banner in Home e pagina `/stats`.
+
+## [1.1.0] - 2026-10-14
+### Added 🚀
+- 🤌 **Whitelist/Blacklist Invitati** (`scripts/invitati.py`): gestione di chi scrive fuori form ("io ci sono" / "io non ci sono") così si smette di chiederglielo. Fonte di verità: tab `CAFONAZZI` del Google Sheet RSVP (live), esteso con `Soprannome`, `Gruppo`, `Stato` (dropdown ✅/❌/⏳/🤐) e `Fonte`. Comandi `setup` (migra le righe legacy), `add` (upsert, no duplicati), `list`, `dump`.
+- 📦 **`just dump`**: ora fa `sync` + `invitati-dump` → `src/data/invitati.csv` (pubblico, sanitizzato: niente cognomi/note) e `private/invitati_full.csv` (gitignored).
+- 🍻 **`just invitati-seed-goliardia`**: seed idempotente dei 6 della *Goliardia Bologna* (Aladano, Naser, Fraffo/Maurizio Guerra, Levriero, Pacco Raban, Cipolla) come ⏳ FORSE.
+- 🧪 14 test offline (`scripts/test_invitati.py`) su migrazione, upsert e sanitizzazione.
+
+### Changed 🔄
+- 🛠️ `Justfile`: prima recipe è `list` (così `just` mostra l'help), export `UV_INDEX_URL` per Derek.
+
 ## [1.0.14] - 2026-09-21
 ### Changed 🔄
 - ✉️ **Pagina Contatti**: Rimossa la form email rotta. Ora la pagina mostra solo: 📢 WhatsApp (⭐ consigliato), ✈️ Telegram (backup), e ✍️ Form RSVP con avviso ⚠️ "il posto a tavola NON è garantito senza registrazione".

@@ -11,13 +11,14 @@ import json
 import gspread
 from dotenv import load_dotenv
 
-from crunch_csv import crunch_data
+from crunch_csv import crunch_data, build_guests_data, reconcile_cars
 
 load_dotenv()
 
 SHEET_ID = os.getenv("GOOGLE_SHEET_ID")
 CREDENTIALS_FILE = "private/fomo-reader.json"
 OUTPUT_FILE = "src/data/fomo.json"
+GUESTS_OUTPUT_FILE = "src/data/guests.json"
 
 if not SHEET_ID:
     print("Error: GOOGLE_SHEET_ID not found in .env")
@@ -49,10 +50,14 @@ if os.path.exists(OUTPUT_FILE):
 
 # Crunch the data using the unified logic
 data = crunch_data(records)
+guests_data = build_guests_data(records)
 new_records = data.get("total_records", 0)
 
 with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
     json.dump(data, f, indent=2, ensure_ascii=False)
+
+with open(GUESTS_OUTPUT_FILE, "w", encoding="utf-8") as f:
+    json.dump(guests_data, f, indent=2, ensure_ascii=False)
 
 if new_records > old_records:
     print(f"\033[92m🎉 Nuovi records! {old_records} -> {new_records}\033[0m")
@@ -65,5 +70,11 @@ if data.get("cities"):
     print("\n🏙️  Città con più di 1 invitato:")
     for city, count in data["cities"].items():
         print(f"  - {city}: {count}")
+
+warnings = reconcile_cars(guests_data)
+if warnings:
+    print("\n🚗 Riconciliazione Mappa Auto (src/data/cars.json):")
+    for w in warnings:
+        print(f"  - {w}")
 
 print(f"\nSuccessfully synced from Trix and updated {OUTPUT_FILE}!")

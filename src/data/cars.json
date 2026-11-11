@@ -7,10 +7,10 @@
     "maps_url": "https://www.google.com/maps/place/Ai+Dossi+Ristorante+Albergo/@44.5876103,11.9251564,17z/data=!4m6!3m5!1s0x477e114004cd3f2f:0xc1734f9bdd22ff6e!8m2!3d44.5876103!4d11.9251564!16s%2Fg%2F119wmhxcn"
   },
   "summary": {
-    "total_cars": 8,
-    "confirmed_cars": 5,
+    "total_cars": 9,
+    "confirmed_cars": 6,
     "maybe_cars": 3,
-    "cities_count": 5
+    "cities_count": 6
   },
   "rides": [
     {
@@ -53,6 +53,33 @@
           "seats_estimate": "2 posti",
           "note_it": "Discesa confermata da Zurigo / Fano per 2 persone.",
           "note_en": "Confirmed trip from Zurich / Fano for 2 people."
+        }
+      ]
+    },
+    {
+      "id": "milano-ludovico",
+      "city": "Milano",
+      "region": "Lombardia",
+      "coordinates": [45.4642, 9.1900],
+      "cars_count": 1,
+      "people_count": 2,
+      "status": "confirmed",
+      "status_label_it": "Sicuro (Ludovico + 1 in forse)",
+      "status_label_en": "Confirmed (Ludovico + 1 maybe)",
+      "color": "green",
+      "driver_or_group": "Ludovico (+ papà in forse / Luca F.)",
+      "hover_text": "Milano: 1 Macchina (Ludovico) 🟢🚗",
+      "hover_text_en": "Milan: 1 Car (Ludovico) 🟢🚗",
+      "details_it": "Partenza da Milano via A1 verso la Romagna con Ludovico (+ papà in forse). Da Milano è confermato anche Luca F.!",
+      "details_en": "Departure from Milan via A1 highway to Romagna with Ludovico (+ dad maybe). Luca F. is also confirmed from Milan!",
+      "cars": [
+        {
+          "name": "Auto 1 - Milano Express",
+          "driver": "Ludovico",
+          "tag": "Sicuro (A1 Sud) 🛣️",
+          "seats_estimate": "4-5 posti",
+          "note_it": "Macchina confermata da Milano con Ludovico (+1 in forse). Possibile carpooling con Luca F.",
+          "note_en": "Confirmed car from Milan with Ludovico (+1 maybe). Potential carpool with Luca F."
         }
       ]
     },

@@ -144,7 +144,11 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
               <p style="text-align: center; opacity: 0.7;">Ancora nessun gruppo numeroso da una singola città. Aumenta la FOMO!</p>
             )}
           </div>
-          <div style="margin-top: 1.5rem; text-align: center;">
+          <div style="margin-top: 1.5rem; text-align: center; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem;">
+            <a href={`${baseUrl}/invitati`} style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.4rem; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 9999px; color: #0f172a; font-weight: 800; text-decoration: none; transition: transform 0.2s ease;">
+              <span lang-it>🥂 Vedi Chi C'è (Confermati & In Forse)</span>
+              <span lang-en>🥂 View Guest List (Confirmed & Maybe)</span>
+            </a>
             <a href={`${baseUrl}/map`} style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.4rem; background: rgba(245, 158, 11, 0.15); border: 1px solid var(--accent-gold); border-radius: 9999px; color: var(--accent-gold); font-weight: 700; text-decoration: none; transition: transform 0.2s ease;">
               <span lang-it>🚗 Esplora la Mappa dei Carpooling & Auto</span>
               <span lang-en>🚗 Explore Carpooling & Cars Map</span>

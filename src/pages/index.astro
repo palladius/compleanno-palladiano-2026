@@ -287,17 +287,17 @@ const dishes = [
       </div>
 
       <div class="hero-cta">
+        <a href={`${baseUrl}/invitati`} class="btn btn-gold-cta">
+          <span lang-it>Chi c'è? ({fomoStats.confirmed} Confermati!) 🥂</span>
+          <span lang-en>Guest List ({fomoStats.confirmed} Confirmed!) 🥂</span>
+        </a>
         <a href="#menu" class="btn btn-primary">
           <span lang-it>Scopri il Menu Esclusivo 🍽️</span>
           <span lang-en>Discover the Menu 🍽️</span>
         </a>
-        <a href={`${baseUrl}/map`} class="btn btn-gold-cta">
+        <a href={`${baseUrl}/map`} class="btn btn-secondary">
           <span lang-it>Mappa Auto & Carovane 🚗🗺️</span>
           <span lang-en>Car & Convoy Map 🚗🗺️</span>
-        </a>
-        <a href="#programma" class="btn btn-secondary">
-          <span lang-it>Il Programma ⏰</span>
-          <span lang-en>Schedule ⏰</span>
         </a>
         <a href={publicFormUrl} target="_blank" class="btn btn-primary">
           <span lang-it>Conferma Presenza (RSVP) ✍️</span>
@@ -481,11 +481,11 @@ const dishes = [
 
         <!-- FOMO STATS -->
         <div class="fomo-banner">
-          <div class="fomo-stat">
-            <span class="fomo-number">{fomoStats.confirmed}</span>
-            <span class="fomo-label" lang-it>Hanno già risposto!</span>
-            <span class="fomo-label" lang-en>Have already replied!</span>
-          </div>
+          <a href={`${baseUrl}/invitati`} class="fomo-stat fomo-stat-map" title="Scopri la lista di chi ha già confermato e chi è in forse!">
+            <span class="fomo-number">{fomoStats.confirmed} 🥂</span>
+            <span class="fomo-label" lang-it>Confermati! (Vedi chi c'è 👀)</span>
+            <span class="fomo-label" lang-en>Confirmed! (See who's in 👀)</span>
+          </a>
           <div class="fomo-stat">
             <span class="fomo-number">{fomoStats.total_accomodation - fomoStats.need_accomodation}</span>
             <span class="fomo-label" lang-it>Posti letto rimasti</span>
@@ -495,6 +495,11 @@ const dishes = [
             <span class="fomo-number">🚗🗺️</span>
             <span class="fomo-label" lang-it>Guarda la Mappa Auto</span>
             <span class="fomo-label" lang-en>View Crews Map</span>
+          </a>
+          <a href={`${baseUrl}/invitati#annuncio-cretini`} class="fomo-stat fomo-stat-map" title="Guarda il selfie-annuncio degli amici Cretini da Bologna!">
+            <span class="fomo-number">📸🍻</span>
+            <span class="fomo-label" lang-it>L'Annuncio dei «Cretini»!</span>
+            <span class="fomo-label" lang-en>The «Cretini» Photo!</span>
           </a>
         </div>
 
