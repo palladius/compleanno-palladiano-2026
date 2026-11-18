@@ -64,16 +64,26 @@ def test_upsert_matches_by_full_name():
     assert people[0]["Soprannome"] == "Fraffo"
 
 
-def test_sanitize_drops_private_columns_and_falls_back_to_name():
+def test_sanitize_drops_private_columns_and_uses_nome_iniziale():
     people = [
         _p(Soprannome="Naser", Nome="X", Cognome="Y", Gruppo="Goliardia Bologna", Stato="⏳ FORSE", Note="segreto"),
         _p(Nome="Andrea", Cognome="Mosca", Stato="✅ CI SONO", Note="delicata"),
+        _p(Nome="Andrea", Cognome="degli Angeli"),
+        _p(Nome="Solo"),
     ]
     pub = inv.sanitize(people)
     assert list(pub[0].keys()) == inv.PUBLIC_COLS
     assert "Note" not in pub[0] and "Cognome" not in pub[0]
-    assert pub[0]["Soprannome"] == "Naser"
-    assert pub[1]["Soprannome"] == "Andrea"  # fallback al nome, mai al cognome
+    assert pub[0]["Soprannome"] == "Naser"       # il soprannome vince
+    assert pub[1]["Soprannome"] == "Andrea M."   # Nome C., mai il cognome intero
+    assert pub[2]["Soprannome"] == "Andrea D."   # iniziale maiuscola anche se minuscola
+    assert pub[3]["Soprannome"] == "Solo"        # senza cognome: solo il nome
+
+
+def test_public_label_edge_cases():
+    assert inv.public_label(_p(Nome="  Maurizio ", Cognome=" Guerra ")) == "Maurizio G."
+    assert inv.public_label(_p(Cognome="Guerra")) == "G."
+    assert inv.public_label(_p()) == ""
 
 
 def test_summarize_counts_confirmed_heads():

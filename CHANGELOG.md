@@ -1,5 +1,15 @@
 # Changelog 📝✨
 
+## [1.3.1] - 2026-11-18
+### Added 🚀
+- 🪄 **Integrazione Live col «Trix Magico Ragionato» (`1bJ5Ae1zAyR9NfkM9BUQIo6JBO8Pp0uxKGX0tiZlangM`)**:
+  - `scripts/letti.py` e `src/pages/letti.astro` ora sincronizzano in tempo reale il tab **`Dormire`** (`gid=1336798003`) con l'inventario reale delle **3 strutture** estratto dalla chat ZapFast con Jasmin (`10/11/2026`):
+    1. **🍽️ Ristorante Ai Dossi** (12 camere = 25–29 posti): **5 Triple 2+1** (`1 matr + 1 sing`), **3 Matrimoniali**, **4 a 1 Piazza e Mezzo** (`DOSSI-T1..T5`, `DOSSI-M1..M3`, `DOSSI-P1..P4`).
+    2. **🏡 B&B 1 • Filo** (3 camere = 6 posti): **3 Matrimoniali trasformabili in Doppie a letti separati** (`BNB1-1..BNB1-3`).
+    3. **🌾 B&B 2 • Tenuta Garusola** (1 Appartamento + 10 camere = ~24+ posti): **1 Appartamento** (`BNB2-APP` assegnato a **Nicola + 3 🐶** con richiesta **Dog-Friendly**) + **10 camere** (`BNB2-C01..10` singole, matrimoniali e triple).
+  - `scripts/invitati.py` ora sincronizza in scrittura il tab **`CAFONAZZI`** (`gid=1636741351`) con la provenance strutturata (`WhatsApp :: jid=... :: ts=...`).
+  - Aggiornati i tab **`MASTER_INVITATI`** (`gid=96911294`) e **`TRIX_RAGIONATO`** (`gid=408174229`) con **Max Mura** (`🔴 No`, 0%), **Garga / Alessandro Gamba** (`🔴 Quasi sicuro No`, 10%), **Fabrizio Guidi / Bicio** (`🔴 No`, 0% — Indonesia), **Riccardo Rossi / Bocia** (`🟠 Passa a bere`, 20%), **Andrea Mosca** (`🟢 Sì`, 90%), **Davide Scheda / IL Dave** (`🟠 50%`) e **Nicola + 3 🐶** (`🟢 Presenti`, 4 pax, 4 letti, richiesta dog-friendly).
+
 ## [1.3.0] - 2026-11-18
 ### Added 🚀
 - 🛏️ **Pagina Piano Letti & Camere (`/letti`, `scripts/letti.py`, `src/data/beds.json`)**:
@@ -11,6 +21,10 @@
   - Aggiunti i 3 nuovi confermati bolognesi su `/invitati` e `src/data/fomo.json`: **Francesco C.** (+1), **Carlo P.** (+1) e **Massimiliano G.** (1 posto letto).
   - Aggiornato lo stato di **Andrea D. A.** (ora in "Non riesco a venire").
   - Aggiornati da WhatsApp (via ZapFast) in `src/data/invitati.csv` / `private/invitati_full.csv`: **Max Mura** (`❌ NON CI SONO`, 0%) e **«Garga» (Alessandro Gamba)** (`❌ NON CI SONO`, 10% — quasi sicuro no da Torino).
+
+### Changed 🔄
+- 🔒 **`src/data/invitati.csv` pubblico ora usa `Nome C.`** (iniziale del cognome) al posto del solo nome quando manca il soprannome (`Antonella T.`, `Matteo A.`), allineato allo standard privacy di `/invitati`. Nuova `public_label()` in `scripts/invitati.py` + test.
+- 🗣️ Aggiornamenti a voce del 18/11: **Matteo A.** (❌ NON CI SONO, gruppo *Argenta / Estero*), **Antonella T.** (✅, *Argenta*), **Davide S.** (⏳, *Argenta*, nota: Riccardo non sa chi sia).
 
 ### Fixed 🐛
 - 🔗 **Fix 404 su `/invitati` e `/letti` su GitHub Pages**: Tracciati in Git tutti i file pagina e dati (`src/pages/invitati.astro`, `src/pages/letti.astro`, `src/data/guests.json`, `src/data/beds.json`, `src/data/invitati.csv`, `src/data/nicknames.csv`, `src/data/verbal_guests.csv`, `public/images/amici_cretini_bologna.jpg`, `scripts/invitati.py`, `scripts/letti.py`) che erano rimasti untracked nel commit precedente.

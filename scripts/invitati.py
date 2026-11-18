@@ -34,7 +34,8 @@ try:  # opzionale: i test offline non ne hanno bisogno
 except ImportError:  # pragma: no cover
     pass
 
-SHEET_ID = os.getenv("GOOGLE_SHEET_ID")
+DEFAULT_TRIX_MAGICO_ID = "1bJ5Ae1zAyR9NfkM9BUQIo6JBO8Pp0uxKGX0tiZlangM"
+SHEET_ID = os.getenv("INVITATI_SHEET_ID") or os.getenv("TRIX_MAGICO_ID") or DEFAULT_TRIX_MAGICO_ID
 TAB_NAME = os.getenv("INVITATI_TAB", "CAFONAZZI")
 CREDENTIALS_FILE = "private/fomo-reader.json"
 PUBLIC_CSV = "src/data/invitati.csv"
@@ -167,13 +168,24 @@ def upsert(people: list[dict[str, str]], person: dict[str, str]) -> tuple[list[d
     return new, "updated"
 
 
+def public_label(p: dict[str, str]) -> str:
+    """Etichetta pubblica: Soprannome se c'è, altrimenti `Nome C.` (iniziale del cognome)."""
+    nick = p.get("Soprannome", "").strip()
+    if nick:
+        return nick
+    nome = " ".join(p.get("Nome", "").split())
+    cognome = " ".join(p.get("Cognome", "").split())
+    if nome and cognome:
+        return f"{nome} {cognome[0].upper()}."
+    return nome or (f"{cognome[0].upper()}." if cognome else "")
+
+
 def sanitize(people: list[dict[str, str]]) -> list[dict[str, str]]:
-    """Versione pubblicabile: niente cognomi/note. Senza soprannome usa il solo nome."""
+    """Versione pubblicabile: niente cognomi interi né note. Etichetta = Soprannome o `Nome C.`."""
     out = []
     for p in people:
         pub = {k: p.get(k, "") for k in PUBLIC_COLS}
-        if not pub["Soprannome"]:
-            pub["Soprannome"] = p.get("Nome", "")
+        pub["Soprannome"] = public_label(p)
         out.append(pub)
     return out
 
@@ -201,7 +213,8 @@ def open_worksheet():
     try:
         return sh, sh.worksheet(TAB_NAME)
     except gspread.WorksheetNotFound:
-        sys.exit(f"Error: tab '{TAB_NAME}' non trovato in '{sh.title}'. Tabs: {[w.title for w in sh.worksheets()]}")
+        ws = sh.add_worksheet(title=TAB_NAME, rows=100, cols=len(HEADER))
+        return sh, ws
 
 
 def write_all(sh, ws, rows: list[list[str]]) -> None:
@@ -249,7 +262,7 @@ def save_local_csvs(people: list[dict[str, str]]) -> None:
 
 def load_people(ws) -> list[dict[str, str]]:
     values = ws.get_all_values()
-    if not values:
+    if not values or not any(str(c).strip() for c in values[0]):
         remote = []
     else:
         header = [h.strip() for h in values[0]]
@@ -338,9 +351,13 @@ def cmd_list(_args) -> None:
 
 
 def cmd_dump(_args) -> None:
-    _sh, ws = open_worksheet()
+    sh, ws = open_worksheet()
     people = load_people(ws)
     save_local_csvs(people)
+    try:
+        write_all(sh, ws, dicts_to_rows(people))
+    except Exception:
+        pass
 
     s = summarize(people)
     print(f"📥 {s['total']} invitati dal tab '{TAB_NAME}'")

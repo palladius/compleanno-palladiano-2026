@@ -67,8 +67,8 @@ def test_validate_email_rule():
     assert len(w2) == 1 and "ne basta 1" in w2[0]
 
     # Doppia corretta (2 email) e Matrimoniale corretta (1 email) -> 0 warning
-    assert letti.validate_email_rule(letti.DEFAULT_ROOMS[2]) == []
     assert letti.validate_email_rule(letti.DEFAULT_ROOMS[3]) == []
+    assert letti.validate_email_rule(letti.DEFAULT_ROOMS[4]) == []
     assert letti.validate_email_rule(letti.DEFAULT_ROOMS[7]) == []
 
 

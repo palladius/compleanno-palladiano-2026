@@ -1,8 +1,8 @@
 {
   "updated_at": "2026-11-18",
   "summary": {
-    "total_rooms": 9,
-    "total_capacity": 23,
+    "total_rooms": 17,
+    "total_capacity": 62,
     "confirmed_beds": 22,
     "maybe_beds": 1,
     "allocated_beds": 23,
@@ -11,36 +11,36 @@
     "structures": [
       {
         "name": "Ristorante Ai Dossi",
-        "rooms_count": 4,
-        "capacity": 12,
-        "occupied": 12,
-        "confirmed": 12,
-        "maybe": 0
-      },
-      {
-        "name": "B&B",
-        "rooms_count": 3,
-        "capacity": 8,
-        "occupied": 8,
-        "confirmed": 8,
-        "maybe": 0
-      },
-      {
-        "name": "Garusiola",
-        "rooms_count": 2,
-        "capacity": 3,
-        "occupied": 3,
-        "confirmed": 2,
+        "rooms_count": 12,
+        "capacity": 32,
+        "occupied": 23,
+        "confirmed": 22,
         "maybe": 1
+      },
+      {
+        "name": "B&B 1 • Filo",
+        "rooms_count": 3,
+        "capacity": 6,
+        "occupied": 0,
+        "confirmed": 0,
+        "maybe": 0
+      },
+      {
+        "name": "B&B 2 • Tenuta Garusola",
+        "rooms_count": 2,
+        "capacity": 24,
+        "occupied": 0,
+        "confirmed": 0,
+        "maybe": 0
       }
     ]
   },
   "rooms": [
     {
-      "id": "DOSSI-1",
+      "id": "DOSSI-T1",
       "structure": "Ristorante Ai Dossi",
-      "room_name": "Quadrupla 1 • Famiglia Palladiana",
-      "room_type": "Quadrupla (4)",
+      "room_name": "Tripla 1 (2+1 Di Fronte) • Noi 4 C.",
+      "room_type": "Tripla 2+1 (1 Matr + 1 Sing)",
       "capacity": 4,
       "occupied": 4,
       "status": "confirmed",
@@ -81,10 +81,10 @@
       ]
     },
     {
-      "id": "DOSSI-2",
+      "id": "DOSSI-T2",
       "structure": "Ristorante Ai Dossi",
-      "room_name": "Quadrupla 2 • Carovana Elvetica",
-      "room_type": "Quadrupla (4)",
+      "room_name": "Tripla 2 (2+1 Di Fronte) • Famiglia P.",
+      "room_type": "Tripla 2+1 (1 Matr + 1 Sing)",
       "capacity": 4,
       "occupied": 4,
       "status": "confirmed",
@@ -125,70 +125,10 @@
       ]
     },
     {
-      "id": "DOSSI-3",
+      "id": "DOSSI-T3",
       "structure": "Ristorante Ai Dossi",
-      "room_name": "Matrimoniale 1 • Vienna (dal 28)",
-      "room_type": "Matrimoniale (2)",
-      "capacity": 2,
-      "occupied": 2,
-      "status": "confirmed",
-      "status_label": "🟢 CONFERMATO",
-      "check_in": "2026-12-28",
-      "check_out": "2026-12-30",
-      "nights": 2,
-      "has_early_arrival": true,
-      "occupants": [
-        {
-          "display_name": "Victoria A.",
-          "nickname": "Vicky",
-          "check_in": "2026-12-28",
-          "check_out": "2026-12-30",
-          "nights": 2
-        },
-        {
-          "display_name": "Simon A.",
-          "nickname": "",
-          "check_in": "2026-12-28",
-          "check_out": "2026-12-30",
-          "nights": 2
-        }
-      ]
-    },
-    {
-      "id": "DOSSI-4",
-      "structure": "Ristorante Ai Dossi",
-      "room_name": "Doppia 1 • Burattino & Marche (dal 28)",
-      "room_type": "Doppia Letti Separati (2)",
-      "capacity": 2,
-      "occupied": 2,
-      "status": "confirmed",
-      "status_label": "🟢 CONFERMATO",
-      "check_in": "2026-12-28",
-      "check_out": "2026-12-30",
-      "nights": 2,
-      "has_early_arrival": true,
-      "occupants": [
-        {
-          "display_name": "Fabio M.",
-          "nickname": "Burattino",
-          "check_in": "2026-12-28",
-          "check_out": "2026-12-30",
-          "nights": 2
-        },
-        {
-          "display_name": "Luca F.",
-          "nickname": "",
-          "check_in": "2026-12-29",
-          "check_out": "2026-12-30",
-          "nights": 1
-        }
-      ]
-    },
-    {
-      "id": "BB-1",
-      "structure": "B&B",
-      "room_name": "Quadrupla 3 • Famiglia Nicola + 3",
-      "room_type": "Quadrupla (4)",
+      "room_name": "Tripla 3 (2+1 Di Fronte) • Famiglia Nicola + 3 🐶",
+      "room_type": "Tripla 2+1 (1 Matr + 1 Sing)",
       "capacity": 4,
       "occupied": 4,
       "status": "confirmed",
@@ -229,9 +169,99 @@
       ]
     },
     {
-      "id": "BB-2",
-      "structure": "B&B",
-      "room_name": "Matrimoniale 2 • Zurigo / Fano",
+      "id": "DOSSI-T4",
+      "structure": "Ristorante Ai Dossi",
+      "room_name": "Tripla 4 (2+1 Separati) • Burattino & Marche (dal 28)",
+      "room_type": "Doppia Letti Separati (2)",
+      "capacity": 3,
+      "occupied": 2,
+      "status": "confirmed",
+      "status_label": "🟢 CONFERMATO",
+      "check_in": "2026-12-28",
+      "check_out": "2026-12-30",
+      "nights": 2,
+      "has_early_arrival": true,
+      "occupants": [
+        {
+          "display_name": "Fabio M.",
+          "nickname": "Burattino",
+          "check_in": "2026-12-28",
+          "check_out": "2026-12-30",
+          "nights": 2
+        },
+        {
+          "display_name": "Luca F.",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        }
+      ]
+    },
+    {
+      "id": "DOSSI-T5",
+      "structure": "Ristorante Ai Dossi",
+      "room_name": "Tripla 5 (2+1 Separati) • Milano Express",
+      "room_type": "Doppia Letti Separati (2)",
+      "capacity": 3,
+      "occupied": 2,
+      "status": "confirmed",
+      "status_label": "🟢 CONFERMATO",
+      "check_in": "2026-12-29",
+      "check_out": "2026-12-30",
+      "nights": 1,
+      "has_early_arrival": false,
+      "occupants": [
+        {
+          "display_name": "Luca F.",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        },
+        {
+          "display_name": "Ludovico B.",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        }
+      ]
+    },
+    {
+      "id": "DOSSI-M1",
+      "structure": "Ristorante Ai Dossi",
+      "room_name": "Matrimoniale 1 (Di Fronte) • Vienna (dal 28)",
+      "room_type": "Matrimoniale (2)",
+      "capacity": 2,
+      "occupied": 2,
+      "status": "confirmed",
+      "status_label": "🟢 CONFERMATO",
+      "check_in": "2026-12-28",
+      "check_out": "2026-12-30",
+      "nights": 2,
+      "has_early_arrival": true,
+      "occupants": [
+        {
+          "display_name": "Victoria A.",
+          "nickname": "Vicky",
+          "check_in": "2026-12-28",
+          "check_out": "2026-12-30",
+          "nights": 2
+        },
+        {
+          "display_name": "Simon A.",
+          "nickname": "",
+          "check_in": "2026-12-28",
+          "check_out": "2026-12-30",
+          "nights": 2
+        }
+      ]
+    },
+    {
+      "id": "DOSSI-M2",
+      "structure": "Ristorante Ai Dossi",
+      "room_name": "Matrimoniale 2 (Di Fronte) • Zurigo / Fano",
       "room_type": "Matrimoniale (2)",
       "capacity": 2,
       "occupied": 2,
@@ -259,9 +289,9 @@
       ]
     },
     {
-      "id": "BB-3",
-      "structure": "B&B",
-      "room_name": "Matrimoniale 3 • Carovana Sabauda",
+      "id": "DOSSI-M3",
+      "structure": "Ristorante Ai Dossi",
+      "room_name": "Matrimoniale 3 (Di Fronte) • Carovana Sabauda",
       "room_type": "Matrimoniale (2)",
       "capacity": 2,
       "occupied": 2,
@@ -289,41 +319,11 @@
       ]
     },
     {
-      "id": "GAR-1",
-      "structure": "Garusiola",
-      "room_name": "Doppia 2 • Milano Express",
-      "room_type": "Doppia Letti Separati (2)",
+      "id": "DOSSI-P1",
+      "structure": "Ristorante Ai Dossi",
+      "room_name": "Piazza e Mezzo 1 (Di Fronte) • Equipaggio Riviera",
+      "room_type": "1 Piazza e Mezzo (1-2)",
       "capacity": 2,
-      "occupied": 2,
-      "status": "confirmed",
-      "status_label": "🟢 CONFERMATO",
-      "check_in": "2026-12-29",
-      "check_out": "2026-12-30",
-      "nights": 1,
-      "has_early_arrival": false,
-      "occupants": [
-        {
-          "display_name": "Luca F.",
-          "nickname": "",
-          "check_in": "2026-12-29",
-          "check_out": "2026-12-30",
-          "nights": 1
-        },
-        {
-          "display_name": "Ludovico B.",
-          "nickname": "",
-          "check_in": "2026-12-29",
-          "check_out": "2026-12-30",
-          "nights": 1
-        }
-      ]
-    },
-    {
-      "id": "GAR-2",
-      "structure": "Garusiola",
-      "room_name": "Singola 1 • Equipaggio Riviera",
-      "room_type": "Singola (1)",
-      "capacity": 1,
       "occupied": 1,
       "status": "maybe",
       "status_label": "🟡 IN FORSE",
@@ -340,6 +340,126 @@
           "nights": 1
         }
       ]
+    },
+    {
+      "id": "DOSSI-P2",
+      "structure": "Ristorante Ai Dossi",
+      "room_name": "Piazza e Mezzo 2 (Di Fronte) • Disponibile / Appoggio",
+      "room_type": "1 Piazza e Mezzo (1-2)",
+      "capacity": 2,
+      "occupied": 0,
+      "status": "free",
+      "status_label": "⚪ LIBERA",
+      "check_in": "2026-12-29",
+      "check_out": "2026-12-30",
+      "nights": 1,
+      "has_early_arrival": false,
+      "occupants": []
+    },
+    {
+      "id": "DOSSI-P3",
+      "structure": "Ristorante Ai Dossi",
+      "room_name": "Piazza e Mezzo 3 (Di Fronte) • Disponibile / Appoggio",
+      "room_type": "1 Piazza e Mezzo (1-2)",
+      "capacity": 2,
+      "occupied": 0,
+      "status": "free",
+      "status_label": "⚪ LIBERA",
+      "check_in": "2026-12-29",
+      "check_out": "2026-12-30",
+      "nights": 1,
+      "has_early_arrival": false,
+      "occupants": []
+    },
+    {
+      "id": "DOSSI-P4",
+      "structure": "Ristorante Ai Dossi",
+      "room_name": "Piazza e Mezzo 4 (Di Fronte) • Disponibile",
+      "room_type": "1 Piazza e Mezzo (1-2)",
+      "capacity": 2,
+      "occupied": 0,
+      "status": "free",
+      "status_label": "⚪ LIBERA",
+      "check_in": "2026-12-29",
+      "check_out": "2026-12-30",
+      "nights": 1,
+      "has_early_arrival": false,
+      "occupants": []
+    },
+    {
+      "id": "BNB1-1",
+      "structure": "B&B 1 • Filo",
+      "room_name": "Doppia/Matrimoniale 1 • Disponibile",
+      "room_type": "Matrimoniale (2)",
+      "capacity": 2,
+      "occupied": 0,
+      "status": "free",
+      "status_label": "⚪ LIBERA",
+      "check_in": "2026-12-29",
+      "check_out": "2026-12-30",
+      "nights": 1,
+      "has_early_arrival": false,
+      "occupants": []
+    },
+    {
+      "id": "BNB1-2",
+      "structure": "B&B 1 • Filo",
+      "room_name": "Doppia/Matrimoniale 2 • Disponibile",
+      "room_type": "Matrimoniale (2)",
+      "capacity": 2,
+      "occupied": 0,
+      "status": "free",
+      "status_label": "⚪ LIBERA",
+      "check_in": "2026-12-29",
+      "check_out": "2026-12-30",
+      "nights": 1,
+      "has_early_arrival": false,
+      "occupants": []
+    },
+    {
+      "id": "BNB1-3",
+      "structure": "B&B 1 • Filo",
+      "room_name": "Doppia/Matrimoniale 3 • Disponibile",
+      "room_type": "Matrimoniale (2)",
+      "capacity": 2,
+      "occupied": 0,
+      "status": "free",
+      "status_label": "⚪ LIBERA",
+      "check_in": "2026-12-29",
+      "check_out": "2026-12-30",
+      "nights": 1,
+      "has_early_arrival": false,
+      "occupants": []
+    },
+    {
+      "id": "BNB2-APP",
+      "structure": "B&B 2 • Tenuta Garusola",
+      "room_name": "Appartamento (4+ pax) • Disponibile (Opzione Famiglia / Dog-Friendly 🐶)",
+      "room_type": "Appartamento / Quadrupla (4)",
+      "capacity": 4,
+      "occupied": 0,
+      "status": "free",
+      "status_label": "⚪ LIBERA",
+      "check_in": "2026-12-29",
+      "check_out": "2026-12-30",
+      "nights": 1,
+      "has_early_arrival": false,
+      "occupants": []
+    },
+    {
+      "id": "BNB2-C01..10",
+      "structure": "B&B 2 • Tenuta Garusola",
+      "room_name": "10 Camere (Singole, Matrimoniali e Triple) • Disponibili",
+      "room_type": "Singola / Matr / Tripla (Garusola)",
+      "capacity": 20,
+      "occupied": 0,
+      "status": "free",
+      "status_label": "⚪ LIBERA",
+      "check_in": "2026-12-29",
+      "check_out": "2026-12-30",
+      "nights": 1,
+      "has_early_arrival": false,
+      "occupants": []
     }
   ]
 }

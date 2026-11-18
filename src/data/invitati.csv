@@ -1,10 +1,10 @@
 Soprannome,Gruppo,Stato,Cardinalità,Città
-Antonella,,✅ CI SONO,1,Argenta
-Davide,,⏳ FORSE,1,Argenta
-Andrea,,✅ CI SONO,1,Pieve di Cento (FE)
-Matteo,,❌ NON CI SONO,0,Argenta / Londra
-Chiara,,❌ NON CI SONO,1,Londra
-Maurizio,,❌ NON CI SONO,0,Modena
+Antonella T.,Argenta,✅ CI SONO,1,Argenta
+IL Dave,Argenta,⏳ FORSE,1,Argenta
+Andrea M.,,✅ CI SONO,1,Pieve di Cento (FE)
+Matteo A.,Argenta / Estero,❌ NON CI SONO,0,Londra (da Argenta)
+Chiara T.,,❌ NON CI SONO,1,Londra
+Maurizio I.,,❌ NON CI SONO,0,Modena
 Cipolla,Cretini (Goliardia Bologna),⏳ FORSE,,Bologna
 Paccorabanne,Cretini (Goliardia Bologna),⏳ FORSE,,Bologna
 Levriero,Cretini (Goliardia Bologna),⏳ FORSE,,Bologna
@@ -13,3 +13,6 @@ Naser,Cretini (Goliardia Bologna),⏳ FORSE,,Bologna
 Aladano,Cretini (Goliardia Bologna),⏳ FORSE,,Bologna
 Max Mura,,❌ NON CI SONO,0,
 Garga,Carovana Sabauda,❌ NON CI SONO,0,Torino
+Bicio Guidi,,❌ NON CI SONO,0,
+Bocia,,⏳ FORSE,1,Argenta
+Nicola,,✅ CI SONO,4,
