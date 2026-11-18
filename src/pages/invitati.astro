@@ -1,0 +1,1336 @@
+---
+import Layout from '../layouts/Layout.astro';
+import guestsData from '../data/guests.json';
+import fomoStats from '../data/fomo.json';
+
+const baseUrl = (import.meta.env.BASE_URL || '').replace(/\/$/, '');
+const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh-8460JMo3VTDrOgrDahOHObCmnFk-o_Eg/viewform";
+
+const { summary, confirmed, maybe_form, maybe_verbal } = guestsData;
+const seatsLeft = fomoStats.total_seats - summary.confirmed_heads;
+const bedsLeft = fomoStats.total_accomodation - fomoStats.need_accomodation;
+const confirmedPct = Math.min(100, Math.round((summary.confirmed_heads / fomoStats.total_seats) * 100));
+const maybePct = Math.min(100 - confirmedPct, Math.round((summary.total_maybe_heads / fomoStats.total_seats) * 100));
+
+interface NormalizedGuest {
+  id: string;
+  name: string;
+  nickname: string;
+  status: 'confirmed' | 'maybe' | 'verbal';
+  source: string;
+  party_size: number;
+  plus_ones: number;
+  is_family: boolean;
+  plus_label_it: string;
+  plus_label_en: string;
+  partner_friend: string;
+  city: string;
+  region: string;
+  group: string;
+  music_note: string;
+  hashtags: string[];
+}
+
+function stripEmoji(s: string): string {
+  return (s || '').replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, '').replace(/\s+/g, ' ').trim();
+}
+
+function extractHashtags(g: any, status: 'confirmed' | 'maybe' | 'verbal'): string[] {
+  const tags = new Set<string>();
+  const grp = stripEmoji(g.group || '').toLowerCase();
+  const city = stripEmoji(g.city || g.region || '').toLowerCase();
+  const reg = stripEmoji(g.region || '').toLowerCase();
+
+  if (grp.includes('goliardia') || grp.includes('amici cretini')) tags.add('goliardia');
+  if (grp.includes('karaoke')) tags.add('karaoke');
+  if (grp.includes('elvetica')) tags.add('elvetica');
+  if (grp.includes('sabauda')) tags.add('sabauda');
+  if (grp.includes('riviera')) tags.add('riviera');
+  if (grp.includes('palladiana')) tags.add('festeggiato');
+
+  if (city.includes('zurigo') || city.includes('oberbuchsiten') || reg.includes('svizzera')) tags.add('svizzera');
+  else if (city.includes('bologna') || city.includes('castel guelfo') || reg.includes('bologna')) tags.add('bologna');
+  else if (city.includes('milano') || reg.includes('milano')) tags.add('milano');
+  else if (city.includes('torino') || reg.includes('torino')) tags.add('torino');
+  else if (city.includes('roma') || reg.includes('roma')) tags.add('roma');
+  else if (city.includes('argenta') || reg.includes('ferrara')) tags.add('ferrara');
+  else if (city.includes('rimini') || city.includes('san marino') || reg.includes('rimini')) tags.add('rimini');
+  else if (city.includes('vienna') || city.includes('parigi')) tags.add('estero');
+  else if (city) tags.add(city.split(/[\s(/,]+/)[0]);
+
+  if (g.is_family) tags.add('famiglia');
+  else if (g.plus_ones > 0) tags.add('piu-uno');
+  if (g.nickname) tags.add('nickname');
+  if (g.music_note) tags.add('dj');
+  if (status === 'verbal') tags.add('senza-form');
+
+  return Array.from(tags);
+}
+
+const allGuests: NormalizedGuest[] = [
+  ...confirmed.map((g: any) => ({
+    id: g.id,
+    name: g.name || '',
+    nickname: g.nickname || '',
+    status: 'confirmed' as const,
+    source: 'Form RSVP',
+    party_size: g.party_size || 1,
+    plus_ones: g.plus_ones || 0,
+    is_family: Boolean(g.is_family),
+    plus_label_it: g.plus_label_it || '',
+    plus_label_en: g.plus_label_en || '',
+    partner_friend: g.partner_friend || '',
+    city: stripEmoji(g.city || ''),
+    region: stripEmoji(g.region || ''),
+    group: stripEmoji(g.group || ''),
+    music_note: stripEmoji(g.music_note || ''),
+    hashtags: extractHashtags(g, 'confirmed'),
+  })),
+  ...maybe_form.map((g: any) => ({
+    id: g.id,
+    name: g.name || '',
+    nickname: g.nickname || '',
+    status: 'maybe' as const,
+    source: 'Form RSVP',
+    party_size: g.party_size || 1,
+    plus_ones: g.plus_ones || 0,
+    is_family: Boolean(g.is_family),
+    plus_label_it: g.plus_label_it || '',
+    plus_label_en: g.plus_label_en || '',
+    partner_friend: g.partner_friend || '',
+    city: stripEmoji(g.city || ''),
+    region: stripEmoji(g.region || ''),
+    group: stripEmoji(g.group || ''),
+    music_note: stripEmoji(g.music_note || ''),
+    hashtags: extractHashtags(g, 'maybe'),
+  })),
+  ...maybe_verbal.map((g: any) => ({
+    id: g.id,
+    name: g.name || '',
+    nickname: g.nickname || '',
+    status: 'verbal' as const,
+    source: stripEmoji(g.source || 'WhatsApp'),
+    party_size: g.party_size || 1,
+    plus_ones: 0,
+    is_family: false,
+    plus_label_it: '',
+    plus_label_en: '',
+    partner_friend: '',
+    city: stripEmoji(g.city || ''),
+    region: stripEmoji(g.region || ''),
+    group: stripEmoji(g.group || ''),
+    music_note: '',
+    hashtags: extractHashtags(g, 'verbal'),
+  })),
+];
+
+// Top hashtags sorted by frequency
+const tagCounts = new Map<string, number>();
+for (const g of allGuests) {
+  for (const t of g.hashtags) {
+    tagCounts.set(t, (tagCounts.get(t) || 0) + 1);
+  }
+}
+const topHashtags = Array.from(tagCounts.entries())
+  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+  .slice(0, 12);
+---
+
+<Layout title="Invitati | Il 50° Compleanno Palladiano" currentPage="invitati">
+  <main class="container synoptic-page">
+    <!-- COMPACT SYNOPTIC HEADER & FOMO BAR -->
+    <section class="synoptic-top">
+      <div class="synoptic-title-row">
+        <div>
+          <h1>
+            <span lang-it>Invitati</span>
+            <span lang-en>Guest List</span>
+          </h1>
+          <p class="synoptic-sub">
+            <span lang-it>29 Dicembre 2026 • Privacy-first (<code>Nome C.</code> + soprannomi + <code>+1</code>)</span>
+            <span lang-en>December 29, 2026 • Privacy-first (<code>First L.</code> + nicknames + <code>+1</code>)</span>
+          </p>
+        </div>
+
+        <div class="kpi-strip tabular">
+          <div class="kpi-chip kpi-ok">
+            <span class="kpi-val">{summary.confirmed_heads}</span>
+            <span class="kpi-lbl" lang-it>Confermati</span>
+            <span class="kpi-lbl" lang-en>Confirmed</span>
+          </div>
+          <div class="kpi-chip kpi-warn">
+            <span class="kpi-val">{summary.total_maybe_heads}</span>
+            <span class="kpi-lbl" lang-it>In Forse</span>
+            <span class="kpi-lbl" lang-en>Maybe</span>
+          </div>
+          <div class="kpi-chip">
+            <span class="kpi-val">{seatsLeft}</span>
+            <span class="kpi-lbl" lang-it>Posti Liberi</span>
+            <span class="kpi-lbl" lang-en>Seats Left</span>
+          </div>
+          <div class="kpi-chip">
+            <span class="kpi-val">{bedsLeft}</span>
+            <span class="kpi-lbl" lang-it>Letti Liberi</span>
+            <span class="kpi-lbl" lang-en>Beds Left</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fomo-track" role="progressbar" aria-valuenow={summary.confirmed_heads} aria-valuemin={0} aria-valuemax={fomoStats.total_seats}>
+        <div class="fomo-fill-ok" style={`width: ${confirmedPct}%`} title={`${summary.confirmed_heads} Confermati`}></div>
+        <div class="fomo-fill-maybe" style={`width: ${maybePct}%`} title={`${summary.total_maybe_heads} In Forse`}></div>
+      </div>
+    </section>
+
+    <!-- FILTER TOOLBAR: SEGMENTED STATUS + BOOLEAN SWITCHES + LIVE SEARCH -->
+    <section class="toolbar">
+      <div class="toolbar-row">
+        <div class="segmented-control" role="radiogroup" aria-label="Stato partecipazione">
+          <button type="button" class="seg-btn active" data-status="all" aria-pressed="true">
+            <span lang-it>Tutti ({allGuests.length})</span>
+            <span lang-en>All ({allGuests.length})</span>
+          </button>
+          <button type="button" class="seg-btn" data-status="confirmed" aria-pressed="false">
+            <span lang-it>Confermati ({summary.confirmed_heads})</span>
+            <span lang-en>Confirmed ({summary.confirmed_heads})</span>
+          </button>
+          <button type="button" class="seg-btn" data-status="maybe" aria-pressed="false">
+            <span lang-it>In Forse ({summary.maybe_form_cards})</span>
+            <span lang-en>Maybe ({summary.maybe_form_cards})</span>
+          </button>
+          <button type="button" class="seg-btn" data-status="verbal" aria-pressed="false">
+            <span lang-it>Solo Chat ({summary.maybe_verbal_cards})</span>
+            <span lang-en>Chat Only ({summary.maybe_verbal_cards})</span>
+          </button>
+        </div>
+
+        <span class="toolbar-divider" aria-hidden="true"></span>
+
+        <div class="bool-toggles">
+          <button type="button" class="toggle-chip" id="togglePlus" role="switch" aria-checked="false">
+            <span class="toggle-box" aria-hidden="true"></span>
+            <span lang-it>+1 / Famiglia</span>
+            <span lang-en>+1 / Family</span>
+          </button>
+          <button type="button" class="toggle-chip" id="toggleNick" role="switch" aria-checked="false">
+            <span class="toggle-box" aria-hidden="true"></span>
+            <span lang-it>Solo Nickname</span>
+            <span lang-en>Nicknames Only</span>
+          </button>
+        </div>
+
+        <div class="search-wrap">
+          <svg class="search-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
+          </svg>
+          <input
+            type="search"
+            id="guestSearchInput"
+            class="search-input"
+            placeholder="Cerca (/): Giua', Bologna..."
+            aria-label="Cerca invitato"
+          />
+        </div>
+      </div>
+
+      <!-- CLICKABLE HASHTAGS BAR -->
+      <div class="hashtag-bar" id="hashtagBar" aria-label="Filtra per hashtag">
+        {topHashtags.map(([tag, count]) => (
+          <button type="button" class="htag-pill" data-tag={tag}>
+            <span>#{tag}</span>
+            <span class="htag-count tabular">{count}</span>
+          </button>
+        ))}
+        <button type="button" class="htag-clear" id="clearFiltersBtn" style="display: none;">
+          <span lang-it>Reset filtri</span>
+          <span lang-en>Reset filters</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- L1 SYNOPTIC TABLE -->
+    <section class="table-section">
+      <div class="table-heading-row">
+        <h2>
+          <span lang-it>Sinottica</span>
+          <span lang-en>Synoptic</span>
+        </h2>
+        <span class="visible-counter tabular" id="visibleCounter">{allGuests.length} / {allGuests.length}</span>
+      </div>
+
+      <div class="table-scroll">
+        <table class="synoptic-table" id="guestsTable">
+          <thead>
+            <tr>
+              <th class="col-status" title="Stato"></th>
+              <th class="col-name">
+                <span lang-it>Ospite</span>
+                <span lang-en>Guest</span>
+              </th>
+              <th class="col-party">
+                <span lang-it>Quota</span>
+                <span lang-en>Party</span>
+              </th>
+              <th class="col-city">
+                <span lang-it>Città</span>
+                <span lang-en>City</span>
+              </th>
+              <th class="col-tags">Hashtag</th>
+              <th class="col-source">
+                <span lang-it>Stato / Fonte</span>
+                <span lang-en>Status / Source</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {allGuests.map((g, idx) => {
+              const rowTooltip = [
+                g.group ? `Gruppo: ${g.group}` : '',
+                g.partner_friend ? g.partner_friend : '',
+                g.music_note ? `Musica: ${g.music_note}` : '',
+                `Fonte: ${g.source}`,
+              ].filter(Boolean).join(' · ');
+
+              return (
+                <tr
+                  class={`guest-row row-${g.status}`}
+                  data-idx={idx}
+                  data-status={g.status}
+                  data-has-plus={(g.plus_ones > 0 || g.is_family || Boolean(g.partner_friend)) ? 'true' : 'false'}
+                  data-has-nick={g.nickname ? 'true' : 'false'}
+                  data-tags={g.hashtags.join(',')}
+                  data-search={`${g.name} ${g.nickname} ${g.city} ${g.region} ${g.group} ${g.partner_friend} ${g.hashtags.map(t => '#' + t).join(' ')}`.toLowerCase()}
+                  title={rowTooltip}
+                >
+                  <!-- 1. MONOCHROME STATUS SVG -->
+                  <td class="col-status">
+                    {g.status === 'confirmed' && (
+                      <span class="st-icon st-ok" title="Confermato">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2">
+                          <path d="M20 6 9 17l-5-5" />
+                        </svg>
+                      </span>
+                    )}
+                    {g.status === 'maybe' && (
+                      <span class="st-icon st-maybe" title="In Forse (Form)">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                          <circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" />
+                        </svg>
+                      </span>
+                    )}
+                    {g.status === 'verbal' && (
+                      <span class="st-icon st-verbal" title="Solo Chat / Manca Form">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
+                      </span>
+                    )}
+                  </td>
+
+                  <!-- 2. IDENTITY (NICKNAME + NOME C.) -->
+                  <td class="col-name">
+                    <div class="name-cell">
+                      {g.nickname ? (
+                        <>
+                          <span class="nick-label">«{g.nickname}»</span>
+                          {g.name && <span class="real-label">{g.name}</span>}
+                        </>
+                      ) : (
+                        <span class="primary-label">{g.name}</span>
+                      )}
+                      {g.partner_friend && (
+                        <span class="partner-inline">{g.partner_friend}</span>
+                      )}
+                    </div>
+                  </td>
+
+                  <!-- 3. PARTY / +1 MICRO-BADGE -->
+                  <td class="col-party tabular">
+                    {g.plus_ones > 0 ? (
+                      <span class={`num-chip ${g.is_family ? 'num-chip--fam' : 'num-chip--plus'}`}>
+                        +{g.plus_ones}
+                      </span>
+                    ) : g.plus_label_it ? (
+                      <span class="num-chip num-chip--warn">+1?</span>
+                    ) : (
+                      <span class="num-muted">1</span>
+                    )}
+                  </td>
+
+                  <!-- 4. CITY -->
+                  <td class="col-city">
+                    {g.city ? (
+                      <span class="city-text">{g.city}</span>
+                    ) : (
+                      <span class="city-empty">—</span>
+                    )}
+                  </td>
+
+                  <!-- 5. CLICKABLE HASHTAGS -->
+                  <td class="col-tags">
+                    <div class="row-tags">
+                      {g.hashtags.slice(0, 3).map((tag) => (
+                        <button type="button" class="row-htag" data-tag={tag}>#{tag}</button>
+                      ))}
+                    </div>
+                  </td>
+
+                  <!-- 6. SOURCE / ACTION -->
+                  <td class="col-source">
+                    {g.status === 'verbal' ? (
+                      <a href={publicFormUrl} target="_blank" rel="noopener noreferrer" class="verbal-nudge" onclick="event.stopPropagation()">
+                        <span lang-it>{g.source} · Manca Form</span>
+                        <span lang-en>{g.source} · No Form</span>
+                      </a>
+                    ) : g.status === 'maybe' ? (
+                      <span class="src-maybe">
+                        <span lang-it>In forse</span>
+                        <span lang-en>Maybe</span>
+                      </span>
+                    ) : (
+                      <span class="src-ok">Form</span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <div id="emptyState" class="empty-state" style="display: none;">
+        <span lang-it>Nessun invitato corrisponde ai filtri attivi.</span>
+        <span lang-en>No guests match the active filters.</span>
+      </div>
+
+      <p class="table-footnote">
+        <em>
+          <span lang-it>Clicca un #hashtag per filtrare, o clicca una riga per dettagli su musica, carovana e RSVP. Cognomi abbreviati per privacy.</span>
+          <span lang-en>Click any #hashtag to filter, or click a row for music, convoy, and RSVP details. Last names abbreviated for privacy.</span>
+        </em>
+      </p>
+    </section>
+
+    <!-- COMPACT BOTTOM CTA -->
+    <section class="bottom-strip">
+      <span lang-it>Non vedi il tuo nome o vuoi aggiungere un soprannome goliardico?</span>
+      <span lang-en>Missing your name or want to add a goliardic nickname?</span>
+      <div class="bottom-actions">
+        <a href={publicFormUrl} target="_blank" rel="noopener noreferrer" class="btn-mini btn-mini-gold">
+          <span lang-it>Compila RSVP</span>
+          <span lang-en>Fill RSVP</span>
+        </a>
+        <a href={`${baseUrl}/map`} class="btn-mini">
+          <span lang-it>Mappa Auto</span>
+          <span lang-en>Cars Map</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- L3 DEEP-DIVE DETAIL MODAL -->
+  <dialog id="guestDetailDialog" class="detail-dialog">
+    <div class="dialog-card">
+      <div class="dialog-head">
+        <div>
+          <span id="dlgBadge" class="dlg-status-pill"></span>
+          <h3 id="dlgTitle" class="dlg-title"></h3>
+          <p id="dlgSubtitle" class="dlg-sub"></p>
+        </div>
+        <button type="button" id="dlgClose" class="dlg-close" aria-label="Chiudi">&times;</button>
+      </div>
+      <div class="dialog-body" id="dlgBody"></div>
+      <div class="dialog-foot" id="dlgFoot"></div>
+    </div>
+  </dialog>
+
+  <script is:inline define:vars={{ allGuests, publicFormUrl }}>
+    (function() {
+      const STORAGE_KEY = 'palladius_invitati_state_v1';
+      const DEFAULTS = { status: 'all', tag: '', plus: '0', nick: '0', q: '' };
+
+      function readState() {
+        let saved = {};
+        try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch {}
+        const params = Object.fromEntries(new URLSearchParams(window.location.search));
+        return { ...DEFAULTS, ...saved, ...params };
+      }
+
+      function writeState(patch) {
+        const next = { ...readState(), ...patch };
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)); } catch {}
+        const url = new URL(window.location.href);
+        for (const [k, v] of Object.entries(next)) {
+          if (!v || v === DEFAULTS[k]) url.searchParams.delete(k);
+          else url.searchParams.set(k, String(v));
+        }
+        window.history.replaceState(next, '', url);
+        return next;
+      }
+
+      const segBtns = document.querySelectorAll('.seg-btn');
+      const togglePlus = document.getElementById('togglePlus');
+      const toggleNick = document.getElementById('toggleNick');
+      const searchInput = document.getElementById('guestSearchInput');
+      const htagPills = document.querySelectorAll('.htag-pill');
+      const clearBtn = document.getElementById('clearFiltersBtn');
+      const rows = document.querySelectorAll('.guest-row');
+      const counterEl = document.getElementById('visibleCounter');
+      const emptyEl = document.getElementById('emptyState');
+
+      const dialog = document.getElementById('guestDetailDialog');
+      const dlgClose = document.getElementById('dlgClose');
+      const dlgBadge = document.getElementById('dlgBadge');
+      const dlgTitle = document.getElementById('dlgTitle');
+      const dlgSubtitle = document.getElementById('dlgSubtitle');
+      const dlgBody = document.getElementById('dlgBody');
+      const dlgFoot = document.getElementById('dlgFoot');
+
+      function applyUI() {
+        const st = readState();
+        const isPlus = st.plus === '1';
+        const isNick = st.nick === '1';
+        const q = (st.q || '').trim().toLowerCase();
+
+        segBtns.forEach(btn => {
+          const active = btn.getAttribute('data-status') === st.status;
+          btn.classList.toggle('active', active);
+          btn.setAttribute('aria-pressed', String(active));
+        });
+
+        if (togglePlus) {
+          togglePlus.classList.toggle('active', isPlus);
+          togglePlus.setAttribute('aria-checked', String(isPlus));
+        }
+        if (toggleNick) {
+          toggleNick.classList.toggle('active', isNick);
+          toggleNick.setAttribute('aria-checked', String(isNick));
+        }
+        if (searchInput && searchInput.value !== st.q) {
+          searchInput.value = st.q || '';
+        }
+
+        document.querySelectorAll('.htag-pill, .row-htag').forEach(el => {
+          el.classList.toggle('active', el.getAttribute('data-tag') === st.tag);
+        });
+
+        const hasActiveFilter = st.status !== 'all' || Boolean(st.tag) || isPlus || isNick || Boolean(q);
+        if (clearBtn) clearBtn.style.display = hasActiveFilter ? '' : 'none';
+
+        let visible = 0;
+        rows.forEach(row => {
+          const rStatus = row.getAttribute('data-status');
+          const rPlus = row.getAttribute('data-has-plus') === 'true';
+          const rNick = row.getAttribute('data-has-nick') === 'true';
+          const rTags = (row.getAttribute('data-tags') || '').split(',').filter(Boolean);
+          const rSearch = row.getAttribute('data-search') || '';
+
+          let ok = true;
+          if (st.status !== 'all' && rStatus !== st.status) ok = false;
+          if (ok && isPlus && !rPlus) ok = false;
+          if (ok && isNick && !rNick) ok = false;
+          if (ok && st.tag && !rTags.includes(st.tag)) ok = false;
+          if (ok && q && !rSearch.includes(q)) ok = false;
+
+          row.style.display = ok ? '' : 'none';
+          if (ok) visible++;
+        });
+
+        if (counterEl) counterEl.textContent = `${visible} / ${rows.length}`;
+        if (emptyEl) emptyEl.style.display = visible === 0 ? 'block' : 'none';
+      }
+
+      segBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          writeState({ status: btn.getAttribute('data-status') || 'all' });
+          applyUI();
+        });
+      });
+
+      if (togglePlus) {
+        togglePlus.addEventListener('click', () => {
+          const cur = readState().plus === '1';
+          writeState({ plus: cur ? '0' : '1' });
+          applyUI();
+        });
+      }
+
+      if (toggleNick) {
+        toggleNick.addEventListener('click', () => {
+          const cur = readState().nick === '1';
+          writeState({ nick: cur ? '0' : '1' });
+          applyUI();
+        });
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          writeState({ q: e.target.value || '' });
+          applyUI();
+        });
+      }
+
+      function toggleTag(tag) {
+        const cur = readState().tag;
+        writeState({ tag: cur === tag ? '' : tag });
+        applyUI();
+      }
+
+      htagPills.forEach(btn => {
+        btn.addEventListener('click', () => toggleTag(btn.getAttribute('data-tag') || ''));
+      });
+
+      document.querySelectorAll('.row-htag').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleTag(btn.getAttribute('data-tag') || '');
+        });
+      });
+
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          writeState({ ...DEFAULTS });
+          applyUI();
+        });
+      }
+
+      // Keyboard shortcut `/` focuses search
+      document.addEventListener('keydown', (e) => {
+        if (e.key === '/' && document.activeElement !== searchInput && !(dialog && dialog.open)) {
+          e.preventDefault();
+          searchInput?.focus();
+        }
+      });
+
+      // L3 Deep-Dive Dialog on Row Click
+      rows.forEach(row => {
+        row.addEventListener('click', () => {
+          const idx = Number(row.getAttribute('data-idx'));
+          const g = allGuests[idx];
+          if (!g || !dialog) return;
+
+          const statusMap = {
+            confirmed: { label: 'Confermato (Form RSVP)', cls: 'pill-ok' },
+            maybe: { label: 'In Forse (Form RSVP)', cls: 'pill-warn' },
+            verbal: { label: `${g.source} · Manca Form`, cls: 'pill-verbal' },
+          };
+          const sInfo = statusMap[g.status] || statusMap.confirmed;
+          dlgBadge.textContent = sInfo.label;
+          dlgBadge.className = `dlg-status-pill ${sInfo.cls}`;
+          dlgTitle.textContent = g.nickname ? `«${g.nickname}»` : g.name;
+          dlgSubtitle.textContent = g.nickname && g.name ? g.name : (g.city || 'Ospite 50° Palladiano');
+
+          const details = [
+            ['Quota', g.plus_ones > 0 ? `1 + ${g.plus_ones} (${g.is_family ? 'Famiglia' : '+1'})` : (g.plus_label_it || '1 persona')],
+            ['Città', g.city || 'Non specificata'],
+            ['Gruppo / Carovana', g.group || '—'],
+            ['Connessioni', g.partner_friend || '—'],
+            ['Richiesta Musicale', g.music_note || 'Nessuna'],
+            ['Hashtag', g.hashtags.map(t => `#${t}`).join(' ') || '—'],
+          ];
+
+          dlgBody.innerHTML = details.map(([k, v]) =>
+            `<div class="dlg-row"><span class="dlg-k">${k}</span><span class="dlg-v">${v}</span></div>`
+          ).join('');
+
+          dlgFoot.innerHTML = g.status === 'verbal'
+            ? `<a href="${publicFormUrl}" target="_blank" rel="noopener noreferrer" class="btn-mini btn-mini-gold">Compila il Form RSVP ora</a>`
+            : '';
+
+          dialog.showModal();
+        });
+      });
+
+      if (dlgClose && dialog) {
+        dlgClose.addEventListener('click', () => dialog.close());
+        dialog.addEventListener('click', (e) => {
+          if (e.target === dialog) dialog.close();
+        });
+      }
+
+      window.addEventListener('popstate', applyUI);
+      applyUI();
+    })();
+  </script>
+</Layout>
+
+<style>
+  .synoptic-page {
+    max-width: 1060px;
+    padding-top: 1.4rem;
+    padding-bottom: 3rem;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1, "zero" 1;
+  }
+
+  /* COMPACT TOP */
+  .synoptic-top {
+    background: #141821;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 0.9rem 1.15rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .synoptic-title-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .synoptic-title-row h1 {
+    font-size: 1.45rem;
+    line-height: 1.2;
+    margin: 0;
+    color: var(--text-light);
+  }
+
+  .synoptic-sub {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin: 0.15rem 0 0;
+  }
+
+  .synoptic-sub code {
+    color: #cbd5e1;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0.05rem 0.3rem;
+    border-radius: 4px;
+    font-size: 0.74rem;
+  }
+
+  .kpi-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .kpi-chip {
+    display: flex;
+    align-items: baseline;
+    gap: 0.38rem;
+    padding: 0.3rem 0.65rem;
+    border-radius: 8px;
+    background: #0f1219;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .kpi-chip.kpi-ok {
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+
+  .kpi-chip.kpi-ok .kpi-val {
+    color: #34d399;
+  }
+
+  .kpi-chip.kpi-warn {
+    border-color: rgba(245, 158, 11, 0.3);
+  }
+
+  .kpi-chip.kpi-warn .kpi-val {
+    color: #fbbf24;
+  }
+
+  .kpi-val {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--text-light);
+  }
+
+  .kpi-lbl {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .fomo-track {
+    width: 100%;
+    height: 6px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.07);
+    overflow: hidden;
+    display: flex;
+  }
+
+  .fomo-fill-ok {
+    height: 100%;
+    background: #10b981;
+  }
+
+  .fomo-fill-maybe {
+    height: 100%;
+    background: #f59e0b;
+    opacity: 0.75;
+  }
+
+  /* TOOLBAR */
+  .toolbar {
+    background: #141821;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 0.7rem 0.95rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .toolbar-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .segmented-control {
+    display: inline-flex;
+    background: #0d1016;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 2px;
+    gap: 2px;
+  }
+
+  .seg-btn {
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.32rem 0.65rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .seg-btn:hover {
+    color: var(--text-light);
+  }
+
+  .seg-btn.active {
+    background: #252b38;
+    color: #f8fafc;
+  }
+
+  .toolbar-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .bool-toggles {
+    display: flex;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+  }
+
+  .toggle-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.65rem;
+    border-radius: 8px;
+    background: #0d1016;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .toggle-box {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    border: 1.5px solid #64748b;
+    display: inline-block;
+    position: relative;
+  }
+
+  .toggle-chip.active {
+    color: #fbbf24;
+    border-color: rgba(245, 158, 11, 0.4);
+    background: rgba(245, 158, 11, 0.1);
+  }
+
+  .toggle-chip.active .toggle-box {
+    background: #f59e0b;
+    border-color: #f59e0b;
+  }
+
+  .toggle-chip.active .toggle-box::after {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 0.5px;
+    width: 3px;
+    height: 7px;
+    border: solid #0f172a;
+    border-width: 0 1.8px 1.8px 0;
+    transform: rotate(45deg);
+  }
+
+  .search-wrap {
+    position: relative;
+    margin-left: auto;
+    flex: 1 1 190px;
+    max-width: 260px;
+  }
+
+  .search-svg {
+    position: absolute;
+    left: 0.65rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #64748b;
+    pointer-events: none;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 0.34rem 0.7rem 0.34rem 1.9rem;
+    border-radius: 8px;
+    background: #0d1016;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--text-light);
+    font-family: inherit;
+    font-size: 0.8rem;
+    outline: none;
+  }
+
+  .search-input:focus {
+    border-color: var(--accent-gold);
+  }
+
+  /* HASHTAGS BAR */
+  .hashtag-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    padding-top: 0.45rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .htag-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.18rem 0.5rem;
+    border-radius: 6px;
+    background: #0f1219;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    color: #94a3b8;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .htag-pill:hover {
+    color: #e2e8f0;
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .htag-pill.active {
+    background: rgba(245, 158, 11, 0.16);
+    border-color: rgba(245, 158, 11, 0.45);
+    color: #fbbf24;
+    font-weight: 700;
+  }
+
+  .htag-count {
+    font-size: 0.7rem;
+    opacity: 0.65;
+  }
+
+  .htag-clear {
+    margin-left: auto;
+    border: none;
+    background: transparent;
+    color: #fb7185;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  /* TABLE SECTION */
+  .table-heading-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 0.45rem;
+  }
+
+  .table-heading-row h2 {
+    font-size: 1.05rem;
+    color: var(--text-light);
+    margin: 0;
+  }
+
+  .visible-counter {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    background: #12151c;
+  }
+
+  .synoptic-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.84rem;
+    text-align: left;
+  }
+
+  .synoptic-table thead th {
+    padding: 0.45rem 0.65rem;
+    font-size: 0.74rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #94a3b8;
+    background: #161a23;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    white-space: nowrap;
+  }
+
+  .synoptic-table tbody tr {
+    height: 31px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    cursor: pointer;
+    transition: background 0.12s ease;
+  }
+
+  .synoptic-table tbody tr:nth-child(odd) {
+    background: #12151c;
+  }
+
+  .synoptic-table tbody tr:nth-child(even) {
+    background: #171b24;
+  }
+
+  .synoptic-table tbody tr:hover {
+    background: #1f2533;
+  }
+
+  .synoptic-table td {
+    padding: 0.25rem 0.65rem;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  .col-status {
+    width: 28px;
+    text-align: center;
+  }
+
+  .st-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .st-ok { color: #34d399; }
+  .st-maybe { color: #fbbf24; }
+  .st-verbal { color: #fb923c; }
+
+  .name-cell {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+
+  .nick-label {
+    font-weight: 700;
+    color: #fbbf24;
+  }
+
+  .real-label {
+    font-size: 0.78rem;
+    color: #94a3b8;
+  }
+
+  .primary-label {
+    font-weight: 600;
+    color: #f1f5f9;
+  }
+
+  .partner-inline {
+    font-size: 0.74rem;
+    color: #94a3b8;
+  }
+
+  .col-party {
+    width: 64px;
+    text-align: center;
+  }
+
+  .num-chip {
+    display: inline-block;
+    min-width: 40px;
+    text-align: center;
+    padding: 1px 6px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.75rem;
+  }
+
+  .num-chip--plus {
+    background: rgba(16, 185, 129, 0.14);
+    border: 1px solid rgba(16, 185, 129, 0.28);
+    color: #34d399;
+  }
+
+  .num-chip--fam {
+    background: rgba(56, 189, 248, 0.14);
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    color: #38bdf8;
+  }
+
+  .num-chip--warn {
+    background: rgba(245, 158, 11, 0.14);
+    border: 1px solid rgba(245, 158, 11, 0.28);
+    color: #fbbf24;
+  }
+
+  .num-muted {
+    color: #64748b;
+    font-size: 0.78rem;
+  }
+
+  .city-text {
+    color: #cbd5e1;
+    font-size: 0.8rem;
+  }
+
+  .city-empty {
+    color: #475569;
+  }
+
+  .row-tags {
+    display: inline-flex;
+    gap: 0.28rem;
+  }
+
+  .row-htag {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    color: #94a3b8;
+    font-family: inherit;
+    font-size: 0.74rem;
+    padding: 1px 6px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .row-htag:hover {
+    color: #f8fafc;
+    border-color: rgba(255, 255, 255, 0.22);
+  }
+
+  .row-htag.active {
+    background: rgba(245, 158, 11, 0.16);
+    border-color: rgba(245, 158, 11, 0.45);
+    color: #fbbf24;
+  }
+
+  .src-ok {
+    color: #64748b;
+    font-size: 0.75rem;
+  }
+
+  .src-maybe {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 5px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    background: rgba(234, 179, 8, 0.08);
+    border: 1px solid rgba(234, 179, 8, 0.28);
+    color: #eab308;
+  }
+
+  .verbal-nudge {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 5px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    background: rgba(245, 158, 11, 0.14);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: #fbbf24;
+    text-decoration: none;
+  }
+
+  .verbal-nudge:hover {
+    background: #f59e0b;
+    color: #0f172a;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+  }
+
+  .table-footnote {
+    margin-top: 0.55rem;
+    font-size: 0.76rem;
+    color: #64748b;
+  }
+
+  .bottom-strip {
+    margin-top: 1.2rem;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    background: #141821;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.7rem;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .bottom-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .btn-mini {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.85rem;
+    border-radius: 7px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.07);
+    color: #f1f5f9;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .btn-mini-gold {
+    background: #f59e0b;
+    color: #0f172a;
+    border-color: transparent;
+  }
+
+  /* L3 MODAL DIALOG */
+  .detail-dialog {
+    margin: auto;
+    padding: 0;
+    border: none;
+    background: transparent;
+    max-width: 440px;
+    width: 92vw;
+    color: var(--text-light);
+  }
+
+  .detail-dialog::backdrop {
+    background: rgba(9, 12, 18, 0.75);
+    backdrop-filter: blur(4px);
+  }
+
+  .dialog-card {
+    background: #161b24;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 14px;
+    padding: 1.2rem 1.3rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+  }
+
+  .dialog-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .dlg-status-pill {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-bottom: 0.35rem;
+  }
+
+  .pill-ok { background: rgba(16, 185, 129, 0.16); color: #34d399; }
+  .pill-warn { background: rgba(234, 179, 8, 0.14); color: #eab308; }
+  .pill-verbal { background: rgba(245, 158, 11, 0.18); color: #fbbf24; }
+
+  .dlg-title {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #f8fafc;
+  }
+
+  .dlg-sub {
+    margin: 0.15rem 0 0;
+    font-size: 0.8rem;
+    color: #94a3b8;
+  }
+
+  .dlg-close {
+    border: none;
+    background: rgba(255, 255, 255, 0.08);
+    color: #cbd5e1;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .dialog-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 0.8rem;
+  }
+
+  :global(.dlg-row) {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.82rem;
+  }
+
+  :global(.dlg-k) {
+    color: #94a3b8;
+  }
+
+  :global(.dlg-v) {
+    color: #f1f5f9;
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .dialog-foot {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+</style>

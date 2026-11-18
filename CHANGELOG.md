@@ -1,5 +1,20 @@
 # Changelog 📝✨
 
+## [1.3.0] - 2026-11-18
+### Added 🚀
+- 🛏️ **Pagina Piano Letti & Camere (`/letti`, `scripts/letti.py`, `src/data/beds.json`)**:
+  - Nuovo planner pubblico privacy-safe (`Nome C.` + soprannomi, zero email/cognomi) con filtro per struttura (**Ristorante Ai Dossi**, **B&B**, **Garusiola**) e per notte (**28 Dic** vs **29 Dic**).
+  - Tool CLI `scripts/letti.py` (`just letti`, `just letti-sync`, `just letti-seed`, `just letti-email`) con generazione automatica della bozza email per Jasmin (`private/email_jasmin.md`) e 5 unit test in `scripts/test_letti.py`.
+- 🥂 **Restyling Sinottico `/invitati` (`webapp-that-riccardo-likes`)**:
+  - Tabella sinottica compatta (righe 31px, icone SVG monocromatiche, zebra-striping, `tabular-nums`), `#hashtag` cliccabili (`#goliardia`, `#bologna`, `#svizzera`, `#karaoke`, `#famiglia`, ...), segmented control per stato, switch booleani (`+1 / Famiglia`, `Solo Nickname`), modale L3 al click e persistenza stato via URL query string + `localStorage`.
+- 🎉 **Sync Form RSVP (26 risposte totali, 34 confermati) & Aggiornamenti ZapFast**:
+  - Aggiunti i 3 nuovi confermati bolognesi su `/invitati` e `src/data/fomo.json`: **Francesco C.** (+1), **Carlo P.** (+1) e **Massimiliano G.** (1 posto letto).
+  - Aggiornato lo stato di **Andrea D. A.** (ora in "Non riesco a venire").
+  - Aggiornati da WhatsApp (via ZapFast) in `src/data/invitati.csv` / `private/invitati_full.csv`: **Max Mura** (`❌ NON CI SONO`, 0%) e **«Garga» (Alessandro Gamba)** (`❌ NON CI SONO`, 10% — quasi sicuro no da Torino).
+
+### Fixed 🐛
+- 🔗 **Fix 404 su `/invitati` e `/letti` su GitHub Pages**: Tracciati in Git tutti i file pagina e dati (`src/pages/invitati.astro`, `src/pages/letti.astro`, `src/data/guests.json`, `src/data/beds.json`, `src/data/invitati.csv`, `src/data/nicknames.csv`, `src/data/verbal_guests.csv`, `public/images/amici_cretini_bologna.jpg`, `scripts/invitati.py`, `scripts/letti.py`) che erano rimasti untracked nel commit precedente.
+
 ## [1.2.2] - 2026-10-15
 ### Added 🚀
 - 📸🍻 **L'Annuncio Fotografico degli Amici «Cretini» (`/invitati#annuncio-cretini`)**:

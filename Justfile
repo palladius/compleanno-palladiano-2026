@@ -42,8 +42,21 @@ invitati-seed-goliardia:
 	uv run scripts/invitati.py add -s Naser        -g "Cretini (Goliardia Bologna)" --stato forse --citta Bologna -f "Foto WhatsApp"
 	uv run scripts/invitati.py add -s Aladano -n Andrea -c Lado -g "Cretini (Goliardia Bologna)" --stato forse --citta Bologna -f "Foto WhatsApp"
 
+# 🛏️ Posti Letto (tab LETTI su Trix: Ristorante Ai Dossi, B&B, Garusiola)
+letti-seed:
+	uv run scripts/letti.py seed
+
+letti-sync:
+	uv run scripts/letti.py sync
+
+letti:
+	uv run scripts/letti.py list
+
+letti-email:
+	uv run scripts/letti.py email
+
 test:
-	uv run --with pytest pytest scripts/test_crunch_csv.py scripts/test_invitati.py
+	uv run --with pytest pytest scripts/test_crunch_csv.py scripts/test_invitati.py scripts/test_letti.py
 	npx astro check
 
 # Avvia il server di sviluppo Astro in locale (http://localhost:4321/compleanno-palladiano-2026/invitati)

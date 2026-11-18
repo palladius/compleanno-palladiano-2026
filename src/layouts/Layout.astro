@@ -47,9 +47,14 @@ const telegramUrl = "https://t.me/+kx-bUGjBoFs0ODlk";
             <span>Menu</span>
           </a>
           <a href={`${baseUrl}/dormire`} class={`nav-link ${currentPage === 'dormire' ? 'active' : ''}`}>
-            <span class="nav-icon">🛏️</span>
+            <span class="nav-icon">🏨</span>
             <span lang-it>Dormire</span>
             <span lang-en>Accommodation</span>
+          </a>
+          <a href={`${baseUrl}/letti`} class={`nav-link ${currentPage === 'letti' ? 'active' : ''}`}>
+            <span class="nav-icon">🛏️</span>
+            <span lang-it>Letti</span>
+            <span lang-en>Beds</span>
           </a>
           <a href={`${baseUrl}/map`} class={`nav-link ${currentPage === 'map' ? 'active' : ''}`}>
             <span class="nav-icon">🚗</span>
@@ -139,9 +144,14 @@ const telegramUrl = "https://t.me/+kx-bUGjBoFs0ODlk";
           <span lang-en>Avant-Garde Menu</span>
         </a>
         <a href={`${baseUrl}/dormire`} class={`mobile-link ${currentPage === 'dormire' ? 'active' : ''}`}>
-          <span>🛏️</span>
+          <span>🏨</span>
           <span lang-it>Dormire & Logistica</span>
           <span lang-en>Accommodation & Logistics</span>
+        </a>
+        <a href={`${baseUrl}/letti`} class={`mobile-link ${currentPage === 'letti' ? 'active' : ''}`}>
+          <span>🛏️</span>
+          <span lang-it>Piano Letti & Camere</span>
+          <span lang-en>Bed & Room Planner</span>
         </a>
         <a href={`${baseUrl}/map`} class={`mobile-link ${currentPage === 'map' ? 'active' : ''}`}>
           <span>🚗</span>
@@ -189,6 +199,7 @@ const telegramUrl = "https://t.me/+kx-bUGjBoFs0ODlk";
           <a href={`${baseUrl}/`}><span lang-it>Programma</span><span lang-en>Schedule</span></a> •
           <a href={`${baseUrl}/menu`}>Menu</a> •
           <a href={`${baseUrl}/dormire`}><span lang-it>Dormire</span><span lang-en>Accommodation</span></a> •
+          <a href={`${baseUrl}/letti`}><span lang-it>Piano Letti 🛏️</span><span lang-en>Bed Planner 🛏️</span></a> •
           <a href={`${baseUrl}/map`}><span lang-it>Mappa Auto</span><span lang-en>Car Map</span></a> •
           <a href={`${baseUrl}/invitati`}><span lang-it>Invitati 🥂</span><span lang-en>Guests 🥂</span></a> •
           <a href={`${baseUrl}/contatti`}><span lang-it>Contatti</span><span lang-en>Contact</span></a> •

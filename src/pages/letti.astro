@@ -1,0 +1,913 @@
+---
+import Layout from '../layouts/Layout.astro';
+import bedsData from '../data/beds.json';
+import fomoStats from '../data/fomo.json';
+
+const baseUrl = (import.meta.env.BASE_URL || '').replace(/\/$/, '');
+const publicFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe7pxMlIpxkDulRh-8460JMo3VTDrOgrDahOHObCmnFk-o_Eg/viewform";
+
+const { summary, rooms, updated_at } = bedsData;
+
+const STRUCTURE_META: Record<string, { icon: string; slug: string; desc_it: string; desc_en: string }> = {
+  "Ristorante Ai Dossi": {
+    icon: "🍽️",
+    slug: "dossi",
+    desc_it: "Camere direttamente sopra la location della festa — zero passi dopo il brindisi!",
+    desc_en: "Rooms right above the party venue — zero steps after the final toast!",
+  },
+  "B&B": {
+    icon: "🏡",
+    slug: "bb",
+    desc_it: "Alloggi B&B convenzionati nelle immediate vicinanze della struttura.",
+    desc_en: "Partner B&B rooms located just minutes away from the restaurant.",
+  },
+  "Garusiola": {
+    icon: "🌾",
+    slug: "garusiola",
+    desc_it: "Dependance / struttura Garusiola per completare l'ospitalità della carovana.",
+    desc_en: "Garusiola annex rooms completing accommodation for traveling friends.",
+  },
+  "Da Assegnare": {
+    icon: "🧭",
+    slug: "tbd",
+    desc_it: "Camere in attesa di conferma finale sulla struttura.",
+    desc_en: "Rooms awaiting final venue placement.",
+  },
+};
+
+const groupedStructures = summary.structures.map((st) => ({
+  ...st,
+  meta: STRUCTURE_META[st.name] || STRUCTURE_META["Da Assegnare"],
+  rooms: rooms.filter((r) => r.structure === st.name),
+}));
+
+const freeTargetBeds = Math.max(0, (fomoStats.total_accomodation || 25) - summary.allocated_beds);
+---
+
+<Layout title="Piano Letti & Camere | 50° Compleanno Palladiano 🛏️" currentPage="letti">
+  <main class="container beds-page">
+    <!-- HEADER -->
+    <header class="section-header">
+      <span class="tag-gold">🛏️ BED PLANNER • CHI DORME DOVE</span>
+      <h1 class="page-title">
+        <span lang-it>Piano <span class="gold-text">Camere & Letti</span></span>
+        <span lang-en><span class="gold-text">Room & Bed</span> Planner</span>
+      </h1>
+      <p class="section-desc">
+        <span lang-it>
+          La mappa visiva di chi dorme dove tra <strong>Ristorante Ai Dossi</strong>, <strong>B&amp;B</strong> e <strong>Garusiola</strong> per le notti del <strong>28–30 Dicembre 2026</strong>.
+          Per la privacy mostriamo solo <strong>Nome C.</strong> e soprannomi (nessuna email pubblica).
+        </span>
+        <span lang-en>
+          Visual allocation across <strong>Ristorante Ai Dossi</strong>, <strong>B&amp;B</strong>, and <strong>Garusiola</strong> for <strong>December 28–30, 2026</strong>.
+          For privacy, only <strong>First Name + Initial</strong> and nicknames are shown (no public emails).
+        </span>
+      </p>
+    </header>
+
+    <!-- SUMMARY KPI BANNER -->
+    <section class="beds-kpi-card">
+      <div class="beds-kpi-grid">
+        <div class="beds-kpi total">
+          <span class="kpi-emoji">🛏️</span>
+          <div class="kpi-text">
+            <span class="kpi-num">{summary.allocated_beds} <small>/ {fomoStats.total_accomodation || 25}</small></span>
+            <span class="kpi-label" lang-it>Letti Allocati ({summary.confirmed_beds} conf. + {summary.maybe_beds} in forse)</span>
+            <span class="kpi-label" lang-en>Allocated Beds ({summary.confirmed_beds} conf. + {summary.maybe_beds} maybe)</span>
+          </div>
+        </div>
+
+        <div class="beds-kpi early">
+          <span class="kpi-emoji">🌙</span>
+          <div class="kpi-text">
+            <span class="kpi-num">{summary.dec28_guests}</span>
+            <span class="kpi-label" lang-it>Arrivi Anticipati (Notte 28→29 Dic)</span>
+            <span class="kpi-label" lang-en>Early Arrivals (Night of Dec 28→29)</span>
+          </div>
+        </div>
+
+        <div class="beds-kpi main-night">
+          <span class="kpi-emoji">🥂</span>
+          <div class="kpi-text">
+            <span class="kpi-num">{summary.dec29_guests}</span>
+            <span class="kpi-label" lang-it>Ospiti Notte della Festa (29→30 Dic)</span>
+            <span class="kpi-label" lang-en>Party Night Guests (Dec 29→30)</span>
+          </div>
+        </div>
+
+        <div class="beds-kpi rooms">
+          <span class="kpi-emoji">🏨</span>
+          <div class="kpi-text">
+            <span class="kpi-num">{summary.total_rooms}</span>
+            <span class="kpi-label" lang-it>Camere in {summary.structures.length} Strutture ({freeTargetBeds} margini su 25)</span>
+            <span class="kpi-label" lang-en>Rooms in {summary.structures.length} Venues ({freeTargetBeds} buffer to 25)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STRUCTURE BREAKDOWN STRIP -->
+      <div class="structures-strip">
+        {groupedStructures.map((st) => (
+          <button
+            type="button"
+            class="structure-chip"
+            data-jump-structure={st.meta.slug}
+            title={`Filtra per ${st.name}`}
+          >
+            <span class="chip-icon">{st.meta.icon}</span>
+            <div class="chip-info">
+              <strong>{st.name}</strong>
+              <small>
+                {st.rooms_count} {st.rooms_count === 1 ? 'camera' : 'camere'} • {st.occupied} {st.occupied === 1 ? 'posto' : 'posti'}
+                {st.maybe > 0 ? ` (${st.maybe} in forse)` : ''}
+              </small>
+            </div>
+          </button>
+        ))}
+      </div>
+    </section>
+
+    <!-- FILTER & SEARCH CONTROLS -->
+    <section class="controls-bar">
+      <div class="filter-pills" role="tablist" aria-label="Filtra camere">
+        <button type="button" class="filter-pill active" data-filter="all">
+          <span>✨</span>
+          <span lang-it>Tutte ({summary.total_rooms})</span>
+          <span lang-en>All ({summary.total_rooms})</span>
+        </button>
+        {groupedStructures.map((st) => (
+          <button type="button" class="filter-pill" data-filter={`struct:${st.meta.slug}`}>
+            <span>{st.meta.icon}</span>
+            <span>{st.name} ({st.rooms_count})</span>
+          </button>
+        ))}
+        <button type="button" class="filter-pill" data-filter="early">
+          <span>🌙</span>
+          <span lang-it>Dal 28 Dic (2 notti)</span>
+          <span lang-en>From Dec 28 (2 nights)</span>
+        </button>
+        <button type="button" class="filter-pill" data-filter="maybe">
+          <span>🟡</span>
+          <span lang-it>In Forse</span>
+          <span lang-en>Maybe</span>
+        </button>
+      </div>
+
+      <div class="search-box-wrapper">
+        <span class="search-icon">🔍</span>
+        <input
+          type="search"
+          id="bedSearchInput"
+          class="bed-search-input"
+          placeholder="Cerca ospite, soprannome (es. Vicky, Burattino, Palladius) o stanza..."
+          aria-label="Cerca nelle camere"
+        />
+      </div>
+    </section>
+
+    <!-- ROOMS BY STRUCTURE -->
+    {groupedStructures.map((st) => (
+      <section class="structure-section" data-structure-section={st.meta.slug}>
+        <div class="structure-header">
+          <div class="structure-title-row">
+            <span class="structure-emoji">{st.meta.icon}</span>
+            <div>
+              <h2>{st.name}</h2>
+              <p class="structure-desc">
+                <span lang-it>{st.meta.desc_it}</span>
+                <span lang-en>{st.meta.desc_en}</span>
+              </p>
+            </div>
+          </div>
+          <div class="structure-totals">
+            <span class="total-badge">{st.rooms_count} {st.rooms_count === 1 ? 'camera' : 'camere'}</span>
+            <span class="total-badge gold">{st.occupied} {st.occupied === 1 ? 'letto' : 'letti'}</span>
+          </div>
+        </div>
+
+        <div class="rooms-grid">
+          {st.rooms.map((room) => {
+            const searchTokens = [
+              room.id,
+              room.structure,
+              room.room_name,
+              room.room_type,
+              ...room.occupants.map((o) => `${o.display_name} ${o.nickname}`),
+            ]
+              .join(' ')
+              .toLowerCase();
+
+            const emptySlots = Math.max(0, room.capacity - room.occupants.length);
+
+            return (
+              <article
+                class={`room-card status-${room.status} ${room.has_early_arrival ? 'has-early' : ''}`}
+                data-structure={st.meta.slug}
+                data-status={room.status}
+                data-early={room.has_early_arrival ? 'true' : 'false'}
+                data-search={searchTokens}
+              >
+                <div class="room-card-header">
+                  <div class="room-id-row">
+                    <span class="room-id-pill">{room.id}</span>
+                    <span class="room-type-pill">{room.room_type}</span>
+                    {room.has_early_arrival && (
+                      <span class="early-pill" title="Check-in anticipato 28 Dicembre">
+                        🌙 <span lang-it>dal 28/12</span><span lang-en>from Dec 28</span>
+                      </span>
+                    )}
+                  </div>
+                  <span class={`status-pill pill-${room.status}`}>
+                    {room.status_label}
+                  </span>
+                </div>
+
+                <h3 class="room-name">{room.room_name}</h3>
+
+                <!-- VISUAL BED SLOTS -->
+                <div class="bed-slots-row" aria-label={`${room.occupied} su ${room.capacity} posti occupati`}>
+                  {room.occupants.map((occ) => (
+                    <span
+                      class={`bed-slot occupied ${occ.check_in === '2026-12-28' ? 'slot-early' : ''} ${room.status === 'maybe' ? 'slot-maybe' : ''}`}
+                      title={`${occ.display_name}${occ.nickname ? ` «${occ.nickname}»` : ''} (${occ.nights} ${occ.nights === 1 ? 'notte' : 'notti'})`}
+                    >
+                      🛏️
+                    </span>
+                  ))}
+                  {Array.from({ length: emptySlots }).map(() => (
+                    <span class="bed-slot free" title="Posto libero">⬜</span>
+                  ))}
+                  <span class="bed-count-text">
+                    {room.occupied}/{room.capacity} pax
+                  </span>
+                </div>
+
+                <!-- OCCUPANTS LIST -->
+                <ul class="occupants-list">
+                  {room.occupants.map((occ) => (
+                    <li class="occupant-row">
+                      <div class="occ-identity">
+                        <span class="occ-avatar">
+                          {occ.nickname === 'Palladius' ? '👑' : occ.nickname ? '🎭' : '🛌'}
+                        </span>
+                        <div class="occ-names">
+                          <span class="occ-name">{occ.display_name}</span>
+                          {occ.nickname && <span class="occ-nick">«{occ.nickname}»</span>}
+                        </div>
+                      </div>
+                      <span class={`occ-stay ${occ.nights > 1 ? 'stay-2n' : 'stay-1n'}`}>
+                        {occ.check_in.slice(8)}→{occ.check_out.slice(8)}/12 ({occ.nights}n)
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+    ))}
+
+    <!-- EMPTY SEARCH RESULT -->
+    <div id="noBedsFound" class="no-results-box" style="display: none;">
+      <span class="no-res-emoji">🛏️🔍</span>
+      <h3 lang-it>Nessuna camera trovata con questo filtro!</h3>
+      <h3 lang-en>No room matches your filter!</h3>
+      <p lang-it>Prova a cercare un altro nome, soprannome o seleziona «Tutte».</p>
+      <p lang-en>Try another name, nickname, or click «All».</p>
+    </div>
+
+    <!-- BOTTOM NAVIGATION CTA -->
+    <section class="beds-footer-cta">
+      <div class="cta-btn-row">
+        <a href={`${baseUrl}/dormire`} class="btn btn-secondary">
+          <span lang-it>🏨 Info Albergo & Logistica</span>
+          <span lang-en>🏨 Hotel & Logistics Info</span>
+        </a>
+        <a href={`${baseUrl}/invitati`} class="btn btn-secondary">
+          <span lang-it>🥂 Lista Invitati</span>
+          <span lang-en>🥂 Guest List</span>
+        </a>
+        <a href={publicFormUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <span lang-it>Aggiorna o Richiedi Posto Letto (RSVP) ✍️</span>
+          <span lang-en>Update or Request Bed (RSVP) ✍️</span>
+        </a>
+      </div>
+      <p class="sync-footnote">
+        <span lang-it>🔄 Dati sincronizzati dal database camere (Trix tab <code>LETTI</code>) • Aggiornato: {updated_at}</span>
+        <span lang-en>🔄 Synced from rooms database (Trix tab <code>LETTI</code>) • Updated: {updated_at}</span>
+      </p>
+    </section>
+  </main>
+
+  <script is:inline>
+    (function () {
+      const filterBtns = document.querySelectorAll('.filter-pill');
+      const jumpChips = document.querySelectorAll('.structure-chip');
+      const searchInput = document.getElementById('bedSearchInput');
+      const sections = document.querySelectorAll('.structure-section');
+      const noResults = document.getElementById('noBedsFound');
+
+      let activeFilter = 'all';
+      let searchQuery = '';
+
+      function setFilter(nextFilter) {
+        activeFilter = nextFilter;
+        filterBtns.forEach((b) => {
+          b.classList.toggle('active', b.getAttribute('data-filter') === nextFilter);
+        });
+        applyFilters();
+      }
+
+      function applyFilters() {
+        let totalVisible = 0;
+
+        sections.forEach((sec) => {
+          const cards = sec.querySelectorAll('.room-card');
+          let secVisible = 0;
+
+          cards.forEach((card) => {
+            const structSlug = card.getAttribute('data-structure') || '';
+            const status = card.getAttribute('data-status') || '';
+            const isEarly = card.getAttribute('data-early') === 'true';
+            const searchStr = card.getAttribute('data-search') || '';
+
+            let matchFilter = true;
+            if (activeFilter.startsWith('struct:')) {
+              matchFilter = structSlug === activeFilter.slice(7);
+            } else if (activeFilter === 'early') {
+              matchFilter = isEarly;
+            } else if (activeFilter === 'maybe') {
+              matchFilter = status === 'maybe';
+            }
+
+            const matchSearch = !searchQuery || searchStr.includes(searchQuery);
+
+            if (matchFilter && matchSearch) {
+              card.style.display = '';
+              secVisible++;
+              totalVisible++;
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          sec.style.display = secVisible > 0 ? '' : 'none';
+        });
+
+        if (noResults) {
+          noResults.style.display = totalVisible === 0 ? 'block' : 'none';
+        }
+      }
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          setFilter(btn.getAttribute('data-filter') || 'all');
+        });
+      });
+
+      jumpChips.forEach((chip) => {
+        chip.addEventListener('click', () => {
+          const slug = chip.getAttribute('data-jump-structure');
+          if (slug) setFilter(`struct:${slug}`);
+        });
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          searchQuery = (e.target.value || '').trim().toLowerCase();
+          applyFilters();
+        });
+      }
+    })();
+  </script>
+</Layout>
+
+<style>
+  .beds-page {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+  }
+
+  .page-title {
+    font-size: clamp(2.2rem, 5vw, 3.3rem);
+    margin-bottom: 0.8rem;
+    line-height: 1.15;
+  }
+
+  /* KPI BANNER */
+  .beds-kpi-card {
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.92), rgba(15, 23, 42, 0.96));
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    border-radius: 20px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45), 0 0 25px rgba(245, 158, 11, 0.08);
+  }
+
+  .beds-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.3rem;
+  }
+
+  .beds-kpi {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.95rem 1.15rem;
+    border-radius: 14px;
+    background: rgba(15, 23, 42, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .beds-kpi.total {
+    border-color: rgba(16, 185, 129, 0.4);
+    background: rgba(16, 185, 129, 0.08);
+  }
+
+  .beds-kpi.early {
+    border-color: rgba(56, 189, 248, 0.4);
+    background: rgba(56, 189, 248, 0.08);
+  }
+
+  .beds-kpi.main-night {
+    border-color: rgba(245, 158, 11, 0.4);
+    background: rgba(245, 158, 11, 0.08);
+  }
+
+  .beds-kpi.rooms {
+    border-color: rgba(168, 85, 247, 0.35);
+  }
+
+  .kpi-emoji {
+    font-size: 1.9rem;
+    flex-shrink: 0;
+  }
+
+  .kpi-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .kpi-num {
+    font-size: 1.65rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-light);
+  }
+
+  .kpi-num small {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .kpi-label {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+  }
+
+  .structures-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.85rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .structure-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+  }
+
+  .structure-chip:hover {
+    border-color: var(--accent-gold);
+    background: rgba(245, 158, 11, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .chip-icon {
+    font-size: 1.6rem;
+  }
+
+  .chip-info strong {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--accent-gold);
+  }
+
+  .chip-info small {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  /* FILTER & SEARCH CONTROLS */
+  .controls-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2.2rem;
+  }
+
+  .filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+  }
+
+  .filter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.95rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(30, 41, 59, 0.65);
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .filter-pill:hover {
+    color: var(--text-light);
+    border-color: rgba(245, 158, 11, 0.5);
+  }
+
+  .filter-pill.active {
+    background: var(--accent-gold);
+    color: #0f172a;
+    border-color: var(--accent-gold);
+    font-weight: 700;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+  }
+
+  .search-box-wrapper {
+    position: relative;
+    max-width: 560px;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    pointer-events: none;
+  }
+
+  .bed-search-input {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 2.7rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(15, 23, 42, 0.85);
+    color: var(--text-light);
+    font-family: inherit;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .bed-search-input:focus {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+  }
+
+  /* STRUCTURE SECTIONS */
+  .structure-section {
+    margin-bottom: 3rem;
+  }
+
+  .structure-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-bottom: 0.9rem;
+    margin-bottom: 1.3rem;
+    border-bottom: 1px solid rgba(245, 158, 11, 0.25);
+  }
+
+  .structure-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .structure-emoji {
+    font-size: 2.1rem;
+  }
+
+  .structure-title-row h2 {
+    font-size: 1.75rem;
+    color: var(--text-light);
+    line-height: 1.2;
+  }
+
+  .structure-desc {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+  }
+
+  .structure-totals {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .total-badge {
+    padding: 0.35rem 0.8rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-light);
+  }
+
+  .total-badge.gold {
+    background: rgba(245, 158, 11, 0.16);
+    border-color: rgba(245, 158, 11, 0.45);
+    color: var(--accent-gold);
+  }
+
+  /* ROOM CARDS */
+  .rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .room-card {
+    background: linear-gradient(155deg, rgba(30, 41, 59, 0.88), rgba(15, 23, 42, 0.95));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    padding: 1.3rem 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .room-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(245, 158, 11, 0.45);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+  }
+
+  .room-card.status-maybe {
+    border-color: rgba(245, 158, 11, 0.4);
+  }
+
+  .room-card.has-early {
+    border-color: rgba(56, 189, 248, 0.45);
+  }
+
+  .room-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .room-id-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .room-id-pill {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+    padding: 0.2rem 0.55rem;
+    border-radius: 8px;
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: var(--accent-gold);
+  }
+
+  .room-type-pill {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.2rem 0.55rem;
+    border-radius: 8px;
+  }
+
+  .early-pill {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 8px;
+    background: rgba(56, 189, 248, 0.16);
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    color: var(--accent-blue);
+  }
+
+  .status-pill {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.22rem 0.6rem;
+    border-radius: 9999px;
+  }
+
+  .pill-confirmed {
+    background: rgba(16, 185, 129, 0.14);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #34d399;
+  }
+
+  .pill-maybe {
+    background: rgba(245, 158, 11, 0.16);
+    border: 1px solid rgba(245, 158, 11, 0.45);
+    color: #fbbf24;
+  }
+
+  .pill-free {
+    background: rgba(148, 163, 184, 0.12);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    color: var(--text-muted);
+  }
+
+  .room-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.12rem;
+    font-weight: 700;
+    color: var(--text-light);
+    line-height: 1.3;
+  }
+
+  /* VISUAL BED SLOTS */
+  .bed-slots-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.25);
+  }
+
+  .bed-slot {
+    font-size: 1.05rem;
+    padding: 0.15rem 0.35rem;
+    border-radius: 6px;
+    background: rgba(16, 185, 129, 0.18);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+  }
+
+  .bed-slot.slot-early {
+    background: rgba(56, 189, 248, 0.2);
+    border-color: rgba(56, 189, 248, 0.5);
+  }
+
+  .bed-slot.slot-maybe {
+    background: rgba(245, 158, 11, 0.18);
+    border-color: rgba(245, 158, 11, 0.45);
+  }
+
+  .bed-slot.free {
+    background: transparent;
+    border: 1px dashed rgba(148, 163, 184, 0.35);
+    opacity: 0.6;
+  }
+
+  .bed-count-text {
+    margin-left: auto;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+
+  /* OCCUPANTS */
+  .occupants-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .occupant-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    padding: 0.55rem 0.75rem;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .occ-identity {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-width: 0;
+  }
+
+  .occ-avatar {
+    font-size: 1.05rem;
+    flex-shrink: 0;
+  }
+
+  .occ-names {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+
+  .occ-name {
+    font-weight: 700;
+    font-size: 0.94rem;
+    color: var(--text-light);
+  }
+
+  .occ-nick {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+  }
+
+  .occ-stay {
+    font-size: 0.74rem;
+    font-weight: 700;
+    padding: 0.18rem 0.5rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .stay-1n {
+    background: rgba(148, 163, 184, 0.14);
+    color: var(--text-muted);
+  }
+
+  .stay-2n {
+    background: rgba(56, 189, 248, 0.18);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    color: var(--accent-blue);
+  }
+
+  .no-results-box {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px dashed rgba(245, 158, 11, 0.4);
+    border-radius: 18px;
+    margin-bottom: 2rem;
+  }
+
+  .no-res-emoji {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+
+  /* FOOTER CTA */
+  .beds-footer-cta {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .cta-btn-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .sync-footnote {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .sync-footnote code {
+    color: var(--accent-gold);
+    background: rgba(245, 158, 11, 0.12);
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+</style>

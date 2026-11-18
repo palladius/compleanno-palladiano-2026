@@ -1,0 +1,345 @@
+{
+  "updated_at": "2026-11-18",
+  "summary": {
+    "total_rooms": 9,
+    "total_capacity": 23,
+    "confirmed_beds": 22,
+    "maybe_beds": 1,
+    "allocated_beds": 23,
+    "dec28_guests": 3,
+    "dec29_guests": 23,
+    "structures": [
+      {
+        "name": "Ristorante Ai Dossi",
+        "rooms_count": 4,
+        "capacity": 12,
+        "occupied": 12,
+        "confirmed": 12,
+        "maybe": 0
+      },
+      {
+        "name": "B&B",
+        "rooms_count": 3,
+        "capacity": 8,
+        "occupied": 8,
+        "confirmed": 8,
+        "maybe": 0
+      },
+      {
+        "name": "Garusiola",
+        "rooms_count": 2,
+        "capacity": 3,
+        "occupied": 3,
+        "confirmed": 2,
+        "maybe": 1
+      }
+    ]
+  },
+  "rooms": [
+    {
+      "id": "DOSSI-1",
+      "structure": "Ristorante Ai Dossi",
+      "room_name": "Quadrupla 1 • Famiglia Palladiana",
+      "room_type": "Quadrupla (4)",
+      "capacity": 4,
+      "occupied": 4,
+      "status": "confirmed",
+      "status_label": "🟢 CONFERMATO",
+      "check_in": "2026-12-29",
+      "check_out": "2026-12-30",
+      "nights": 1,
+      "has_early_arrival": false,
+      "occupants": [
+        {
+          "display_name": "Riccardo C.",
+          "nickname": "Palladius",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        },
+        {
+          "display_name": "Kate",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        },
+        {
+          "display_name": "Ale",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        },
+        {
+          "display_name": "Seby",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        }
+      ]
+    },
+    {
+      "id": "DOSSI-2",
+      "structure": "Ristorante Ai Dossi",
+      "room_name": "Quadrupla 2 • Carovana Elvetica",
+      "room_type": "Quadrupla (4)",
+      "capacity": 4,
+      "occupied": 4,
+      "status": "confirmed",
+      "status_label": "🟢 CONFERMATO",
+      "check_in": "2026-12-29",
+      "check_out": "2026-12-30",
+      "nights": 1,
+      "has_early_arrival": false,
+      "occupants": [
+        {
+          "display_name": "Paolo P.",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        },
+        {
+          "display_name": "Diana L.",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        },
+        {
+          "display_name": "Sofia P.",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        },
+        {
+          "display_name": "Patricia P.",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        }
+      ]
+    },
+    {
+      "id": "DOSSI-3",
+      "structure": "Ristorante Ai Dossi",
+      "room_name": "Matrimoniale 1 • Vienna (dal 28)",
+      "room_type": "Matrimoniale (2)",
+      "capacity": 2,
+      "occupied": 2,
+      "status": "confirmed",
+      "status_label": "🟢 CONFERMATO",
+      "check_in": "2026-12-28",
+      "check_out": "2026-12-30",
+      "nights": 2,
+      "has_early_arrival": true,
+      "occupants": [
+        {
+          "display_name": "Victoria A.",
+          "nickname": "Vicky",
+          "check_in": "2026-12-28",
+          "check_out": "2026-12-30",
+          "nights": 2
+        },
+        {
+          "display_name": "Simon A.",
+          "nickname": "",
+          "check_in": "2026-12-28",
+          "check_out": "2026-12-30",
+          "nights": 2
+        }
+      ]
+    },
+    {
+      "id": "DOSSI-4",
+      "structure": "Ristorante Ai Dossi",
+      "room_name": "Doppia 1 • Burattino & Marche (dal 28)",
+      "room_type": "Doppia Letti Separati (2)",
+      "capacity": 2,
+      "occupied": 2,
+      "status": "confirmed",
+      "status_label": "🟢 CONFERMATO",
+      "check_in": "2026-12-28",
+      "check_out": "2026-12-30",
+      "nights": 2,
+      "has_early_arrival": true,
+      "occupants": [
+        {
+          "display_name": "Fabio M.",
+          "nickname": "Burattino",
+          "check_in": "2026-12-28",
+          "check_out": "2026-12-30",
+          "nights": 2
+        },
+        {
+          "display_name": "Luca F.",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        }
+      ]
+    },
+    {
+      "id": "BB-1",
+      "structure": "B&B",
+      "room_name": "Quadrupla 3 • Famiglia Nicola + 3",
+      "room_type": "Quadrupla (4)",
+      "capacity": 4,
+      "occupied": 4,
+      "status": "confirmed",
+      "status_label": "🟢 CONFERMATO",
+      "check_in": "2026-12-29",
+      "check_out": "2026-12-30",
+      "nights": 1,
+      "has_early_arrival": false,
+      "occupants": [
+        {
+          "display_name": "Nicola",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        },
+        {
+          "display_name": "Familiare N.",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        },
+        {
+          "display_name": "Familiare N.",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        },
+        {
+          "display_name": "Familiare N.",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        }
+      ]
+    },
+    {
+      "id": "BB-2",
+      "structure": "B&B",
+      "room_name": "Matrimoniale 2 • Zurigo / Fano",
+      "room_type": "Matrimoniale (2)",
+      "capacity": 2,
+      "occupied": 2,
+      "status": "confirmed",
+      "status_label": "🟢 CONFERMATO",
+      "check_in": "2026-12-29",
+      "check_out": "2026-12-30",
+      "nights": 1,
+      "has_early_arrival": false,
+      "occupants": [
+        {
+          "display_name": "Andrea P.",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        },
+        {
+          "display_name": "Viktoriya S.",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        }
+      ]
+    },
+    {
+      "id": "BB-3",
+      "structure": "B&B",
+      "room_name": "Matrimoniale 3 • Carovana Sabauda",
+      "room_type": "Matrimoniale (2)",
+      "capacity": 2,
+      "occupied": 2,
+      "status": "confirmed",
+      "status_label": "🟢 CONFERMATO",
+      "check_in": "2026-12-29",
+      "check_out": "2026-12-30",
+      "nights": 1,
+      "has_early_arrival": false,
+      "occupants": [
+        {
+          "display_name": "Dario V.",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        },
+        {
+          "display_name": "Behidzhe N. M.",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        }
+      ]
+    },
+    {
+      "id": "GAR-1",
+      "structure": "Garusiola",
+      "room_name": "Doppia 2 • Milano Express",
+      "room_type": "Doppia Letti Separati (2)",
+      "capacity": 2,
+      "occupied": 2,
+      "status": "confirmed",
+      "status_label": "🟢 CONFERMATO",
+      "check_in": "2026-12-29",
+      "check_out": "2026-12-30",
+      "nights": 1,
+      "has_early_arrival": false,
+      "occupants": [
+        {
+          "display_name": "Luca F.",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        },
+        {
+          "display_name": "Ludovico B.",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        }
+      ]
+    },
+    {
+      "id": "GAR-2",
+      "structure": "Garusiola",
+      "room_name": "Singola 1 • Equipaggio Riviera",
+      "room_type": "Singola (1)",
+      "capacity": 1,
+      "occupied": 1,
+      "status": "maybe",
+      "status_label": "🟡 IN FORSE",
+      "check_in": "2026-12-29",
+      "check_out": "2026-12-30",
+      "nights": 1,
+      "has_early_arrival": false,
+      "occupants": [
+        {
+          "display_name": "Francesco B.",
+          "nickname": "",
+          "check_in": "2026-12-29",
+          "check_out": "2026-12-30",
+          "nights": 1
+        }
+      ]
+    }
+  ]
+}
